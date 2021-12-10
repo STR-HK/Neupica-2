@@ -1,0 +1,11 @@
+* {
+    font-family: 'Pretendard';
+    /* margin: 0;
+    padding: 0;
+    outline: 0; */
+}
+
+div {
+    width: fit-content;
+    height: fit-content;
+}
