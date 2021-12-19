@@ -1,5 +1,6 @@
 {
     "liveServer.settings.port": 5002,
+    "rpc.enabled": false,
     // "javascript.suggest.alwaysAllWords": true,
     // "javascript.suggest.completeFunctionCalls": true,
 }
