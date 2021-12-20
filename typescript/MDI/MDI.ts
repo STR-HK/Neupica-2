@@ -1,7 +1,7 @@
 export class MDI {
     constructor () {}
 
-    root = '../material-design-icons/'
+    root = './material-design-icons/'
 
     // 10k = `${this.root}10k.svg`
     // 10mp = `${this.root}10mp.svg`
