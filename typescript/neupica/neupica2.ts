@@ -37,7 +37,7 @@ export function runApp ({
 
     if ( loaded == false ) {
         stack.push(args)
-        console.log('appRunStacked :', name, app, 'loaded :', loaded)
+        // console.log('appRunStacked :', name, app, 'loaded :', loaded)
     } else {
         if ( app == undefined ) {
             console.error('runApp -> No app given')
@@ -77,7 +77,7 @@ function runStackedApp () {
 //     runApp(key, value, debug = true)
 // }
 
-function bootingStack () {
+function solveBootingStack () {
     let boot : any = localStorage.getItem('boot')
     if ( boot == null ) {
         localStorage.setItem('boot', '0')
@@ -90,25 +90,18 @@ function bootingStack () {
 
 }
 
+import { Ascii } from '../utils/Ascii.js';
+
 let data = {
     "name": "Neupica 2",
-    "ascii": 
-    `     /$$   /$$                               /$$                            /$$$$$$ 
-    | $$$ | $$                              |__/                           /$$__  $$
-    | $$$$| $$  /$$$$$$  /$$   /$$  /$$$$$$  /$$  /$$$$$$$  /$$$$$$       |__/  \ $$
-    | $$ $$ $$ /$$__  $$| $$  | $$ /$$__  $$| $$ /$$_____/ |____  $$        /$$$$$$/
-    | $$  $$$$| $$$$$$$$| $$  | $$| $$  \ $$| $$| $$        /$$$$$$$       /$$____/ 
-    | $$\   $$$| $$_____/| $$  | $$| $$  | $$| $$| $$       /$$__  $$      | $$      
-    | $$ \   $$|  $$$$$$$|  $$$$$$/| $$$$$$$/| $$|  $$$$$$$|  $$$$$$$      | $$$$$$$$
-    |__/  \ __/  \_______/  \______/ | $$____/ |__/  \_______/  \_______/      |________/
-                                 | $$                                              
-                                 | $$                                              
-                                 |__/                                              `,
+    "ascii": Ascii('Neupica 2'),
     "version": "Alpha v1",
     // "description": "Neupica 2",
     "author": "STR.HK",
     "license": "GPL-3.0",
 }
+
+window.Ascii = Ascii 
 
 window.onload = () => {
     const Neupica = new Init()
@@ -129,11 +122,11 @@ window.onload = () => {
     console.log(
         `%c${data.ascii}`,
         `
-        font-size: 0.5em;
+        // font-size: 0.5em;
         // font-family: Pretendard;
 
         `,
-        `by ${data.author}`
+        // `by ${data.author}`
 
     )
 
@@ -149,7 +142,7 @@ window.onload = () => {
     )
 
     runStackedApp()
-    bootingStack()
+    solveBootingStack()
 }
 
 class Init {

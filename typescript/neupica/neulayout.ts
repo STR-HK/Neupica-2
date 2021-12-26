@@ -6,7 +6,7 @@ class Layout {
         this.element.classList.add('Layout')
 
         this.convertLayoutToElement = function (layout : any) {
-            console.log('convertLayoutToElement :', layout)
+            // console.log('convertLayoutToElement :', layout)
             let convertion = []
             layout.forEach(function (child) {
                 if ( child.cover ) {
