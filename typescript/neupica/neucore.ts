@@ -1,5 +1,5 @@
-import { MDI } from '../utils/MDI.js'
-import { ColorsModule } from '../utils/Colors.js'
+import { MDI } from '../Utils/MDI.js'
+import { ColorsModule } from '../Utils/Colors.js'
 
 export class NeuMainWindow {
     

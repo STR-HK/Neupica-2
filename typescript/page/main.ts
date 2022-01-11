@@ -1,8 +1,8 @@
-import { runApp } from "../neupica/Neupica2.js"
-import { NeuMainWindow } from "../neupica/NeuCore.js"
+import { runApp } from "../Neupica/Neupica2.js"
+import { NeuMainWindow } from "../Neupica/NeuCore.js"
 
-import { NeuAppBar, NeuButton, NeuInput } from "../neupica/NeuWidgets.js"
-import { NeuLayout } from "../neupica/NeuLayout.js"
+import { NeuAppBar, NeuButton, NeuInput } from "../Neupica/NeuWidgets.js"
+import { NeuLayout } from "../Neupica/NeuLayout.js"
 
 class Stora extends NeuMainWindow {
     constructor () {
