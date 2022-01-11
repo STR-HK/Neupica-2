@@ -41,7 +41,7 @@ function solveBootingStack() {
     console.log('bootingStack :', parseInt(boot));
     localStorage.setItem('boot', boot.toString());
 }
-import { Ascii } from '../utils/Ascii.js';
+import { Ascii } from '../Utils/Ascii.js';
 let data = {
     "name": "Neupica 2",
     "ascii": Ascii('Neupica 2'),

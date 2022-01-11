@@ -20,7 +20,7 @@ window.thisClass = (item) => {
     console.log('thisClass :', item, 'converted to', window.IndexStorage.getItem(item.id));
     return window.IndexStorage.getItem(item.id);
 };
-import { ColorsModule } from "../utils/Colors.js";
+import { ColorsModule } from "../Utils/Colors.js";
 const Colors = new ColorsModule();
 class WidgetStylerClass {
     constructor() {

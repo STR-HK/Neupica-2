@@ -28,7 +28,7 @@ window.thisClass = (item: any) => {
 }
 
 
-import { ColorsModule } from "../utils/Colors.js"
+import { ColorsModule } from "../Utils/Colors.js"
 const Colors = new ColorsModule()
 
 class WidgetStylerClass {

@@ -100,7 +100,7 @@ function solveBootingStack () {
 
 }
 
-import { Ascii } from '../utils/Ascii.js';
+import { Ascii } from '../Utils/Ascii.js';
 
 let data = {
     "name": "Neupica 2",
