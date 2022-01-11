@@ -1,6 +1,3 @@
-from bs4 import BeautifulSoup
-from bs4.element import Doctype
-
 Doctype = '<!DOCTYPE html>'
 
 class HTMLElement:
@@ -14,7 +11,9 @@ class HTMLElement:
     def setAttribute(self, attributeName, attributeValue):
         self.openTag = self.classElement[0]
         self.spopt = self.openTag.split('>')
+        print(self.spopt)
         self.spopt = list(filter(None, self.spopt))
+        print(self.spopt)
         self.spopt.append(f'{attributeName}={attributeValue}')
         self.jdopt = ' '.join(self.spopt) + '>'
         self.classElement[0] = self.jdopt
@@ -90,11 +89,11 @@ html.appendChild(body.element())
 
 completedHTML = f'{Doctype}{html.element()}'
 
-soup = BeautifulSoup(completedHTML, 'html.parser')
+# soup = BeautifulSoup(completedHTML, 'html.parser')
 
-prettyHTML = soup.prettify()
-print(prettyHTML)
+# prettyHTML = soup.prettify()
+# print(prettyHTML)
 
 f = open('temp.html', 'w')
-f.write(prettyHTML)
+f.write(completedHTML)
 f.close()
