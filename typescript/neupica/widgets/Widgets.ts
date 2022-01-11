@@ -1,11 +1,10 @@
-import { resolve } from "path"
-
-function makeId(length) {
+function makeId(length) : string {
     var result           = ''
 
     var characters       = ''
     characters           += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     characters           += 'abcdefghijklmnopqrstuvwxyz'
+    // characters           += '스토라'
     characters           += '0123456789'
 
     var charactersLength = characters.length
@@ -17,44 +16,39 @@ function makeId(length) {
     return result
 }
 
+type ElementEditCallback = (element: HTMLElement) => HTMLElement
+
 export class Widgets {
-    [x: string]: any
     object: { [key : string]: any }
+
+    loadStyle: (name: string) => void
+    store: (elementID: string, realClass: string) => void
+
+    createCover: (name: string) => HTMLDivElement
+    createElement: (hidden: boolean, fir: boolean) => HTMLDivElement
+    createImg: (hidden: boolean) => HTMLImageElement
+
+    apply: (object: { [key : string]: any }) => void
+    editSvg: (url: string, editFunction: ElementEditCallback) => Promise<string>
+
     constructor () {
-        // windowRize('Index', new SessionStorageManager())
-        // function thisClass(this: any) {
-            
-        // }
-        // windowRize('this', thisFunc())
-
-        // console.log(this.name)
-
         this.loadStyle = function (name) {
             return window.WidgetStyler[name]
         }
 
         this.store = function (elementID : string, realClass : string) {
             window.IndexStorage.setItem(elementID, realClass)
-            // console.log('Stored :', elementID , 'as', realClass)
-            // console.log(realClass)
-            // console.log(window.IndexStorage)
         }
 
-        // this.getClass = function (elementID : string) {
-        //     return window['SessionStorageManager'].getItem(elementID)
-        // }
-
-        this.materialShadow = '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)'
-
-        this.createCover = function (name: string) {
+        this.createCover = function (name: string) : HTMLDivElement {
             var element = document.createElement('div')
             element.id = `${name}-${makeId(6)}` // Name-xxxxxx
+            element.style.width = 'fit-content'
             this.store(element.id, this)
-            // element.class = window['SessionStorageManager'].getItem(this.id)
             return element
         }
 
-        this.createElement = function (hidden: boolean = false, fit : boolean = true) : HTMLElement {
+        this.createElement = function (hidden: boolean = false, fit : boolean = true) : HTMLDivElement {
             var element = document.createElement('div')
             element.id = `Neu-Div-${makeId(6)}` // Neu-Div-xxxxxx
             if ( fit ) {
@@ -67,7 +61,7 @@ export class Widgets {
             return element
         }
 
-        this.createImg = function (hidden: boolean = false) {
+        this.createImg = function (hidden: boolean = false) : HTMLImageElement {
             var element = document.createElement('img')
             element.id = `Neu-Img-${makeId(6)}` // Neu-Img-xxxxxx
             if ( hidden ) { element.style.display = 'none' }
@@ -79,8 +73,9 @@ export class Widgets {
                 if (entry[1] != null) {
                     
                     try {
+                        this['object'][entry[0]] = entry[1]
                         this['set' + entry[0]](entry[1])
-                        console.log(`%c${this.name}.set${entry[0]}(${entry[1]})`, 'color: #C34;')
+                        // console.log(`%c${this.name}.set${entry[0]}(${entry[1]})`, 'color: #C34;')
                     } catch (error) {
                         console.warn(`${this.name} -> set${entry[0]}(${entry[1]})\n\n${error}`)
                         // console.warn(error)
@@ -89,14 +84,14 @@ export class Widgets {
             })
         }
 
-        this.styles = function (target, obj) {
-            Object.entries(obj).forEach(entry => {
-                this[target]['style'].setProperty(entry[0], entry[1])
-                console.log(this[target]['style'][entry[0]])
-                console.log(`%c${this.name}.${target}.setProperty(${entry[0]}, ${entry[1]})`,
-                'background: black')
-            })
-        }
+        // this.styles = function (target, obj) {
+        //     Object.entries(obj).forEach(entry => {
+        //         this[target]['style'].setProperty(entry[0], entry[1])
+        //         console.log(this[target]['style'][entry[0]])
+        //         console.log(`%c${this.name}.${target}.setProperty(${entry[0]}, ${entry[1]})`,
+        //         'background: black')
+        //     })
+        // }
 
         // this.editSvg = function (url, editFunction) {
         //     let xhr = new XMLHttpRequest()
@@ -118,7 +113,8 @@ export class Widgets {
         //     }
         // }
         
-        this.editSvg = function (url, editFunction) {
+
+        this.editSvg = function (url: string, editFunction: ElementEditCallback) {
             return new Promise(
                 function (resolve) {
                     let xhr = new XMLHttpRequest()

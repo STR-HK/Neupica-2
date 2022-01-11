@@ -5,7 +5,7 @@ export class NeuInput extends Widgets {
         this.name = 'NeuInput';
         this.create();
         this.init();
-        this.apply({
+        this.object = {
             Size: '1rem',
             Padding: '10px',
             StrokeColor: 'gray',
@@ -14,7 +14,8 @@ export class NeuInput extends Widgets {
             StrokeRadius: '3px',
             Color: '#C34',
             CursorColor: '#C34351',
-        }); // 스타일 적용
+        };
+        this.apply(this.object); // 스타일 적용
     }
     create() {
         this.cover = this.createCover(this.name);
@@ -34,28 +35,36 @@ export class NeuInput extends Widgets {
         this.input.style.width = 'fit-content';
     }
     setSize(size) {
-        this.input.style.height = size;
+        this.object.Size = size;
+        // this.input.style.height = size
         this.input.style.fontSize = size;
     }
     setPadding(padding) {
+        this.object.Padding = padding;
         this.element.style.padding = padding;
     }
     setStrokeColor(color) {
+        this.object.StrokeColor = color;
         this.element.style.borderColor = color;
     }
     setStrokeWidth(width) {
+        this.object.StrokeWidth = width;
         this.element.style.borderWidth = width;
     }
     setStrokeStyle(style) {
+        this.object.StrokeStyle = style;
         this.element.style.borderStyle = style;
     }
     setStrokeRadius(radius) {
+        this.object.StrokeRadius = radius;
         this.element.style.borderRadius = radius;
     }
     setCursorColor(color) {
+        this.object.CursorColor = color;
         this.input.style.caretColor = color;
     }
     setColor(color) {
+        this.object.Color = color;
         this.input.style.color = color;
     }
 }

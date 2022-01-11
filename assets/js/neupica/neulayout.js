@@ -28,4 +28,4 @@ export class NeuLayout extends Layout {
         super();
     }
 }
-//# sourceMappingURL=neulayout.js.map
+//# sourceMappingURL=NeuLayout.js.map

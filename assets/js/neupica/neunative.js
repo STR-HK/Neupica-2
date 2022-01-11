@@ -55,4 +55,4 @@ export class NeuNative {
 //         this.icon = this.createImg()
 //     }
 // }
-//# sourceMappingURL=neunative.js.map
+//# sourceMappingURL=NeuNative.js.map

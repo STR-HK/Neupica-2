@@ -3,6 +3,7 @@ function makeId(length) {
     var characters = '';
     characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     characters += 'abcdefghijklmnopqrstuvwxyz';
+    // characters           += '스토라'
     characters += '0123456789';
     var charactersLength = characters.length;
     for (var i = 0; i < length; i++) {
@@ -11,30 +12,26 @@ function makeId(length) {
     return result;
 }
 export class Widgets {
+    object;
+    loadStyle;
+    store;
+    createCover;
+    createElement;
+    createImg;
+    apply;
+    editSvg;
     constructor() {
-        // windowRize('Index', new SessionStorageManager())
-        // function thisClass(this: any) {
-        // }
-        // windowRize('this', thisFunc())
-        // console.log(this.name)
         this.loadStyle = function (name) {
             return window.WidgetStyler[name];
         };
         this.store = function (elementID, realClass) {
             window.IndexStorage.setItem(elementID, realClass);
-            // console.log('Stored :', elementID , 'as', realClass)
-            // console.log(realClass)
-            // console.log(window.IndexStorage)
         };
-        // this.getClass = function (elementID : string) {
-        //     return window['SessionStorageManager'].getItem(elementID)
-        // }
-        this.materialShadow = '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)';
         this.createCover = function (name) {
             var element = document.createElement('div');
             element.id = `${name}-${makeId(6)}`; // Name-xxxxxx
+            element.style.width = 'fit-content';
             this.store(element.id, this);
-            // element.class = window['SessionStorageManager'].getItem(this.id)
             return element;
         };
         this.createElement = function (hidden = false, fit = true) {
@@ -62,8 +59,9 @@ export class Widgets {
             Object.entries(obj).forEach(entry => {
                 if (entry[1] != null) {
                     try {
+                        this['object'][entry[0]] = entry[1];
                         this['set' + entry[0]](entry[1]);
-                        console.log(`%c${this.name}.set${entry[0]}(${entry[1]})`, 'color: #C34;');
+                        // console.log(`%c${this.name}.set${entry[0]}(${entry[1]})`, 'color: #C34;')
                     }
                     catch (error) {
                         console.warn(`${this.name} -> set${entry[0]}(${entry[1]})\n\n${error}`);
@@ -72,13 +70,14 @@ export class Widgets {
                 }
             });
         };
-        this.styles = function (target, obj) {
-            Object.entries(obj).forEach(entry => {
-                this[target]['style'].setProperty(entry[0], entry[1]);
-                console.log(this[target]['style'][entry[0]]);
-                console.log(`%c${this.name}.${target}.setProperty(${entry[0]}, ${entry[1]})`, 'background: black');
-            });
-        };
+        // this.styles = function (target, obj) {
+        //     Object.entries(obj).forEach(entry => {
+        //         this[target]['style'].setProperty(entry[0], entry[1])
+        //         console.log(this[target]['style'][entry[0]])
+        //         console.log(`%c${this.name}.${target}.setProperty(${entry[0]}, ${entry[1]})`,
+        //         'background: black')
+        //     })
+        // }
         // this.editSvg = function (url, editFunction) {
         //     let xhr = new XMLHttpRequest()
         //     xhr.open('GET', url, false)

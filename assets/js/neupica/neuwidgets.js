@@ -101,4 +101,4 @@ import { NeuButton } from "./widgets/NeuButton.js";
 import { NeuAppBar } from "./widgets/NeuAppBar.js";
 import { NeuInput } from "./widgets/NeuInput.js";
 export { NeuButton, NeuAppBar, NeuInput };
-//# sourceMappingURL=neuwidgets.js.map
+//# sourceMappingURL=NeuWidgets.js.map

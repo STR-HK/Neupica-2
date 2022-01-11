@@ -17,4 +17,4 @@ export class NeuSelector {
         };
     }
 }
-//# sourceMappingURL=neuselector.js.map
+//# sourceMappingURL=NeuSelector.js.map

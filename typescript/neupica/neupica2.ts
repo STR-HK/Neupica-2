@@ -27,43 +27,53 @@ export class App {
     }
 }
 
-export function runApp ({
-    app = undefined,
-    name = undefined,
-    debug = false,
-} = {}) {
+// export function runApp ({
+//     app = undefined,
+//     name = undefined,
+//     debug = false,
+// } = {}) {
 
-    let args = arguments[0]
+//     let args = arguments[0]
 
-    if ( loaded == false ) {
-        stack.push(args)
-        // console.log('appRunStacked :', name, app, 'loaded :', loaded)
-    } else {
-        if ( app == undefined ) {
-            console.error('runApp -> No app given')
-        } else if ( app ) {
-            console.log('runApp -> App given :', app)
+//     if ( loaded == false ) {
+//         stack.push(args)
+//         // console.log('appRunStacked :', name, app, 'loaded :', loaded)
+//     } else {
+//         if ( app == undefined ) {
+//             console.error('runApp -> No app given')
+//         } else if ( app ) {
+//             console.log('runApp -> App given :', app)
 
-            if ( name == undefined ) {
-                console.error('runApp -> No name given')
-            } else if ( name ) {
-                console.log('runApp -> Name given :', name)
+//             if ( name == undefined ) {
+//                 console.error('runApp -> No name given')
+//             } else if ( name ) {
+//                 console.log('runApp -> Name given :', name)
                 
-                if ( debug ) {
-                    window[name] = app
-                    console.log('runApp :', name, app, 'loaded :', loaded)
-                    console.log('runApp -> debug :', debug)
-                } else {
-                    let name = app
-                    console.log('runApp -> debug :', debug)
-                }
+//                 if ( debug ) {
+//                     window[name] = app
+//                     console.log('runApp :', name, app, 'loaded :', loaded)
+//                     console.log('runApp -> debug :', debug)
+//                 } else {
+//                     let name = app
+//                     console.log('runApp -> debug :', debug)
+//                 }
 
-            }
+//             }
 
-        }
+//         }
 
-        // window[appName] = appClass
-        // console.log('runApp :', appName, appClass, 'loaded :', loaded)
+//         // window[appName] = appClass
+//         // console.log('runApp :', appName, appClass, 'loaded :', loaded)
+//     }
+// }
+
+import { NeuMainWindow } from "./NeuCore.js"
+
+export function runApp(app: new () => NeuMainWindow) {
+    if ( loaded == false ) {
+        stack.push(arguments[0])
+    } else {
+        new app()
     }
 }
 
@@ -131,7 +141,7 @@ window.onload = () => {
     )
 
     console.log(
-        `%c[ ${data.version} ]`,
+        `%cVERSION : ${data.version} \nLICENSE : ${data.license}`,
         `
         // background-image: linear-gradient(60deg, #E21143, #FFB03A);
 
@@ -150,21 +160,21 @@ class Init {
     }
 }
 
-function init () {
-    window.addEventListener('resize', function (event) {
-        var screenWidth : number = window.screen.width
-        var screenHeight : number = window.screen.height
-    })
-}
+// function init () {
+//     window.addEventListener('resize', function (event) {
+//         var screenWidth : number = window.screen.width
+//         var screenHeight : number = window.screen.height
+//     })
+// }
 
-export class NeupicaV2 {
-    constructor () {
+// export class NeupicaV2 {
+//     constructor () {
 
-    }
-}
+//     }
+// }
 
-class Root {
-    constructor () {
-        // 위젯 관리 도군
-    }
-}
+// class Root {
+//     constructor () {
+//         // 위젯 관리 도군
+//     }
+// }

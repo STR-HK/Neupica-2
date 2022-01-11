@@ -8,8 +8,8 @@ export class NeuInput extends Widgets {
 
         this.create()
         this.init()
-        
-        this.apply({
+
+        this.object = {
             Size: '1rem',
 
             Padding: '10px',
@@ -21,7 +21,9 @@ export class NeuInput extends Widgets {
             Color: '#C34',
 
             CursorColor: '#C34351',
-        }) // 스타일 적용
+        }
+        
+        this.apply(this.object) // 스타일 적용
     }
 
     create () {
@@ -47,30 +49,38 @@ export class NeuInput extends Widgets {
     }
 
     setSize (size : string) {
-        this.input.style.height = size
+        this.object.Size = size
+        // this.input.style.height = size
         this.input.style.fontSize = size
     }
     setPadding (padding : string) {
+        this.object.Padding = padding
         this.element.style.padding = padding
     }
 
     setStrokeColor (color : string) {
+        this.object.StrokeColor = color
         this.element.style.borderColor = color
     }
     setStrokeWidth (width : string) {
+        this.object.StrokeWidth = width
         this.element.style.borderWidth = width
     }
     setStrokeStyle (style : string) {
+        this.object.StrokeStyle = style
         this.element.style.borderStyle = style
     }
     setStrokeRadius (radius : string) {
+        this.object.StrokeRadius = radius
         this.element.style.borderRadius = radius
     }
 
     setCursorColor (color : string) {
+        this.object.CursorColor = color
         this.input.style.caretColor = color
     }
     setColor (color : string) {
+        this.object.Color = color
         this.input.style.color = color
     }
 }

@@ -15,36 +15,12 @@ export class App {
     constructor() {
     }
 }
-export function runApp({ app = undefined, name = undefined, debug = false, } = {}) {
-    let args = arguments[0];
+export function runApp(app) {
     if (loaded == false) {
-        stack.push(args);
-        // console.log('appRunStacked :', name, app, 'loaded :', loaded)
+        stack.push(arguments[0]);
     }
     else {
-        if (app == undefined) {
-            console.error('runApp -> No app given');
-        }
-        else if (app) {
-            console.log('runApp -> App given :', app);
-            if (name == undefined) {
-                console.error('runApp -> No name given');
-            }
-            else if (name) {
-                console.log('runApp -> Name given :', name);
-                if (debug) {
-                    window[name] = app;
-                    console.log('runApp :', name, app, 'loaded :', loaded);
-                    console.log('runApp -> debug :', debug);
-                }
-                else {
-                    let name = app;
-                    console.log('runApp -> debug :', debug);
-                }
-            }
-        }
-        // window[appName] = appClass
-        // console.log('runApp :', appName, appClass, 'loaded :', loaded)
+        new app();
     }
 }
 function runStackedApp() {
@@ -93,7 +69,7 @@ window.onload = () => {
         // font-family: Pretendard;
 
         `);
-    console.log(`%c[ ${data.version} ]`, `
+    console.log(`%cVERSION : ${data.version} \nLICENSE : ${data.license}`, `
         // background-image: linear-gradient(60deg, #E21143, #FFB03A);
 
         background-clip: text;
@@ -107,19 +83,19 @@ class Init {
     constructor() {
     }
 }
-function init() {
-    window.addEventListener('resize', function (event) {
-        var screenWidth = window.screen.width;
-        var screenHeight = window.screen.height;
-    });
-}
-export class NeupicaV2 {
-    constructor() {
-    }
-}
-class Root {
-    constructor() {
-        // 위젯 관리 도군
-    }
-}
-//# sourceMappingURL=neupica2.js.map
+// function init () {
+//     window.addEventListener('resize', function (event) {
+//         var screenWidth : number = window.screen.width
+//         var screenHeight : number = window.screen.height
+//     })
+// }
+// export class NeupicaV2 {
+//     constructor () {
+//     }
+// }
+// class Root {
+//     constructor () {
+//         // 위젯 관리 도군
+//     }
+// }
+//# sourceMappingURL=Neupica2.js.map
