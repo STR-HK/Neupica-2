@@ -20,10 +20,10 @@ class SessionStorageManager {
 }
 
 window.IndexStorage = new SessionStorageManager()
-
+window.DebugStorage = new SessionStorageManager()
 
 window.thisClass = (item: any) => {
-    console.log('thisClass :', item, 'converted to', window.IndexStorage.getItem(item.id))
+    // console.log('thisClass :', item, 'converted to', window.IndexStorage.getItem(item.id))
     return window.IndexStorage.getItem(item.id)
 }
 
@@ -107,6 +107,49 @@ export class Ripple {
                 circle.style.transform = `scale(${2 * aniVar})`
             }, 1)
 
+            element.appendChild(circle)
+        })
+
+        element.addEventListener("pointerup", function (event) {
+            let button = window.thisClass(this).element
+            Array.from(button.getElementsByClassName('Neu-Ripple')).forEach(element => {
+                
+                if (element instanceof HTMLElement) {
+                    element.style.opacity = '0'
+                    setTimeout(function () {
+                        element.remove()
+                    },
+                    parseFloat(element.getAttribute('hideTime')) * 1000
+                    )
+                }
+            });
+        })
+    }
+}
+
+
+export class Fade {
+    constructor(element: HTMLElement) {
+        element.addEventListener("pointerdown", function (event) {  
+            let element = window.thisClass(this).element
+            let eventTarget = event.currentTarget
+
+            let elementRect = element.getBoundingClientRect()
+
+            let hideTime = 1
+
+            let circle = document.createElement('div')
+            circle.classList.add('Neu-Ripple')
+
+            circle.style.position = 'absolute'
+            circle.style.backgroundColor = 'rgba(255, 255, 255, 0.5)'
+            // circle.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'
+            circle.style.width = elementRect.width + 'px'
+            circle.style.height = elementRect.height + 'px'
+
+            circle.style.transition = `opacity ${hideTime}s ease-out`
+            circle.setAttribute('hideTime', String(hideTime))
+        
             element.appendChild(circle)
         })
 

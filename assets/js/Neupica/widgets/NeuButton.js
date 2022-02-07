@@ -1,4 +1,4 @@
-import { Ripple } from '../NeuWidgets.js';
+import { Fade } from '../NeuWidgets.js';
 import { Widgets } from './Widgets.js';
 export class NeuButton extends Widgets {
     constructor() {
@@ -26,7 +26,23 @@ export class NeuButton extends Widgets {
             IconGap: '8px',
             Shadow: null,
         };
+        Object.entries(this.object).forEach(([key, value]) => {
+            Object.defineProperty(this, key, {
+                get: () => {
+                    console.log(this.object[key]);
+                    return this.object[key];
+                },
+                set: (newValue) => {
+                    console.log(this, `${key} : ${newValue}`);
+                    this.object[key] = newValue;
+                    this.update(key);
+                }
+            });
+        });
         this.apply(this.object); // 스타일 적용
+    }
+    update(key) {
+        this['update' + key]();
     }
     create() {
         this.cover = this.createCover(this.name);
@@ -49,97 +65,81 @@ export class NeuButton extends Widgets {
         this.element.style.position = 'relative';
         this.text.style.display = 'flex';
         this.text.style.alignItems = 'center';
-        new Ripple(this.cover);
+        // new Ripple(this.cover)
+        new Fade(this.cover);
     }
-    setText(text) {
-        this.object.Text = text;
-        this.text.innerText = text;
-        if (text != '') {
+    updateText() {
+        this.text.innerText = this.object.Text;
+        if (this.object.Text != '') {
             this.text.style.display = '';
         }
         else {
             this.text.style.display = 'none';
         }
     }
-    setColor(color) {
-        this.object.Color = color;
-        this.element.style.color = color;
+    updateColor() {
+        this.element.style.color = this.object.Color;
     }
-    setSize(size) {
-        // this.text.style.height = size
-        this.object.Size = size;
-        this.text.style.fontSize = size;
+    updateSize() {
+        this.text.style.fontSize = this.object.Size;
     }
-    setTextPadding(padding) {
-        this.object.TextPadding = padding;
-        this.text.style.padding = padding;
+    updateTextPadding() {
+        this.text.style.padding = this.object.TextPadding;
     }
-    setPadding(padding) {
-        this.object.Padding = padding;
-        this.element.style.padding = padding;
+    updatePadding() {
+        this.element.style.padding = this.object.Padding;
     }
-    setBackgroundColor(color) {
-        this.object.BackgroundColor = color;
-        this.element.style.backgroundColor = color;
+    updateBackgroundColor() {
+        this.element.style.backgroundColor = this.object.BackgroundColor;
     }
-    setStrokeStyle(style) {
-        this.object.StrokeStyle = style;
-        this.element.style.borderStyle = style;
+    updateStrokeStyle() {
+        this.element.style.borderStyle = this.object.StrokeStyle;
     }
-    setStrokeColor(color) {
-        this.object.StrokeColor = color;
-        this.element.style.borderColor = color;
+    updateStrokeColor() {
+        this.element.style.borderColor = this.object.StrokeColor;
     }
-    setStrokeWidth(width) {
-        this.object.StrokeWidth = width;
-        this.element.style.borderWidth = width;
+    updateStrokeWidth() {
+        this.element.style.borderWidth = this.object.StrokeWidth;
     }
-    setStrokeRadius(radius) {
-        this.object.StrokeRadius = radius;
-        this.element.style.borderRadius = radius;
+    updateStrokeRadius() {
+        this.element.style.borderRadius = this.object.StrokeRadius;
     }
-    setRippleColor(color) {
-        this.object.RippleColor = color;
+    updateRippleColor() {
+        this.object.RippleColor = this.object.RippleColor;
     }
-    setIcon(icon) {
-        this.object.Icon = icon;
-        this.icon.src = icon;
-        if (icon != '') {
+    updateIcon() {
+        this.icon.src = this.object.Icon;
+        if (this.object.Icon != '') {
             this.icon.style.display = '';
         }
         else {
             this.icon.style.display = 'none';
         }
     }
-    setIconColor(color) {
-        this.object.IconColor = color;
-        this.editSvg(this.icon.src, function (element) {
+    updateIconColor() {
+        let color = this.object.IconColor;
+        this.editSvg(this.object.Icon, function (element) {
             element.style.fill = color;
             return element;
         }).then((url) => {
-            this.icon.src = url;
             this.object.Icon = url;
+            this.icon.src = url;
         });
     }
-    setIconSize(size) {
-        this.object.IconSize = size;
-        this.icon.style.width = size;
+    updateIconSize() {
+        this.icon.style.width = this.object.IconSize;
     }
-    setIconTop(top) {
-        this.object.IconTop = top;
-        this.element.style.flexDirection = top ? 'column' : 'row';
+    updateIconTop() {
+        this.element.style.flexDirection = this.object.IconTop ? 'column' : 'row';
     }
-    setIconPadding(padding) {
-        this.object.IconPadding = padding;
-        this.icon.style.padding = padding;
+    updateIconPadding() {
+        this.icon.style.padding = this.object.IconPadding;
     }
-    setIconGap(gap) {
-        this.object.IconGap = gap;
-        this.element.style.gap = gap;
+    updateIconGap() {
+        this.element.style.gap = this.object.IconGap;
     }
-    setShadow(shadow) {
-        this.object.Shadow = shadow;
-        this.element.style.boxShadow = shadow;
+    updateShadow() {
+        this.element.style.boxShadow = this.object.Shadow;
     }
 }
 //# sourceMappingURL=NeuButton.js.map

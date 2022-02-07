@@ -9,46 +9,55 @@ class Stora extends NeuMainWindow {
         super()
         this.layout = new NeuLayout()
 
-        this.topAppBar = new NeuAppBar()
-            this.topAppBar.setText('Stora Web Application')
-            this.topAppBar.setLead(this.Icons.ac_unit)
-            this.topAppBar.setLeadColor('white')
-        this.layout.addChild(this.topAppBar)
+        // this.topAppBar = new NeuAppBar()
+        //     this.topAppBar.setText('Stora Web Application')
+        //     this.topAppBar.setLead(this.Icons.ac_unit)
+        //     this.topAppBar.setLeadColor('white')
+        // this.layout.addChild(this.topAppBar)
 
         this.defaultButton = new NeuButton()
-            this.defaultButton.setText('Default Button')
+            this.defaultButton.Text = 'Default Button'
         this.layout.addChild(this.defaultButton)
 
         this.alpha = new NeuButton()
-            this.alpha.setText("Download")
-            this.alpha.setBackgroundColor(this.Colors.Transparent)
-            this.alpha.setStrokeColor('#C34351')
-            this.alpha.setStrokeWidth('2px')
-            this.alpha.setColor('black')
-            this.alpha.setIcon(this.Icons.file_download)
-            this.alpha.setIconColor('#C34351')
-            this.alpha.setIconTop(true)
+            this.alpha.Text = 'Download'
+            this.alpha.BackgroundColor = this.Colors.Transparent
+            this.alpha.StrokeColor = '#C34351'
+            this.alpha.StrokeWidth = '2px'
+            this.alpha.Color = 'black'
+            this.alpha.Icon = this.Icons.file_download
+            this.alpha.IconColor = '#C34351'
+            this.alpha.IconTop = true
         this.layout.addChild(this.alpha)
 
-        this.ipt = new NeuInput()
-        this.layout.addChild(this.ipt)
+        // this.ipt = new NeuInput()
+        // this.layout.addChild(this.ipt)
 
         this.beta = new NeuButton()
-            this.beta.setText('Store')
-            this.beta.setBackgroundColor(this.Colors.Transparent)
-            this.beta.setStrokeColor(this.Colors.LightGray)
-            this.beta.setStrokeWidth('1px')
-            this.beta.setPadding('10px')
-            this.beta.setColor(this.Colors.Main)
+            this.beta.Text = 'Store'
+            this.beta.BackgroundColor = this.Colors.Transparent
+            this.beta.StrokeColor = this.Colors.LightGray
+            this.beta.StrokeWidth = '1px'
+            this.beta.Padding = '10px'
+            this.beta.Color = this.Colors.Main
         this.layout.addChild(this.beta)
 
         this.lover = new NeuButton()
-            this.lover.setIcon(this.Icons.favorite)
-            this.lover.setIconColor(this.Colors.White)
-            this.lover.setBackgroundColor('#FF3057')
-            this.lover.setIconTop(true)
-            this.lover.setColor(this.Colors.Transparent)
+            this.lover.Icon = this.Icons.favorite
+            this.lover.IconColor = this.Colors.White
+            this.lover.BackgroundColor = '#FF3057'
+            this.lover.IconTop = true
+            this.lover.Color = this.Colors.Transparent
         this.layout.addChild(this.lover)
+
+        this.ios = new NeuButton()
+            this.ios.Icon = this.Icons.code
+            this.ios.IconColor = this.Colors.White
+            this.ios.BackgroundColor = '#007AFF'
+            this.ios.IconTop = true
+            this.ios.Color = this.Colors.Transparent
+        this.layout.addChild(this.ios)
+
 
         this.draw(this.layout)
 

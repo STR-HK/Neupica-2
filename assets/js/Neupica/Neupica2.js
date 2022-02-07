@@ -20,7 +20,7 @@ export function runApp(app) {
         stack.push(arguments[0]);
     }
     else {
-        new app();
+        window.app = new app();
     }
 }
 function runStackedApp() {
@@ -32,14 +32,14 @@ function runStackedApp() {
 //     runApp(key, value, debug = true)
 // }
 function solveBootingStack() {
-    let boot = localStorage.getItem('boot');
-    if (boot == null) {
-        localStorage.setItem('boot', '0');
+    let bootList = localStorage.getItem('bootList');
+    if (bootList == null || bootList == NaN) {
+        localStorage.setItem('bootList', '0');
+        bootList = '';
     }
-    boot = parseInt(boot);
-    boot += 1;
-    console.log('bootingStack :', parseInt(boot));
-    localStorage.setItem('boot', boot.toString());
+    bootList += '0';
+    console.log('bootListingStack :', bootList.length);
+    localStorage.setItem('bootList', bootList);
 }
 import { Ascii } from '../Utils/Ascii.js';
 let data = {

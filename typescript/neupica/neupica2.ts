@@ -73,7 +73,7 @@ export function runApp(app: new () => NeuMainWindow) {
     if ( loaded == false ) {
         stack.push(arguments[0])
     } else {
-        new app()
+        window.app = new app()
     }
 }
 
@@ -88,15 +88,17 @@ function runStackedApp () {
 // }
 
 function solveBootingStack () {
-    let boot : any = localStorage.getItem('boot')
-    if ( boot == null ) {
-        localStorage.setItem('boot', '0')
-    }
-    boot = parseInt(boot)
+    let bootList : any = localStorage.getItem('bootList')
 
-    boot += 1
-    console.log('bootingStack :', parseInt(boot))
-    localStorage.setItem('boot', boot.toString())
+    if ( bootList == null || bootList == NaN ) {
+        localStorage.setItem('bootList', '0')
+        bootList = ''
+
+    }
+
+    bootList += '0'
+    console.log('bootListingStack :', bootList.length)
+    localStorage.setItem('bootList', bootList)
 
 }
 
@@ -178,3 +180,6 @@ class Init {
 //         // 위젯 관리 도군
 //     }
 // }
+
+
+

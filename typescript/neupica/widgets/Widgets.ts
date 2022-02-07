@@ -2,9 +2,10 @@ function makeId(length) : string {
     var result           = ''
 
     var characters       = ''
+    // characters           += 'NeuPica2'
+
     characters           += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     characters           += 'abcdefghijklmnopqrstuvwxyz'
-    // characters           += '스토라'
     characters           += '0123456789'
 
     var charactersLength = characters.length
@@ -25,11 +26,16 @@ export class Widgets {
     store: (elementID: string, realClass: string) => void
 
     createCover: (name: string) => HTMLDivElement
-    createElement: (hidden: boolean, fir: boolean) => HTMLDivElement
+    createElement: (hidden?: boolean, fir?: boolean) => HTMLDivElement
     createImg: (hidden: boolean) => HTMLImageElement
 
     apply: (object: { [key : string]: any }) => void
     editSvg: (url: string, editFunction: ElementEditCallback) => Promise<string>
+
+    // To inherited class
+
+    name: string
+    [x: string]: any
 
     constructor () {
         this.loadStyle = function (name) {
@@ -45,6 +51,9 @@ export class Widgets {
             element.id = `${name}-${makeId(6)}` // Name-xxxxxx
             element.style.width = 'fit-content'
             this.store(element.id, this)
+
+            window.DebugStorage.setItem(element.id, element)
+
             return element
         }
 
@@ -58,6 +67,9 @@ export class Widgets {
                 element.style.boxSizing = 'border-box'
             }
             if ( hidden ) { element.style.display = 'none' }
+
+            window.DebugStorage.setItem(element.id, element)
+
             return element
         }
 
@@ -65,6 +77,9 @@ export class Widgets {
             var element = document.createElement('img')
             element.id = `Neu-Img-${makeId(6)}` // Neu-Img-xxxxxx
             if ( hidden ) { element.style.display = 'none' }
+
+            window.DebugStorage.setItem(element.id, element)
+
             return element
         }
 
@@ -73,11 +88,12 @@ export class Widgets {
                 if (entry[1] != null) {
                     
                     try {
-                        this['object'][entry[0]] = entry[1]
-                        this['set' + entry[0]](entry[1])
+                        // console.log(entry[0], entry[1])
+                        this['update'+entry[0]](entry[1])
+                        // this[entry[0]](entry[1])
                         // console.log(`%c${this.name}.set${entry[0]}(${entry[1]})`, 'color: #C34;')
                     } catch (error) {
-                        console.warn(`${this.name} -> set${entry[0]}(${entry[1]})\n\n${error}`)
+                        console.warn(`${this.name} -> ${entry[0]}(${entry[1]})\n\n${error}`)
                         // console.warn(error)
                     }
                 }
@@ -137,11 +153,52 @@ export class Widgets {
                     xhr.send()
                 }
             )
-
-            
         }
 
         // console.log(this.editSvg('./assets/img/MDI/accessibility.svg'))
 
+        window.Debug = function () {
+
+            console.log('Debug')
+
+            window.addEventListener('resize', function () {
+                Array.from(document.getElementsByClassName('debug')).forEach(element => {
+                    element.remove()
+                });
+                
+                Object.keys(window.DebugStorage.storage).forEach(key => {
+                    let elem = window.DebugStorage.storage[key]
+    
+                    elem.getBoundingClientRect()
+    
+                    let debug = document.createElement('div')
+                    debug.style.position = 'absolute'
+                    debug.classList.add('debug')
+                    debug.style.top = `${elem.getBoundingClientRect().top}px`
+                    debug.style.left = `${elem.getBoundingClientRect().left}px`
+                    debug.style.width = `${elem.getBoundingClientRect().width}px`
+                    debug.style.height = `${elem.getBoundingClientRect().height}px`
+    
+                    debug.style.pointerEvents = 'none'
+                    // debug.style.backgroundColor = 'rgba(255, 0, 0, 0.5)'
+                    debug.style.border = 'rgba(0, 0, 0, 0.5) solid 2px'
+                    debug.style.zIndex = '9999'
+                    // debug.innerHTML = `${key}`
+                    document.body.appendChild(debug)
+    
+                })
+            })
+
+            window.dispatchEvent(new Event('resize'))
+
+        }
+        
+        // window.addEventListener('resize', function () {
+        //     window.Debug()
+        // })
+
     }
+    
 }
+
+
