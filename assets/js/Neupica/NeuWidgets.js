@@ -130,7 +130,10 @@ export class Fade {
     }
 }
 import { NeuButton } from "./widgets/NeuButton.js";
+import { NeuButtonToggle } from "./widgets/NeuButtonToggle.js";
+import { NeuToggleButton } from "./widgets/NeuToggleButton.js";
+export { NeuButton, NeuButtonToggle, NeuToggleButton };
 import { NeuAppBar } from "./widgets/NeuAppBar.js";
 import { NeuInput } from "./widgets/NeuInput.js";
-export { NeuButton, NeuAppBar, NeuInput };
+export { NeuAppBar, NeuInput };
 //# sourceMappingURL=NeuWidgets.js.map

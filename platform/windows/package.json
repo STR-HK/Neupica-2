@@ -1,0 +1,66 @@
+{
+  "name": "neupica2win",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "electron .",
+    
+    "electron": "electron .",
+    "electron:window": "SET ELECTRON_START_URL=http://localhost:3000 && yarn electron",
+    "electron:xos": "ELECTRON_START_URL=http://localhost:3000 && yarn electron",
+    
+    "prebuild": "react-scripts test --watchAll=false",
+    "build": "react-scripts build",
+    
+    "deploy:xos": "electron-builder --mac",
+    "deploy:win32": "electron-builder --win --ia32",
+    "deploy:win64": "electron-builder --win --x64",
+    "deploy:win": "yarn deploy:win32 && yarn deploy:win64",
+    
+    "test": "react-scripts test"
+  },
+  "main": "index.js",
+  "author": "STR.HK",
+  "license": "GNU GPL v3",
+  "devDependencies": {
+    "electron": "^17.0.0",
+    "electron-reloader": "^1.2.2"
+  },
+  "build": {
+    "productName": "Neupica-2",
+    "appId": "com.strhk.neupica2win",
+    "asar": true,
+    "mac": {
+      "target": [
+        "default"
+      ],
+      "icon": "icons/Neupica_Logo_2.icns"
+    },
+    "dmg": {
+      "title": "NB",
+      "icon": "icons/Neupica_Logo_2.icns"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "icons/Neupica_Logo_2.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true,
+      "perMachine": true,
+      "language": 1042,
+      "installerIcon": "icons/Neupica_Logo_2.ico",
+      "shortcutName": "Neupica-2",
+      "artifactName": "Neupica-2-${version}.${ext}",
+      "uninstallDisplayName": "Neupica-2"
+    },
+    "directories": {
+      "buildResources": "./build/",
+      "output": "./dist/"
+    }
+  }
+}

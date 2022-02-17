@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Neupica 2 for Windows</title>
+  </head>
+  <body>
+    <!-- <div id="frame">
+        <div id="lights">
+            <div class="light" id="close"></div>
+            <div class="light" id="minimize"></div>
+            <div class="light" id="maximize"></div>
+        </div>
+    </div> -->
+    <style>
+        #frame {
+            width: 100%;
+            display: flex;
+            -webkit-app-region: drag;
+
+            background-color: lightgray;
+        }
+
+        #lights {
+            width: 100%;
+            display: flex;
+
+            padding: 10px;
+            /* padding-left: 10px; */
+            gap: 10px;
+        }
+
+        .light {
+            width: 13px;
+            height: 13px;
+
+            border-radius: 100%;
+
+            background-color: black;
+        }
+
+        #close {
+            background-color: #FF514F;
+        }
+
+        #minimize {
+            background-color: #FFBC00;
+        }
+
+        #maximize {
+            background-color: #00CC1D;
+        }
+
+
+    </style>
+    <iframe src="http://asphodel.kro.kr:1001"></iframe>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+
+            overflow: hidden;
+            /* background-color: #000; */
+        }
+
+        iframe {
+            width: 100vw;
+            height: 100vh;
+
+            border: 0;
+        }
+    </style>
+
+    <script>
+        const {remote} = require('electron')
+const win = remote.getCurrentWindow()
+console.log(win)
+
+document.getElementById("minimize").addEventListener("click", (e) => {
+    win.minimize()
+})
+
+document.getElementById("maximize").addEventListener("click", (e) => {
+    if ( win.isMaximized() ){
+        win.unmaximize()
+    } else {
+        win.maximize()
+    }
+})
+
+document.getElementById("close").addEventListener("click", (e) => {
+    win.close()
+})
+    </script>
+
+  </body>
+</html>

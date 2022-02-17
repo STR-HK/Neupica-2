@@ -1,4 +1,4 @@
-import { Fade } from '../NeuWidgets.js';
+import { Ripple } from '../NeuWidgets.js';
 import { Widgets } from './Widgets.js';
 export class NeuButton extends Widgets {
     constructor() {
@@ -65,8 +65,8 @@ export class NeuButton extends Widgets {
         this.element.style.position = 'relative';
         this.text.style.display = 'flex';
         this.text.style.alignItems = 'center';
-        // new Ripple(this.cover)
-        new Fade(this.cover);
+        new Ripple(this.cover);
+        // new Fade(this.cover)
     }
     updateText() {
         this.text.innerText = this.object.Text;

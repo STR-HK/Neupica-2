@@ -100,36 +100,6 @@ export class Widgets {
             })
         }
 
-        // this.styles = function (target, obj) {
-        //     Object.entries(obj).forEach(entry => {
-        //         this[target]['style'].setProperty(entry[0], entry[1])
-        //         console.log(this[target]['style'][entry[0]])
-        //         console.log(`%c${this.name}.${target}.setProperty(${entry[0]}, ${entry[1]})`,
-        //         'background: black')
-        //     })
-        // }
-
-        // this.editSvg = function (url, editFunction) {
-        //     let xhr = new XMLHttpRequest()
-        //     xhr.open('GET', url, false)
-        //     xhr.overrideMimeType('image/svg+xml')
-        //     xhr.send()
-
-        //     if (xhr.status == 200) {
-        //         let element = xhr.responseXML.documentElement
-
-        //         if ( typeof editFunction == 'function' ) {
-        //             element = editFunction(element)
-        //         }
-
-        //         let blob = new Blob([element.outerHTML], { type: 'image/svg+xml' })
-        //         url = URL.createObjectURL(blob)
-
-        //         return url
-        //     }
-        // }
-        
-
         this.editSvg = function (url: string, editFunction: ElementEditCallback) {
             return new Promise(
                 function (resolve) {

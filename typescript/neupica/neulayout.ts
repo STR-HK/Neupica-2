@@ -35,7 +35,13 @@ export class NeuLayout extends Layout {
     constructor () {
         super()
 
-        
+        // this.element.style.display = 'flex'
+        // this.element.style.flexDirection = 'column'
+
+        this.element.style.padding = '16px'
+        // this.element.style.gap = '16px'
+
+        // this.element.style.alignItems = 'center'
 
 
     }
