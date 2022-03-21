@@ -1,14 +1,16 @@
-@import url(PretendardDynamicSubset.css);
+/* @import url(PretendardDynamicSubset.css); */
 
 * {
     font-family: 'Pretendard';
     box-sizing: border-box;
+
+    position: relative;
 }
 
-/* div {
-    width: fit-content;
+.NeuCover {
     height: fit-content;
-} */
+    width: fit-content;
+}
 
 html, body {
     width: 100%;
@@ -16,4 +18,9 @@ html, body {
 
     margin: 0;
     padding: 0;
+}
+
+.Window {
+    background-color: aquamarine;
+    margin-bottom: 10px;
 }
