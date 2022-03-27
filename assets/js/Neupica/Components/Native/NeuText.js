@@ -1,119 +1,29 @@
 import { Native } from "./Native.js"
 
-let FontStyle = {
-    Normal: "normal",
-    Italic: "italic",
-    Oblique: "oblique",
-}
-
-let FontWeight = {
-    Thin: 100,
-    ExtraLight: 200,
-    Light: 300,
-    Normal: 400,
-    Medium: 500,
-    SemiBold: 600,
-    Bold: 700,
-    ExtraBold: 800,
-    Black: 900,
-}
-
-let FontSize = {
-    XXSmall: "xx-small",
-    XSmall: "x-small",
-    Small: "small",
-    Medium: "medium",
-    Large: "large",
-    XLarge: "x-large",
-    XXLarge: "xx-large",
-
-    Smaller: "smaller",
-    Larger: "larger",
-}
-
-let FontAlign = {
-    Start: "start",
-    End: "end",
-    Left: "left",
-    Right: "right",
-    Center: "center",
-    Justify: "justify",
-}
-
-let TextDecorationLine = {
-    None: "none",
-    Underline: "underline",
-    Overline: "overline",
-    LineThrough: "line-through",
-    Blink: "blink",
-}
-
-let TextDecorationStyle = {
-    Solid: "solid",
-    Double: "double",
-    Dotted: "dotted",
-    Dashed: "dashed",
-    Wavy: "wavy",
-}
-
-let TextTransform = {
-    None: "none",
-    Capitalize: "capitalize",
-    Uppercase: "uppercase",
-    Lowercase: "lowercase",
-}
-
-let TextOverflow = {
-    None: "none",
-    Ellipsis: "ellipsis",
-    Clip: "clip",
-}
-
-let VerticalAlign = {
-    Top: "top",
-    Middle: "middle",
-    Bottom: "bottom",
-    Baseline: "baseline",
-
-    Sub: "sub",
-    Super: "super",
-    TextTop: "text-top",
-    TextBottom: "text-bottom",
-
-    Length: "length",
-}
-
-let WordBreak = {
-    Normal: "normal",
-    BreakAll: "break-all",
-    KeepAll: "keep-all",
-    BreakWord: "break-word",
-}
-
 export class NeuText extends Native {
     constructor() {
         super()
         this.name = "NeuText"
 
-        this.obj = {
+        this.data = {
             Text: "Null",
 
             FontFamily: "Pretendard",
-            FontSize: FontSize.Medium,
-            FontStyle: FontStyle.Normal,
-            FontWeight: FontWeight.Normal,
+            FontSize: "1rem",
+            FontStyle: "normal",
+            FontWeight: "normal",
 
-            TextAlign: FontAlign.Left,
+            TextAlign: "left",
             TextColor: "#000000",
 
-            TextDecorationLine: TextDecorationLine.Blink,
+            TextDecorationLine: "none",
             TextDecorationColor: "#000000",
-            TextDecorationStyle: TextDecorationStyle.Solid,
+            TextDecorationStyle: "solid",
             TextDecorationThickness: "1px",
 
             TextUnderlineOffset: "auto",
-            TextTransform: TextTransform.None,
-            TextOverflow: TextOverflow.Clip,
+            TextTransform: "none",
+            TextOverflow: "clip",
 
             TextIndent: "0px",
             LetterSpacing: "0em",
@@ -122,27 +32,16 @@ export class NeuText extends Native {
             WhiteSpace: "normal",
 
             TextShadow: "none",
-            VerticalAlign: VerticalAlign.Baseline,
-            WordBreak: WordBreak.Normal,
+            VerticalAlign: "baseline",
+            WordBreak: "normal",
             Content: "",
         }
-
-        Object.entries(this.obj).forEach(([key, value]) => {
-            Object.defineProperty(this, key, {
-                get: () => {
-                    return this.obj[key]
-                },
-                set: (newValue) => {
-                    this.obj[key] = newValue
-                    this.update(key)
-                },
-            })
-        })
+        this.build()
 
         this.create()
         this.init()
 
-        this.apply(this.obj)
+        this.apply(this.data)
     }
 
     create() {
@@ -156,95 +55,95 @@ export class NeuText extends Native {
     }
 
     uText() {
-        this.element.innerText = this.Text
+        this.element.innerText = this.data.Text
     }
 
     uFontSize() {
-        this.element.style.fontSize = this.FontSize
+        this.element.style.fontSize = this.data.FontSize
     }
 
     uFontFamily() {
-        this.element.style.fontFamily = this.FontFamily
+        this.element.style.fontFamily = this.data.FontFamily
     }
 
     uFontStyle() {
-        this.element.style.fontStyle = this.FontStyle
+        this.element.style.fontStyle = this.data.FontStyle
     }
 
     uFontWeight() {
-        this.element.style.fontWeight = this.FontWeight
+        this.element.style.fontWeight = this.data.FontWeight
     }
 
     uTextAlign() {
-        this.element.style.textAlign = this.TextAlign
+        this.element.style.textAlign = this.data.TextAlign
     }
 
     uTextColor() {
-        this.element.style.color = this.TextColor
+        this.element.style.color = this.data.TextColor
     }
 
     uTextDecorationLine() {
-        this.element.style.textDecorationLine = this.TextDecorationLine
+        this.element.style.textDecorationLine = this.data.TextDecorationLine
     }
 
     uTextDecorationColor() {
-        this.element.style.textDecorationColor = this.TextDecorationColor
+        this.element.style.textDecorationColor = this.data.TextDecorationColor
     }
 
     uTextDecorationStyle() {
-        this.element.style.textDecorationStyle = this.TextDecorationStyle
+        this.element.style.textDecorationStyle = this.data.TextDecorationStyle
     }
 
     uTextDecorationThickness() {
         this.element.style.textDecorationThickness =
-            this.TextDecorationThickness
+            this.data.TextDecorationThickness
     }
 
     uTextUnderlineOffset() {
-        this.element.style.textUnderlineOffset = this.TextUnderlineOffset
+        this.element.style.textUnderlineOffset = this.data.TextUnderlineOffset
     }
 
     uTextTransform() {
-        this.element.style.textTransform = this.TextTransform
+        this.element.style.textTransform = this.data.TextTransform
     }
 
     uTextOverflow() {
-        this.element.style.textOverflow = this.TextOverflow
+        this.element.style.textOverflow = this.data.TextOverflow
     }
 
     uTextIndent() {
-        this.element.style.textIndent = this.TextIndent
+        this.element.style.textIndent = this.data.TextIndent
     }
 
     uLetterSpacing() {
-        this.element.style.letterSpacing = this.LetterSpacing
+        this.element.style.letterSpacing = this.data.LetterSpacing
     }
 
     uLineHeight() {
-        this.element.style.lineHeight = this.LineHeight
+        this.element.style.lineHeight = this.data.LineHeight
     }
 
     uWordSpacing() {
-        this.element.style.wordSpacing = this.WordSpacing
+        this.element.style.wordSpacing = this.data.WordSpacing
     }
 
     uWhiteSpace() {
-        this.element.style.whiteSpace = this.WhiteSpace
+        this.element.style.whiteSpace = this.data.WhiteSpace
     }
 
     uTextShadow() {
-        this.element.style.textShadow = this.TextShadow
+        this.element.style.textShadow = this.data.TextShadow
     }
 
     uVerticalAlign() {
-        this.element.style.verticalAlign = this.VerticalAlign
+        this.element.style.verticalAlign = this.data.VerticalAlign
     }
 
     uWordBreak() {
-        this.element.style.wordBreak = this.WordBreak
+        this.element.style.wordBreak = this.data.WordBreak
     }
 
     uContent() {
-        this.element.innerHTML = this.Content
+        this.element.innerHTML = this.data.Content
     }
 }

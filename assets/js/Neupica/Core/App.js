@@ -4,6 +4,15 @@ export class NeuApp {
     constructor() {
         this.layout = false
         this.dom = false
+
+        this.app = this.createApp()
+    }
+
+    createApp() {
+        let app = document.createElement("div")
+        app.id = Object.getPrototypeOf(this).constructor.name
+        app.className = "NeuApp"
+        return app
     }
 
     draw(where) {
@@ -12,7 +21,8 @@ export class NeuApp {
             return
         } else {
             this.dom = document.querySelector(where)
-            NeuRender(this.layout, this.dom)
+            this.dom.appendChild(this.app)
+            NeuRender(this.layout, this.app)
         }
     }
 }

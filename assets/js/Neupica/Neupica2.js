@@ -7,7 +7,7 @@ initWindow()
 initIndex()
 
 getScript("./assets/js/Neupica/Console/Global.js", "module")
-getScript("./assets/js/Lib/Sample.js", "module")
+getScript("./assets/js/Lib/Screen.js", "module")
 
 window.loaded = false
 
@@ -26,7 +26,23 @@ function solveBootingStack() {
 
 window.appList = []
 
+let holdings = []
+
+function hold(func, param) {
+    holdings.push([func, param])
+}
+
+function solveHoldings() {
+    holdings.forEach((holding) => {
+        holding[0](holding[1])
+    })
+}
+
 export function runApp(class_) {
+    hold(solveRunApp, class_)
+}
+
+function solveRunApp(class_) {
     let app = new class_()
     window.appList.push(app)
 }
@@ -37,4 +53,10 @@ window.onload = () => {
     console.log(Ascii("Neupica 2"))
 
     solveBootingStack()
+
+    solveHoldings()
+}
+
+export function thisClass(element) {
+    return window.Index.getItem(element.id)
 }

@@ -28,7 +28,15 @@ export function createCover(name) {
 
 export function createDiv() {
     let element = document.createElement("div")
-    element.id = "Neu-Div-" + makeId(6)
+    element.id = "NeuDiv-" + makeId(6)
+    window.Index.setItem(element.id, element)
+
+    return element
+}
+
+export function createLayout(layoutname) {
+    let element = document.createElement("div")
+    element.id = layoutname + "-" + makeId(6)
     window.Index.setItem(element.id, element)
 
     return element
@@ -36,7 +44,7 @@ export function createDiv() {
 
 export function createElement(tagName) {
     let element = document.createElement(tagName)
-    element.id = "Neu-Elem-" + tagName + "-" + makeId(6)
+    element.id = "NeuElem-" + tagName + "-" + makeId(6)
     window.Index.setItem(element.id, element)
 
     return element

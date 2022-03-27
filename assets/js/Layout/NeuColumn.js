@@ -3,11 +3,18 @@ import { Layout } from "./Layout.js"
 export class NeuColumn extends Layout {
     constructor() {
         super()
-
         this.name = "NeuColumn"
 
-        this.element = document.createElement("div")
-        this.element.className = "Neu-Column"
+        this.create()
+        this.init()
+    }
+
+    create() {
+        this.element = this.createLayout()
+    }
+
+    init() {
+        this.element.className = "NeuLayout"
         this.element.style.display = "flex"
         this.element.style.flexDirection = "column"
     }

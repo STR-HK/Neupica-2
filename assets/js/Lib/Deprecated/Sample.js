@@ -1,9 +1,9 @@
-import { NeuColumn } from "../Layout/NeuColumn.js"
-import { NeuApp } from "../Neupica/Core/App.js"
-import { NeuText } from "../Neupica/Components/Native/NeuText.js"
-import { NeuLabel } from "../Neupica/Components/Widgets/NeuLabel.js"
+import { NeuColumn } from "../../Layout/NeuColumn.js"
+import { NeuApp } from "../../Neupica/Core/App.js"
+import { NeuText } from "../../Neupica/Components/Native/NeuText.js"
+import { NeuLabel } from "../../Neupica/Components/Widgets/NeuLabel.js"
 
-import { runApp } from "../Neupica/Neupica2.js"
+import { runApp } from "../../Neupica/Neupica2.js"
 
 class Sample extends NeuApp {
     constructor() {
@@ -76,12 +76,10 @@ class Sample extends NeuApp {
         this.superscript.Text = "위첨자 표시됩니다."
         this.superscript.VerticalAlign = "super"
         this.superscript.FontSize = "smaller"
-        // this.layout.addChild(this.superscript)
 
         this.text1 = new NeuText()
         this.text1.Text = "ABC 123 あいうえお"
         this.text1.FontSize = "20px"
-        // this.layout.addChild(this.text1)
 
         this.draw("#App")
     }
