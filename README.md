@@ -19,4 +19,8 @@
 		<a href="https://discord.gg/Jxym4BBXp3">Discord</a>
 		•
 	</strong>
+		<strong>
+		<a href="https://str-hk.github.io/Neupica-2/">Demo</a>
+		•
+	</strong>
 </p>
