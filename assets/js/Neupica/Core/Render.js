@@ -4,6 +4,6 @@ export function NeuRender(layout, dom) {
         "font-weight: bold; color: #bada55"
     )
     console.log(layout, dom)
-    console.log(layout.element)
+    // console.log(layout.element)
     dom.appendChild(layout.element)
 }

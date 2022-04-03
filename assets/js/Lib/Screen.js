@@ -3,46 +3,29 @@ import { runApp } from "../Neupica/Neupica2.js"
 import { NeuColumn } from "../Layout/NeuColumn.js"
 import { NeuText } from "../Neupica/Components/Native/NeuText.js"
 import { NeuImage } from "../Neupica/Components/Native/NeuImage.js"
-
-class H1 extends NeuText {
-    constructor() {
-        super()
-        this.data.Text = "H1"
-        this.data.FontSize = "2rem"
-        this.data.FontWeight = "bold"
-        this.data.TextAlign = "center"
-        this.data.TextColor = "#000000"
-        this.data.TextDecorationLine = "underline"
-        this.data.TextDecorationColor = "#000000"
-    }
-}
+import { NeuLabel } from "../Neupica/Components/Widgets/NeuLabel.js"
+import { NeuRow } from "../Layout/NeuRow.js"
+import { NeuButton } from "../Neupica/Components/Widgets/NeuButton.js"
+import { NeuContainer } from "../Neupica/Components/Native/NeuContainer.js"
+import { Padding } from "../Tool/Padding.js"
 
 class Screen extends NeuApp {
     constructor() {
         super()
         this.layout = new NeuColumn()
 
-        this.text = new NeuText()
-        this.text.data.Text = "Neupica 2"
-        this.text.modifyData({
-            Text: "Hello World",
-            FontFamily: "Pretendard",
-            FontSize: "1rem",
-            TextTransform: "uppercase",
-            TextColor: "#000000",
-            TextDecorationLine: "underline",
-            TextDecorationColor: "#000000",
-            TextDecorationStyle: "solid",
-            TextDecorationThickness: "1px",
-            TextUnderlineOffset: "auto",
-        })
-        this.layout.addChild(this.text)
-
-        this.title = new H1()
-        this.layout.addChild(this.title)
+        this.btn = new NeuButton()
+        this.btn.data.ButtonText.Text = "BUTTON"
+        this.btn.data.ButtonText.TextColor = "white"
+        this.btn.data.ButtonText.FontSize = "1.5rem"
+        this.btn.data.Button.BackgroundColor = "black"
+        this.btn.data.Button.BorderRadius = "0.25rem"
+        this.btn.data.Button.Padding = new Padding().VH("0.5rem", "1.5rem")
+        this.layout.addChild(this.btn)
 
         this.draw("#App")
     }
 }
 
-runApp(Screen)
+export let app = new Screen()
+window.app = app

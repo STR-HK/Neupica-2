@@ -5,6 +5,8 @@ export class NeuText extends Native {
         super()
         this.name = "NeuText"
 
+        // this.that = this
+
         this.data = {
             Text: "Null",
 
@@ -35,19 +37,21 @@ export class NeuText extends Native {
             VerticalAlign: "baseline",
             WordBreak: "normal",
             Content: "",
+
+            UserSelect: "auto",
         }
         this.build()
 
         this.create()
         this.init()
 
-        this.apply(this.data)
+        // this.apply(this.data)
     }
 
     create() {
         this.cover = this.createCover()
         this.element = this.createDiv()
-        this.cover.appendChild(this.element)
+        this.cover.addChild(this.element)
     }
 
     init() {
@@ -145,5 +149,9 @@ export class NeuText extends Native {
 
     uContent() {
         this.element.innerHTML = this.data.Content
+    }
+
+    uUserSelect() {
+        this.element.style.userSelect = this.data.UserSelect
     }
 }

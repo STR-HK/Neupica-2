@@ -4,31 +4,19 @@ import { Widget } from "./Widgets.js"
 export class NeuLabel extends Widget {
     constructor() {
         super()
-
         this.name = "NeuLabel"
 
-        this.obj = {
-            Cursor: 0,
+        this.data = {
+            Cursor: { data: new NeuText().data },
         }
-
-        Object.entries(this.obj).forEach(([key, value]) => {
-            Object.defineProperty(this, key, {
-                get: () => {
-                    return this.obj[key]
-                },
-                set: (newValue) => {
-                    this.obj[key] = newValue
-                    this.update(key)
-                },
-            })
-        })
+        this.build()
 
         this.create()
         this.init()
     }
 
     create() {
-        this.cover = this.createCover(this.name)
+        this.cover = this.createCover()
     }
 
     init() {
@@ -41,12 +29,13 @@ export class NeuLabel extends Widget {
     }
 
     uCursor() {
-        if (this.children[this.Cursor] == undefined) {
-            this.setChild(this.Cursor, new NeuText())
+        if (this.children[this.data.Cursor] == undefined) {
+            this.setChild(this.data.Cursor, new NeuText())
         }
 
-        if (Number.isInteger(this.Cursor)) {
-            this.Cursor = this.children[this.Cursor]
+        if (Number.isInteger(this.data.Cursor)) {
+            this.data.Cursor = this.children[this.data.Cursor]
+            // console.log(this.data.Cursor)
         }
     }
 }

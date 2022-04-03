@@ -8,6 +8,7 @@ initIndex()
 
 getScript("./assets/js/Neupica/Console/Global.js", "module")
 getScript("./assets/js/Lib/Screen.js", "module")
+getScript("./assets/js/Lib/Screen_worker.js", "module")
 
 window.loaded = false
 
@@ -39,7 +40,10 @@ function solveHoldings() {
 }
 
 export function runApp(class_) {
-    hold(solveRunApp, class_)
+    let app = new class_()
+    window.appList.push(app)
+
+    return app
 }
 
 function solveRunApp(class_) {

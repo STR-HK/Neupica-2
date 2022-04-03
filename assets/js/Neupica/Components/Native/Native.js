@@ -1,7 +1,9 @@
+import { Children } from "../../../Common/Children.js"
 import { createCover, createDiv, createElement } from "../Create/Create.js"
 
-export class Native {
+export class Native extends Children {
     constructor() {
+        super()
         this.updatePrefix = "u"
         this.apply = function (obj) {
             Object.entries(obj).forEach((entry) => {
@@ -23,7 +25,7 @@ export class Native {
                 this[this.updatePrefix + key]()
             } catch (error) {
                 console.error(
-                    `${this.name}.${this.updatePrefix}${key}(${this.obj[key]})` +
+                    `${this.name}.${this.updatePrefix}${key}()` +
                         ` -> Error ignored` +
                         `\n` +
                         ` ${error}`
@@ -36,6 +38,7 @@ export class Native {
 
             Object.entries(this.data).forEach(([key, value]) => {
                 this.obj[key] = value
+                // this[key] = value
             })
 
             Object.keys(this.data).forEach((key) => {
@@ -71,6 +74,18 @@ export class Native {
             Margin: "0px",
             Padding: "0px",
             Border: "0px",
+        }
+
+        this.watchEvent = function (eventname, callback) {
+            this.cover.addEventListener(eventname, callback)
+            return this
+        }
+        this.watchEvents = function (eventnames, callback) {
+            eventnames.forEach((eventname) => {
+                console.log(eventname)
+                this.cover.addEventListener(eventname, callback)
+            })
+            return this
         }
     }
 
