@@ -10,15 +10,15 @@ export class NeuButton extends Widget {
 
         this.cover = this.createCover()
         this.cover.style.webkitTapHighlightColor = "transparent"
+        this.cover.style.cursor = "pointer"
+
         this.element = new NeuContainer()
+        this.target = this.element.element
+        this.cover.addChild(this.element)
 
         this.text = new NeuText()
         this.text.data.UserSelect = "none"
         this.element.addChild(this.text)
-
-        this.cover.addChild(this.element)
-
-        this.cover.style.cursor = "pointer"
 
         this.data = {
             Button: this.element.data,

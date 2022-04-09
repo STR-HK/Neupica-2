@@ -2,15 +2,12 @@ import { Ascii } from "../Utils/Ascii.js"
 import { initIndex } from "./Console/Index.js"
 import { getScript, getStyle } from "./DOM/Contents.js"
 import { initWindow } from "./DOM/Window.js"
+import { initGlobal } from "./Console/Global.js"
+import { Debug } from "../Utils/Debug.js"
 
 initWindow()
 initIndex()
-
-getScript("./assets/js/Neupica/Console/Global.js", "module")
-getScript("./assets/js/Lib/Screen.js", "module")
-getScript("./assets/js/Lib/Screen_worker.js", "module")
-
-window.loaded = false
+initGlobal()
 
 function solveBootingStack() {
     let bootList = localStorage.getItem("bootList")
@@ -27,38 +24,65 @@ function solveBootingStack() {
 
 window.appList = []
 
-let holdings = []
+window.solved = false
+window.loaded = false
 
-function hold(func, param) {
-    holdings.push([func, param])
+function sleep(milliseconds) {
+    var start = new Date().getTime()
+    for (var i = 0; i < 1e7; i++) {
+        if (new Date().getTime() - start > milliseconds) {
+            break
+        }
+    }
 }
 
-function solveHoldings() {
-    holdings.forEach((holding) => {
-        holding[0](holding[1])
-    })
-}
+let stack = 0
 
 export function runApp(class_) {
+    if (!window.loaded) {
+        window.onload = () => {
+            window.loaded = true
+        }
+    }
+
+    if (window.solved == false) {
+        console.log(Ascii("Neupica 2"))
+        solveBootingStack()
+        window.solved = true
+    }
+
     let app = new class_()
     window.appList.push(app)
-
+    Debug(app.app)
     return app
-}
 
-function solveRunApp(class_) {
-    let app = new class_()
-    window.appList.push(app)
-}
+    // console.log(window.loaded)
 
-window.onload = () => {
-    window.loaded = true
+    // if (window.loaded) {
+    //     foo()
+    //     console.log(window.loaded)
+    // } else {
+    //     function uoo() {
+    //         if (window.loaded) {
+    //             console.log("loaded")
+    //             foo()
+    //         } else {
+    //             console.log("not loaded")
 
-    console.log(Ascii("Neupica 2"))
+    //             stack++
 
-    solveBootingStack()
+    //             if (stack > 100) {
+    //                 console.log("stack 100 times -> stop")
+    //                 return
+    //             }
+    //             sleep(100)
+    //             // await new Promise(r => setTimeout(r, 2000));
 
-    solveHoldings()
+    //             uoo()
+    //         }
+    //     }
+    //     uoo()
+    // }
 }
 
 export function thisClass(element) {

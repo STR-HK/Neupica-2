@@ -37,6 +37,7 @@ function DCcreateElement(tagName) {
 export function createCover(name) {
     let element = DCcreateElement("div")
     element.id = name + "-" + makeId(6)
+    element.setAttribute("name", name)
     element.classList.add("NeuCover")
     window.Index.setItem(element.id, element)
 
@@ -55,6 +56,7 @@ export function createDiv() {
 export function createLayout(layoutname) {
     let element = DCcreateElement("div")
     element.id = layoutname + "-" + makeId(6)
+    element.setAttribute("name", layoutname)
     window.Index.setItem(element.id, element)
 
     return element

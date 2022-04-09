@@ -16,7 +16,11 @@ export class Children {
     cvt(children) {
         let element = []
         children.forEach((child) => {
-            element.push(child.cover)
+            if (child.hasOwnProperty("cover")) {
+                element.push(child.cover)
+            } else {
+                element.push(child.element)
+            }
         })
         return element
     }

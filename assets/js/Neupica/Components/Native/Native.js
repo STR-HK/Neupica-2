@@ -76,6 +76,46 @@ export class Native extends Children {
             Border: "0px",
         }
 
+        this.target = this.element
+
+        this.update_gm = function () {
+            this.target.style.width = this.geometry.Width
+            this.target.style.height = this.geometry.Height
+            this.target.style.minWidth = this.geometry.MinWidth
+            this.target.style.minHeight = this.geometry.MinHeight
+            this.target.style.maxWidth = this.geometry.MaxWidth
+            this.target.style.maxHeight = this.geometry.MaxHeight
+            this.target.style.left = this.geometry.Left
+            this.target.style.top = this.geometry.Top
+            this.target.style.right = this.geometry.Right
+            this.target.style.bottom = this.geometry.Bottom
+            this.target.style.margin = this.geometry.Margin
+            this.target.style.padding = this.geometry.Padding
+            this.target.style.border = this.geometry.Border
+        }
+
+        this.build_gm = function () {
+            this.gb_obj = {}
+
+            Object.entries(this.geometry).forEach(([key, value]) => {
+                this.gb_obj[key] = value
+                // this[key] = value
+            })
+
+            Object.keys(this.geometry).forEach((key) => {
+                Object.defineProperty(this.geometry, key, {
+                    get: () => {
+                        return this.gb_obj[key]
+                    },
+                    set: (newValue) => {
+                        this.gb_obj[key] = newValue
+                        this.update_gm()
+                    },
+                })
+            })
+        }
+        this.build_gm()
+
         this.watchEvent = function (eventname, callback) {
             this.cover.addEventListener(eventname, callback)
             return this

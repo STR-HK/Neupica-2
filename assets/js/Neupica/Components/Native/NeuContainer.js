@@ -1,4 +1,3 @@
-// import { throwDeprecation } from "process"
 import { Padding } from "../../../Tool/Padding.js"
 import { Native } from "./Native.js"
 
@@ -9,6 +8,7 @@ export class NeuContainer extends Native {
 
         this.cover = this.createCover()
         this.element = this.createDiv()
+        this.element.style.display = "flex"
         this.cover.addChild(this.element)
 
         this.data = {
@@ -22,7 +22,16 @@ export class NeuContainer extends Native {
 
             Gap: "0px",
 
+            AspectRatio: undefined,
+
+            FlexDirection: "row",
+            FlexWrap: "nowrap",
+            AlignContent: "normal",
+            JustifyContent: "normal",
+            AlignItems: "normal",
+
             Padding: new Padding().all("0px"),
+            Margin: new Padding().all("0px"),
         }
         this.build()
     }
@@ -59,5 +68,27 @@ export class NeuContainer extends Native {
 
     uPadding() {
         this.element.style.padding = this.data.Padding
+    }
+    uMargin() {
+        this.element.style.margin = this.data.Margin
+    }
+    uAspectRatio() {
+        this.element.style.aspectRatio = this.data.AspectRatio
+    }
+
+    uFlexDirection() {
+        this.element.style.flexDirection = this.data.FlexDirection
+    }
+    uFlexWrap() {
+        this.element.style.flexWrap = this.data.FlexWrap
+    }
+    uAlignContent() {
+        this.element.style.alignContent = this.data.AlignContent
+    }
+    uJustifyContent() {
+        this.element.style.justifyContent = this.data.JustifyContent
+    }
+    uAlignItems() {
+        this.element.style.alignItems = this.data.AlignItems
     }
 }

@@ -52,6 +52,8 @@ export class NeuText extends Native {
         this.cover = this.createCover()
         this.element = this.createDiv()
         this.cover.addChild(this.element)
+
+        this.target = this.element
     }
 
     init() {

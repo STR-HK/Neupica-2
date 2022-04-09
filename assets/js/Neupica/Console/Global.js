@@ -1,9 +1,11 @@
 import { Storage } from "./Storage.js"
 
-class Global extends Storage {
-    constructor() {
-        super()
+export function initGlobal() {
+    class Global extends Storage {
+        constructor() {
+            super()
+        }
     }
-}
 
-window.Global = new Global()
+    window.Global = new Global()
+}
