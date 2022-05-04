@@ -37,6 +37,7 @@ function DCcreateElement(tagName) {
 export function createCover(name) {
     let element = DCcreateElement("div")
     element.id = name + "-" + makeId(6)
+
     element.setAttribute("name", name)
     element.classList.add("NeuCover")
     window.Index.setItem(element.id, element)

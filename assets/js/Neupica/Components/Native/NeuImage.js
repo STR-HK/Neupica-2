@@ -17,7 +17,7 @@ export class NeuImage extends Native {
     }
 
     create() {
-        this.cover = this.createCover()
+        // this.cover = this.createCover()
         this.element = this.createElement("img")
         this.cover.addChild(this.element)
     }

@@ -1,3 +1,4 @@
+import { runApp } from "../Neupica2.js"
 import { NeuRender } from "./Render.js"
 
 export class NeuApp {
@@ -22,6 +23,8 @@ export class NeuApp {
         } else {
             this.dom = document.querySelector(where)
             this.dom.appendChild(this.app)
+            runApp(this)
+
             NeuRender(this.layout, this.app)
         }
     }

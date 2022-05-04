@@ -1,0 +1,57 @@
+<!--index.html-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Neupica 2</title>
+  </head>
+  
+  <body>
+    <div id="frame">
+      <div id="lights">
+          <div class="light" id="close"></div>
+          <div class="light" id="minimize"></div>
+          <div class="light" id="maximize"></div>
+      </div>
+
+      <div id="title">
+        Neupica 2
+      </div>
+  </div>
+
+  <script>
+    function onIframeLoad() {
+      setTimeout(function() {
+        let iframe = document.querySelector('iframe')
+
+        let loadings = document.querySelector('.iframe')
+        loadings.remove()
+        
+      }, 1)
+      iframe.style.display = ''
+    }
+  </script>
+
+  <iframe src="http://asphodel.kro.kr:1001"></iframe>
+
+  <script>
+    let iframe = document.querySelector('iframe');
+    console.log(iframe);
+    iframe.onload = onIframeLoad;
+    iframe.style.display = 'none';
+
+    let loading = document.createElement('img')
+    loading.src = 'Eclipse-1s-200px.svg'
+    loading.style.position = 'absolute'
+    loading.classList.add('iframe')
+    iframe.parentNode.appendChild(loading);
+  </script>
+
+  <script defer src="appFunctions.js"></script>
+
+  </body>
+</html>

@@ -1,3 +1,5 @@
+import { runApp } from "../Neupica2.js"
+
 export function NeuRender(layout, dom) {
     console.log(
         "%cNeuRender process called",

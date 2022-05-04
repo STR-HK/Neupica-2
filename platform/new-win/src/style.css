@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+
+    height: 100vh;
+    width: 100vw;
+
+    box-sizing: border-box;
+    overflow: hidden;
+
+
+    /* cursor: url(./cursor/b53.png), pointer !important; */
+}
+
+iframe, .iframe {
+    width: 100vw;
+    height: 100vh;
+
+    border: 0;
+
+    box-sizing: border-box;
+    /* overflow: hidden; */
+}
+
+#frame {
+    width: 100%;
+    display: flex;
+    -webkit-app-region: drag;
+
+    background-color: #EBEBEB;
+}
+
+#lights {
+    width: fit-content;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+
+    user-select: none;
+
+    -webkit-app-region: no-drag;
+
+}
+
+#title {
+    position: absolute;
+    left: 50%;
+    top: 8.5px;
+
+    transform: translate(-50%, 0);
+
+    font-size: 13px;
+}
+
+#close {
+    background-image: url(./tl/Close_Button.svg);
+}
+
+#lights:hover > #close {
+    background-image: url(./tl/Close_Button_Hover.svg);
+}
+
+#minimize {
+    background-image: url(./tl/Minimize_Button.svg);
+}
+
+#lights:hover > #minimize {
+    background-image: url(./tl/Minimize_Button_Hover.svg);
+}
+
+#maximize {
+    background-image: url(./tl/Maximize_Button.svg);
+}
+
+#lights:hover > #maximize {
+    background-image: url(./tl/Maximize_Button_Hover.svg);
+}
+
+.light {
+    width: 13px;
+    height: 13px;
+
+    border-radius: 100%;
+    -webkit-app-region: no-drag;
+
+    background-position: center;
+    background-size: cover;
+
+
+}
+
+
+
+
+

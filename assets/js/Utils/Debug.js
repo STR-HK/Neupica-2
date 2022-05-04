@@ -23,6 +23,10 @@ function clearDebugFrame() {
     })
 }
 
+window.debug = function (query) {
+    Debug(document.querySelector(query))
+}
+
 export function Debug(what) {
     let mutationObserver = new MutationObserver(function (mutations) {
         clearDebugFrame()
@@ -52,6 +56,7 @@ export function Debug(what) {
     temp()
 
     window.addEventListener("resize", temp)
+    window.addEventListener("scroll", temp)
 
     // setInterval(function () {
     //     clearDebugFrame()
@@ -59,4 +64,11 @@ export function Debug(what) {
     //         attachDebugFrame(value)
     //     })
     // }, 50)
+
+    window.terminate = function () {
+        window.removeEventListener("resize", temp)
+        window.removeEventListener("scroll", temp)
+        mutationObserver.disconnect()
+        clearDebugFrame()
+    }
 }

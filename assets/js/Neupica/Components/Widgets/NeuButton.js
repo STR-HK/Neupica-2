@@ -8,13 +8,14 @@ export class NeuButton extends Widget {
         super()
         this.name = "NeuButton"
 
-        this.cover = this.createCover()
+        // this.cover = this.createCover()
         this.cover.style.webkitTapHighlightColor = "transparent"
         this.cover.style.cursor = "pointer"
 
         this.element = new NeuContainer()
-        this.target = this.element.element
         this.cover.addChild(this.element)
+
+        this.target = this.element.element
 
         this.text = new NeuText()
         this.text.data.UserSelect = "none"
@@ -24,7 +25,7 @@ export class NeuButton extends Widget {
             Button: this.element.data,
 
             ButtonText: this.text.data,
-            ButtonImage: undefined,
+            // ButtonImage: undefined,
         }
         this.build()
     }

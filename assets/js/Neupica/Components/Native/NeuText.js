@@ -5,155 +5,176 @@ export class NeuText extends Native {
         super()
         this.name = "NeuText"
 
-        // this.that = this
-
         this.data = {
-            Text: "Null",
+            Text: [
+                "Hello World",
+                function () {
+                    this.element.innerHTML = this.data.Text
+                },
+            ],
 
-            FontFamily: "Pretendard",
-            FontSize: "1rem",
-            FontStyle: "normal",
-            FontWeight: "normal",
+            FontFamily: [
+                "Pretendard",
+                function () {
+                    this.element.style.fontFamily = this.data.FontFamily
+                },
+            ],
+            FontSize: [
+                "1rem",
+                function () {
+                    this.element.style.fontSize = this.data.FontSize
+                },
+            ],
+            FontStyle: [
+                "normal",
+                function () {
+                    this.element.style.fontStyle = this.data.FontStyle
+                },
+            ],
+            FontWeight: [
+                "normal",
+                function () {
+                    this.element.style.fontWeight = this.data.FontWeight
+                },
+            ],
 
-            TextAlign: "left",
-            TextColor: "#000000",
+            TextAlign: [
+                "left",
+                function () {
+                    this.element.style.textAlign = this.data.TextAlign
+                },
+            ],
+            TextColor: [
+                "black",
+                function () {
+                    this.element.style.color = this.data.TextColor
+                },
+            ],
 
-            TextDecorationLine: "none",
-            TextDecorationColor: "#000000",
-            TextDecorationStyle: "solid",
-            TextDecorationThickness: "1px",
+            TextDecorationLine: [
+                "none",
+                function () {
+                    this.element.style.textDecorationLine =
+                        this.data.TextDecorationLine
+                },
+            ],
+            TextDecorationColor: [
+                "black",
+                function () {
+                    this.element.style.textDecorationColor =
+                        this.data.TextDecorationColor
+                },
+            ],
+            TextDecorationStyle: [
+                "solid",
+                function () {
+                    this.element.style.textDecorationStyle =
+                        this.data.TextDecorationStyle
+                },
+            ],
+            TextDecorationThickness: [
+                "1px",
+                function () {
+                    this.element.style.textDecorationThickness =
+                        this.data.TextDecorationThickness
+                },
+            ],
 
-            TextUnderlineOffset: "auto",
-            TextTransform: "none",
-            TextOverflow: "clip",
+            TextUnderlineOffset: [
+                "0px",
+                function () {
+                    this.element.style.textUnderlineOffset =
+                        this.data.TextUnderlineOffset
+                },
+            ],
+            TextTransform: [
+                "none",
+                function () {
+                    this.element.style.textTransform = this.data.TextTransform
+                },
+            ],
+            TextOverflow: [
+                "clip",
+                function () {
+                    this.element.style.textOverflow = this.data.TextOverflow
+                },
+            ],
 
-            TextIndent: "0px",
-            LetterSpacing: "0em",
-            LineHeight: "1",
-            WordSpacing: "0px",
-            WhiteSpace: "normal",
+            TextIndent: [
+                "0px",
+                function () {
+                    this.element.style.textIndent = this.data.TextIndent
+                },
+            ],
+            LetterSpacing: [
+                "0px",
+                function () {
+                    this.element.style.letterSpacing = this.data.LetterSpacing
+                },
+            ],
+            LineHeight: [
+                "1",
+                function () {
+                    this.element.style.lineHeight = this.data.LineHeight
+                },
+            ],
+            WordSpacing: [
+                "0px",
+                function () {
+                    this.element.style.wordSpacing = this.data.WordSpacing
+                },
+            ],
+            WhiteSpace: [
+                "normal",
+                function () {
+                    this.element.style.whiteSpace = this.data.WhiteSpace
+                },
+            ],
 
-            TextShadow: "none",
-            VerticalAlign: "baseline",
-            WordBreak: "normal",
-            Content: "",
+            TextShadow: [
+                "none",
+                function () {
+                    this.element.style.textShadow = this.data.TextShadow
+                },
+            ],
+            VerticalAlign: [
+                "baseline",
+                function () {
+                    this.element.style.verticalAlign = this.data.VerticalAlign
+                },
+            ],
+            WordBreak: [
+                "normal",
+                function () {
+                    this.element.style.wordBreak = this.data.WordBreak
+                },
+            ],
+            Content: [
+                "none",
+                function () {
+                    this.element.style.content = this.data.Content
+                },
+            ],
 
-            UserSelect: "auto",
+            Direction: [
+                "ltr",
+                function () {
+                    this.element.style.direction = this.data.Direction
+                },
+            ],
+
+            UserSelect: [
+                "auto",
+                function () {
+                    this.element.style.userSelect = this.data.UserSelect
+                },
+            ],
         }
         this.build()
 
-        this.create()
-        this.init()
-
-        // this.apply(this.data)
-    }
-
-    create() {
-        this.cover = this.createCover()
         this.element = this.createDiv()
         this.cover.addChild(this.element)
-
         this.target = this.element
-    }
-
-    init() {
         this.element.style.width = "fit-content"
-    }
-
-    uText() {
-        this.element.innerText = this.data.Text
-    }
-
-    uFontSize() {
-        this.element.style.fontSize = this.data.FontSize
-    }
-
-    uFontFamily() {
-        this.element.style.fontFamily = this.data.FontFamily
-    }
-
-    uFontStyle() {
-        this.element.style.fontStyle = this.data.FontStyle
-    }
-
-    uFontWeight() {
-        this.element.style.fontWeight = this.data.FontWeight
-    }
-
-    uTextAlign() {
-        this.element.style.textAlign = this.data.TextAlign
-    }
-
-    uTextColor() {
-        this.element.style.color = this.data.TextColor
-    }
-
-    uTextDecorationLine() {
-        this.element.style.textDecorationLine = this.data.TextDecorationLine
-    }
-
-    uTextDecorationColor() {
-        this.element.style.textDecorationColor = this.data.TextDecorationColor
-    }
-
-    uTextDecorationStyle() {
-        this.element.style.textDecorationStyle = this.data.TextDecorationStyle
-    }
-
-    uTextDecorationThickness() {
-        this.element.style.textDecorationThickness =
-            this.data.TextDecorationThickness
-    }
-
-    uTextUnderlineOffset() {
-        this.element.style.textUnderlineOffset = this.data.TextUnderlineOffset
-    }
-
-    uTextTransform() {
-        this.element.style.textTransform = this.data.TextTransform
-    }
-
-    uTextOverflow() {
-        this.element.style.textOverflow = this.data.TextOverflow
-    }
-
-    uTextIndent() {
-        this.element.style.textIndent = this.data.TextIndent
-    }
-
-    uLetterSpacing() {
-        this.element.style.letterSpacing = this.data.LetterSpacing
-    }
-
-    uLineHeight() {
-        this.element.style.lineHeight = this.data.LineHeight
-    }
-
-    uWordSpacing() {
-        this.element.style.wordSpacing = this.data.WordSpacing
-    }
-
-    uWhiteSpace() {
-        this.element.style.whiteSpace = this.data.WhiteSpace
-    }
-
-    uTextShadow() {
-        this.element.style.textShadow = this.data.TextShadow
-    }
-
-    uVerticalAlign() {
-        this.element.style.verticalAlign = this.data.VerticalAlign
-    }
-
-    uWordBreak() {
-        this.element.style.wordBreak = this.data.WordBreak
-    }
-
-    uContent() {
-        this.element.innerHTML = this.data.Content
-    }
-
-    uUserSelect() {
-        this.element.style.userSelect = this.data.UserSelect
     }
 }
