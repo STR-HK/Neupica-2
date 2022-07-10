@@ -52,7 +52,7 @@ class Calc extends NeuApp {
         this.view.geometry.Height = "100%"
         this.view.data.TextAlign = "right"
         this.view.data.FontSize = "4rem"
-        // this.view.data.Disabled = true
+        // this.view.data.ReadOnly = true
 
         this.result_cont = new NeuContainer()
         this.result_cont.data.BackgroundColor = "#E9EFFB"
@@ -198,5 +198,6 @@ class Calc extends NeuApp {
     }
 }
 
-export let app = new Calc()
-work()
+// export let app = new Calc()
+// work()
+//

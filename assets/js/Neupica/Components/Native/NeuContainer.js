@@ -6,11 +6,6 @@ export class NeuContainer extends Native {
         super()
         this.name = "NeuContainer"
 
-        this.element = this.createDiv()
-        this.element.style.display = "flex"
-        // this.target = this.element
-        this.cover.addChild(this.element)
-
         this.data = {
             BackgroundColor: [
                 "transparent",
@@ -103,12 +98,32 @@ export class NeuContainer extends Native {
                     this.element.style.margin = this.data.Margin
                 },
             ],
+            Symmetric: [
+                "vertical",
+                function () {
+                    if (this.data.Symmetric == "vertical") {
+                        this.element.style.flexDirection = "column"
+                    } else {
+                        this.element.style.flexDirection = "row"
+                    }
+                    //   /  this.element.style.padding = this.data.Padding
+                    // this.element.style.margin = this.data.Margin
+                },
+            ],
         }
         this.build()
+
+        this.element = this.createDiv()
+        this.element.style.display = "flex"
+        this.cover.addChild(this.element)
+        this.cover = this.element
+
+        this.data.Symmetric = "vertical"
     }
 
     childrenUpdate() {
         this.children.forEach((element) => {
+            // console.log(element)
             this.element.addChild(element)
         })
     }

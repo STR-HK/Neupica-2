@@ -27,6 +27,12 @@ window.appList = []
 window.solved = false
 window.loaded = false
 
+function booting() {
+    console.log(Ascii("Neupica 2"))
+    solveBootingStack()
+    window.solved = true
+}
+
 export function runApp(class_) {
     if (!window.loaded) {
         window.onload = () => {
@@ -35,9 +41,7 @@ export function runApp(class_) {
     }
 
     if (window.solved == false) {
-        console.log(Ascii("Neupica 2"))
-        solveBootingStack()
-        window.solved = true
+        booting()
     }
 
     let app = class_

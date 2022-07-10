@@ -50,13 +50,15 @@ export class NeuInput extends NeuText {
 
         this.element.remove()
 
-        this.element = this.createElement("input")
+        this.element = this.createInput()
         this.element.style.backgroundColor = "transparent"
         this.element.style.border = "none"
         this.element.style.outline = "none"
         this.element.style.padding = "0"
         this.element.style.margin = "0"
-        this.cover.appendChild(this.element)
+        // this.cover.appendChild(this.element)
+        this.cover = this.element
+
         this.target = this.element
 
         this.element.addEventListener("input", () => {

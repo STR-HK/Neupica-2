@@ -1,16 +1,16 @@
 import { Children } from "../../../Common/Children.js"
-import { createCover, createDiv, createElement } from "../Create/Create.js"
-
-// Object.defineProperty(String.prototype, "key", {
-//     get: function () {
-//         return this.value ? this.value : null
-//     },
-// })
+import {
+    createCover,
+    createDiv,
+    createImg,
+    createInput,
+    createLayout,
+} from "../Create/Create.js"
 
 export class Native extends Children {
     constructor() {
         super()
-        this.updatePrefix = "u"
+        // this.updatePrefix = "u"
         this.apply = function (obj) {
             Object.entries(obj).forEach((entry) => {
                 if (entry[1] != null) {
@@ -199,7 +199,10 @@ export class Native extends Children {
     createDiv() {
         return createDiv()
     }
-    createElement(tagName) {
-        return createElement(tagName)
+    createImg() {
+        return createImg()
+    }
+    createInput() {
+        return createInput()
     }
 }

@@ -173,7 +173,10 @@ export class NeuText extends Native {
         this.build()
 
         this.element = this.createDiv()
+        // this.element.
         this.cover.addChild(this.element)
+        this.cover = this.element
+
         this.target = this.element
         this.element.style.width = "fit-content"
     }
