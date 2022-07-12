@@ -3,15 +3,30 @@ function attachDebugFrame(element) {
     debugFrame.classList.add("debugFrame")
     debugFrame.style.position = "fixed"
 
-    let elementData = element.getBoundingClientRect()
-    debugFrame.style.top = elementData.top + "px"
-    debugFrame.style.left = elementData.left + "px"
-    debugFrame.style.width = elementData.width + "px"
-    debugFrame.style.height = elementData.height + "px"
+    function setGeometry(element) {
+        let elementData = element.getBoundingClientRect()
+        debugFrame.style.top = elementData.top + "px"
+        debugFrame.style.left = elementData.left + "px"
+        debugFrame.style.width = elementData.width + "px"
+        debugFrame.style.height = elementData.height + "px"
+    }
+
+    setGeometry(element)
+    // debugFrame.style.border = '1.5px dotted black'
     debugFrame.style.backgroundColor = "rgba(255, 255, 255, 0)"
     debugFrame.style.zIndex = "9999"
-    debugFrame.style.border = "2px dotted #F190B7"
     debugFrame.style.pointerEvents = "none"
+
+    if (element.getAttribute('name') === "NeuContainer") {
+        setGeometry(element.lastElementChild)
+        debugFrame.style.border = "1px dashed #C0FF00"
+    } else if (element.getAttribute('class') === "NeuCover") {
+        setGeometry(element.lastElementChild)
+        debugFrame.style.border = "1px double #F190B7"
+    }
+    if (element.getAttribute('class') === "NeuLayout") {
+        debugFrame.style.border = "2px dotted #A31F34"
+    }
 
     document.body.appendChild(debugFrame)
 }

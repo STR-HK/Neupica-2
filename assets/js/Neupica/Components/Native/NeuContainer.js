@@ -101,7 +101,7 @@ export class NeuContainer extends Native {
             Symmetric: [
                 "vertical",
                 function () {
-                    if (this.data.Symmetric == "vertical") {
+                    if (this.data.Symmetric === "vertical") {
                         this.element.style.flexDirection = "column"
                     } else {
                         this.element.style.flexDirection = "row"
@@ -115,8 +115,9 @@ export class NeuContainer extends Native {
 
         this.element = this.createDiv()
         this.element.style.display = "flex"
+        this.element.style.width = 'fit-content'
         this.cover.addChild(this.element)
-        this.cover = this.element
+        // this.cover = this.element
 
         this.data.Symmetric = "vertical"
     }

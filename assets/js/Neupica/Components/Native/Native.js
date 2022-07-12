@@ -6,6 +6,7 @@ import {
     createInput,
     createLayout,
 } from "../Create/Create.js"
+import { Geometry } from "../../Core/Geometry.js"
 
 export class Native extends Children {
     constructor() {
@@ -43,10 +44,6 @@ export class Native extends Children {
             this.obj = {}
 
             Object.entries(this.data).forEach(([key, value]) => {
-                // console.log(this)
-                // console.log("value is..")
-                // console.log(value)
-                // console.log(Array.isArray(value))
                 if (Array.isArray(value)) {
                     this.obj[key] = value[0]
                     this[key] = value[1]
@@ -58,14 +55,12 @@ export class Native extends Children {
             Object.keys(this.data).forEach((key) => {
                 Object.defineProperty(this.data, key, {
                     get: () => {
-                        // console.log(key, this.obj)
                         return this.obj[key]
                     },
                     set: (newValue) => {
                         this.obj[key] = newValue
                         try {
                             this[key]()
-                            // console.log(key)
                         } catch (error) {
                             console.error(
                                 `${this.name}.${key}()` +
@@ -108,21 +103,7 @@ export class Native extends Children {
             })
         }
 
-        this.geometry = {
-            Width: "auto",
-            Height: "auto",
-            MinWidth: "0px",
-            MinHeight: "0px",
-            MaxWidth: "none",
-            MaxHeight: "none",
-            Left: "auto",
-            Top: "auto",
-            Right: "auto",
-            Bottom: "auto",
-            Margin: "0px",
-            Padding: "0px",
-            Border: "0px",
-        }
+        this.geometry = new Geometry().geometry
 
         this.target = this.element
 

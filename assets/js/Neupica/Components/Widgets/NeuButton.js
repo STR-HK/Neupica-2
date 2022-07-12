@@ -31,6 +31,6 @@ export class NeuButton extends Widget {
     }
 
     childrenUpdate() {
-        console.log("chidl")
+        console.log("chill")
     }
 }

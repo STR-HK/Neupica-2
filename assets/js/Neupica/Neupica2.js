@@ -1,20 +1,22 @@
 import { Ascii } from "../Utils/Ascii.js"
 import { initIndex } from "./Console/Index.js"
-import { getScript, getStyle } from "./DOM/Contents.js"
 import { initWindow } from "./DOM/Window.js"
 import { initGlobal } from "./Console/Global.js"
 import { Debug } from "../Utils/Debug.js"
+import { initFloat } from "./Core/Floating.js"
+
 
 initWindow()
 initIndex()
 initGlobal()
+initFloat()
 
 function solveBootingStack() {
     let bootList = localStorage.getItem("bootList")
 
-    if (bootList == null || bootList == NaN) {
+    if (bootList == null || bootList === NaN) {
         localStorage.setItem("bootList", "0")
-        bootList = new String("")
+        bootList = String("")
     }
 
     bootList += "0"
@@ -40,7 +42,7 @@ export function runApp(class_) {
         }
     }
 
-    if (window.solved == false) {
+    if (window.solved === false) {
         booting()
     }
 

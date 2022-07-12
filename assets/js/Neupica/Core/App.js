@@ -17,15 +17,28 @@ export class NeuApp {
     }
 
     draw(where) {
-        if (this.layout == false) {
+        if (this.layout === false) {
             console.error("layout is not defined")
-            return
+
         } else {
             this.dom = document.querySelector(where)
             this.dom.appendChild(this.app)
             runApp(this)
 
-            NeuRender(this.layout, this.app)
+            NeuRender(this.layout, this.app, false)
+        }
+    }
+
+    sculpt(parentElement) {
+        if (this.layout === false) {
+            console.error("layout is not defined")
+
+        } else {
+            this.dom = parentElement
+            this.dom.appendChild(this.app)
+            runApp(this)
+
+            NeuRender(this.layout, this.app, true)
         }
     }
 }
