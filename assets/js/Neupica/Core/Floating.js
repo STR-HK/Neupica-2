@@ -13,39 +13,40 @@ class FloatManager {
     setFloat(NeuApp) {
         function attach(element) {
             element.style.border = '3px dotted lime'
-            element.addEventListener('mousedown', function (e) {
-                let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-                element.addEventListener('mousedown', dragMouseDown)
-                function dragMouseDown(e) {
-                    e = e || window.event;
-                    e.preventDefault();
-                    // get the mouse cursor position at startup:
-                    pos3 = e.clientX;
-                    pos4 = e.clientY;
-                    document.onmouseup = closeDragElement;
-                    // call a function whenever the cursor moves:
-                    document.onmousemove = elementDrag;
-                }
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            element.addEventListener('mousedown', dragMouseDown)
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
 
-                function elementDrag(e) {
-                    e = e || window.event;
-                    e.preventDefault();
-                    // calculate the new cursor position:
-                    pos1 = pos3 - e.clientX;
-                    pos2 = pos4 - e.clientY;
-                    pos3 = e.clientX;
-                    pos4 = e.clientY;
-                    // set the element's new position:
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                // console.log(element)
+                if (!(element.hasAttribute('resizing'))) {
                     element.style.top = (element.offsetTop - pos2) + "px";
                     element.style.left = (element.offsetLeft - pos1) + "px";
                 }
+            }
 
-                function closeDragElement() {
-                    // stop moving when mouse button is released:
-                    document.onmouseup = null;
-                    document.onmousemove = null;
-                }
-            })
+            function closeDragElement() {
+                // stop moving when mouse button is released:
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
 
             element.addEventListener('click', function init() {
                 element.removeEventListener('click', init, false);
@@ -61,6 +62,7 @@ class FloatManager {
                 resizer.style.position = 'absolute'
                 element.appendChild(resizer);
                 resizer.addEventListener('mousedown', initDrag, false);
+
             }, false);
 
             // element.click()
@@ -79,29 +81,37 @@ class FloatManager {
             function doDrag(e) {
                 element.style.width = (startWidth + e.clientX - startX) + 'px';
                 element.style.height = (startHeight + e.clientY - startY) + 'px';
+                element.setAttribute('resizing', 'true')
+
             }
 
             function stopDrag(e) {
                 document.documentElement.removeEventListener('mousemove', doDrag, false);
                 document.documentElement.removeEventListener('mouseup', stopDrag, false);
+                // element.setAttribute('resizing', 'false')
+
+                element.removeAttribute('resizing')
             }
         }
 
         let FloatElement = document.createElement('div')
         FloatElement.classList.add('Float')
         FloatElement.style.position = 'absolute'
-
+        FloatElement.style.overflow = 'hidden'
         attach(FloatElement)
 
         NeuApp.sculpt(FloatElement)
 
         document.querySelector('.FloatingPlace').appendChild(FloatElement)
+
+        return NeuApp
         // document.body.appendChild(FloatElement)
     }
 
 
     delFloat(NeuApp) {
-
+        console.log(NeuApp)
+        NeuApp.erase()
     }
 
     listFloat(NeuApp) {

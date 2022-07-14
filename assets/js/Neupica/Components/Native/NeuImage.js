@@ -9,24 +9,25 @@ export class NeuImage extends Native {
             Src: [
                 "",
                 function () {
-                    let xhr = new XMLHttpRequest()
-                    let elem = this.element
-                    xhr.open("GET", this.data.Src, true)
-                    xhr.responseType = "blob"
-                    xhr.onload = () => {
-                        let url = URL.createObjectURL(xhr.response)
-                        console.log(url)
-                        elem.src = url
-                    }
-                    xhr.send()
+                    this.element.src = this.data.Src
+                    // let xhr = new XMLHttpRequest()
+                    // let elem = this.element
+                    // xhr.open("GET", this.data.Src, true)
+                    // xhr.responseType = "arraybuffer"
+                    // xhr.onload = () => {
+                    //     let url = URL.createObjectURL(xhr.response)
+                    //     console.log(url)
+                    //     elem.src = url
+                    // }
+                    // xhr.send(null)
                 },
             ],
         }
         this.build()
 
         this.element = this.createImg()
-        // this.cover.addChild(this.element)
-        this.cover = this.element
+        this.cover.addChild(this.element)
+        // this.cover = this.element
         this.init()
     }
 

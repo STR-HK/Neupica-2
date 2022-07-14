@@ -4,6 +4,7 @@ function attachDebugFrame(element) {
     debugFrame.style.position = "fixed"
 
     function setGeometry(element) {
+        // console.log(element)
         let elementData = element.getBoundingClientRect()
         debugFrame.style.top = elementData.top + "px"
         debugFrame.style.left = elementData.left + "px"
@@ -43,11 +44,18 @@ window.debug = function (query) {
 }
 
 export function Debug(what) {
+    // console.log('what')
+    // console.log(what)
     let mutationObserver = new MutationObserver(function (mutations) {
         clearDebugFrame()
         mutations.forEach(function (mutation) {
+            // console.log(mutation.target)
             Object.entries(window.Index.storage).forEach(([key, value]) => {
-                attachDebugFrame(value)
+                try {
+                    attachDebugFrame(value)
+                } catch (e) {
+                    
+                }
             })
         })
     })
@@ -85,5 +93,6 @@ export function Debug(what) {
         window.removeEventListener("scroll", temp)
         mutationObserver.disconnect()
         clearDebugFrame()
+        window.terminate = undefined
     }
 }

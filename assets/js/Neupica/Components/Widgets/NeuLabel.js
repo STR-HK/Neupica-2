@@ -29,7 +29,7 @@ export class NeuLabel extends Widget {
     }
 
     uCursor() {
-        if (this.children[this.data.Cursor] == undefined) {
+        if (this.children[this.data.Cursor] === undefined) {
             this.setChild(this.data.Cursor, new NeuText())
         }
 

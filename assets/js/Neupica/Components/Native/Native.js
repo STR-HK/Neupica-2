@@ -163,6 +163,9 @@ export class Native extends Children {
             this.cover.addEventListener(eventname, callback)
             return this
         }
+        this.watchPreset = function(callback) {
+            callback()
+        }
         this.watchEvents = function (eventnames, callback) {
             eventnames.forEach((eventname) => {
                 console.log(eventname)
@@ -172,6 +175,21 @@ export class Native extends Children {
         }
 
         this.cover = this.createCover()
+
+        // this.watchEvent('click', function() {
+
+        // })
+
+        // while (this.cover.parentElement) {
+
+        // }
+        // let arr = []
+        // let paren = this.cover.parentElement
+        // arr.push(paren)
+        // while (!(Array.from(arr[arr.length - 1].classList).includes('NeuApp'))) {
+        //     paren = paren.parentElement
+        //     arr.push(paren)
+        // }
     }
 
     createCover() {

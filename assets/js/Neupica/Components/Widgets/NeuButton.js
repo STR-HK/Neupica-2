@@ -17,15 +17,17 @@ export class NeuButton extends Widget {
 
         this.target = this.element.element
 
+        this.img = new NeuImage()
+        this.element.addChild(this.img)
+
         this.text = new NeuText()
         this.text.data.UserSelect = "none"
         this.element.addChild(this.text)
 
         this.data = {
             Button: this.element.data,
-
+            ButtonImage: this.img.data,
             ButtonText: this.text.data,
-            // ButtonImage: undefined,
         }
         this.build()
     }

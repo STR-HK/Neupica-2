@@ -1,5 +1,5 @@
 import { runApp } from "../Neupica2.js"
-import { NeuRender } from "./Render.js"
+import { NeuEliminate, NeuRender } from "./Render.js"
 
 export class NeuApp {
     constructor() {
@@ -40,5 +40,9 @@ export class NeuApp {
 
             NeuRender(this.layout, this.app, true)
         }
+    }
+
+    erase() {
+        NeuEliminate(this.layout, this.app, true)
     }
 }
