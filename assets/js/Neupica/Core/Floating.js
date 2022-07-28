@@ -5,7 +5,7 @@ class FloatManager {
         FloatingPlace.classList.add('FloatingPlace')
         FloatingPlace.style.position = 'absolute'
         // this.place =
-        console.log(this.place)
+        // console.log(this.place)
         document.body.appendChild(FloatingPlace)
     }
 
@@ -100,6 +100,7 @@ class FloatManager {
         FloatElement.style.overflow = 'hidden'
         attach(FloatElement)
 
+        // console.log(Neu)
         NeuApp.sculpt(FloatElement)
 
         document.querySelector('.FloatingPlace').appendChild(FloatElement)

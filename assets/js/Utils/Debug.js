@@ -18,15 +18,38 @@ function attachDebugFrame(element) {
     debugFrame.style.zIndex = "9999"
     debugFrame.style.pointerEvents = "none"
 
+    let alpha = '1'
+    let colors = [
+        `rgba(228, 161, 211, ${alpha})`,
+        `rgba(255, 192, 191, ${alpha})`,
+        `rgba(255, 227, 191, ${alpha})`,
+        `rgba(255, 247, 191, ${alpha})`,
+        `rgba(199, 255, 191, ${alpha})`,
+        `rgba(191, 255, 222, ${alpha})`,
+        `rgba(191, 255, 254, ${alpha})`,
+        `rgba(191, 201, 255, ${alpha})`,
+        `rgba(207, 191, 255, ${alpha})`,
+    ]
+
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+    }
+
+    let bgColor = colors[getRandomInt(0, 10)]
+    // console.log(bgColor)
+
     if (element.getAttribute('name') === "NeuContainer") {
         setGeometry(element.lastElementChild)
-        debugFrame.style.border = "1px dashed #C0FF00"
+        debugFrame.classList.add('container')
+        debugFrame.style.border = '2px dashed ' + bgColor
     } else if (element.getAttribute('class') === "NeuCover") {
         setGeometry(element.lastElementChild)
-        debugFrame.style.border = "1px double #F190B7"
+        debugFrame.style.border = "1px solid #FF00FF"
     }
     if (element.getAttribute('class') === "NeuLayout") {
-        debugFrame.style.border = "2px dotted #A31F34"
+        debugFrame.style.border = "2px dotted transparent"
     }
 
     document.body.appendChild(debugFrame)

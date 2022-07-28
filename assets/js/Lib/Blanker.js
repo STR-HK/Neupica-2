@@ -9,7 +9,6 @@ import { BorderRadius } from "../Tool/BorderRadius.js"
 import { Debug } from "../Utils/Debug.js"
 import { NeuImage } from "../Neupica/Components/Native/NeuImage.js"
 import { Flex } from "../Tool/Flex.js"
-import { work } from "./Blanker_worker.js"
 // import { NeuButton } from "../Neupica/Components/Widgets/NeuButton.js"
 
 let mat_url = 'https://gallery.flutter.dev/assets/packages/flutter_gallery_assets/assets/icons/material/material.png'
@@ -59,7 +58,6 @@ class Blanker extends NeuApp {
                 this.data.ButtonText.FontWeight = 'bold'
                 this.data.Button.BackgroundColor = '#2F293B'
                 this.data.Button.BorderRadius = new BorderRadius().all('8px')
-                // this.data.ButtonImage.Src = mat_url
                 this.img.geometry.Width = '65px'
                 this.data.Button.Symmetric = 'horizontal'
                 this.data.Button.AlignItems = new Flex().AlignItems.Center
@@ -91,6 +89,11 @@ class Blanker extends NeuApp {
 
         this.MaterialDropDown = new NeuContainer()
         this.categoriesList.addChild(this.MaterialDropDown)
+
+        // function Mat_Btn() {
+        //     this.Mat_Btn_layout = new NeuColumn()
+        //     this.
+        // }
 
 
         this.draw("#App")
@@ -162,7 +165,8 @@ class FloatTest extends NeuApp {
 }
 
 
+// import { work } from "./Blanker_worker.js"
+// export let app = new Blanker()
+// work()
 
-export let app = new Blanker()
 export let float = window.setFloat(new FloatTest())
-work()

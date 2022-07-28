@@ -8,6 +8,8 @@ export function NeuRender(layout, dom, silence) {
     }
     // console.log(layout.element)
     dom.appendChild(layout.element)
+
+    // document.title =
 }
 
 export function NeuEliminate(layout, dom, silence) {

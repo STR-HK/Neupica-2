@@ -9,6 +9,10 @@ export class NeuApp {
         this.app = this.createApp()
     }
 
+    setLayout(layout) {
+        this.layout = layout
+    }
+
     createApp() {
         let app = document.createElement("div")
         app.id = Object.getPrototypeOf(this).constructor.name
