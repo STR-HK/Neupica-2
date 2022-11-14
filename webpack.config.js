@@ -4,7 +4,7 @@ const AutoExport = require("webpack-auto-export")
 
 module.exports = {
     mode: "production",
-    entry: "./assets/js/Lib/Screen.js",
+    entry: "./assets/js/Lib/Cbfav.js",
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js",

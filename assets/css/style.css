@@ -9,6 +9,8 @@
     box-sizing: border-box;
 
     position: relative;
+
+    user-select: none;
 }
 
 html, body {
@@ -17,7 +19,12 @@ html, body {
 
     margin: 0;
     padding: 0;
-    /* overflow: hidden; */
+
+    /*position: fixed;*/
+
+     overflow: hidden;
+
+    font-size: 16px;
 }
 
 .NeuCover {
@@ -28,4 +35,8 @@ html, body {
 
 .NeuDiv {
     /*width: fit-content;*/
+}
+
+#App {
+    height: 100%;
 }
