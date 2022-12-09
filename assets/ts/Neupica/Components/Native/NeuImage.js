@@ -1,15 +1,17 @@
-import { Native } from "./Native.js";
-export class NeuImage extends Native {
-    data;
+import { NeuContainer } from "./NeuContainer.js";
+export class NeuImage extends NeuContainer {
     constructor() {
         super();
         this.name = "NeuImage";
         this.data = {
+            ...new NeuContainer().data,
             Src: ""
         };
         this.build();
+        this.removeChild(this.element);
         this.element = this.createImg();
         this.cover.addChild(this.element);
+        this.target = this.element;
         // this.cover = this.element
     }
     Src() {

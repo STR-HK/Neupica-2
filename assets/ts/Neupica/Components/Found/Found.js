@@ -1,6 +1,7 @@
 import { Children } from "../../../Common/Children.js";
-import { createCover, createDiv, createImg, createInput, } from "../Create/Create.js";
+import { Bounding, createCover, createDiv, createImg, createInput, createModal } from "../Create/Create.js";
 import { Geometry } from "../../Core/Geometry.js";
+// import { Object } from "../../../Common/Object"
 export class Found extends Children {
     build;
     target;
@@ -8,27 +9,31 @@ export class Found extends Children {
     cover;
     element;
     geometry;
-    update_gm;
-    build_gm;
-    getBound;
+    geometryUpdater;
+    buildGeometry;
+    getBoundElement;
+    getBoundingClientRect;
     watchEvent;
     watchBoundEvent;
     watchPreset;
     watchEvents;
+    getBoundingParent;
+    dataObj;
     constructor() {
         super();
+        this.name = "Found";
         this.build = function () {
-            this.obj = {};
+            this.dataObj = {};
             Object.entries(this.data).forEach(([key, value]) => {
-                this.obj[key] = value;
+                this.dataObj[key] = value;
             });
             Object.keys(this.data).forEach((key) => {
                 Object.defineProperty(this.data, key, {
                     get: () => {
-                        return this.obj[key];
+                        return this.dataObj[key];
                     },
                     set: (newValue) => {
-                        this.obj[key] = newValue;
+                        this.dataObj[key] = newValue;
                         this[key]();
                     },
                 });
@@ -36,7 +41,7 @@ export class Found extends Children {
         };
         this.geometry = new Geometry().geometry;
         this.target = this.element;
-        this.update_gm = function (attribute) {
+        this.geometryUpdater = function (attribute) {
             try {
                 this.target.style;
             }
@@ -52,7 +57,6 @@ export class Found extends Children {
                 }
             }
             if (attribute === "Width") {
-                // this.cover.style.width = this.geometry.Width
                 this.target.style.width = this.geometry.Width;
             }
             if (attribute === "Height") {
@@ -115,31 +119,37 @@ export class Found extends Children {
             if (attribute === "AspectRatio") {
                 this.target.style.aspectRatio = this.geometry.AspectRatio;
             }
+            if (attribute === "Cursor") {
+                this.target.style.cursor = this.geometry.Cursor;
+            }
+            if (attribute === "Transform") {
+                this.target.style.transform = this.geometry.Transform;
+            }
         };
-        this.build_gm = function () {
-            this.gb_obj = {};
+        this.buildGeometry = function () {
+            this.geometryObj = {};
             Object.entries(this.geometry).forEach(([key, value]) => {
-                this.gb_obj[key] = value;
+                this.geometryObj[key] = value;
                 // this[key] = value
             });
             Object.keys(this.geometry).forEach((key) => {
                 Object.defineProperty(this.geometry, key, {
                     get: () => {
-                        return this.gb_obj[key];
+                        return this.geometryObj[key];
                     },
                     set: (newValue) => {
-                        this.gb_obj[key] = newValue;
+                        this.geometryObj[key] = newValue;
                         // console.log(key)
-                        this.update_gm(key);
+                        this.geometryUpdater(key);
                     },
                 });
             });
         };
-        this.build_gm();
-        this.getBound = function () {
+        this.buildGeometry();
+        this.getBoundElement = function () {
             let target = this.cover;
             while (true) {
-                if (!Array.from(target.classList).includes("NeuBound")) {
+                if (!Array.from(target.classList).includes(Bounding)) {
                     target = target.children[0];
                 }
                 else {
@@ -148,20 +158,33 @@ export class Found extends Children {
             }
             return target;
         };
+        this.getBoundingParent = function () {
+            let target = this.cover.parentElement;
+            while (target.style.display == 'contents') {
+                target = target.parentElement;
+            }
+            return target;
+        };
+        this.getBoundingClientRect = function () {
+            return this.getBoundElement().getBoundingClientRect();
+        };
         this.watchEvent = function (eventname, callback) {
-            this.cover.addEventListener(eventname, callback);
+            this.cover.addEventListener(eventname, callback, true);
         };
         this.watchBoundEvent = function (eventname, callback) {
-            this.getBound().addEventListener(eventname, callback);
+            this.getBoundElement().addEventListener(eventname, callback, true);
         };
         this.watchPreset = function (preset, callback) {
         };
         this.watchEvents = function (eventnames, callback) {
             eventnames.forEach((eventname) => {
                 console.log(eventname);
-                this.cover.addEventListener(eventname, callback);
+                this.cover.addEventListener(eventname, callback, true);
             });
         };
+    }
+    createModal() {
+        return createModal();
     }
     createCover() {
         return createCover(Object.getPrototypeOf(this).constructor.name);

@@ -3,22 +3,20 @@ import { colorScheme } from "../../Components/Color.js"
 import { Padding } from "../../../../../Tool/Padding.js"
 import { MaterialSymbolsOutlined } from "../../Components/Icons.js"
 import { IconButton } from "../Actions/Icon Buttons/IconButton.js"
-import { CommonButton } from "../Actions/Common Buttons/CommonButtons.js"
+import { CommonButton } from "../Actions/Common Buttons/CommonButton.js"
 import { FilledIconButton } from "../Actions/Icon Buttons/FilledIconButton.js"
+import { Navigation } from "./Navigation.js"
 
-export class TopAppBar extends NeuContainer {
+export class TopAppBar extends Navigation {
     // declare data: {}
     HeadLine: NeuContainer
     Leading: NeuContainer
     Trailing: NeuContainer
-    constructor() {
+    constructor(title: string) {
         super()
-        this.name = "TopAppBars"
+        this.name = "TopAppBar"
 
-        this.data.FlexDirection = 'row'
-        this.data.Gap = '24rem'
-        this.data.AlignItems = 'center'
-        this.geometry.Width = '100%'
+        this.geometry.Height = '64rem'
         this.data.BackgroundColor = colorScheme.surface
         this.data.Padding = new Padding().VH('8rem', '4rem')
 
@@ -29,9 +27,10 @@ export class TopAppBar extends NeuContainer {
         this.HeadLine = new NeuContainer()
         this.addChild(this.HeadLine)
         this.HeadLine.data.TextColor = colorScheme.onSurface
-        this.HeadLine.data.Text = 'Title Large'
+        this.HeadLine.data.Text = title
         this.HeadLine.data.FontSize = '22rem'
         this.HeadLine.geometry.Width = '100%'
+        this.HeadLine.data.Margin = new Padding().left('12rem')
 
         this.Trailing = new NeuContainer()
         this.Trailing.data.FlexDirection = 'row'
@@ -44,7 +43,7 @@ export class TopAppBar extends NeuContainer {
     }
 
     setLeading(leading) {
-        this.clearChild()
+        this.Leading.clearChild()
         this.Leading.addChild(leading)
     }
 

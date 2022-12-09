@@ -2,7 +2,7 @@ import { IconButton } from "./IconButton.js"
 import { colorScheme } from "../../../Components/Color.js"
 
 export class FilledIconButton extends IconButton {
-    constructor(icon) {
+    constructor(icon: string) {
         super(icon)
         this.name = 'FilledIconButton'
 

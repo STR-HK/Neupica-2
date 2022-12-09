@@ -1,3 +1,5 @@
+import { resizeObserver, intersectionObserver } from "../../../Common/Updater.js";
+// import { Native } from "../Native/Native"
 export function makeId(length) {
     let result = "";
     let characters = "";
@@ -10,7 +12,14 @@ export function makeId(length) {
     }
     return result;
 }
+// @ts-ignore
+// interface HTMLElement extends HTMLElement {
+//     addChild: (child: Found) => void
+//
+//     // appendChild(cover: UDivElement): void
+// }
 function attachFunction(element) {
+    // @ts-ignore
     element.addChild = function (child) {
         try {
             // console.log(child)
@@ -34,58 +43,130 @@ function attachFunction(element) {
             }
         }
         catch (e) {
-            console.log(e);
+            console.error(e);
         }
     };
+    // element.removeChild = function(child) {
+    //     // console.log('removeChild', element)
+    //     try {
+    //         element.removeChild(child)
+    //     } catch (e) {
+    //         console.error(e)
+    //     }
+    // }
     return element;
 }
 function attachToCover(element) {
     return attachFunction(element);
 }
+let NeuMode = true;
+let Indexing = true;
+let Covering = false;
+export let Bounding = "NeuBound";
+Bounding = "_";
+export let Cover = "NeuCover";
+// Cover = "C"
+function newCreateElement(tagName) {
+    let element = document.createElement(tagName);
+    resizeObserver.observe(element);
+    intersectionObserver.observe(element);
+    return element;
+}
 export function createCover(name) {
-    let element = document.createElement("div");
+    let element = newCreateElement("div");
     let Uelement = attachFunction(element);
-    Uelement.id = name + "-" + makeId(6);
-    Uelement.setAttribute("name", name);
-    Uelement.classList.add("NeuCover");
-    Uelement.classList.add(name);
-    window.Index.setItem(Uelement.id, Uelement);
+    if (NeuMode) {
+        Uelement.id = name + "-" + makeId(6);
+        Uelement.setAttribute("name", name);
+        Uelement.classList.add(name);
+    }
+    if (Covering) {
+        Uelement.classList.add(Cover);
+    }
+    else {
+        Uelement.style.display = 'contents';
+    }
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement);
+    }
+    return Uelement;
+}
+export function createModal() {
+    let element = newCreateElement("div");
+    let Uelement = attachFunction(element);
+    if (NeuMode) {
+        Uelement.id = "NeuModal-" + makeId(6);
+        Uelement.classList.add("NeuModal");
+    }
+    Uelement.classList.add(Bounding);
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement);
+    }
     return Uelement;
 }
 export function createDiv() {
-    let element = document.createElement("div");
+    let element = newCreateElement("div");
     let Uelement = attachFunction(element);
-    Uelement.id = "NeuDiv-" + makeId(6);
-    Uelement.classList.add("NeuDiv");
-    Uelement.classList.add("NeuBound");
-    window.Index.setItem(Uelement.id, Uelement);
+    if (NeuMode) {
+        Uelement.id = "NeuDiv-" + makeId(6);
+        Uelement.classList.add("NeuDiv");
+    }
+    Uelement.classList.add(Bounding);
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement);
+    }
     return Uelement;
 }
 export function createImg() {
-    let element = document.createElement("img");
+    let element = newCreateElement("img");
     let Uelement = attachFunction(element);
-    Uelement.id = "NeuImg-" + makeId(6);
-    Uelement.classList.add("NeuImg");
-    Uelement.classList.add("NeuBound");
-    window.Index.setItem(Uelement.id, Uelement);
+    if (NeuMode) {
+        Uelement.id = "NeuImg-" + makeId(6);
+        Uelement.classList.add("NeuImg");
+    }
+    Uelement.classList.add(Bounding);
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement);
+    }
     return Uelement;
 }
 export function createInput() {
-    let element = document.createElement("input");
+    let element = newCreateElement("input");
     let Uelement = attachFunction(element);
-    Uelement.id = "NeuInput-" + makeId(6);
-    Uelement.classList.add("NeuInput");
-    Uelement.classList.add("NeuBound");
-    window.Index.setItem(Uelement.id, Uelement);
+    if (NeuMode) {
+        Uelement.id = "NeuInput-" + makeId(6);
+        Uelement.classList.add("NeuInput");
+    }
+    Uelement.classList.add(Bounding);
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement);
+    }
+    return Uelement;
+}
+export function createCustom(tag) {
+    let element = newCreateElement(tag);
+    let Uelement = attachFunction(element);
+    if (NeuMode) {
+        Uelement.id = tag + "-" + makeId(6);
+        Uelement.classList.add(tag);
+        Uelement.setAttribute("name", tag);
+    }
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement);
+    }
     return Uelement;
 }
 export function createLayout(layoutname) {
-    let element = document.createElement("div");
+    let element = newCreateElement("div");
     let Uelement = attachFunction(element);
-    Uelement.id = layoutname + "-" + makeId(6);
-    Uelement.classList.add(layoutname);
-    Uelement.setAttribute("name", layoutname);
-    window.Index.setItem(Uelement.id, Uelement);
+    if (NeuMode) {
+        Uelement.id = layoutname + "-" + makeId(6);
+        Uelement.classList.add(layoutname);
+        Uelement.setAttribute("name", layoutname);
+    }
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement);
+    }
     return Uelement;
 }
 export function createUnique() {

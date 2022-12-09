@@ -1,6 +1,9 @@
-import { Storage } from "../../Console/Storage"
+import { Storage } from "../../Console/Storage.js"
+import { Found } from "../Found/Found.js"
+import { resizeObserver, intersectionObserver } from "../../../Common/Updater.js"
+// import { Native } from "../Native/Native"
 
-export function makeId(length): string {
+export function makeId(length: number): string {
     let result = ""
 
     let characters = ""
@@ -19,17 +22,20 @@ export function makeId(length): string {
     return result
 }
 
-
-interface UDivElement extends HTMLDivElement {
-    addChild: (child) => void
+export interface UElement extends HTMLElement {
+    addChild: (child: HTMLElement) => void
 }
 
-interface UImageElement extends HTMLImageElement {
-    addChild: (child) => void
+export interface UDivElement extends HTMLDivElement {
+    addChild: (child: HTMLElement) => void
 }
 
-interface UInputElement extends HTMLInputElement {
-    addChild: (child) => void
+export interface UImageElement extends HTMLImageElement {
+    addChild: (child: HTMLElement) => void
+}
+
+export interface UInputElement extends HTMLInputElement {
+    addChild: (child: HTMLElement) => void
 }
 
 declare global {
@@ -38,9 +44,17 @@ declare global {
     }
 }
 
+// @ts-ignore
+// interface HTMLElement extends HTMLElement {
+//     addChild: (child: Found) => void
+//
+//     // appendChild(cover: UDivElement): void
+// }
 
-function attachFunction(element) {
-    element.addChild = function (child) {
+
+function attachFunction(element: HTMLElement) {
+    // @ts-ignore
+    element.addChild = function (child: Found) {
         try {
             // console.log(child)
             if (child.hasOwnProperty("cover")) {
@@ -60,74 +74,154 @@ function attachFunction(element) {
                 element.appendChild(child)
             }
         } catch (e) {
-            console.log(e)
+            console.error(e)
         }
     }
+    // element.removeChild = function(child) {
+    //     // console.log('removeChild', element)
+    //     try {
+    //         element.removeChild(child)
+    //     } catch (e) {
+    //         console.error(e)
+    //     }
+    // }
 
     return element
 }
 
 function attachToCover(element: HTMLDivElement): UDivElement {
-    return attachFunction(element)
+    return <UDivElement>attachFunction(element)
 }
 
-export function createCover(name): UDivElement {
-    let element: HTMLDivElement = document.createElement("div")
+let NeuMode = true
+let Indexing = true
+let Covering = false
+export let Bounding = "NeuBound"
+Bounding = "_"
+export let Cover = "NeuCover"
+// Cover = "C"
+
+function newCreateElement(tagName: string) {
+    let element =  document.createElement(tagName)
+    resizeObserver.observe(element)
+    intersectionObserver.observe(element)
+    return element
+}
+
+export function createCover(name: string): UDivElement {
+    let element: HTMLDivElement = newCreateElement("div")
     let Uelement: UDivElement = attachFunction(element) as UDivElement
 
-    Uelement.id = name + "-" + makeId(6)
-    Uelement.setAttribute("name", name)
-    Uelement.classList.add("NeuCover")
-    Uelement.classList.add(name)
-    window.Index.setItem(Uelement.id, Uelement)
+    if (NeuMode) {
+        Uelement.id = name + "-" + makeId(6)
+        Uelement.setAttribute("name", name)
+        Uelement.classList.add(name)
+    }
+    if (Covering) {
+        Uelement.classList.add(Cover)
+    } else {
+        Uelement.style.display = 'contents'
+    }
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement)
+    }
+
+    return Uelement
+}
+
+export function createModal(): UDivElement {
+    let element: HTMLDivElement = newCreateElement("div")
+    let Uelement: UDivElement = attachFunction(element) as UDivElement
+
+    if (NeuMode) {
+        Uelement.id = "NeuModal-" + makeId(6)
+        Uelement.classList.add("NeuModal")
+    }
+    Uelement.classList.add(Bounding)
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement)
+    }
 
     return Uelement
 }
 
 export function createDiv(): UDivElement {
-    let element: HTMLDivElement = document.createElement("div")
+    let element: HTMLDivElement = newCreateElement("div")
     let Uelement: UDivElement = attachFunction(element) as UDivElement
 
-    Uelement.id = "NeuDiv-" + makeId(6)
-    Uelement.classList.add("NeuDiv")
-    Uelement.classList.add("NeuBound")
-    window.Index.setItem(Uelement.id, Uelement)
+    if (NeuMode) {
+        Uelement.id = "NeuDiv-" + makeId(6)
+        Uelement.classList.add("NeuDiv")
+    }
+    Uelement.classList.add(Bounding)
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement)
+    }
 
     return Uelement
 }
 
 export function createImg(): UImageElement {
-    let element: HTMLImageElement = document.createElement("img")
+    let element: HTMLImageElement = newCreateElement("img")
     let Uelement: UImageElement = attachFunction(element) as UImageElement
 
-    Uelement.id = "NeuImg-" + makeId(6)
-    Uelement.classList.add("NeuImg")
-    Uelement.classList.add("NeuBound")
-    window.Index.setItem(Uelement.id, Uelement)
+    if (NeuMode) {
+        Uelement.id = "NeuImg-" + makeId(6)
+        Uelement.classList.add("NeuImg")
+    }
+    Uelement.classList.add(Bounding)
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement)
+    }
 
     return Uelement
 }
 
 export function createInput(): UInputElement {
-    let element: HTMLInputElement = document.createElement("input")
+    let element: HTMLInputElement = newCreateElement("input")
     let Uelement: UInputElement = attachFunction(element) as UInputElement
 
-    Uelement.id = "NeuInput-" + makeId(6)
-    Uelement.classList.add("NeuInput")
-    Uelement.classList.add("NeuBound")
-    window.Index.setItem(Uelement.id, Uelement)
+    if (NeuMode) {
+        Uelement.id = "NeuInput-" + makeId(6)
+        Uelement.classList.add("NeuInput")
+    }
+    Uelement.classList.add(Bounding)
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement)
+    }
 
     return Uelement
 }
 
-export function createLayout(layoutname): UDivElement {
-    let element: HTMLDivElement = document.createElement("div")
+export function createCustom(tag: string): UElement {
+    let element: HTMLElement = newCreateElement(tag)
+    let Uelement: UElement = attachFunction(element) as UElement
+
+    if (NeuMode) {
+        Uelement.id = tag + "-" + makeId(6)
+        Uelement.classList.add(tag)
+        Uelement.setAttribute("name", tag)
+    }
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement)
+    }
+
+    return Uelement
+}
+
+
+export function createLayout(layoutname: string): UDivElement {
+    let element: HTMLDivElement = newCreateElement("div")
     let Uelement: UDivElement = attachFunction(element) as UDivElement
 
-    Uelement.id = layoutname + "-" + makeId(6)
-    Uelement.classList.add(layoutname)
-    Uelement.setAttribute("name", layoutname)
-    window.Index.setItem(Uelement.id, Uelement)
+    if (NeuMode) {
+        Uelement.id = layoutname + "-" + makeId(6)
+        Uelement.classList.add(layoutname)
+        Uelement.setAttribute("name", layoutname)
+    }
+    if (Indexing) {
+        window.Index.setItem(Uelement.id, Uelement)
+    }
 
     return Uelement
 }

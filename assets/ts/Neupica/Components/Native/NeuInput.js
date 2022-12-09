@@ -1,33 +1,35 @@
-import { Native } from "./Native.js";
-import { NeuText } from "./NeuText.js";
-export class NeuInput extends Native {
-    data;
+import { NeuContainer } from "./NeuContainer.js";
+export class NeuInput extends NeuContainer {
     constructor() {
         super();
         this.name = "NeuInput";
         this.data = {
+            ...new NeuContainer().data,
             Value: "",
             Type: "text",
             Placeholder: "",
             Disabled: false,
             ReadOnly: false,
+            CaretColor: "",
+            Max: "",
             // Placeholder
             // Required: false,
             // Pattern: "",
             // Min: "",
-            // Max: "",
             // Step: "",
-            ...new NeuText().data,
-            // FontSize: new NeuText().data.FontSize,
         };
         this.build();
-        this.element.remove();
+        // this.data.
+        // this.element.remove()
+        this.removeChild(this.element);
         this.element = this.createInput();
         this.element.style.backgroundColor = "transparent";
         this.element.style.border = "none";
         this.element.style.outline = "none";
         this.element.style.padding = "0";
         this.element.style.margin = "0";
+        // MacOS surpport
+        this.element.style.webkitUserSelect = 'auto';
         this.cover.appendChild(this.element);
         // this.cover = this.element
         this.target = this.element;
@@ -49,6 +51,12 @@ export class NeuInput extends Native {
     }
     ReadOnly() {
         this.element.readOnly = this.data.ReadOnly;
+    }
+    CaretColor() {
+        this.element.style.caretColor = this.data.CaretColor;
+    }
+    Max() {
+        this.element.max = this.data.Max;
     }
 }
 //# sourceMappingURL=NeuInput.js.map

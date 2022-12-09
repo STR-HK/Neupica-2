@@ -1,4 +1,4 @@
-import { Native } from "./Native.ts"
+import { Native } from "./Native.js"
 
 export class NeuText extends Native {
     constructor() {

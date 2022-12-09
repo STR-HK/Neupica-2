@@ -12,6 +12,7 @@ export class NeuButton extends Widget {
         this.cover.style.webkitTapHighlightColor = "transparent"
         this.cover.style.cursor = "pointer"
         this.cover.style.overflow = 'hidden'
+        // this.geometry.Overflow =
 
         this.element = new NeuContainer()
         this.Button = this.element
@@ -52,7 +53,7 @@ export class NeuButton extends Widget {
         }
         this.build()
 
-        this.image.getBound().addEventListener('contextmenu', function(e) {
+        this.image.getBoundElement().addEventListener('contextmenu', function(e) {
             e.preventDefault()
         })
 

@@ -5,25 +5,22 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    
     "electron": "electron .",
     "electron:window": "SET ELECTRON_START_URL=http://localhost:3000 && yarn electron",
     "electron:xos": "ELECTRON_START_URL=http://localhost:3000 && yarn electron",
-    
     "prebuild": "react-scripts test --watchAll=false",
     "build": "react-scripts build",
-    
     "deploy:xos": "electron-builder --mac",
     "deploy:win32": "electron-builder --win --ia32",
     "deploy:win64": "electron-builder --win --x64",
     "deploy:win": "yarn deploy:win32 && yarn deploy:win64",
-    
     "test": "react-scripts test"
   },
   "author": "",
   "license": "GPL 3",
   "devDependencies": {
-    "electron": "^18.0.4"
+    "electron": "^18.0.4",
+    "electron-reloader": "^1.2.3"
   },
   "build": {
     "productName": "Neupica-2",

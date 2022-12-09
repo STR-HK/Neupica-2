@@ -9,8 +9,8 @@ export class NeuLayout extends NeuContainer {
 
     }
 
-    createLayout () {
-        let layout = createLayout(this.name)
+    attachLayout () {
+        let layout = this.element
         layout.className = "NeuLayout"
         layout.style.display = "flex"
         return layout

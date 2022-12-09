@@ -23,6 +23,8 @@ export class Geometry {
             OverflowX: "",
             OverflowY: "",
             AspectRatio: "",
+            Cursor: "",
+            Transform: "",
         };
     }
 }

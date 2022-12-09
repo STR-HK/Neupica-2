@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "esnext",
     "sourceMap": true,
     "inlineSources": true,
-  },
+    "strict": true,
+//    "outFile": "/dist/bundle.js"
+  }
 }

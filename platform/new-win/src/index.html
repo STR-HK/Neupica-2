@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+<!--    <base href="http://asphodel.kro.kr:1001/apps/">-->
     <title>Neupica 2</title>
   </head>
   
@@ -24,31 +26,31 @@
   </div>
 
   <script>
-    function onIframeLoad() {
-      setTimeout(function() {
-        let iframe = document.querySelector('iframe')
-
-        let loadings = document.querySelector('.iframe')
-        loadings.remove()
-        
-      }, 1)
-      iframe.style.display = ''
-    }
+    // function onIframeLoad() {
+    //   setTimeout(function() {
+    //     let iframe = document.querySelector('iframe')
+    //
+    //     let loadings = document.querySelector('.iframe')
+    //     loadings.remove()
+    //
+    //   }, 1)
+    //   iframe.style.display = ''
+    // }
   </script>
 
   <iframe src="http://asphodel.kro.kr:1001"></iframe>
 
   <script>
-    let iframe = document.querySelector('iframe');
-    console.log(iframe);
-    iframe.onload = onIframeLoad;
-    iframe.style.display = 'none';
+    // let iframe = document.querySelector('iframe');
+    // console.log(iframe);
+    // iframe.onload = onIframeLoad;
+    // iframe.style.display = 'none';
 
-    let loading = document.createElement('img')
-    loading.src = 'Eclipse-1s-200px.svg'
-    loading.style.position = 'absolute'
-    loading.classList.add('iframe')
-    iframe.parentNode.appendChild(loading);
+    // let loading = document.createElement('img')
+    // loading.src = 'Eclipse-1s-200px.svg'
+    // loading.style.position = 'absolute'
+    // loading.classList.add('iframe')
+    // iframe.parentNode.appendChild(loading);
   </script>
 
   <script defer src="appFunctions.js"></script>

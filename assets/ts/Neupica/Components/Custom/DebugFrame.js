@@ -1,7 +1,7 @@
 import { NeuContainer } from "../Native/NeuContainer.ts"
 import { createCover, createDiv, createGhostCover, createGhostDiv } from "../Create/Create.ts"
-import { Native } from "../Native/Native.ts"
-import { Found } from "../Found/Found.ts"
+import { Native } from "../Native/Native.js"
+import { Found } from "../Found/Found.js"
 import { Padding } from "../../../Tool/Padding.js"
 
 export class DebugFrame extends Found {

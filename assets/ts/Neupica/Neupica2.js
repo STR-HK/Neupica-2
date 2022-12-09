@@ -20,10 +20,11 @@ function solveBootingStack() {
     localStorage.setItem("bootList", bootList);
 }
 window.appList = [];
+window.onLoads = [];
 window.solved = false;
 window.loaded = false;
-window.name = "Neupica-2b";
-window.version = '2.0.0b';
+window.name = "Neupica 2b";
+window.version = '2.2.0b';
 window.mode = 'development';
 // window.mode = 'shipping'
 function boot() {
@@ -33,15 +34,11 @@ function boot() {
     window.solved = true;
 }
 export function runApp(app) {
+    // console.log('runApp')
     function runOnLoad() {
         app.canSolveQueue = true;
+        // console.log('allowed solving queue: ', app)
         app.solveQueues();
-        // window.NeuApp = NeuApp
-        // window.NeuColumn = NeuColumn
-        // window.NeuText = NeuText
-        // window.NeuInput = NeuInput
-        // window.MStrokedButton = MStrokedButton
-        // window.NeuLabel = NeuLabel
     }
     if (window.solved === false) {
         if (window.mode === 'development') {
@@ -52,9 +49,16 @@ export function runApp(app) {
         }
     }
     if (!window.loaded) {
+        // console.log('not loaded, wating started')
+        window.onLoads.push(runOnLoad);
         window.onload = () => {
             window.loaded = true;
-            runOnLoad();
+            // console.log('waiting finished!')
+            // console.log(window.onLoads)
+            window.onLoads.forEach(eachRunOnLoad => {
+                eachRunOnLoad();
+            });
+            window.onLoads = [];
         };
     }
     else {

@@ -14,6 +14,7 @@ export function getStyle(link) {
     content.type = "Style"
     content.data = link
 
+    // console.log(WM)
     WM.addStyle(content)
 }
 

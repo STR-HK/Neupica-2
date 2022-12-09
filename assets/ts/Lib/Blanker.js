@@ -112,7 +112,7 @@ class FloatTest extends NeuApp {
         this.centralContainer.geometry.Padding = new Padding().VH('15px', '20px')
         this.layout.addChild(this.centralContainer)
 
-        // this.layout.addChild(app.MaterialButton)
+        // this.layout.addChild(simpleApp.MaterialButton)
 
         this.catMaterialButton = new NeuButton()
         this.centralContainer.addChild(this.catMaterialButton)
@@ -145,7 +145,7 @@ class FloatTest extends NeuApp {
         this.catMaterialButton2.data.Button.BorderRadius = new BorderRadius().all('8px')
 
         this.catMaterialButton.element.element.addEventListener('click', function() {
-            // console.log(app.app)
+            // console.log(simpleApp.simpleApp)
             Debug(app.app)
         })
         this.catMaterialButton3.element.element.addEventListener('click', function() {
@@ -166,7 +166,7 @@ class FloatTest extends NeuApp {
 
 
 // import { work } from "./Blanker_worker.js"
-// export let app = new Blanker()
+// export let simpleApp = new Blanker()
 // work()
 
 export let float = window.setFloat(new FloatTest())

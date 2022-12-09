@@ -1,1 +1,0 @@
-{"version":3,"file":"Object.js","sourceRoot":"","sources":["Object.ts"],"names":[],"mappings":"AAAA,MAAM,OAAO,MAAM;IACL,KAAK,CAAQ;IACvB;QACI,IAAI,CAAC,KAAK,GAAG,SAAS,CAAA;IAC1B,CAAC;CACJ","sourcesContent":["export class Object {\r\n    protected type_: string\r\n    constructor() {\r\n        this.type_ = 'NObject'\r\n    }\r\n}"]}

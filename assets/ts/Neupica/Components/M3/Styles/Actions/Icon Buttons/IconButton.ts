@@ -15,6 +15,7 @@ export class IconButton extends NeuContainer {
         this.Icon.geometry.Height = '40rem'
         this.Icon.data.AlignItems = 'center'
         this.Icon.data.JustifyContent = 'center'
+        // console.log(this.Icon.geometry.Height)
         this.addChild(this.Icon)
         this.Icon.addChild(icon)
 
@@ -22,28 +23,14 @@ export class IconButton extends NeuContainer {
 
         this.data.BorderRadius = '50%'
         this.data.JustifyContent = 'center'
+        this.data.AlignItems = 'center'
         this.data.AspectRatio = '1 / 1'
 
         // @ts-ignore
         this.cover.style.webkitTapHighlightColor = "transparent"
-        this.cover.style.cursor = "pointer"
+        // this.cover.style.cursor = "pointer"
+        this.geometry.Cursor = 'pointer'
 
-        this.getBound().setAttribute('onpointerdown', `ripplet(arguments[0], ${JSON.stringify(
-            {
-                // "color":"black",
-                "opacity":"0.15",
-                "spreadingDuration":".225s",
-                "spreadingDelay":"0s",
-                // "spreadingTimingFunction":"cubic-bezier(0.03,-0.01, 0, 0.89)",
-                "clearing":false,
-                "clearingDuration":".225s",
-                "clearingDelay":".150s",
-                // "clearingTimingFunction":"ease-in-out",
-                "centered":true,
-                "appendTo":"target"
-            }
-        )})`)
-        this.getBound().setAttribute('onpointerup', "ripplet.clear(this)")
-        this.getBound().setAttribute('onpointerleave', "ripplet.clear(this)")
+        this.ActivateRipple({centered: 'true'})
     }
 }

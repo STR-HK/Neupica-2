@@ -6,12 +6,13 @@ import { Debug } from "../Utils/Debug.js"
 import { initFloat } from "./Core/Floating.js"
 import { getScript } from "./DOM/Contents.js"
 import { NeuApp } from "./Core/App.js"
-import { NeuColumn} from "../Layout/NeuColumn.js"
-import {NeuText} from "./Components/Native/NeuText.js"
-import  {NeuInput} from "./Components/Native/NeuInput.js"
-import {MStrokedButton} from "./Components/Custom/MButton.js"
-import {NeuLabel} from "./Components/Widgets/NeuLabel.js"
-import { Storage } from "./Console/Storage"
+import { NeuColumn } from "../Layout/NeuColumn.js"
+import { NeuText } from "./Components/Native/NeuText.js"
+import { NeuInput } from "./Components/Native/NeuInput.js"
+import { MStrokedButton } from "./Components/Custom/MButton.js"
+import { NeuLabel} from "./Components/Widgets/NeuLabel.js"
+import { Storage } from "./Console/Storage.js"
+import { initModal } from "./Core/Modal.js"
 
 
 initWindow()
@@ -37,7 +38,8 @@ function solveBootingStack() {
 
 declare global {
     interface Window {
-        appList: Array<any>,
+        appList: Array<Object>,
+        onLoads: Array<Function>
 
         solved: boolean,
         loaded: boolean,
@@ -50,37 +52,32 @@ declare global {
 }
 
 window.appList = []
+window.onLoads = []
 
 window.solved = false
 window.loaded = false
 
 
-window.name = "Neupica-2b"
-window.version = '2.0.0b'
+window.name = "Neupica 2b"
+window.version = '2.2.0b'
 
 window.mode = 'development'
 // window.mode = 'shipping'
 
 function boot() {
     console.log(Ascii(window.name))
+
     console.log(`v.${window.version}`)
     solveBootingStack()
     window.solved = true
 }
 
 export function runApp(app) {
+    // console.log('runApp')
     function runOnLoad() {
         app.canSolveQueue = true
+        // console.log('allowed solving queue: ', app)
         app.solveQueues()
-
-        // window.NeuApp = NeuApp
-        // window.NeuColumn = NeuColumn
-        // window.NeuText = NeuText
-        // window.NeuInput = NeuInput
-        // window.MStrokedButton = MStrokedButton
-        // window.NeuLabel = NeuLabel
-
-
     }
     if (window.solved === false) {
         if (window.mode === 'development') {
@@ -91,9 +88,16 @@ export function runApp(app) {
     }
 
     if (!window.loaded) {
+        // console.log('not loaded, wating started')
+        window.onLoads.push(runOnLoad)
         window.onload = () => {
             window.loaded = true
-            runOnLoad()
+            // console.log('waiting finished!')
+            // console.log(window.onLoads)
+            window.onLoads.forEach(eachRunOnLoad => {
+                eachRunOnLoad()
+            })
+            window.onLoads = []
         }
     } else {
         runOnLoad()
@@ -110,4 +114,5 @@ export function thisClass(element) {
 }
 
 // window.thisClass = thisClass
+
 

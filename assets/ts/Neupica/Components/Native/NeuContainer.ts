@@ -1,73 +1,88 @@
 import { Padding } from "../../../Tool/Padding.js"
 import { Native } from "./Native.js"
+import { theme } from "../M3/Components/Color"
+
+export interface NeuContainerData {
+    BackgroundColor: string,
+    Opacity: string,
+
+    Border: string,
+    BorderColor: string,
+    BorderWidth: string,
+    BorderRadius: string,
+    BorderStyle: string,
+    Shadow: string,
+    Gap: string,
+    AspectRatio: string,
+    FlexDirection: string,
+    FlexWrap: string,
+    AlignContent: string,
+    JustifyContent: string,
+    AlignItems: string,
+    Padding: string,
+    Margin: string,
+    Symmetric: string,
+    FlexGrow: string,
+    FlexShrink: string,
+    FlexBasis: string,
+
+    Text: string,
+
+    FontFamily: string,
+    FontSize: string,
+    FontStyle: string,
+    FontWeight: string,
+    FontFeatureSettings: string,
+
+    TextAlign: string,
+    TextColor: string,
+
+    TextDecorationLine: string,
+    TextDecorationColor: string,
+    TextDecorationStyle: string,
+    TextDecorationThickness: string,
+    TextUnderlineOffset: string,
+
+    TextTransform: string,
+    TextOverflow: string,
+
+    TextIndent: string,
+    LetterSpacing: string,
+    LineHeight: string,
+    WhiteSpace: string,
+
+    TextShadow: string,
+    VerticalAlign: string,
+    Content: string,
+
+    WordSpacing: string,
+    WordBreak: string,
+    WordWrap: string,
+
+    Direction: string,
+    UserSelect: string,
+    ClipPath: string,
+    TextRendering: string
+
+}
 
 export class NeuContainer extends Native {
-    public data: {
-        BackgroundColor: string,
-        Border: string,
-        BorderColor: string,
-        BorderWidth: string,
-        BorderRadius: string,
-        BorderStyle: string,
-        Shadow: string,
-        Gap: string,
-        AspectRatio: string,
-        FlexDirection: string,
-        FlexWrap: string,
-        AlignContent: string,
-        JustifyContent: string,
-        AlignItems: string,
-        Padding: string,
-        Margin: string,
-        Symmetric: string,
-        FlexGrow: string,
-        FlexShrink: string,
-        FlexBasis: string,
+    public data: NeuContainerData
 
-        Text: string,
-
-        FontFamily: string,
-        FontSize: string,
-        FontStyle: string,
-        FontWeight: string,
-
-        TextAlign: string,
-        TextColor: string,
-
-        TextDecorationLine: string,
-        TextDecorationColor: string,
-        TextDecorationStyle: string,
-        TextDecorationThickness: string,
-        TextUnderlineOffset: string,
-
-        TextTransform: string,
-        TextOverflow: string,
-
-        TextIndent: string,
-        LetterSpacing: string,
-        LineHeight: string,
-        WordSpacing: string,
-        WhiteSpace: string,
-
-        TextShadow: string,
-        VerticalAlign: string,
-        WordBreak: string,
-        Content: string,
-
-        Direction: string,
-        UserSelect: string,
-    }
     constructor() {
         super()
         this.name = "NeuContainer"
 
         this.data = {
             BackgroundColor: "transparent",
+            Opacity: "1",
+
             Border: "",
             BorderColor: "transparent",
-            BorderWidth: "0px",
-            BorderRadius: "0px",
+            BorderWidth: "0",
+            BorderRadius: "0",
             BorderStyle: "none",
+
             Shadow: "none",
             Gap: "0px",
             AspectRatio: "auto",
@@ -83,12 +98,13 @@ export class NeuContainer extends Native {
             FlexShrink: "1",
             FlexBasis: "auto",
 
-            Text: "Hello World",
+            Text: "",
 
             FontFamily: "Pretendard",
             FontSize: "1rem",
             FontStyle: "normal",
             FontWeight: "normal",
+            FontFeatureSettings: 'normal',
 
             TextAlign: "left",
             TextColor: "black",
@@ -105,16 +121,21 @@ export class NeuContainer extends Native {
             TextIndent: "0px",
             LetterSpacing: "0px",
             LineHeight: "1",
-            WordSpacing: "0px",
             WhiteSpace: "normal",
 
             TextShadow: "none",
             VerticalAlign: "baseline",
-            WordBreak: "normal",
             Content: "none",
+
+            WordSpacing: "0px",
+            WordBreak: "normal",
+            WordWrap: "normal",
 
             Direction: "ltr",
             UserSelect: "auto",
+
+            ClipPath: 'none',
+            TextRendering: 'auto',
         }
         this.build()
 
@@ -123,22 +144,124 @@ export class NeuContainer extends Native {
         this.geometry.Width = "fit-content"
         this.data.Symmetric = "vertical"
 
-        this.element
+        // this.addChild()
+
+        // this.element
 
         // this.cover = this.element
         this.cover.addChild(this.element)
     }
 
-    childrenUpdate() {
-        this.children.forEach((element) => {
-            // console.log(element)
-            this.element.addChild(element)
-        })
+    childrenUpdate(...args) {
+        if (args[0]['type'] !=  'clear') {
+            let realDom = Array.from(this.element.children)
+            // let virtualDom = this.children.map(function(element) {
+            //     console.log(element)
+            //     if (element.displayed) {
+            //         return element.cover
+            //     }
+            //     // return element.cover
+            // }).filter(element => {
+            //     return element !== undefined
+            // })
+            let virtualDom = this.children.map(function(element) {
+                return element.cover
+            }).filter(element => {
+                return element !== undefined
+            })
+
+            // let classDom = this.children
+            //
+            // console.log('before patching')
+            // console.log({
+            //     realDom: realDom,
+            //     realDomLength: realDom.length,
+            //     virtualDom: virtualDom,
+            //     virtualDomLength: virtualDom.length
+            // })
+
+            for (let i = 0; i < Math.max(realDom.length, virtualDom.length); i++) {
+                if ( virtualDom.length > realDom.length ) {
+                    // console.log({
+                    //     type: 'add',
+                    //     element: virtualDom[i]
+                    // })
+                    if (virtualDom[i] != realDom[i]) {
+                        this.element.insertBefore(virtualDom[i], this.element.children[i])
+                        // classDom[i].hide()
+                        // setTimeout(function() {
+                        //     classDom[i].show()
+                        // }, 100)
+                    }
+                }
+                if ( realDom.length > virtualDom.length ) {
+                    if (virtualDom[i] != realDom[i]) {
+                        // console.log({
+                        //     reason: `Because realDom is ${realDom.length} and virtualDom is ${virtualDom.length}, remove operation is started!`,
+                        //     // virtualDomI: virtualDom[i],
+                        //     realDomI: realDom[i],
+                        //     type: 'remove',
+                        //     elementChildrenI: this.element.children[i]
+                        // })
+                        this.element.removeChild(realDom[i])
+
+                        // try {
+                        //     this.element.removeChild(realDom[i])
+                        // } catch (e) {
+                        //     console.error({
+                        //         'error': e,
+                        //         'children': Array.from(this.element.children),
+                        //         'index': i,
+                        //         'predictedTarget': realDom[i],
+                        //     })
+                        // }
+                    }
+                }
+            }
+        } else {
+            Array.from(this.element.children).forEach(e => {
+                this.element.removeChild(e)
+            })
+        }
+
+        // if (arguments[0]['rt'] == true) {
+        //     console.warn('rt')
+        // }
+        // if (this.element.children[i] == undefined) {
+        //     let rt = arguments[0]
+        //     rt['rt'] = true
+        //     this.childrenUpdate(rt)
+        //     console.warn(rt)
+        // }
+
+        // console.log({
+        //     realDom: realDom,
+        //     realDomLength: realDom.length,
+        //     virtualDom: virtualDom,
+        //     virtualDomLength: virtualDom.length
+        // })
+        //
+        // console.log('patching finished')
+
+
+
+        // Array.from(this.element.children).forEach((element) => {
+        //     // console.log('remove')
+        //     this.element.removeChild(element)
+        // })
+        // this.children.forEach((element) => {
+        //     // console.log('add')
+        //     this.element.addChild(element)
+        // })
     }
 
     BackgroundColor() {
         this.element.style.backgroundColor = this.data.BackgroundColor
     }
+    Opacity() {
+        this.element.style.opacity = this.data.Opacity
+    }
+
     Border() {
         this.element.style.border = this.data.Border
     }
@@ -203,9 +326,11 @@ export class NeuContainer extends Native {
     }
 
     Text() {
-        // this.element.inne
-        // this.element.innerHTML = "NeuText Widget is know depreciated! Use NeuContainer instead."
-        this.element.innerHTML = this.data.Text
+        if (this.element.innerText != this.data.Text) {
+            this.element.innerText = this.data.Text
+        }
+        // this.element.innerHTML = "NeuContainer Widget is know depreciated! Use NeuText instead."
+        // this.element.innerHTML = "Hello World"
     }
 
     FontFamily() {
@@ -219,6 +344,9 @@ export class NeuContainer extends Native {
     }
     FontWeight() {
         this.element.style.fontWeight = this.data.FontWeight
+    }
+    FontFeatureSettings() {
+        this.element.style.fontFeatureSettings = this.data.FontFeatureSettings
     }
 
     TextAlign() {
@@ -262,9 +390,6 @@ export class NeuContainer extends Native {
     LineHeight() {
         this.element.style.lineHeight = this.data.LineHeight
     }
-    WordSpacing() {
-        this.element.style.wordSpacing = this.data.WordSpacing
-    }
     WhiteSpace() {
         this.element.style.whiteSpace = this.data.WhiteSpace
     }
@@ -275,11 +400,18 @@ export class NeuContainer extends Native {
     VerticalAlign() {
         this.element.style.verticalAlign = this.data.VerticalAlign
     }
+    Content() {
+        this.element.style.content = this.data.Content
+    }
+
+    WordSpacing() {
+        this.element.style.wordSpacing = this.data.WordSpacing
+    }
     WordBreak() {
         this.element.style.wordBreak = this.data.WordBreak
     }
-    Content() {
-        this.element.style.content = this.data.Content
+    WordWrap() {
+        this.element.style.wordWrap = this.data.WordWrap
     }
 
     Direction() {
@@ -287,5 +419,12 @@ export class NeuContainer extends Native {
     }
     UserSelect() {
         this.element.style.userSelect = this.data.UserSelect
+    }
+
+    ClipPath() {
+        this.element.style.clipPath = this.data.ClipPath
+    }
+    TextRendering() {
+        this.element.style.textRendering = this.data.TextRendering
     }
 }

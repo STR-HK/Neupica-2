@@ -200,7 +200,7 @@ function work() {
         })
     })
 
-    // app.body.children
+    // simpleApp.body.children
 }
 
 export let app = new Cbfav()

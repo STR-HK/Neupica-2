@@ -1,24 +1,25 @@
 import { runApp } from "../Neupica2.js"
 import { NeuEliminate, NeuRender } from "./Render.js"
 import { createUnique } from "../Components/Create/Create.js"
-import { NeuLayout } from "../../Layout/NeuLayout"
+import { NeuLayout } from "../../Layout/NeuLayout.js"
 import { Layout } from "../../Layout/Layout"
+import { NeuScaffold } from "../../Layout/NeuScaffold.js"
 // import { Object } from "../../Common/Object.ts"
 
 export class NeuApp {
-    layout: boolean | Layout
-    dom: boolean | HTMLElement
+    layout: undefined | NeuLayout | NeuScaffold
+    dom: undefined | HTMLElement
     app: HTMLDivElement
-    appCode: string
-    renderID: boolean
+    readonly appCode: string
+    readonly renderID: boolean
     queues: any[]
     void: string
-    faviconLink: HTMLLinkElement
+    faviconLink: HTMLLinkElement | undefined
     canSolveQueue: any
 
     constructor() {
-        this.layout = false
-        this.dom = false
+        this.layout = undefined
+        this.dom = undefined
         this.app = this.createApp()
         this.appCode = createUnique()
         this.renderID = false
@@ -29,6 +30,8 @@ export class NeuApp {
         Array.from(document.getElementsByTagName('link')).forEach(link => {
             if (link.rel === 'icon') {
                 this.faviconLink = link
+            } else {
+                this.faviconLink = undefined
             }
         })
 
@@ -36,7 +39,7 @@ export class NeuApp {
         this.canSolveQueue = false
     }
 
-    setTitle(title) {
+    setTitle(title: string) {
         window.document.title = title
     }
 
@@ -44,26 +47,35 @@ export class NeuApp {
         window.document.title = this.void
     }
 
-    setFavicon(url) {
-        this.faviconLink.href = url
+    setFavicon(url: string) {
+        if (this.faviconLink != undefined) {
+            this.faviconLink.href = url
+        }
     }
 
     setVoidFavicon() {
-        this.faviconLink.href = this.void
+        if (this.faviconLink != undefined) {
+            this.faviconLink.href = this.void
+        }
     }
 
-    setLayout(layout) {
+    setLayout(layout: NeuLayout) {
         this.layout = layout
     }
 
-    setFullScreen(bool) {
-        let that = this
+    setFullScreen(bool: boolean) {
+        let that: NeuApp = this
         if (bool) {
             this.addQueue({
                 command: "f",
-                arguments: [function(that) {
-                    that.layout.element.style.width = '100%'
-                    that.layout.element.style.height = '100%'
+                arguments: [function(that: NeuApp) {
+                    if (that.layout != undefined) {
+                        if ("style" in that.layout.element) {
+                            that.layout.element.style.width = "100%"
+                            that.layout.element.style.height = '100%'
+
+                        }
+                    }
                 }, that]
             })
             this.app.style.width = '100%'
@@ -71,9 +83,14 @@ export class NeuApp {
         } else {
             this.addQueue({
                 command: "f",
-                arguments: [function(that) {
-                    that.layout.element.style.width = ''
-                    that.layout.element.style.height = ''
+                arguments: [function(that: NeuApp) {
+                    if (that.layout != undefined) {
+                        if ("style" in that.layout.element) {
+                            that.layout.element.style.width = ""
+                            that.layout.element.style.height = ''
+
+                        }
+                    }
                 }, that]
             })
             this.app.style.width = ''
@@ -88,14 +105,14 @@ export class NeuApp {
         return app
     }
 
-    draw(where) {
+    draw(where: string) {
         this.addQueue({
             command: 'draw',
             arguments: [where],
         })
     }
 
-    sculpt(parentElement) {
+    sculpt(parentElement: HTMLElement) {
         this.addQueue({
             command: 'sculpt',
             arguments: [parentElement],
@@ -106,7 +123,7 @@ export class NeuApp {
         NeuEliminate(this, this.layout, this.app, false)
     }
 
-    addQueue(queue) {
+    addQueue(queue: object) {
         this.queues.push(queue)
         if (this.canSolveQueue) {
             this.solveQueues()
@@ -116,13 +133,13 @@ export class NeuApp {
     solveQueues() {
         if (this.queues.length > 0) {
             this.queues.forEach(queue => {
-                if (this.layout === false) {
+                if (this.layout === undefined) {
                     console.error("layout is not defined")
                 } else {
                     if (queue['command'] === 'draw') {
                         let where = queue['arguments'][0]
                         this.dom = document.querySelector(where)
-                        if (typeof this.dom !== "boolean") {
+                        if (this.dom !== undefined) {
                             this.dom.appendChild(this.app)
                         }
                         NeuRender(this, this.layout, this.app, false)
@@ -130,7 +147,7 @@ export class NeuApp {
                     if (queue['command'] === 'sculpt') {
                         let parentElement = queue['arguments'][0]
                         this.dom = parentElement
-                        if (typeof this.dom !== "boolean") {
+                        if (this.dom !== undefined) {
                             this.dom.appendChild(this.app)
                         }
                         NeuRender(this, this.layout, this.app, true)

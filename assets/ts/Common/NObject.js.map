@@ -1,0 +1,1 @@
+{"version":3,"file":"NObject.js","sourceRoot":"","sources":["NObject.ts"],"names":[],"mappings":"AAAA,MAAM,OAAO,OAAO;IACN,IAAI,CAAQ;IACtB;QACI,IAAI,CAAC,IAAI,GAAG,SAAS,CAAA;IACzB,CAAC;CACJ","sourcesContent":["export class NObject {\r\n    protected type: string\r\n    constructor() {\r\n        this.type = 'NObject'\r\n    }\r\n}"]}

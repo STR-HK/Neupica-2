@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "serve-handler": "^6.1.5",
     "ua-parser-js": "^1.0.2"
   }
 }

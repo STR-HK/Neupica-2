@@ -1,4 +1,4 @@
-import { CommonButton } from "./CommonButtons.js"
+import { CommonButton } from "./CommonButton.js"
 import { colorScheme } from "../../../Components/Color.js"
 
 export class OutlinedButton extends CommonButton {

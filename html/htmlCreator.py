@@ -71,9 +71,9 @@ title.setInnerHTML('Neupica 2')
 body = HTMLElement()
 body.setTag('body')
 
-app = HTMLElement()
-app.setTag('div')
-app.setAttribute('id', 'App')
+simpleApp = HTMLElement()
+simpleApp.setTag('div')
+simpleApp.setAttribute('id', 'App')
 
 head.appendChild(meta1.element())
 head.appendChild(meta2.element())
@@ -82,7 +82,7 @@ head.appendChild(script.element())
 head.appendChild(link.element())
 head.appendChild(title.element())
 
-body.appendChild(app.element())
+body.appendChild(simpleApp.element())
 
 html.appendChild(head.element())
 html.appendChild(body.element())

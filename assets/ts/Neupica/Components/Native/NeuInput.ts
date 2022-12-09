@@ -1,43 +1,55 @@
 import { Native } from "./Native.js"
 import { NeuText } from "./NeuText.js"
+import { NeuContainer, NeuContainerData } from "./NeuContainer.js"
+import { UInputElement } from "../Create/Create.js"
+// import { NeuContainerData } from  "./NeuContainer"
 
-interface UInputElement extends HTMLInputElement {
-    addChild: (child) => void
+
+export interface NeuInputData extends NeuContainerData {
+    Value: string,
+    Type: string,
+    Placeholder: string,
+    Disabled: boolean,
+    ReadOnly: boolean,
+
+    CaretColor: string,
+    Max: string
 }
 
-export class NeuInput extends Native {
+export class NeuInput extends NeuContainer {
     declare element: UInputElement
 
-    data: {
-        Value: string,
-        Type: string,
-        Placeholder: string,
-        Disabled: boolean,
-        ReadOnly: boolean,
-    }
+    declare data: NeuInputData
 
     constructor() {
         super()
         this.name = "NeuInput"
         this.data = {
+            ...new NeuContainer().data,
+
             Value: "",
             Type: "text",
             Placeholder: "",
             Disabled: false,
             ReadOnly: false,
+
+            CaretColor: "",
+            Max: "",
+
             // Placeholder
 
             // Required: false,
             // Pattern: "",
             // Min: "",
-            // Max: "",
             // Step: "",
-            ...new NeuText().data,
-            // FontSize: new NeuText().data.FontSize,
+
         }
         this.build()
 
-        this.element.remove()
+        // this.data.
+
+        // this.element.remove()
+        this.removeChild(this.element)
 
         this.element = this.createInput()
         this.element.style.backgroundColor = "transparent"
@@ -45,6 +57,9 @@ export class NeuInput extends Native {
         this.element.style.outline = "none"
         this.element.style.padding = "0"
         this.element.style.margin = "0"
+
+        // MacOS surpport
+        this.element.style.webkitUserSelect = 'auto'
         this.cover.appendChild(this.element)
         // this.cover = this.element
 
@@ -70,5 +85,13 @@ export class NeuInput extends Native {
     }
     ReadOnly() {
         this.element.readOnly = this.data.ReadOnly
+    }
+
+    CaretColor() {
+        this.element.style.caretColor = this.data.CaretColor
+    }
+
+    Max (){
+        this.element.max = this.data.Max
     }
 }

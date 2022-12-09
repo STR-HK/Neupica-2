@@ -12,8 +12,8 @@ export class NeuApp {
     faviconLink;
     canSolveQueue;
     constructor() {
-        this.layout = false;
-        this.dom = false;
+        this.layout = undefined;
+        this.dom = undefined;
         this.app = this.createApp();
         this.appCode = createUnique();
         this.renderID = false;
@@ -22,6 +22,9 @@ export class NeuApp {
         Array.from(document.getElementsByTagName('link')).forEach(link => {
             if (link.rel === 'icon') {
                 this.faviconLink = link;
+            }
+            else {
+                this.faviconLink = undefined;
             }
         });
         // Do not change this manually!
@@ -34,10 +37,14 @@ export class NeuApp {
         window.document.title = this.void;
     }
     setFavicon(url) {
-        this.faviconLink.href = url;
+        if (this.faviconLink != undefined) {
+            this.faviconLink.href = url;
+        }
     }
     setVoidFavicon() {
-        this.faviconLink.href = this.void;
+        if (this.faviconLink != undefined) {
+            this.faviconLink.href = this.void;
+        }
     }
     setLayout(layout) {
         this.layout = layout;
@@ -48,8 +55,12 @@ export class NeuApp {
             this.addQueue({
                 command: "f",
                 arguments: [function (that) {
-                        that.layout.element.style.width = '100%';
-                        that.layout.element.style.height = '100%';
+                        if (that.layout != undefined) {
+                            if ("style" in that.layout.element) {
+                                that.layout.element.style.width = "100%";
+                                that.layout.element.style.height = '100%';
+                            }
+                        }
                     }, that]
             });
             this.app.style.width = '100%';
@@ -59,8 +70,12 @@ export class NeuApp {
             this.addQueue({
                 command: "f",
                 arguments: [function (that) {
-                        that.layout.element.style.width = '';
-                        that.layout.element.style.height = '';
+                        if (that.layout != undefined) {
+                            if ("style" in that.layout.element) {
+                                that.layout.element.style.width = "";
+                                that.layout.element.style.height = '';
+                            }
+                        }
                     }, that]
             });
             this.app.style.width = '';
@@ -97,14 +112,14 @@ export class NeuApp {
     solveQueues() {
         if (this.queues.length > 0) {
             this.queues.forEach(queue => {
-                if (this.layout === false) {
+                if (this.layout === undefined) {
                     console.error("layout is not defined");
                 }
                 else {
                     if (queue['command'] === 'draw') {
                         let where = queue['arguments'][0];
                         this.dom = document.querySelector(where);
-                        if (typeof this.dom !== "boolean") {
+                        if (this.dom !== undefined) {
                             this.dom.appendChild(this.app);
                         }
                         NeuRender(this, this.layout, this.app, false);
@@ -112,7 +127,7 @@ export class NeuApp {
                     if (queue['command'] === 'sculpt') {
                         let parentElement = queue['arguments'][0];
                         this.dom = parentElement;
-                        if (typeof this.dom !== "boolean") {
+                        if (this.dom !== undefined) {
                             this.dom.appendChild(this.app);
                         }
                         NeuRender(this, this.layout, this.app, true);

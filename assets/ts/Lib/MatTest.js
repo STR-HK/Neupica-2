@@ -358,14 +358,14 @@ A
 
 export let app = new Demo_MAppBar()
 runApp(app)
-// promiseRunApp(app).then(app => function(){
-//     app.initUI()
-//     Debug(app.app)
+// promiseRunApp(simpleApp).then(simpleApp => function(){
+//     simpleApp.initUI()
+//     Debug(simpleApp.simpleApp)
 // })
-// app.initUI()
+// simpleApp.initUI()
 // setTimeout(function() {
 
 // }, 1000)
 
-// Debug(app.app)
+// Debug(simpleApp.simpleApp)
 // 1

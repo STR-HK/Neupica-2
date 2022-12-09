@@ -1,25 +1,35 @@
 import { Native } from "./Native.js"
+import { NeuContainer, NeuContainerData } from "./NeuContainer.js"
 
 interface UImageElement extends HTMLImageElement {
     addChild: (child) => void
 }
 
-export class NeuImage extends Native {
+export interface NeuImageData extends NeuContainerData {
+    Src: string
+}
+
+export class NeuImage extends NeuContainer {
     declare element: UImageElement
-    data: {
-        Src: string
-    }
+    declare data: NeuImageData
     constructor() {
         super()
         this.name = "NeuImage"
 
         this.data = {
+            ...new NeuContainer().data,
+
             Src: ""
         }
         this.build()
 
+        this.removeChild(this.element)
+
         this.element = this.createImg()
         this.cover.addChild(this.element)
+
+        this.target = this.element
+
         // this.cover = this.element
     }
 

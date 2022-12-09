@@ -40,8 +40,18 @@ export function NeuRender(app, layout, dom, silence) {
 
     if (!(silence) && window.mode === 'development') {
         console.log(
-            `%cNeuRender Process(PID=${renderID}) Called`,
+            `%cNeuRender Process(NAME=${app.constructor.name}, PID=${renderID}) Called`,
             "font-weight: bold; color: #56B6C2"
+        )
+    }
+    dom.appendChild(layout.element)
+}
+
+export function NeuModalRender(app, layout, dom, silence) {
+    if (!(silence) && window.mode === 'development') {
+        console.log(
+            `%cNeuModalRender Process(TYPE=MODAL) Called`,
+            "font-weight: bold; color: #e77718"
         )
     }
     dom.appendChild(layout.element)
@@ -50,11 +60,12 @@ export function NeuRender(app, layout, dom, silence) {
 export function NeuEliminate(app, layout, dom, silence) {
     let renderID = app.renderID
 
-    window.renders.splice(renderID, 1)
+    window.appList.shift()
+    window.renders[renderID] = false
 
     if (!(silence) && window.mode === 'development') {
         console.log(
-            `%cNeuEliminate Process(PID=${renderID}) Called`,
+            `%cNeuEliminate Process(NAME=${app.constructor.name}, PID=${renderID}) Called`,
             "font-weight: bold; color: #E06C75"
         )
     }

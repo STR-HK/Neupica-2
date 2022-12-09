@@ -8,7 +8,7 @@ export class MBaseButton extends NeuButton {
         this.data.Button.BorderRadius = "4px"
         this.data.ButtonText.FontWeight = 500
 
-        this.getBound().setAttribute('onpointerdown', `ripplet(arguments[0], ${JSON.stringify(
+        this.getBoundElement().setAttribute('onpointerdown', `ripplet(arguments[0], ${JSON.stringify(
             {
                 // "color":"black",
                 "opacity":"0.15",
@@ -23,8 +23,8 @@ export class MBaseButton extends NeuButton {
                 "appendTo":"target"
             }
         )})`)
-        this.getBound().setAttribute('onpointerup', "ripplet.clear(this)")
-        this.getBound().setAttribute('onpointerleave', "ripplet.clear(this)")
+        this.getBoundElement().setAttribute('onpointerup', "ripplet.clear(this)")
+        this.getBoundElement().setAttribute('onpointerleave', "ripplet.clear(this)")
     }
 
     setText(text) {

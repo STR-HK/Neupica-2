@@ -6,7 +6,9 @@ export class NeuColumn extends NeuLayout {
         super()
         this.name = "NeuColumn"
 
-        this.element = this.createLayout()
-        this.element.style.flexDirection = "column"
+        // this.element = this.createLayout()
+        this.data.FlexDirection = 'column'
+        // this.element.style.flexDirection = "column"
+
     }
 }

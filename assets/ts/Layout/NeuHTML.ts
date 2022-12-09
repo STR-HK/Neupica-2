@@ -7,7 +7,7 @@ export class NeuHTML extends Layout {
         super()
         this.name = "NeuHTML"
 
-        this.element = this.createLayout()
+        // this.element = this.createLayout()
         this.element.className = "NeuLayout"
     }
 

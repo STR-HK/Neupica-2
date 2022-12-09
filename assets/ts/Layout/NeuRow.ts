@@ -6,7 +6,8 @@ export class NeuRow extends NeuLayout {
         super()
         this.name = "NeuRow"
 
-        this.element = this.createLayout()
-        this.element.style.flexDirection = "row"
+        // this.element = this.createLayout()
+        this.data.FlexDirection = 'row'
+        // this.element.style.flexDirection = "row"
     }
 }
