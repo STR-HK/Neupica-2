@@ -25,6 +25,7 @@ export class Geometry {
             AspectRatio: "",
             Cursor: "",
             Transform: "",
+            Filter: "",
         };
     }
 }

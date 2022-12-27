@@ -125,6 +125,9 @@ export class Found extends Children {
             if (attribute === "Transform") {
                 this.target.style.transform = this.geometry.Transform;
             }
+            if (attribute === "Filter") {
+                this.target.style.filter = this.geometry.Filter;
+            }
         };
         this.buildGeometry = function () {
             this.geometryObj = {};

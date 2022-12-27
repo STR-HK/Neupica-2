@@ -6,7 +6,8 @@ interface UImageElement extends HTMLImageElement {
 }
 
 export interface NeuImageData extends NeuContainerData {
-    Src: string
+    Src: string,
+    ObjectFit: string,
 }
 
 export class NeuImage extends NeuContainer {
@@ -19,7 +20,8 @@ export class NeuImage extends NeuContainer {
         this.data = {
             ...new NeuContainer().data,
 
-            Src: ""
+            Src: "",
+            ObjectFit: "",
         }
         this.build()
 
@@ -49,7 +51,7 @@ export class NeuImage extends NeuContainer {
 
                 }
             }
-            xhr.send(null)
+            // xhr.send(null)
         } catch (e) {
             // console.error(e)
         }
@@ -109,5 +111,9 @@ export class NeuImage extends NeuContainer {
         // }
         // xhr.open("GET", this.data.Src, true)
         // xhr.send()
+    }
+
+    ObjectFit() {
+        this.element.style.objectFit = this.data.ObjectFit
     }
 }

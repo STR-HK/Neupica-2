@@ -11,6 +11,9 @@ export class NeuApp {
     void;
     faviconLink;
     canSolveQueue;
+    firstContentfullLoad;
+    waitForLoad;
+    documentBody;
     constructor() {
         this.layout = undefined;
         this.dom = undefined;
@@ -18,6 +21,9 @@ export class NeuApp {
         this.appCode = createUnique();
         this.renderID = false;
         this.queues = [];
+        this.firstContentfullLoad = false;
+        this.waitForLoad = [];
+        this.documentBody = document.body;
         this.void = 'ㅤ';
         Array.from(document.getElementsByTagName('link')).forEach(link => {
             if (link.rel === 'icon') {
@@ -55,10 +61,12 @@ export class NeuApp {
             this.addQueue({
                 command: "f",
                 arguments: [function (that) {
-                        if (that.layout != undefined) {
-                            if ("style" in that.layout.element) {
-                                that.layout.element.style.width = "100%";
-                                that.layout.element.style.height = '100%';
+                        if (that.layout) {
+                            if (that.layout.element) {
+                                if ("style" in that.layout.element) {
+                                    that.layout.element.style.width = "100%";
+                                    that.layout.element.style.height = '100%';
+                                }
                             }
                         }
                     }, that]
@@ -70,10 +78,12 @@ export class NeuApp {
             this.addQueue({
                 command: "f",
                 arguments: [function (that) {
-                        if (that.layout != undefined) {
-                            if ("style" in that.layout.element) {
-                                that.layout.element.style.width = "";
-                                that.layout.element.style.height = '';
+                        if (that.layout) {
+                            if (that.layout.element) {
+                                if ("style" in that.layout.element) {
+                                    that.layout.element.style.width = "";
+                                    that.layout.element.style.height = '';
+                                }
                             }
                         }
                     }, that]
@@ -141,6 +151,25 @@ export class NeuApp {
                 }
             });
             this.queues = [];
+        }
+        if (!this.firstContentfullLoad) {
+            this.firstContentfullLoad = true;
+        }
+        else {
+            this.firstContentfullLoad = undefined;
+        }
+        this.runWaitingEvents();
+    }
+    addWaitForEvent(callback) {
+        this.waitForLoad.push(callback);
+        this.runWaitingEvents();
+    }
+    runWaitingEvents() {
+        if (this.firstContentfullLoad) {
+            this.waitForLoad.forEach(cb => {
+                cb();
+            });
+            this.waitForLoad = [];
         }
     }
 }

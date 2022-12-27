@@ -1,39 +1,42 @@
-import { colorScheme } from "../../assets/ts/Neupica/Components/M3/Components/Color.js"
+import { colorScheme } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
 import { NeuApp } from "../../assets/ts/Neupica/Core/App.js"
-import { CommonButton } from "../../assets/ts/Neupica/Components/M3/Styles/Actions/Common Buttons/CommonButton.js"
+import { CommonButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/CommonButton.js"
 import { runApp } from "../../assets/ts/Neupica/Neupica2.js"
 import { NeuContainer } from "../../assets/ts/Neupica/Components/Native/NeuContainer.js"
-import { TopAppBar } from "../../assets/ts/Neupica/Components/M3/Styles/Navigation/TopAppBars.js"
-import { OutlinedButton } from "../../assets/ts/Neupica/Components/M3/Styles/Actions/Common Buttons/OutlinedButton.js"
-import { MaterialSymbolsOutlined } from "../../assets/ts/Neupica/Components/M3/Components/Icons.js"
-import { IconButton } from "../../assets/ts/Neupica/Components/M3/Styles/Actions/Icon Buttons/IconButton.js"
-import { Switch } from "../../assets/ts/Neupica/Components/M3/Styles/Selection/Switch.js"
-import { Divider } from "../../assets/ts/Neupica/Components/M3/Styles/Containment/Divider.js"
-import { NavigationBar } from "../../assets/ts/Neupica/Components/M3/Styles/Navigation/NavigationBar.js"
-import { NavigationBarItem } from "../../assets/ts/Neupica/Components/M3/Styles/Navigation/NavigationBar.js"
+import { TopAppBar } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Navigation/TopAppBars.js"
+import { OutlinedButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/OutlinedButton.js"
+import { MaterialSymbolsOutlined } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Icons.js"
+import { IconButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Icon Buttons/IconButton.js"
+import { Switch } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Selection/Switch.js"
+import { Divider } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Containment/Divider.js"
+import { NavigationBar } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Navigation/NavigationBar.js"
+import { NavigationBarItem } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Navigation/NavigationBar.js"
 import { NeuScaffold } from "../../assets/ts/Layout/NeuScaffold.js"
-import { FilledButton } from "../../assets/ts/Neupica/Components/M3/Styles/Actions/Common Buttons/FilledButton.js"
-import { TextFields } from "../../assets/ts/Neupica/Components/M3/Styles/TextInputs/Text Fields/TextFields.js"
-import { OutlinedTextField } from "../../assets/ts/Neupica/Components/M3/Styles/TextInputs/Text Fields/OutlinedTextField.js"
+import { FilledButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/FilledButton.js"
+import { TextFields } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/TextInputs/Text Fields/TextFields.js"
+import { OutlinedTextField } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/TextInputs/Text Fields/OutlinedTextField.js"
 // import { initModal } from "../../assets/ts/Neupica/Core/Modal.js"
-import { Snackbar } from "../../assets/ts/Neupica/Components/M3/Styles/Communication/Snackbar.js"
-import { ProgressIndicators } from "../../assets/ts/Neupica/Components/M3/Styles/Communication/ProgressIndicators/ProgressIndicators.js"
-import { Cards } from "../../assets/ts/Neupica/Components/M3/Styles/Containment/Cards/Cards.js"
-import { Typography } from "../../assets/ts/Neupica/Components/M3/Components/Typography.js"
+import { Snackbar } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Communication/Snackbar.js"
+import { ProgressIndicators } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Communication/ProgressIndicators/ProgressIndicators.js"
+import { Cards } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Containment/Cards/Cards.js"
+import { Typography } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Typography.js"
 import { NeuImage } from "../../assets/ts/Neupica/Components/Native/NeuImage.js"
-import { TextButton } from "../../assets/ts/Neupica/Components/M3/Styles/Actions/Common Buttons/TextButton.js"
+import { TextButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/TextButton.js"
 import { Padding } from "../../assets/ts/Tool/Padding.js"
-import { SegmentedButton } from "../../assets/ts/Neupica/Components/M3/Styles/Actions/SegmentedButton.js"
+import { SegmentedButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/SegmentedButton.js"
 import {
     FloatingActionButtons
-} from "../../assets/ts/Neupica/Components/M3/Styles/Actions/FloatingActionButtons/FloatingActionButtons.js"
-import { BasicDialogs } from "../../assets/ts/Neupica/Components/M3/Styles/Containment/Dialogs/BasicDialogs.js"
-import { Menu } from "../../assets/ts/Neupica/Components/M3/Styles/Selection/Menu.js"
-import { MenuItem } from "../../assets/ts/Neupica/Components/M3/Styles/Selection/Menu.js"
-import { MenuDivider } from "../../assets/ts/Neupica/Components/M3/Styles/Selection/Menu.js"
+} from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/FloatingActionButtons/FloatingActionButtons.js"
+import { BasicDialogs } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Containment/Dialogs/BasicDialogs.js"
+import { Menu } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Selection/Menu.js"
+import { MenuItem } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Selection/Menu.js"
+import { MenuDivider } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Selection/Menu.js"
 import { initModal } from "../../assets/ts/Neupica/Core/Modal.js"
 // import { ro } from "../../assets/ts/Common/Updater.js"
 import { resizeObserver } from "../../assets/ts/Common/Updater.js"
+import { SmallBadge } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Communication/Badges/SmallBadge.js"
+
+initModal()
 
 export class Material3 extends NeuApp {
     constructor() {
@@ -274,6 +277,210 @@ export class Material3 extends NeuApp {
             this.ipt2.geometry.Width = '200rem'
             // this.homeScreen.addChild(this.ipt2)
 
+            this.platFormInfo = new FilledButton()
+            this.platFormInfo.data.Text = 'Get PLATFORM Info'
+            this.platFormInfo.watchEvent('click', function() {
+                function getPlatform() {
+                    {
+                        var unknown = '-';
+
+                        // screen
+                        var screenSize = '';
+                        if (screen.width) {
+                            let width = (screen.width) ? screen.width : '';
+                            let height = (screen.height) ? screen.height : '';
+                            screenSize += '' + width + " x " + height;
+                        }
+
+                        // browser
+                        var nVer = navigator.appVersion;
+                        var nAgt = navigator.userAgent;
+                        var browser = navigator.appName;
+                        var version = '' + parseFloat(navigator.appVersion);
+                        var majorVersion = parseInt(navigator.appVersion, 10);
+                        var nameOffset, verOffset, ix;
+
+                        // Opera
+                        if ((verOffset = nAgt.indexOf('Opera')) != -1) {
+                            browser = 'Opera';
+                            version = nAgt.substring(verOffset + 6);
+                            if ((verOffset = nAgt.indexOf('Version')) != -1) {
+                                version = nAgt.substring(verOffset + 8);
+                            }
+                        }
+                        // Opera Next
+                        if ((verOffset = nAgt.indexOf('OPR')) != -1) {
+                            browser = 'Opera';
+                            version = nAgt.substring(verOffset + 4);
+                        }
+                        // Legacy Edge
+                        else if ((verOffset = nAgt.indexOf('Edge')) != -1) {
+                            browser = 'Microsoft Legacy Edge';
+                            version = nAgt.substring(verOffset + 5);
+                        }
+                        // Edge (Chromium)
+                        else if ((verOffset = nAgt.indexOf('Edg')) != -1) {
+                            browser = 'Microsoft Edge';
+                            version = nAgt.substring(verOffset + 4);
+                        }
+                        // MSIE
+                        else if ((verOffset = nAgt.indexOf('MSIE')) != -1) {
+                            browser = 'Microsoft Internet Explorer';
+                            version = nAgt.substring(verOffset + 5);
+                        }
+                        // Chrome
+                        else if ((verOffset = nAgt.indexOf('Chrome')) != -1) {
+                            browser = 'Chrome';
+                            version = nAgt.substring(verOffset + 7);
+                        }
+                        // Safari
+                        else if ((verOffset = nAgt.indexOf('Safari')) != -1) {
+                            browser = 'Safari';
+                            version = nAgt.substring(verOffset + 7);
+                            if ((verOffset = nAgt.indexOf('Version')) != -1) {
+                                version = nAgt.substring(verOffset + 8);
+                            }
+                        }
+                        // Firefox
+                        else if ((verOffset = nAgt.indexOf('Firefox')) != -1) {
+                            browser = 'Firefox';
+                            version = nAgt.substring(verOffset + 8);
+                        }
+                        // MSIE 11+
+                        else if (nAgt.indexOf('Trident/') != -1) {
+                            browser = 'Microsoft Internet Explorer';
+                            version = nAgt.substring(nAgt.indexOf('rv:') + 3);
+                        }
+                        // Other browsers
+                        else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) < (verOffset = nAgt.lastIndexOf('/'))) {
+                            browser = nAgt.substring(nameOffset, verOffset);
+                            version = nAgt.substring(verOffset + 1);
+                            if (browser.toLowerCase() == browser.toUpperCase()) {
+                                browser = navigator.appName;
+                            }
+                        }
+                        // trim the version string
+                        if ((ix = version.indexOf(';')) != -1) version = version.substring(0, ix);
+                        if ((ix = version.indexOf(' ')) != -1) version = version.substring(0, ix);
+                        if ((ix = version.indexOf(')')) != -1) version = version.substring(0, ix);
+
+                        majorVersion = parseInt('' + version, 10);
+                        if (isNaN(majorVersion)) {
+                            version = '' + parseFloat(navigator.appVersion);
+                            majorVersion = parseInt(navigator.appVersion, 10);
+                        }
+
+                        // mobile version
+                        var mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(nVer);
+
+                        // cookie
+                        var cookieEnabled = (navigator.cookieEnabled) ? true : false;
+
+                        if (typeof navigator.cookieEnabled == 'undefined' && !cookieEnabled) {
+                            document.cookie = 'testcookie';
+                            cookieEnabled = (document.cookie.indexOf('testcookie') != -1) ? true : false;
+                        }
+
+                        // system
+                        var os = unknown;
+                        var clientStrings = [
+                            {s:'Windows 10', r:/(Windows 10.0|Windows NT 10.0)/},
+                            {s:'Windows 8.1', r:/(Windows 8.1|Windows NT 6.3)/},
+                            {s:'Windows 8', r:/(Windows 8|Windows NT 6.2)/},
+                            {s:'Windows 7', r:/(Windows 7|Windows NT 6.1)/},
+                            {s:'Windows Vista', r:/Windows NT 6.0/},
+                            {s:'Windows Server 2003', r:/Windows NT 5.2/},
+                            {s:'Windows XP', r:/(Windows NT 5.1|Windows XP)/},
+                            {s:'Windows 2000', r:/(Windows NT 5.0|Windows 2000)/},
+                            {s:'Windows ME', r:/(Win 9x 4.90|Windows ME)/},
+                            {s:'Windows 98', r:/(Windows 98|Win98)/},
+                            {s:'Windows 95', r:/(Windows 95|Win95|Windows_95)/},
+                            {s:'Windows NT 4.0', r:/(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/},
+                            {s:'Windows CE', r:/Windows CE/},
+                            {s:'Windows 3.11', r:/Win16/},
+                            {s:'Android', r:/Android/},
+                            {s:'Open BSD', r:/OpenBSD/},
+                            {s:'Sun OS', r:/SunOS/},
+                            {s:'Chrome OS', r:/CrOS/},
+                            {s:'Linux', r:/(Linux|X11(?!.*CrOS))/},
+                            {s:'iOS', r:/(iPhone|iPad|iPod)/},
+                            {s:'Mac OS X', r:/Mac OS X/},
+                            {s:'Mac OS', r:/(Mac OS|MacPPC|MacIntel|Mac_PowerPC|Macintosh)/},
+                            {s:'QNX', r:/QNX/},
+                            {s:'UNIX', r:/UNIX/},
+                            {s:'BeOS', r:/BeOS/},
+                            {s:'OS/2', r:/OS\/2/},
+                            {s:'Search Bot', r:/(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/}
+                        ];
+                        for (var id in clientStrings) {
+                            var cs = clientStrings[id];
+                            if (cs.r.test(nAgt)) {
+                                os = cs.s;
+                                break;
+                            }
+                        }
+
+                        var osVersion = unknown;
+
+                        if (/Windows/.test(os)) {
+                            osVersion = /Windows (.*)/.exec(os)[1];
+                            os = 'Windows';
+                        }
+
+                        switch (os) {
+                            case 'Mac OS':
+                            case 'Mac OS X':
+                            case 'Android':
+                                osVersion = /(?:Android|Mac OS|Mac OS X|MacPPC|MacIntel|Mac_PowerPC|Macintosh) ([\.\_\d]+)/.exec(nAgt)[1];
+                                break;
+
+                            case 'iOS':
+                                osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
+                                osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
+                                break;
+                        }
+
+                        // flash (you'll need to include swfobject)
+                        /* script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" */
+                        var flashVersion = 'no check';
+                        if (typeof swfobject != 'undefined') {
+                            var fv = swfobject.getFlashPlayerVersion();
+                            if (fv.major > 0) {
+                                flashVersion = fv.major + '.' + fv.minor + ' r' + fv.release;
+                            }
+                            else  {
+                                flashVersion = unknown;
+                            }
+                        }
+                    }
+
+                    return {
+                        screen: screenSize,
+                        browser: browser,
+                        browserVersion: version,
+                        browserMajorVersion: majorVersion,
+                        mobile: mobile,
+                        os: os,
+                        osVersion: osVersion,
+                        cookies: cookieEnabled,
+                        flashVersion: flashVersion
+                    };
+                }
+
+                let jscd = getPlatform(this)
+                alert(
+                    'OS: ' + jscd.os +' '+ jscd.osVersion + '\n' +
+                    'Browser: ' + jscd.browser +' '+ jscd.browserMajorVersion +
+                    ' (' + jscd.browserVersion + ')\n' +
+                    'Mobile: ' + jscd.mobile + '\n' +
+                    'Flash: ' + jscd.flashVersion + '\n' +
+                    'Cookies: ' + jscd.cookies + '\n' +
+                    'Screen Size: ' + jscd.screen + '\n\n' +
+                    'Full User Agent: ' + navigator.userAgent
+                );
+            })
+            this.homeScreen.addChild(this.platFormInfo)
+
             this.ipt.watchEvent('resize', function(e) {
                 console.log(e)
             })
@@ -467,10 +674,31 @@ export class Material3 extends NeuApp {
         this.navBarItem1.watchEvent('click', function() {
             this.menuIcon.data.Text = 'spa'
             this.appbar.setHeadline('Lavender')
-            this.body.clearChild()
+            this.body.clearChildren()
             this.body.addChild(this.lavenderScreen)
         }.bind(this))
         // this.navBarItem1.element.click()
+
+        let badge = new SmallBadge()
+        this.addWaitForEvent(function() {
+            let badgeInfo = this.navBarItem1.getBoundingClientRect()
+            // console.log(badgeInfo)
+
+            // let cnt = new NeuContainer()
+            // cnt.geometry.Width = badgeInfo.width + 'px'
+            // cnt.geometry.Height = badgeInfo.height + 'px'
+            // cnt.geometry.Top = badgeInfo.top + 'px'
+            // cnt.geometry.Left = badgeInfo.left + 'px'
+            // cnt.data.BackgroundColor = 'red'
+            // window.modal.addModal(cnt)
+
+            badge.geometry.Top = badgeInfo.top + badgeInfo.height / 2 - 24 + 'px'
+            badge.geometry.Left = badgeInfo.width / 2 + badge.getBoundingClientRect().width+ 'px'
+        }.bind(this))
+        window.modal.addInteractiveModal(badge)
+        // let badgeLayout = window.modal.getLayer(badge)
+
+
 
 
         this.navBarItem2 = new NavigationBarItem()
@@ -480,7 +708,7 @@ export class Material3 extends NeuApp {
         this.navBarItem2.watchEvent('click', function() {
             this.menuIcon.data.Text = 'specific_gravity'
             this.appbar.setHeadline('Material 3')
-            this.body.clearChild()
+            this.body.clearChildren()
             this.body.addChild(this.homeScreen)
         }.bind(this))
         this.navBarItem2.element.click()
@@ -493,7 +721,7 @@ export class Material3 extends NeuApp {
         this.navBarItem3.watchEvent('click', function() {
             this.menuIcon.data.Text = 'water_drop'
             this.appbar.setHeadline('Water is Dropping')
-            this.body.clearChild()
+            this.body.clearChildren()
             this.body.addChild(this.extraScreen)
         }.bind(this))
 
@@ -504,22 +732,4 @@ export class Material3 extends NeuApp {
     }
 }
 
-export let app = new Material3()
-runApp(app)
-// app.solveQueues()O
-// let prop = Object.getOwnPropertyNames(app)
-// prop.forEach(e => {
-//     try {
-//         // console.log(e)
-//
-//         app[e].watchEvent('click', function() {
-//             this.hide()
-//         }.bind(app[e]))
-//     } catch (e) {
-//         console.error(e)
-//     }
-// })
-
-initModal()
-
-console.log(resizeObserver)
+export let app = runApp(new Material3())

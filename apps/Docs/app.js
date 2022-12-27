@@ -1,17 +1,17 @@
 // import { color } from "../../assets/ts/Neupica/Components/M3/Components/Color.js"
-import { colorScheme } from "../../assets/ts/Neupica/Components/M3/Components/Color.js";
+import { colorScheme } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.ts";
 import { NeuApp } from "../../assets/ts/Neupica/Core/App.js";
 // import { NeuColumn } from "../../assets/js/Layout/NeuColumn.js"
-import { CommonButton } from "../../assets/ts/Neupica/Components/M3/Styles/Actions/Common Buttons/CommonButtons.js";
+import { CommonButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/CommonButtons.js";
 import { NeuColumn } from "../../assets/ts/Layout/NeuColumn.js";
 import { runApp } from "../../assets/ts/Neupica/Neupica2.js";
 import { NeuContainer } from "../../assets/ts/Neupica/Components/Native/NeuContainer.js";
-import { TopAppBar } from "../../assets/ts/Neupica/Components/M3/Styles/Navigation/TopAppBars.js";
-import { OutlinedButton } from "../../assets/ts/Neupica/Components/M3/Styles/Actions/Common Buttons/OutlinedButton.js";
-import { MaterialSymbolsOutlined } from "../../assets/ts/Neupica/Components/M3/Components/Icons.js";
-import { IconButton } from "../../assets/ts/Neupica/Components/M3/Styles/Actions/Icon Buttons/IconButton.js";
-import { Divider } from "../../assets/ts/Neupica/Components/M3/Styles/Containment/Divider.js";
-import { NavigationBar } from "../../assets/ts/Neupica/Components/M3/Styles/Navigation/NavigationBar.js";
+import { TopAppBar } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Navigation/TopAppBars.js";
+import { OutlinedButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/OutlinedButton.js";
+import { MaterialSymbolsOutlined } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Icons.js";
+import { IconButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Icon Buttons/IconButton.js";
+import { Divider } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Containment/Divider.js";
+import { NavigationBar } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Navigation/NavigationBar.js";
 class SimpleApp extends NeuApp {
     constructor() {
         super();

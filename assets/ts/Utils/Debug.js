@@ -1,5 +1,5 @@
-import { materialColorsClassesList } from "../Neupica/Core/MaterialColor.js"
-import { DebugFrame } from "../Neupica/Components/Custom/DebugFrame.js"
+import { materialColorsClassesList } from "../Tool/MaterialColor.js"
+import { DebugFrame } from "../Neupica/Components/Custom/deprecated/DebugFrame.js"
 import { NeuApp } from "../Neupica/Core/App.ts"
 import { NeuColumn } from "../Layout/NeuColumn.ts"
 

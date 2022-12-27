@@ -5,7 +5,8 @@ export class NeuImage extends NeuContainer {
         this.name = "NeuImage";
         this.data = {
             ...new NeuContainer().data,
-            Src: ""
+            Src: "",
+            ObjectFit: "",
         };
         this.build();
         this.removeChild(this.element);
@@ -30,7 +31,7 @@ export class NeuImage extends NeuContainer {
                 catch (e) {
                 }
             };
-            xhr.send(null);
+            // xhr.send(null)
         }
         catch (e) {
             // console.error(e)
@@ -91,6 +92,9 @@ export class NeuImage extends NeuContainer {
         // }
         // xhr.open("GET", this.data.Src, true)
         // xhr.send()
+    }
+    ObjectFit() {
+        this.element.style.objectFit = this.data.ObjectFit;
     }
 }
 //# sourceMappingURL=NeuImage.js.map

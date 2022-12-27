@@ -20,8 +20,8 @@ let cup_url =
 let ref_url =
     "https://gallery.flutter.dev/assets/packages/flutter_gallery_assets/assets/icons/reference/reference.png"
 
-import { MActionButton } from "../Neupica/Components/Custom/MActionButton.js"
-import { MAppBar } from "../Neupica/Components/Custom/MAppBar.js"
+import { MActionButton } from "../Neupica/Components/Custom/deprecated/MActionButton.js"
+import { MAppBar } from "../Neupica/Components/Custom/deprecated/MAppBar.js"
 import { runApp } from "../Neupica/Neupica2.ts"
 
 class Demo_MAppBar extends NeuApp {

@@ -1,10 +1,10 @@
 import { NeuApp } from "../Neupica/Core/App.ts"
 import { runApp } from "../Neupica/Neupica2.ts"
 import { NeuColumn } from "../Layout/NeuColumn.ts"
-import { MActionButton } from "../Neupica/Components/Custom/MActionButton.js"
+import { MActionButton } from "../Neupica/Components/Custom/deprecated/MActionButton.js"
 import { NeuButton } from "../Neupica/Components/Widgets/NeuButton.js"
 import { Padding } from "../Tool/Padding.js"
-import { MBasicButton } from "../Neupica/Components/Custom/MButton.js"
+import { MBasicButton } from "../Neupica/Components/Custom/deprecated/MButton.js"
 import { NeuTable } from "../Neupica/Components/Widgets/NeuTable.js"
 import { NeuLabel } from "../Neupica/Components/Widgets/NeuLabel.js"
 

@@ -23,6 +23,7 @@ export interface geometry {
     AspectRatio: string,
     Cursor: string,
     Transform: string,
+    Filter: string,
 }
 
 export class Geometry {
@@ -53,7 +54,7 @@ export class Geometry {
             AspectRatio: "",
             Cursor: "",
             Transform: "",
-
+            Filter: "",
         }
 
     }

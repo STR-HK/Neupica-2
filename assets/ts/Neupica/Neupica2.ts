@@ -9,7 +9,7 @@ import { NeuApp } from "./Core/App.js"
 import { NeuColumn } from "../Layout/NeuColumn.js"
 import { NeuText } from "./Components/Native/NeuText.js"
 import { NeuInput } from "./Components/Native/NeuInput.js"
-import { MStrokedButton } from "./Components/Custom/MButton.js"
+import { MStrokedButton } from "./Components/Custom/deprecated/MButton.js"
 import { NeuLabel} from "./Components/Widgets/NeuLabel.js"
 import { Storage } from "./Console/Storage.js"
 import { initModal } from "./Core/Modal.js"
@@ -104,7 +104,7 @@ export function runApp(app) {
     }
 
     window.appList.push(app)
-    return true
+    return app
 }
 
 // window.runApp = runApp

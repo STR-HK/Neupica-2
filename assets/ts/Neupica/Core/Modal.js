@@ -18,8 +18,8 @@ export class Modal extends NeuApp {
         this.layout.geometry.Height = '100vh';
         this.layout.data.FlexDirection = 'column';
         this.layout.geometry.Position = 'absolute';
-        this.layout.data.JustifyContent = 'center';
-        this.layout.data.AlignItems = 'center';
+        // this.layout.data.JustifyContent = 'center'
+        // this.layout.data.AlignItems = 'center'
         this.layers = [];
         this.addQueue({
             command: 'f',
@@ -39,8 +39,8 @@ export class Modal extends NeuApp {
         layer.geometry.Height = '100%';
         layer.data.FlexDirection = 'column';
         layer.geometry.Position = 'absolute';
-        layer.data.JustifyContent = 'center';
-        layer.data.AlignItems = 'center';
+        // layer.data.JustifyContent = 'center'
+        // layer.data.AlignItems = 'center'
         this.layers.push(layer);
         return layer;
     }
@@ -83,7 +83,7 @@ export class Modal extends NeuApp {
     }
     clearModal() {
         if (this.layout instanceof NeuLayout) {
-            this.layout.clearChild();
+            this.layout.clearChildren();
         }
     }
 }

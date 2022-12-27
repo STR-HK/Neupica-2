@@ -1,0 +1,146 @@
+export let POR = {
+    "DO": {
+        "objects": [
+            {
+                "display": "약품 선반",
+                "analyze": ""
+            },
+            {
+                "display": "의료용 장비 상자",
+                "analyze": "독성을 띄는 약들이 도난당했다, 범인이 사용한듯 하다"
+            },
+            {
+                "display": "침대",
+                "analyze": ""
+            }
+        ]
+    },
+    "PO": {
+        "objects": [
+            {
+                "display": "경찰의 제복",
+                "analyze": ""
+            },
+            {
+                "display": "리볼버 권총",
+                "analyze": "사건 당시에는 총소리가 없었다"
+            },
+            {
+                "display": "일반인 조사 메모",
+                "analyze": ""
+            },
+            {
+                "display": "일기장",
+                "analyze": ""
+            }
+        ]
+    },
+    "DE": {
+        "objects": [
+            {
+                "display": "탐정의 수사도구",
+                "analyze": ""
+            },
+            {
+                "display": "탐정의 코트",
+                "analyze": ""
+            },
+            {
+                "display": "탐정의 만년필",
+                "analyze": ""
+            }
+        ]
+    },
+    "NO": {
+        "objects": [
+            {
+                "display": "고급진 시가",
+                "analyze": ""
+            },
+            {
+                "display": "권총",
+                "analyze": "사용되지 않은 새것으로 추정된다"
+            },
+            {
+                "display": "고급진 정장",
+                "analyze": ""
+            },
+            {
+                "display": "고급진 시계",
+                "analyze": ""
+            }
+        ]
+    },
+    "DU": {
+        "objects": [
+            {
+                "display": "공작의 물컵",
+                "analyze": "물이 담겨있고, 독약을 탄 흔적이 있다"
+            },
+            {
+                "display": "곰가죽 카펫",
+                "analyze": "약간 다른 발자국이 있다"
+            },
+            {
+                "display": "창문",
+                "analyze": "개패된 흔적이 없어 이곳으로 침입하지는 않았다"
+            }
+        ]
+    },
+    "TE": {
+        "objects": [
+            {
+                "display": "교육자료 3년치",
+                "analyze": ""
+            },
+            {
+                "display": "플라잉 디스크",
+                "analyze": ""
+            },
+            {
+                "display": "농구공",
+                "analyze": ""
+            },
+            {
+                "display": "휘슬",
+                "analyze": ""
+            }
+        ]
+    },
+    "EN": {
+        "objects": [
+            {
+                "display": "물품",
+                "analyze": ""
+            },
+            {
+                "display": "주형틀",
+                "analyze": "많은 물품을 만들수 있을 듯하다"
+            },
+            {
+                "display": "용광로",
+                "analyze": "주형틀로 2주 이내에 무언가를 만든 것 같다"
+            },
+            {
+                "display": "보일러",
+                "analyze": ""
+            }
+        ]
+    },
+    "CA": {
+        "objects": [
+            {
+                "display": "약품 선반",
+                "analyze": ""
+            },
+            {
+                "display": "약품 선반",
+                "analyze": ""
+            },
+            {
+                "display": "약품 선반",
+                "analyze": ""
+            }
+        ]
+    }
+}

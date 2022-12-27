@@ -1,34 +1,40 @@
 import { NeuApp } from "../../assets/ts/Neupica/Core/App.js"
 import { NeuScaffold } from "../../assets/ts/Layout/NeuScaffold.js"
 import { runApp } from "../../assets/ts/Neupica/Neupica2.js"
-import { TopAppBar } from "../../assets/ts/Neupica/Components/M3/Styles/Navigation/TopAppBars.js"
-import { IconButton } from "../../assets/ts/Neupica/Components/M3/Styles/Actions/Icon Buttons/IconButton.js"
-import { Icon } from "../../assets/ts/Neupica/Components/M3/Components/Icons.js"
-import { MaterialSymbolsRounded } from "../../assets/ts/Neupica/Components/M3/Components/Icons.js"
+import { TopAppBar } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Navigation/TopAppBars.js"
+import { IconButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Icon Buttons/IconButton.js"
+import { Icon } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Icons.js"
+import { MaterialSymbolsRounded } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Icons.js"
 import { initModal } from "../../assets/ts/Neupica/Core/Modal.js"
 import {
     FloatingActionButtons
-} from "../../assets/ts/Neupica/Components/M3/Styles/Actions/FloatingActionButtons/FloatingActionButtons.js"
-import { Menu } from "../../assets/ts/Neupica/Components/M3/Styles/Selection/Menu.js"
-import { MenuItem } from "../../assets/ts/Neupica/Components/M3/Styles/Selection/Menu.js"
+} from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/FloatingActionButtons/FloatingActionButtons.js"
+import { Menu } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Selection/Menu.js"
+import { MenuItem } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Selection/Menu.js"
 import { NeuContainer } from "../../assets/ts/Neupica/Components/Native/NeuContainer.js"
-import { Typography } from "../../assets/ts/Neupica/Components/M3/Components/Typography.js"
-import { colorScheme } from "../../assets/ts/Neupica/Components/M3/Components/Color.js"
-import { BottomAppBar } from "../../assets/ts/Neupica/Components/M3/Styles/Navigation/BottomAppBar.js"
-import { CommonButton } from "../../assets/ts/Neupica/Components/M3/Styles/Actions/Common Buttons/CommonButton.js"
+import { Typography } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Typography.js"
+import { colorScheme } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
+import { BottomAppBar } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Navigation/BottomAppBar.js"
+import { CommonButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/CommonButton.js"
 
 initModal()
 
 class Actor extends NeuContainer {
     constructor(parentMaze) {
         super()
-        this.data.TextColor = colorScheme.onBackground
+        this.data.TextColor = colorScheme.onPrimary
         this.Icon = new MaterialSymbolsRounded('expand_less')
+
+        this.Icon.data.FontSize = '16rem'
+        this.Icon.geometry.Width = this.Icon.data.FontSize
+        this.Icon.geometry.Height = this.Icon.data.FontSize
+
         this.addChild(this.Icon)
         this.parentMaze = parentMaze
         this.position = [0, 0]
         this.memory = undefined
         this.angle = 'S'
+        this.geometry.AspectRatio = '1'
 
         this.attach()
     }
@@ -65,9 +71,20 @@ class Actor extends NeuContainer {
 
         console.error(this.isCross())
 
+
+
         if (this.ifIsol() === true) {
-            myCell.setType('isol')
+            myCell.setType('wall')
+            this.data.TextColor = colorScheme.onPrimary
+        } else {
+            this.data.TextColor = colorScheme.onBackground
+
         }
+
+        myCell.data.Text = ''
+        // myCell.data.BackgroundColor = 'transparent'
+
+
 
         myCell.addChild(this)
 
@@ -120,11 +137,7 @@ class Actor extends NeuContainer {
                 pathCount += 1
             }
         })
-        if (pathCount <= 1) {
-            return true
-        } else {
-            return false
-        }
+        return pathCount <= 1;
     }
 
     M () {
@@ -196,9 +209,9 @@ class Actor extends NeuContainer {
     }
 
     auto() {
+        this.M()
         this.G(1)
         this.RR()
-        this.M()
         this.B()
     }
 }
@@ -212,10 +225,25 @@ class LYCell extends NeuContainer {
         this.type = 'wall'
 
         this.data.FontSize = Typography.Size.TitleMedium
+        this.geometry.AspectRatio = '1'
+        this.geometry.Width = '16rem'
+        this.geometry.Height = '16rem'
+        this.data.JustifyContent = 'center'
+        this.data.AlignItems = 'center'
     }
 
     texting() {
-        this.data.Text = this.type
+        if(this.type === 'wall') {
+            // this.data.Text = '▧'
+            this.data.BackgroundColor = colorScheme.primary
+        } else if (this.type === 'path') {
+            this.data.Text = 'Ø'
+            this.data.TextColor = 'transparent'
+        } else if (this.type === 'isol'){
+            this.data.Text = '✖'
+        }
+
+
     }
 
     setType(newType) {
@@ -225,11 +253,15 @@ class LYCell extends NeuContainer {
 }
 
 class LYMaze {
-    constructor() {
+    constructor(parent) {
         this.limX = 0
         this.limY = 0
-        this.sizeX = 5
-        this.sizeY = 5
+        this.sizeX = 16
+        this.sizeY = 16
+
+        this.parent = parent
+        this.parent.geometry.Width = this.sizeX * 16 + 'rem'
+        this.parent.geometry.Height = this.sizeY * 16 + 'rem'
 
         this.array = []
 
@@ -287,14 +319,14 @@ export class Labyrinth extends NeuApp {
         this.AppBarLeadingIconButton = new IconButton(this.AppBarLeadingIcon)
         this.AppBarInfoIcon = new MaterialSymbolsRounded('privacy_tip')
         this.AppBarInfoIconButton = new IconButton(this.AppBarInfoIcon)
-        this.AppBarInfoIconButton.watchEvent('click', function() {
-            let infoMenu = new Menu()
-            let infoMenuItem1 = new MenuItem()
-            infoMenu.addChild(infoMenuItem1)
-            let datum = this.AppBarInfoIconButton.getBoundingClientRect()
-            infoMenu.geometry.Position = 'absolute'
-            window.modal.addInteractiveModal(infoMenu)
-        }.bind(this))
+        // this.AppBarInfoIconButton.watchEvent('click', function() {
+        //     let infoMenu = new Menu()
+        //     let infoMenuItem1 = new MenuItem()
+        //     infoMenu.addChild(infoMenuItem1)
+        //     let datum = this.AppBarInfoIconButton.getBoundingClientRect()
+        //     infoMenu.geometry.Position = 'absolute'
+        //     window.modal.addInteractiveModal(infoMenu)
+        // }.bind(this))
         this.AppBar.setLeading(this.AppBarLeadingIconButton)
         this.AppBar.addTrailing(this.AppBarInfoIconButton)
         this.layout.head.addChild(this.AppBar)
@@ -303,20 +335,95 @@ export class Labyrinth extends NeuApp {
         this.Mazer.data.BackgroundColor = colorScheme.surfaceVariant
         this.Mazer.geometry.Height = '100%'
         this.Mazer.geometry.AspectRatio = '1'
+        this.Mazer.data.Border = `2px solid ${colorScheme.primary}`
         this.layout.body.addChild(this.Mazer)
 
-        this.mazeClass = new LYMaze()
-        this.mazeClass.getCellData([0, 0]).setType('path')
-        this.mazeClass.getCellData([1, 0]).setType('path')
-        this.mazeClass.getCellData([1, 1]).setType('path')
-        this.mazeClass.getCellData([1, 2]).setType('path')
-        this.mazeClass.getCellData([1, 3]).setType('path')
-        this.mazeClass.getCellData([0, 2]).setType('path')
-        this.mazeClass.getCellData([2, 3]).setType('path')
-        this.mazeClass.getCellData([3, 3]).setType('path')
-        this.mazeClass.getCellData([4, 3]).setType('path')
-        this.mazeClass.getCellData([4, 4]).setType('path')
-        this.mazeClass.getCellData([1, 4]).setType('path')
+        this.mazeClass = new LYMaze(this.Mazer)
+
+        let list = [
+            [0, 0],
+            [0, 6],
+            [0, 9],
+            [0, 11],
+            [0, 14],
+
+            [1, 0],
+            [1, 1],
+            [1, 2],
+            [1, 3],
+            [1, 4],
+            [1, 5],
+            [1, 6],
+            [1, 7],
+            [1, 8],
+            [1, 9],
+            [1, 10],
+            [1, 11],
+            [1, 12],
+            [1, 13],
+            [1, 14],
+
+            [2, 4],
+            [2, 14],
+
+            [3, 0],
+            [3, 2],
+            [3, 4],
+            [3, 6],
+            [3, 7],
+            [3, 8],
+            [3, 9],
+            [3, 10],
+            [3, 11],
+            [3, 12],
+            [3, 14],
+            [3, 15],
+
+            [4, 0],
+            [4, 1],
+            [4, 2],
+            [4, 3],
+            [4, 4],
+            [4, 6],
+            [4, 8],
+            [4, 10],
+            [4, 12],
+
+            [5, 2],
+            [5, 4],
+            [5, 6],
+            [5, 9],
+            [5, 12],
+            [5, 13],
+            [5, 14],
+            [5, 15],
+
+            [6, 1],
+            [6, 2],
+            [6, 4],
+            [6, 6],
+            [6, 7],
+            [6, 8],
+            [6, 9],
+            [6, 12],
+            [6, 15],
+
+            [7, 1],
+            [7, 4],
+            [7, 9],
+            [7, 10],
+            [7, 11],
+            [7, 12],
+            [7, 14],
+            [7, 15],
+
+
+        ]
+
+        list.forEach(function(p) {
+            console.log(p)
+            this.mazeClass.getCellData(p).setType('path')
+        }.bind(this))
 
         this.Tools = new NeuContainer()
         this.Tools.data.Symmetric = 'vertical'
@@ -369,6 +476,14 @@ export class Labyrinth extends NeuApp {
             this.actorClass.B()
         }.bind(this))
         this.Tools.addChild(this.BButton)
+        this.AutoButton = new MovingButton()
+        this.AutoButton.data.Text = 'Auto'
+        this.AutoButton.watchEvent('click', function() {
+            this.actorClass.auto()
+        }.bind(this))
+        this.Tools.addChild(this.AutoButton)
+
+
 
         this.BottomAppBar = new BottomAppBar()
         this.layout.foot.addChild(this.BottomAppBar)
@@ -393,10 +508,10 @@ export class Labyrinth extends NeuApp {
                 super()
                 this.data.Symmetric = 'horizontal'
                 this.geometry.Width = '100%'
-                this.geometry.Height = '100%'
+                this.geometry.Height = '16rem`'
                 this.data.JustifyContent = 'space-around'
                 this.data.AlignItems = 'center'
-                this.data.Border = '1px solid black'
+                // this.data.Border = '1px solid black'
             }
         }
 

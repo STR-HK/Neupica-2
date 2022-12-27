@@ -21,6 +21,17 @@ export class Children extends NObject {
             type: 'add',
             target: child
         })
+        this.childrenUpdated({
+            type: 'add',
+            target: child
+        })
+    }
+    addSlientChild(child) {
+        this.children.push(child)
+        this.childrenUpdate({
+            type: 'add',
+            target: child
+        })
     }
 
     removeChild(child) {
@@ -32,6 +43,33 @@ export class Children extends NObject {
             type: 'remove',
             target: child
         })
+        this.childrenUpdated({
+            type: 'remove',
+            target: child
+        })
+    }
+    removeSlientChild(child) {
+        let index = this.children.indexOf(child)
+        if (index !== -1) {
+            this.children.splice(index, 1)
+        }
+        this.childrenUpdate({
+            type: 'remove',
+            target: child
+        })
+    }
+
+    removeChildren() {
+        this.children.forEach(function(child ) {
+            this.removeChild(child)
+        }.bind(this))
+        this.children = []
+    }
+    removeSlientChildren() {
+        this.children.forEach(function(child ) {
+            this.removeSlientChild(child)
+        }.bind(this))
+        this.children = []
     }
 
     addChildren(children: Array<any>) {
@@ -39,18 +77,45 @@ export class Children extends NObject {
             this.addChild(e)
         })
     }
+    addSlientChildren(children: Array<any>) {
+        children.forEach(e => {
+            this.addSlientChild(e)
+        })
+    }
 
-    clearChild() {
+    clearChildren() {
         this.children = []
         this.childrenUpdate({
             type: 'clear'
         })
-
+        this.childrenUpdated({
+            type: 'clear'
+        })
+    }
+    clearSlientChildren() {
+        this.children = []
+        this.childrenUpdate({
+            type: 'clear'
+        })
     }
 
     setChild(index, child) {
         this.children[index] = child
-        this.childrenUpdate(child)
+        this.childrenUpdate({
+            type: 'set',
+            target: child
+        })
+        this.childrenUpdated({
+            type: 'set',
+            target: child
+        })
+    }
+    setSlientChild(index, child) {
+        this.children[index] = child
+        this.childrenUpdate({
+            type: 'set',
+            target: child
+        })
     }
 
     cvt(children) {
@@ -67,6 +132,9 @@ export class Children extends NObject {
         return element
     }
 
+    childrenUpdated(...args) {
+
+    }
 
     childrenUpdate(...args) {
 

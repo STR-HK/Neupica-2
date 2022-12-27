@@ -1,5 +1,5 @@
 import { Found } from "../Found/Found.js"
-import ripplet from "../M3/Components/Ripplet.js"
+import ripplet from "../Custom/Material3/Styles/Ripplet.js"
 import { Modal_dep } from "../../../Common/Modal.js"
 import { UDivElement } from "../Create/Create.js"
 
@@ -55,11 +55,13 @@ export class Native extends Found {
 
             // console.log('hide')
 
-            this.parentOfElement = this.cover.parentElement
-            this.indexFromParent = Array.from(this.parentOfElement.children).indexOf(this.cover)
-            this.anchorFromParent = this.parentOfElement.children[this.indexFromParent - 1]
+            // this.parentOfElement = this.cover.parentElement
+            // this.indexFromParent = Array.from(this.parentOfElement.children).indexOf(this.cover)
+            // this.anchorFromParent = this.parentOfElement.children[this.indexFromParent - 1]
+            //
+            // this.parentOfElement.removeChild(this.cover)
 
-            this.parentOfElement.removeChild(this.cover)
+            this.geometry.Display = 'none'
         } else {
             // console.log('already hidden')
         }
@@ -71,11 +73,12 @@ export class Native extends Found {
 
             // this.childrenUpdate()
 
-            if (this.anchorFromParent.nextSibling != undefined) {
-                this.parentOfElement.insertBefore(this.cover, this.anchorFromParent.nextSibling);
-            } else {
-                this.parentOfElement.appendChild(this.cover);
-            }
+            // if (this.anchorFromParent.nextSibling != undefined) {
+            //     this.parentOfElement.insertBefore(this.cover, this.anchorFromParent.nextSibling);
+            // } else {
+            //     this.parentOfElement.appendChild(this.cover);
+            // }
+            this.geometry.Display = 'flex'
         } else {
             // console.log('already showed')
         }
@@ -110,26 +113,16 @@ export class Native extends Found {
 
         this.RippleFunctions = [
             function(e) {
-                if (this.getBoundingParent().style.gap != '') {
-                    if (args[0] != undefined) {
-                        ripplet(e, {appendTo: 'target', ...args[0]})
-                    } else {
-                        ripplet(e, {appendTo: 'target' })
-                    }
-                } else {
-                    if (args[0] != undefined) {
-                        ripplet(e, {...args[0]})
-                    } else {
-                        ripplet(e, )
-                    }
-                }
+                ripplet(e)
             }.bind(this),
 
             function() {
+                // @ts-ignore
                 ripplet.clear(this)
             }.bind(this.element),
 
             function() {
+                // @ts-ignore
                 ripplet.clear(this)
             }.bind(this.element)
         ]
@@ -140,8 +133,14 @@ export class Native extends Found {
     }
 
     DeActivateRipple() {
-        for (let i = 0; i < this.RippleNames.length; i++) {
-            this.element.removeEventListener(this.RippleNames[i], this.RippleFunctions[i])
+        try {
+            for (let i = 0; i < this.RippleNames.length; i++) {
+                this.element.removeEventListener(this.RippleNames[i], this.RippleFunctions[i])
+            }
+        } catch (e) {
+            if (this.RippleNames != undefined) {
+                console.error(e)
+            }
         }
     }
 }

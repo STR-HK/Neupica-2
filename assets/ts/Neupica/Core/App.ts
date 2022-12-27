@@ -2,7 +2,7 @@ import { runApp } from "../Neupica2.js"
 import { NeuEliminate, NeuRender } from "./Render.js"
 import { createUnique } from "../Components/Create/Create.js"
 import { NeuLayout } from "../../Layout/NeuLayout.js"
-import { Layout } from "../../Layout/Layout"
+import { Layout } from "../../Layout/Layout.js"
 import { NeuScaffold } from "../../Layout/NeuScaffold.js"
 // import { Object } from "../../Common/Object.ts"
 
@@ -16,6 +16,9 @@ export class NeuApp {
     void: string
     faviconLink: HTMLLinkElement | undefined
     canSolveQueue: any
+    private firstContentfullLoad: boolean | undefined
+    private waitForLoad: any[]
+    documentBody: HTMLElement
 
     constructor() {
         this.layout = undefined
@@ -24,6 +27,9 @@ export class NeuApp {
         this.appCode = createUnique()
         this.renderID = false
         this.queues = []
+        this.firstContentfullLoad = false
+        this.waitForLoad = []
+        this.documentBody = document.body
 
         this.void = 'ㅤ'
 
@@ -69,12 +75,15 @@ export class NeuApp {
             this.addQueue({
                 command: "f",
                 arguments: [function(that: NeuApp) {
-                    if (that.layout != undefined) {
-                        if ("style" in that.layout.element) {
-                            that.layout.element.style.width = "100%"
-                            that.layout.element.style.height = '100%'
+                    if (that.layout) {
+                        if (that.layout.element) {
+                            if ("style" in that.layout.element) {
+                                that.layout.element.style.width = "100%"
+                                that.layout.element.style.height = '100%'
 
+                            }
                         }
+
                     }
                 }, that]
             })
@@ -84,11 +93,12 @@ export class NeuApp {
             this.addQueue({
                 command: "f",
                 arguments: [function(that: NeuApp) {
-                    if (that.layout != undefined) {
-                        if ("style" in that.layout.element) {
-                            that.layout.element.style.width = ""
-                            that.layout.element.style.height = ''
-
+                    if (that.layout) {
+                        if (that.layout.element) {
+                            if ("style" in that.layout.element) {
+                                that.layout.element.style.width = ""
+                                that.layout.element.style.height = ''
+                            }
                         }
                     }
                 }, that]
@@ -162,6 +172,27 @@ export class NeuApp {
                 }
             })
             this.queues = []
+        }
+        if (!this.firstContentfullLoad) {
+            this.firstContentfullLoad = true
+        } else {
+            this.firstContentfullLoad = undefined
+        }
+        this.runWaitingEvents()
+
+    }
+
+    addWaitForEvent(callback: Function) {
+        this.waitForLoad.push(callback)
+        this.runWaitingEvents()
+    }
+
+    runWaitingEvents() {
+        if (this.firstContentfullLoad) {
+            this.waitForLoad.forEach(cb => {
+                cb()
+            })
+            this.waitForLoad = []
         }
     }
 }

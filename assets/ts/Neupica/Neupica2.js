@@ -65,7 +65,7 @@ export function runApp(app) {
         runOnLoad();
     }
     window.appList.push(app);
-    return true;
+    return app;
 }
 // window.runApp = runApp
 export function thisClass(element) {
