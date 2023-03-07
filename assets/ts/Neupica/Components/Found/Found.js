@@ -1,6 +1,7 @@
 import { Children } from "../../../Common/Children.js";
-import { Bounding, createCover, createDiv, createImg, createInput, createModal } from "../Create/Create.js";
+import { Bounding, createCover, createDiv, createImg, createInput, createModal, createUnique } from "../Create/Create.js";
 import { Geometry } from "../../Core/Geometry.js";
+// import { Modal_dep } from "../../../Common/Modal.js"
 // import { Object } from "../../../Common/Object"
 export class Found extends Children {
     build;
@@ -19,9 +20,29 @@ export class Found extends Children {
     watchEvents;
     getBoundingParent;
     dataObj;
+    unique;
+    cascade;
+    useCascade;
     constructor() {
         super();
         this.name = "Found";
+        this.unique = createUnique();
+        this.cascade = {};
+        this.useCascade = function () {
+            Object.keys(this.cascade).forEach((key) => {
+                Object.defineProperty(this, key, {
+                    get: () => {
+                        return this.cascade[key];
+                    },
+                    set: (newValue) => {
+                        let parent = this.cascade[key].parent;
+                        this.cascade[key].suicide();
+                        parent.addChild(newValue);
+                        this.cascade[key] = newValue;
+                    },
+                });
+            });
+        };
         this.build = function () {
             this.dataObj = {};
             Object.entries(this.data).forEach(([key, value]) => {
@@ -124,6 +145,9 @@ export class Found extends Children {
             }
             if (attribute === "Transform") {
                 this.target.style.transform = this.geometry.Transform;
+            }
+            if (attribute === "TransformOrigin") {
+                this.target.style.transformOrigin = this.geometry.TransformOrigin;
             }
             if (attribute === "Filter") {
                 this.target.style.filter = this.geometry.Filter;

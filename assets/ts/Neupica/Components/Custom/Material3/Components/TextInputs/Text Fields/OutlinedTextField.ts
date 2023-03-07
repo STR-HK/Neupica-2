@@ -1,6 +1,6 @@
 import { TextFields } from "./TextFields.js"
 import { colorScheme } from "../../../Styles/Color.js"
-import { Padding } from "../../../../../../../Tool/Padding.js"
+import { Box } from "../../../../../../../Tool/Box.js"
 import { createCustom } from "../../../../../Create/Create.js"
 import { NeuContainer } from "../../../../../Native/NeuContainer.js"
 
@@ -18,7 +18,7 @@ export class OutlinedTextField extends TextFields {
         this.LabelText.geometry.Position = 'absolute'
         this.LabelText.geometry.Top = '-8rem'
         this.LabelText.data.BackgroundColor = ''
-        this.LabelText.data.Padding = new Padding().VH('0rem', '2rem')
+        this.LabelText.data.Padding = new Box().VH('0rem', '2rem')
 
         this.vbox.data.BorderRadius = '4rem'
         this.vbox.data.BorderWidth = '1rem'
@@ -28,7 +28,7 @@ export class OutlinedTextField extends TextFields {
 
         this.target = this.element
 
-        this.vbox.data.Padding = new Padding().top('10rem')
+        this.vbox.data.Padding = new Box().top('10rem')
         this.vbox.geometry.Height = '56rem'
         this.vbox.geometry.MinHeight = '56rem'
         this.vbox.geometry.Width = '100%'

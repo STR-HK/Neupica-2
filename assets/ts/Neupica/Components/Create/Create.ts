@@ -93,9 +93,9 @@ function attachToCover(element: HTMLDivElement): UDivElement {
     return <UDivElement>attachFunction(element)
 }
 
-let NeuMode = true
+let NeuMode = false
 let Indexing = true
-let Covering = false
+let Covering = true
 export let Bounding = "NeuBound"
 Bounding = "_"
 export let Cover = "NeuCover"
@@ -108,8 +108,31 @@ function newCreateElement(tagName: string) {
     return element
 }
 
+function camelCaseToSnakeCase(text: string): string {
+    let original = text
+    let upper = text.toUpperCase()
+    let converted = ""
+
+    for (let i = 0; i < original.length; i++) {
+        let originalLetter = original[i]
+        let upperLetter = upper[i]
+
+        if (i == 0) {
+            converted += originalLetter.toLowerCase()
+        } else if (originalLetter != upperLetter) {
+            converted += originalLetter
+        } else {
+            converted += '_'
+            converted += originalLetter.toLowerCase()
+        }
+    }
+    return converted
+}
+
 export function createCover(name: string): UDivElement {
-    let element: HTMLDivElement = newCreateElement("div")
+    // let element: HTMLDivElement = newCreateElement("div")
+    // console.log(name)
+    let element: HTMLDivElement = newCreateElement(camelCaseToSnakeCase(name)) as HTMLDivElement
     let Uelement: UDivElement = attachFunction(element) as UDivElement
 
     if (NeuMode) {
@@ -130,7 +153,7 @@ export function createCover(name: string): UDivElement {
 }
 
 export function createModal(): UDivElement {
-    let element: HTMLDivElement = newCreateElement("div")
+    let element: HTMLDivElement = newCreateElement("div") as HTMLDivElement
     let Uelement: UDivElement = attachFunction(element) as UDivElement
 
     if (NeuMode) {
@@ -146,7 +169,7 @@ export function createModal(): UDivElement {
 }
 
 export function createDiv(): UDivElement {
-    let element: HTMLDivElement = newCreateElement("div")
+    let element: HTMLDivElement = newCreateElement('n') as HTMLDivElement
     let Uelement: UDivElement = attachFunction(element) as UDivElement
 
     if (NeuMode) {
@@ -162,7 +185,7 @@ export function createDiv(): UDivElement {
 }
 
 export function createImg(): UImageElement {
-    let element: HTMLImageElement = newCreateElement("img")
+    let element: HTMLImageElement = newCreateElement("img") as HTMLImageElement
     let Uelement: UImageElement = attachFunction(element) as UImageElement
 
     if (NeuMode) {
@@ -178,7 +201,7 @@ export function createImg(): UImageElement {
 }
 
 export function createInput(): UInputElement {
-    let element: HTMLInputElement = newCreateElement("input")
+    let element: HTMLInputElement = newCreateElement("input") as HTMLInputElement
     let Uelement: UInputElement = attachFunction(element) as UInputElement
 
     if (NeuMode) {
@@ -194,7 +217,7 @@ export function createInput(): UInputElement {
 }
 
 export function createCustom(tag: string): UElement {
-    let element: HTMLElement = newCreateElement(tag)
+    let element: HTMLElement = newCreateElement(tag) as HTMLElement
     let Uelement: UElement = attachFunction(element) as UElement
 
     if (NeuMode) {
@@ -211,7 +234,7 @@ export function createCustom(tag: string): UElement {
 
 
 export function createLayout(layoutname: string): UDivElement {
-    let element: HTMLDivElement = newCreateElement("div")
+    let element: HTMLDivElement = newCreateElement("div") as HTMLDivElement
     let Uelement: UDivElement = attachFunction(element) as UDivElement
 
     if (NeuMode) {

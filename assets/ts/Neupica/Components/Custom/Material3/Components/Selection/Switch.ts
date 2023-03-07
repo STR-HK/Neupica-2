@@ -1,6 +1,6 @@
 import { NeuContainer } from "../../../../Native/NeuContainer.js"
 import { colorScheme } from "../../Styles/Color.js"
-import { Padding } from "../../../../../../Tool/Padding.js"
+import { Box } from "../../../../../../Tool/Box.js"
 import { anime } from "../../Styles/Motion/anime.es.js"
 import { NeuImage } from "../../../../Native/NeuImage.js"
 
@@ -50,7 +50,7 @@ export class Switch extends NeuContainer {
             this.Track.data.BorderStyle = 'solid'
             this.Track.data.BorderColor = colorScheme.outline
 
-            this.Track.data.Padding = new Padding().all('5rem')
+            this.Track.data.Padding = new Box().all('5rem')
 
             this.Thumb.geometry.Width = '16rem'
             this.Thumb.geometry.Height = '16rem'
@@ -86,7 +86,7 @@ export class Switch extends NeuContainer {
             // this.data.BorderColor = 'transparent'
             this.Track.data.BorderColor = 'transparent'
 
-            this.Track.data.Padding = new Padding().all('1rem')
+            this.Track.data.Padding = new Box().all('1rem')
 
 
 

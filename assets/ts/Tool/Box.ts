@@ -1,4 +1,4 @@
-export class Padding {
+export class Box {
     private name: string
     data: { Left: string; Top: string; Right: string; Bottom: string }
     constructor() {

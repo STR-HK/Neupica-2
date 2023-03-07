@@ -14,7 +14,7 @@ export class ProgressIndicators extends NeuContainer {
         this.Track.data.BackgroundColor = colorScheme.primary;
         this.addChild(this.Track);
         let pr = 0;
-        let a = setInterval(function () {
+        let upt = () => {
             if (pr < 100) {
                 pr += 1;
                 this.setProgress(`${pr}%`);
@@ -23,7 +23,8 @@ export class ProgressIndicators extends NeuContainer {
                 clearInterval(a);
                 this.Hide();
             }
-        }.bind(this), 5);
+        };
+        let a = setInterval(upt, 5);
     }
     setProgress(percent) {
         this.Track.geometry.Width = percent;

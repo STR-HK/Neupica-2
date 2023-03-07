@@ -16,6 +16,7 @@ import { Typography } from "../../assets/ts/Neupica/Components/Custom/Material3/
 import { colorScheme } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
 import { BottomAppBar } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Navigation/BottomAppBar.js"
 import { CommonButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/CommonButton.js"
+import { Box } from "../../assets/ts/Tool/Box.js"
 
 initModal()
 
@@ -81,7 +82,7 @@ class Actor extends NeuContainer {
 
         }
 
-        myCell.data.Text = ''
+        myCell.Text.data.Content = ''
         // myCell.data.BackgroundColor = 'transparent'
 
 
@@ -234,13 +235,13 @@ class LYCell extends NeuContainer {
 
     texting() {
         if(this.type === 'wall') {
-            // this.data.Text = '▧'
+            // this.Text.data.Content = '▧'
             this.data.BackgroundColor = colorScheme.primary
         } else if (this.type === 'path') {
-            this.data.Text = 'Ø'
+            this.Text.data.Content = 'Ø'
             this.data.TextColor = 'transparent'
         } else if (this.type === 'isol'){
-            this.data.Text = '✖'
+            this.Text.data.Content = '✖'
         }
 
 
@@ -428,7 +429,13 @@ export class Labyrinth extends NeuApp {
         this.Tools = new NeuContainer()
         this.Tools.data.Symmetric = 'vertical'
         this.Tools.geometry.Width = '100%'
-        this.Tools.data.AlignItems = 'end'
+        new ResizeObserver(function() {
+            this.Tools.geometry.Height = this.Mazer.getBoundingClientRect().height + 'px'
+
+        }.bind(this)).observe(this.Mazer.getBoundElement())
+        this.Tools.data.AlignItems = 'start'
+        this.Tools.geometry.Padding = new Box().left('12rem')
+        this.Tools.data.JustifyContent = 'space-between'
         this.layout.body.addChild(this.Tools)
 
         class MovingButton extends CommonButton {
@@ -453,35 +460,47 @@ export class Labyrinth extends NeuApp {
         console.log(this.actorClass)
 
         this.GButton = new MovingButton()
-        this.GButton.data.Text = 'G'
+        this.GButton.Text.data.Content = 'G'
         this.GButton.watchEvent('click', function() {
             this.actorClass.G(1)
         }.bind(this))
         this.Tools.addChild(this.GButton)
         this.RRButton = new MovingButton()
-        this.RRButton.data.Text = 'RR'
+        this.RRButton.Text.data.Content = 'RR'
         this.RRButton.watchEvent('click', function() {
             this.actorClass.RR()
         }.bind(this))
         this.Tools.addChild(this.RRButton)
         this.MButton = new MovingButton()
-        this.MButton.data.Text = 'M'
+        this.MButton.Text.data.Content = 'M'
         this.MButton.watchEvent('click', function() {
             this.actorClass.M()
         }.bind(this))
         this.Tools.addChild(this.MButton)
         this.BButton = new MovingButton()
-        this.BButton.data.Text = 'B'
+        this.BButton.Text.data.Content = 'B'
         this.BButton.watchEvent('click', function() {
             this.actorClass.B()
         }.bind(this))
         this.Tools.addChild(this.BButton)
         this.AutoButton = new MovingButton()
-        this.AutoButton.data.Text = 'Auto'
+        this.AutoButton.Text.data.Content = 'Auto'
         this.AutoButton.watchEvent('click', function() {
             this.actorClass.auto()
         }.bind(this))
         this.Tools.addChild(this.AutoButton)
+
+        let toolButtons = [
+            this.GButton,
+            this.RRButton,
+            this.MButton,
+            this.BButton,
+            this.AutoButton
+        ]
+
+        toolButtons.forEach(e => {
+            e.geometry.Width = '82rem'
+        })
 
 
 

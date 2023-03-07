@@ -41,6 +41,8 @@ export class NeuApp {
             }
         })
 
+
+
         // Do not change this manually!
         this.canSolveQueue = false
     }
@@ -67,44 +69,37 @@ export class NeuApp {
 
     setLayout(layout: NeuLayout) {
         this.layout = layout
+
     }
 
     setFullScreen(bool: boolean) {
-        let that: NeuApp = this
+        this.layout.element.style.width = '100%'
+        this.layout.element.style.height = '100%'
+
         if (bool) {
             this.addQueue({
                 command: "f",
-                arguments: [function(that: NeuApp) {
-                    if (that.layout) {
-                        if (that.layout.element) {
-                            if ("style" in that.layout.element) {
-                                that.layout.element.style.width = "100%"
-                                that.layout.element.style.height = '100%'
-
-                            }
-                        }
-
-                    }
-                }, that]
+                arguments: [function() {
+                    this.app.style.width = window.innerWidth + 'px'
+                    this.app.style.height = window.innerHeight + 'px'
+                    window.onresize = function() {
+                        this.app.style.width = window.innerWidth + 'px'
+                        this.app.style.height = window.innerHeight + 'px'
+                    }.bind(this)
+                }.bind(this)]
             })
-            this.app.style.width = '100%'
-            this.app.style.height = '100%'
+
         } else {
             this.addQueue({
                 command: "f",
-                arguments: [function(that: NeuApp) {
-                    if (that.layout) {
-                        if (that.layout.element) {
-                            if ("style" in that.layout.element) {
-                                that.layout.element.style.width = ""
-                                that.layout.element.style.height = ''
-                            }
-                        }
-                    }
-                }, that]
+                arguments: [function() {
+                    this.app.style.width = "" + 'px'
+                    this.app.style.height = ""
+                    window.onresize = function() {}
+                }.bind(this)]
             })
-            this.app.style.width = ''
-            this.app.style.height = ''
+            // this.app.style.width = ''
+            // this.app.style.height = ''
         }
     }
 
@@ -167,7 +162,7 @@ export class NeuApp {
                     queue['command'] === 'func' ||
                     queue['command'] === 'function'
                     ) {
-                    queue['arguments'][0](queue['arguments'][1])
+                    queue['arguments'][0]()
                     return true
                 }
             })

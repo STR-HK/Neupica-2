@@ -1,10 +1,10 @@
 import { NeuButton } from "../../Widgets/NeuButton.js"
-import { Padding } from "../../../../Tool/Padding.ts"
+import { Box } from "../../../../Tool/Box.js"
 
 export class MBaseButton extends NeuButton {
     constructor() {
         super()
-        this.data.Button.Padding = new Padding().VH("8px", "16px")
+        this.data.Button.Padding = new Box().VH("8px", "16px")
         this.data.Button.BorderRadius = "4px"
         this.data.ButtonText.FontWeight = 500
 

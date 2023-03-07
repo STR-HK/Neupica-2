@@ -1,5 +1,5 @@
 import { Native } from "./Native.js"
-import { NeuText } from "./NeuText.js"
+// import { NeuText } from "./NeuText.js"
 import { NeuContainer, NeuContainerData } from "./NeuContainer.js"
 import { UInputElement } from "../Create/Create.js"
 // import { NeuContainerData } from  "./NeuContainer"
@@ -18,7 +18,6 @@ export interface NeuInputData extends NeuContainerData {
 
 export class NeuInput extends NeuContainer {
     declare element: UInputElement
-
     declare data: NeuInputData
 
     constructor() {

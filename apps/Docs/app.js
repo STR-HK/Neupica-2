@@ -68,12 +68,12 @@ export class Material3 extends NeuApp {
         ]);
         this.layout.addChild(this.appbar);
         this.titleChangeButton = new CommonButton();
-        this.titleChangeButton.data.Text = 'Click To Change Title';
+        this.titleChangeButton.Text.data.Content = 'Click To Change Title';
         this.layout.addChild(this.titleChangeButton);
         this.div = new Divider();
         this.layout.addChild(this.div);
         this.outlinedButton = new OutlinedButton();
-        this.outlinedButton.data.Text = 'Toggle all switches';
+        this.outlinedButton.Text.data.Content = 'Toggle all switches';
         this.layout.addChild(this.outlinedButton);
         this.btm = new NavigationBar();
         this.layout.addChild(this.btm);

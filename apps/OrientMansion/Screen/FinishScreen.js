@@ -38,7 +38,7 @@ class VoteItem extends NeuContainer {
         this.Name = new NeuContainer()
         this.Name.data.FontSize = Typography.Size.LabelLarge
         this.Name.data.TextColor = colorScheme.onBackground
-        this.Name.data.Text = name
+        this.Name.Text.data.Content = name
         this.addChild(this.Name)
 
         this.Image = new NeuImage()
@@ -58,7 +58,7 @@ class VoteItem extends NeuContainer {
         //
         // this.addChild(this.IconButton)
         // this.IconButton.watchEvent('click', function() {
-        //     this.Icon.data.Text = 'radio_button_checked'
+        //     this.Icon.Text.data.Content = 'radio_button_checked'
         // }.bind(this))
 
         this.data.BorderRadius = '6rem'
@@ -85,7 +85,7 @@ class VoteItem extends NeuContainer {
             this.data.Border = '1px solid ' + colorScheme.secondary
             this.Name.data.TextColor = colorScheme.secondary
 
-            this.parent.RailSuspectName.data.Text = this.Name.data.Text
+            this.parent.RailSuspectName.Text.data.Content = this.Name.data.Text
             this.parent.selectedJob =  this.Name.data.Text
         }
     }
@@ -123,7 +123,7 @@ export class FinishScreen extends NeuContainer {
         this.LockMessage.data.FontSize = Typography.Size.BodyMedium
         this.LockMessage.data.TextColor = colorScheme.onBackground
         this.LockMessage.data.TextAlign = 'center'
-        this.LockMessage.data.Text = '지금은 추리가 진행이므로 완성시킬 수 없습니다\n' +
+        this.LockMessage.Text.data.Content = '지금은 추리가 진행이므로 완성시킬 수 없습니다\n' +
             '추리가 완료되었다고 생각한 경우,\n ' +
             // '출구에서 추리 완료 코드를 안내받아 입력하고\n ' +
             '[자물쇠를 눌러] 범인을 선택하고 결과를 확인하세요'
@@ -152,18 +152,18 @@ export class FinishScreen extends NeuContainer {
         this.RailCurrentTimeLine.data.FontSize = Typography.Size.TitleMedium
         this.RailCurrentTimeLine.data.TextColor = colorScheme.onSecondaryContainer
         this.RailCurrentTimeLine.data.JustifyContent = 'center'
-        this.RailCurrentTimeLine.data.Text = '당신이 선택한 범인은 '
+        this.RailCurrentTimeLine.Text.data.Content = '당신이 선택한 범인은 '
         this.RailSuspectName = new NeuContainer()
         this.RailSuspectName.data.FontSize = Typography.Size.TitleMedium
         this.RailSuspectName.data.TextColor = colorScheme.onSecondaryContainer
         this.RailSuspectName.data.FontWeight = 'bold'
         this.RailSuspectName.data.JustifyContent = 'center'
-        this.RailSuspectName.data.Text = '???'
+        this.RailSuspectName.Text.data.Content = '???'
         this.RailEnd = new NeuContainer()
         this.RailEnd.data.FontSize = Typography.Size.TitleMedium
         this.RailEnd.data.TextColor = colorScheme.onSecondaryContainer
         this.RailEnd.data.JustifyContent = 'center'
-        this.RailEnd.data.Text = '입니다'
+        this.RailEnd.Text.data.Content = '입니다'
         this.RailFirstLine.addChild(this.RailCurrentTimeLine)
         this.RailFirstLine.addChild(this.RailSuspectName)
         this.RailFirstLine.addChild(this.RailEnd)
@@ -225,13 +225,13 @@ export class FinishScreen extends NeuContainer {
         this.selectedJob = "???"
 
         this.submitButton = new CommonButton()
-        this.submitButton.data.Text = '결과 제출하고 확인하기'
+        this.submitButton.Text.data.Content = '결과 제출하고 확인하기'
         this.submitButton.watchEvent('click', function() {
             let checker = new BasicDialogs()
-            checker.Icon.data.Text = 'psychology_alt'
-            checker.Headline.data.Text = '정말로 끝내시겠어요?'
-            checker.SupportingText.data.Text = `당신이 선택한 범인은 ${this.selectedJob} 입니다`
-            checker.TextButton.data.Text = '확인'
+            checker.Icon.Text.data.Content = 'psychology_alt'
+            checker.Headline.Text.data.Content = '정말로 끝내시겠어요?'
+            checker.SupportingText.Text.data.Content = `당신이 선택한 범인은 ${this.selectedJob} 입니다`
+            checker.TextButton.Text.data.Content = '확인'
             checker.TextButton.watchEvent('click', function() {
                 let route = cvt(this.parent.routed)
                 if (this.RailSuspectName.data.Text == route) {
@@ -249,7 +249,7 @@ export class FinishScreen extends NeuContainer {
                 }
                 this.parent.showExScreen(this.targetResultScreen)
             }.bind(this))
-            checker.CloseButton.data.Text = '취소'
+            checker.CloseButton.Text.data.Content = '취소'
             checker.Scrim.data.JustifyContent = 'flex-start'
             checker.Container.data.Margin = '120px'
             window.modal.addInteractiveModal(checker)

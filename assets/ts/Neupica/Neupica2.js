@@ -2,12 +2,11 @@ import { Ascii } from "../Utils/Ascii.js";
 import { initIndex } from "./Console/Index.js";
 import { initWindow } from "./DOM/Window.js";
 import { initGlobal } from "./Console/Global.js";
-import { initFloat } from "./Core/Floating.js";
 import { getScript } from "./DOM/Contents.js";
 initWindow();
 initIndex();
 initGlobal();
-initFloat();
+// initFloat()
 getScript('https://cdn.jsdelivr.net/npm/ripplet.js@1.1.0');
 function solveBootingStack() {
     let bootList = localStorage.getItem("bootList");
@@ -23,8 +22,8 @@ window.appList = [];
 window.onLoads = [];
 window.solved = false;
 window.loaded = false;
-window.name = "Neupica 2b";
-window.version = '2.2.0b';
+window.name = "Neupica 2c";
+window.version = '2.2.2c';
 window.mode = 'development';
 // window.mode = 'shipping'
 function boot() {
@@ -68,8 +67,8 @@ export function runApp(app) {
     return app;
 }
 // window.runApp = runApp
-export function thisClass(element) {
-    return window.Index.getItem(element.id);
-}
+// export function thisClass(element) {
+//     return window.Index.getItem(element.id)
+// }
 // window.thisClass = thisClass
 //# sourceMappingURL=Neupica2.js.map

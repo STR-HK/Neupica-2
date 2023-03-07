@@ -12,7 +12,7 @@ export function work() {
     })
 
     ipt.watchEvent('input', function() {
-        txt.data.Text = ipt.data.Value
+        txt.Text.data.Content = ipt.data.Value
     })
 
     setInterval(function() {

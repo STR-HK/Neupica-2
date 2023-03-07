@@ -1,12 +1,13 @@
 import { NeuContainer } from "./NeuContainer.js";
 export class NeuImage extends NeuContainer {
     constructor() {
-        super();
+        super("NeuImage");
         this.name = "NeuImage";
         this.data = {
-            ...new NeuContainer().data,
+            ...new NeuContainer("NeuImage").data,
             Src: "",
             ObjectFit: "",
+            ContextMenu: true,
         };
         this.build();
         this.removeChild(this.element);
@@ -95,6 +96,13 @@ export class NeuImage extends NeuContainer {
     }
     ObjectFit() {
         this.element.style.objectFit = this.data.ObjectFit;
+    }
+    ContextMenu() {
+        this.element.addEventListener('contextmenu', function (event) {
+            {
+                event.preventDefault();
+            }
+        });
     }
 }
 //# sourceMappingURL=NeuImage.js.map

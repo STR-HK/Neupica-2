@@ -19,7 +19,7 @@ class ElementTest extends NeuApp {
         // this.layout.data.BackgroundColor = '#C6CCD7'
 
         this.text = new NeuContainer()
-        this.text.data.Text = "This is NeuText demo"
+        this.text.Text.data.Content = "This is NeuText demo"
         this.text.data.FontSize = '32px'
         this.text.geometry.Padding = '10px'
         this.layout.addChild(this.text)
@@ -38,15 +38,15 @@ class ElementTest extends NeuApp {
 
         this.label = new NeuLabel()
         this.label.data.CursorPos = 0
-        this.label.data.Cursor.data.Text = '가'
+        this.label.data.Cursor.Text.data.Content = '가'
         this.label.data.Cursor.data.TextColor = 'red'
         this.label.data.Cursor.data.FontSize = '32px'
         this.label.data.CursorPos = 1
-        this.label.data.Cursor.data.Text = '나'
+        this.label.data.Cursor.Text.data.Content = '나'
         this.label.data.Cursor.data.TextColor = 'orange'
         this.label.data.Cursor.data.FontSize = '32px'
         this.label.data.CursorPos = 2
-        this.label.data.Cursor.data.Text = '다'
+        this.label.data.Cursor.Text.data.Content = '다'
         this.label.data.Cursor.data.TextColor = 'yellow'
         this.label.data.Cursor.data.FontSize = '32px'
         this.layout.addChild(this.label)

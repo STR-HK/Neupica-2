@@ -59,9 +59,9 @@ function attachFunction(element) {
 function attachToCover(element) {
     return attachFunction(element);
 }
-let NeuMode = true;
+let NeuMode = false;
 let Indexing = true;
-let Covering = false;
+let Covering = true;
 export let Bounding = "NeuBound";
 Bounding = "_";
 export let Cover = "NeuCover";
@@ -72,8 +72,30 @@ function newCreateElement(tagName) {
     intersectionObserver.observe(element);
     return element;
 }
+function camelCaseToSnakeCase(text) {
+    let original = text;
+    let upper = text.toUpperCase();
+    let converted = "";
+    for (let i = 0; i < original.length; i++) {
+        let originalLetter = original[i];
+        let upperLetter = upper[i];
+        if (i == 0) {
+            converted += originalLetter.toLowerCase();
+        }
+        else if (originalLetter != upperLetter) {
+            converted += originalLetter;
+        }
+        else {
+            converted += '_';
+            converted += originalLetter.toLowerCase();
+        }
+    }
+    return converted;
+}
 export function createCover(name) {
-    let element = newCreateElement("div");
+    // let element: HTMLDivElement = newCreateElement("div")
+    // console.log(name)
+    let element = newCreateElement(camelCaseToSnakeCase(name));
     let Uelement = attachFunction(element);
     if (NeuMode) {
         Uelement.id = name + "-" + makeId(6);
@@ -105,7 +127,7 @@ export function createModal() {
     return Uelement;
 }
 export function createDiv() {
-    let element = newCreateElement("div");
+    let element = newCreateElement('n');
     let Uelement = attachFunction(element);
     if (NeuMode) {
         Uelement.id = "NeuDiv-" + makeId(6);

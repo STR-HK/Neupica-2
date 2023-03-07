@@ -1,15 +1,17 @@
 import { NeuContainer } from "../../../../Native/NeuContainer.js"
 import { colorScheme } from "../../Styles/Color.js"
 import { Level2 } from "../../Styles/Elevation.js"
-import { Padding } from "../../../../../../Tool/Padding.js"
+import { Box } from "../../../../../../Tool/Box.js"
 // import { MaterialSymbolsOutlined } from "../../Components/Icons"
-import { NeuText } from "../../../../Native/NeuText"
+// import { NeuText } from "../../../../Native/NeuText"
 import { MaterialSymbolsOutlined } from "../../Styles/Icons.js"
 import { Divider } from "../Containment/Divider.js"
 import { Typography } from "../../Styles/Typography.js"
+import anime from "../../Styles/Motion/anime.es.js"
 
 export class Menu extends NeuContainer {
     public Container: NeuContainer
+    private animating: boolean
     constructor() {
         super()
 
@@ -23,8 +25,52 @@ export class Menu extends NeuContainer {
         this.Container.geometry.Width = '212rem'
         this.Container.geometry.MaxWidth = '280rem'
 
+        this.geometry.Transform = 'scaleY(0)'
+        this.geometry.TransformOrigin = '50% 0 0'
+
         this.addChild(this.Container)
+
+        this.animating = false
     }
+
+    Appear() {
+        let that = this
+        if (!this.animating) {
+            anime({
+                targets: this.element,
+                scaleY: 1,
+                begin: function() {
+                    that.animating = true
+                },
+                complete: function() {
+                    that.animating = false
+                }
+            })
+        }
+    }
+
+    DisAppear(callback) {
+        // let that = this
+        // if (!this.animating) {
+        //     anime({
+        //         targets: this.element,
+        //         scaleY: 0,
+        //         easing: 'easeOutElastic(1, .5)',
+        //         duration: 1000,
+        //         // loop: true,
+        //         begin: function() {
+        //             that.animating = true
+        //         },
+        //         complete: function() {
+        //             that.animating = false
+        //         }
+        //     })
+        //     callback()
+
+        // }
+        // console.log(callback)
+    }
+
 }
 
 export class MenuItem extends NeuContainer {
@@ -38,7 +84,7 @@ export class MenuItem extends NeuContainer {
 
         this.geometry.Height = '48rem'
         this.geometry.Width = '100%'
-        this.data.Padding = new Padding().VH('4rem', '12rem')
+        this.data.Padding = new Box().VH('4rem', '12rem')
         this.data.Symmetric = 'horizontal'
         this.data.AlignItems = 'center'
 
@@ -52,7 +98,7 @@ export class MenuItem extends NeuContainer {
 
         this.LabelText = new NeuContainer()
         this.LabelText.data.TextColor = colorScheme.onSurface
-        this.LabelText.data.Text = 'Item 1'
+        this.LabelText.Text.data.Content = 'Item 1'
         this.LabelText.geometry.MinWidth = 'fit-content'
         this.LabelText.data.FontSize = Typography.Size.LabelLarge
         this.addChild(this.LabelText)
@@ -85,6 +131,6 @@ export class MenuDivider extends Divider {
     constructor() {
         super()
 
-        this.geometry.Margin = new Padding().vertical('8rem')
+        this.geometry.Margin = new Box().vertical('8rem')
     }
 }

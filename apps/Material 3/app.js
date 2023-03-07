@@ -22,7 +22,7 @@ import { Cards } from "../../assets/ts/Neupica/Components/Custom/Material3/Compo
 import { Typography } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Typography.js"
 import { NeuImage } from "../../assets/ts/Neupica/Components/Native/NeuImage.js"
 import { TextButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/TextButton.js"
-import { Padding } from "../../assets/ts/Tool/Padding.js"
+import { Box } from "../../assets/ts/Tool/Box.js"
 import { SegmentedButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/SegmentedButton.js"
 import {
     FloatingActionButtons
@@ -35,8 +35,30 @@ import { initModal } from "../../assets/ts/Neupica/Core/Modal.js"
 // import { ro } from "../../assets/ts/Common/Updater.js"
 import { resizeObserver } from "../../assets/ts/Common/Updater.js"
 import { SmallBadge } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Communication/Badges/SmallBadge.js"
+import { Dialogs } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Containment/Dialogs/Dialogs.js"
+import anime from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Motion/anime.es.js"
+import { Native } from "../../assets/ts/Neupica/Components/Native/Native.js"
 
 initModal()
+
+export class M3 extends NeuApp {
+    constructor() {
+        super()
+        this.layout = new NeuScaffold()
+
+        this.TopAppBar = new TopAppBar()
+        this.TopAppBarLeadingIcon = new MaterialSymbolsOutlined('menu')
+        this.TopAppBarLeadingIconButton = new IconButton(this.TopAppBarLeadingIcon)
+        this.TopAppBar.setLeading(this.TopAppBarLeadingIconButton)
+        this.TopAppBarHeadline = new TextButton()
+        this.TopAppBarHeadline.Text.data.Content = 'Neupica Material 3'
+        this.TopAppBar.HeadLine.geometry.Margin = '0'
+        this.TopAppBar.HeadLine.addChild(this.TopAppBarHeadline)
+        this.layout.head.addChild(this.TopAppBar)
+
+        this.draw('#App')
+    }
+}
 
 export class Material3 extends NeuApp {
     constructor() {
@@ -44,6 +66,8 @@ export class Material3 extends NeuApp {
         this.layout = new NeuScaffold()
         this.layout.data.BackgroundColor = colorScheme.background
         this.setFullScreen(true)
+
+
 
         this.head = this.layout.head
         this.body = this.layout.body
@@ -92,7 +116,7 @@ export class Material3 extends NeuApp {
             this.themeModeIconButton,
             this.calendarIconButton
         ])
-        this.head.addChild(this.appbar)
+        this.head.setAppBar(this.appbar)
 
         this.homeScreen = new NeuContainer()
         this.homeScreen.geometry.Height = '100%'
@@ -103,8 +127,12 @@ export class Material3 extends NeuApp {
         this.extraScreen = new NeuContainer()
         this.extraScreen.geometry.Height = '100%'
         this.extraScreen.geometry.Width = '100%'
+        this.paletteScreen = new NeuContainer()
+        this.paletteScreen.geometry.Height = '100%'
+        this.paletteScreen.geometry.Width = '100%'
 
-        let initHomeScreen = function () {
+
+            let initHomeScreen = function () {
             this.homeScreen.data.AlignItems = 'center'
             this.homeScreen.data.Gap = '4rem'
 
@@ -116,7 +144,7 @@ export class Material3 extends NeuApp {
             this.homeScreen.addChild(this.iooper)
 
             this.titleChangeButton = new CommonButton()
-            this.titleChangeButton.data.Text = 'Show Modal'
+            this.titleChangeButton.Text.data.Content = 'Show Modal'
             this.iooper.addChild(this.titleChangeButton)
             this.titleChangeButton.watchEvent('click', function() {
                 this.backlog = new NeuContainer()
@@ -132,15 +160,15 @@ export class Material3 extends NeuApp {
                 })
 
                 this.cm = new CommonButton()
-                this.cm.data.Text = 'Modaled Button Demo'
+                this.cm.Text.data.Content = 'Modaled Button Demo'
                 this.backlog.addChild(this.cm)
 
                 this.ncm = new CommonButton()
-                this.ncm.data.Text = 'Modaled Button Demo'
+                this.ncm.Text.data.Content = 'Modaled Button Demo'
                 this.backlog.addChild(this.ncm)
 
                 this.close = new OutlinedButton()
-                this.close.data.Text = 'CLOSE'
+                this.close.Text.data.Content = 'CLOSE'
                 this.backlog.addChild(this.close)
                 this.close.watchEvent('click', function() {
                     window.modal.removeModal(this)
@@ -150,7 +178,7 @@ export class Material3 extends NeuApp {
             })
 
             this.snackingButton = new CommonButton()
-            this.snackingButton.data.Text = 'SnackingBar OPEN!'
+            this.snackingButton.Text.data.Content = 'SnackingBar OPEN!'
             this.iooper.addChild(this.snackingButton)
 
             this.snackingButton.watchEvent('click', function() {
@@ -172,13 +200,25 @@ export class Material3 extends NeuApp {
             this.homeScreen.addChild(this.seg)
 
             this.outlinedButton = new OutlinedButton()
-            this.outlinedButton.data.Text = 'Toggle all switches'
+            this.outlinedButton.Text.data.Content = 'Toggle all switches'
             this.homeScreen.addChild(this.outlinedButton)
             this.outlinedButton.watchEvent('click', function() {
                 this.sss.forEach(e => {
                     e.Toggle()
                 })
             }.bind(this))
+
+            this.inspectButton = new CommonButton()
+                this.inspectButton.Text.data.Content = 'Start Inspecting'
+                this.inspectButton.watchEvent('click', function() {
+                    if (window.inspect) {
+                        window.inspect = !window.inspect
+                    } else {
+                        window.inspect = !window.inspect
+                    }
+                }.bind(this))
+
+                this.homeScreen.addChild(this.inspectButton)
 
             this.sss = []
 
@@ -197,14 +237,14 @@ export class Material3 extends NeuApp {
             this.homeScreen.addChild(this.hbox)
 
             this.filledButton = new FilledButton()
-            this.filledButton.data.Text = 'Reset Theme Color'
+            this.filledButton.Text.data.Content = 'Reset Theme Color'
             this.hbox.addChild(this.filledButton)
             this.filledButton.watchEvent('click', function() {
                 localStorage.removeItem('themeColor')
             })
 
             this.Reload = new FilledButton()
-            this.Reload.data.Text = 'RELOAD'
+            this.Reload.Text.data.Content = 'RELOAD'
             this.hbox.addChild(this.Reload)
             this.Reload.watchEvent('click', function() {
                 window.location.reload()
@@ -215,7 +255,7 @@ export class Material3 extends NeuApp {
             this.homeScreen.addChild(this.ipt)
 
             this.appl = new CommonButton()
-            this.appl.data.Text = 'Apply Textfield Text to Title'
+            this.appl.Text.data.Content = 'Apply Textfield Text to Title'
             this.appl.watchEvent('click', function() {
                 this.appbar.setHeadline(this.ipt.Input.data.Value)
                 this.appbar.setHeadline(this.ipt.Input.data.Value)
@@ -223,7 +263,7 @@ export class Material3 extends NeuApp {
             this.homeScreen.addChild(this.appl)
 
             this.menuButton = new OutlinedButton()
-            this.menuButton.data.Text = 'OPEN MENU'
+            this.menuButton.Text.data.Content = 'OPEN MENU'
             this.menuButton.watchEvent('click', function() {
                 // function getOffset( el ) {
                 //     var _x = 0;
@@ -247,6 +287,7 @@ export class Material3 extends NeuApp {
                 ])
                 // this.homeScreen.addChild(menu)
                 window.modal.addInteractiveModal(menu)
+                menu.Appear()
 
                 let datum = this.menuButton.getBoundElement().getBoundingClientRect()
                 // console.log(datum)
@@ -258,18 +299,19 @@ export class Material3 extends NeuApp {
 
                 // console.log( menu.Container.children[0])
                 menu.children[0].watchEvent('click', function() {
-                    setTimeout(function() {
-                        window.modal.removeModal(menu)
-                        // this.homeScreen.removeChild(menu)
-                    }.bind(this), 100)
+                    window.modal.removeModal(menu)
                 }.bind(this))
             }.bind(this))
             this.homeScreen.addChild(this.menuButton)
 
 
             this.crd1 = new Cards()
+            // this.crd1.ActivateRipple()
             this.crd1.Button.watchEvent('click', function() {
-                window.modal.addInteractiveModal(new BasicDialogs())
+                let dia = new BasicDialogs()
+                dia.Headline.data.Content = 'Buy Ticket?'
+                window.modal.addInteractiveModal(dia)
+                dia.Appear()
             }.bind(this))
             this.homeScreen.addChild(this.crd1)
 
@@ -278,7 +320,7 @@ export class Material3 extends NeuApp {
             // this.homeScreen.addChild(this.ipt2)
 
             this.platFormInfo = new FilledButton()
-            this.platFormInfo.data.Text = 'Get PLATFORM Info'
+            this.platFormInfo.Text.data.Content = 'Get PLATFORM Info'
             this.platFormInfo.watchEvent('click', function() {
                 function getPlatform() {
                     {
@@ -468,8 +510,10 @@ export class Material3 extends NeuApp {
                 }
 
                 let jscd = getPlatform(this)
-                alert(
-                    'OS: ' + jscd.os +' '+ jscd.osVersion + '\n' +
+                let dia = new BasicDialogs()
+                dia.Icon.Text.data.Content = 'insights'
+                dia.Headline.Text.data.Content = 'Platform Information'
+                dia.SupportingText.Text.data.Content = 'OS: ' + jscd.os +' '+ jscd.osVersion + '\n' +
                     'Browser: ' + jscd.browser +' '+ jscd.browserMajorVersion +
                     ' (' + jscd.browserVersion + ')\n' +
                     'Mobile: ' + jscd.mobile + '\n' +
@@ -477,7 +521,8 @@ export class Material3 extends NeuApp {
                     'Cookies: ' + jscd.cookies + '\n' +
                     'Screen Size: ' + jscd.screen + '\n\n' +
                     'Full User Agent: ' + navigator.userAgent
-                );
+                window.modal.addInteractiveModal(dia)
+                dia.Appear()
             })
             this.homeScreen.addChild(this.platFormInfo)
 
@@ -487,7 +532,7 @@ export class Material3 extends NeuApp {
 
             for (let i =0; i < 100; i++) {
                 let v = new NeuContainer()
-                v.data.Text = `${i.toString()}| This is temporary container text`
+                v.data.Content = `${i.toString()}| This is temporary container text`
                 v.data.FontSize = '12rem'
                 v.data.TextColor = colorScheme.onBackground
                 this.homeScreen.addChild(v)
@@ -504,10 +549,10 @@ export class Material3 extends NeuApp {
             this.time.data.FontSize = Typography.Size.DisplayLarge
             this.time.data.TextColor = colorScheme.onBackground
             this.time.data.FontWeight = 'bold'
-            this.time.data.Text = '23:06'
+            this.time.data.Content = '23:06'
             setInterval(
                 function() {
-                this.time.data.Text = new Intl.DateTimeFormat(
+                this.time.data.Content = new Intl.DateTimeFormat(
                     "en",
                     {
                         timeStyle: 'short',
@@ -522,14 +567,14 @@ export class Material3 extends NeuApp {
             this.lavenderScreen.addChild(this.time)
 
             this.today = new NeuContainer()
-            this.today.data.Text = 'TODAY IS'
+            this.today.data.Content = 'TODAY IS'
             this.today.data.FontSize = Typography.Size.TitleSmall
             this.today.data.TextColor = colorScheme.onBackground
             this.today.data.FontStyle = 'italic'
             this.lavenderScreen.addChild(this.today)
 
             this.date = new NeuContainer()
-            this.date.data.Text = 'December 1st, 2022'
+            this.date.data.Content = 'December 1st, 2022'
             this.date.data.FontSize = Typography.Size.TitleSmall
             this.date.data.TextColor = colorScheme.onBackground
             this.lavenderScreen.addChild(this.date)
@@ -545,19 +590,19 @@ export class Material3 extends NeuApp {
             this.lavenderScreen.addChild(this.weatherBox)
 
             this.temperature = new NeuContainer()
-            this.temperature.data.Text = '-1'
+            this.temperature.data.Content = '-1'
             this.temperature.data.FontSize = Typography.Size.TitleSmall
             this.temperature.data.TextColor = colorScheme.onBackground
             this.weatherBox.addChild(this.temperature)
 
             this.weatherIcon = new MaterialSymbolsOutlined()
-            this.weatherIcon.data.Text = 'air'
+            this.weatherIcon.data.Content = 'air'
             this.weatherIcon.data.FontSize = Typography.Size.DisplayMedium
             this.weatherIcon.data.TextColor = colorScheme.onBackground
             this.weatherBox.addChild(this.weatherIcon)
 
             this.weather = new NeuContainer()
-            this.weather.data.Text = 'CLOUDY'
+            this.weather.data.Content = 'CLOUDY'
             this.weather.data.FontSize = Typography.Size.TitleSmall
             this.weather.data.TextColor = colorScheme.onBackground
             this.weatherBox.addChild(this.weather)
@@ -568,14 +613,52 @@ export class Material3 extends NeuApp {
         let initExtraScreen = function () {
             this.extraScreen.data.AlignItems = 'center'
             // this.extraScreen.geometry.Width = '100%'
-            this.extraScreen.data.Padding = new Padding().horizontal('7.5%')
+            this.extraScreen.data.Padding = new Box().horizontal('7.5%')
             this.extraScreen.data.Gap = '12rem'
 
             this.albumImage = new NeuImage()
             this.albumImage.data.Src = 'https://upload.wikimedia.org/wikipedia/en/2/2a/Charlie_Puth_-_Light_Switch.png'
             this.albumImage.geometry.Width = '100%'
             this.albumImage.data.BorderRadius = '12rem'
+            this.albumImage.data.ContextMenu = false
             this.extraScreen.addChild(this.albumImage)
+            // this.albumImage.ActivateRipple()
+
+
+            this.RippleNames = [
+                'pointerdown',
+                'pointerup',
+                'pointerleave'
+            ]
+
+            this.albumImage.watchEvent('pointerdown', function() {
+                anime({
+                    targets: this.albumImage.element,
+                    scale: 0.9,
+                })
+            }.bind(this))
+
+            this.albumImage.watchEvent('pointerup', function() {
+                anime({
+                    targets: this.albumImage.element,
+                    scale: 1,
+                })
+            }.bind(this))
+
+            this.albumImage.watchEvent('pointerup', function() {
+                anime({
+                    targets: this.albumImage.element,
+                    scale: 1,
+                })
+            }.bind(this))
+
+            this.albumImage.watchEvent('pointerout', function() {
+                anime({
+                    targets: this.albumImage.element,
+                    scale: 1,
+                })
+            }.bind(this))
+
 
 
             this.informationLine = new NeuContainer()
@@ -585,13 +668,13 @@ export class Material3 extends NeuApp {
             this.extraScreen.addChild(this.informationLine)
 
             this.albumTitle = new NeuContainer()
-            this.albumTitle.data.Text = 'Light Switch'
+            this.albumTitle.data.Content = 'Light Switch'
             this.albumTitle.data.TextColor = colorScheme.onBackground
             this.albumTitle.data.FontSize = Typography.Size.TitleLarge
             this.informationLine.addChild(this.albumTitle)
 
             this.albumAuthor = new NeuContainer()
-            this.albumAuthor.data.Text = 'Charlie Puth'
+            this.albumAuthor.data.Content = 'Charlie Puth'
             this.albumAuthor.data.TextColor = colorScheme.onBackground
             this.albumAuthor.data.FontSize = Typography.Size.TitleSmall
             this.informationLine.addChild(this.albumAuthor)
@@ -603,7 +686,7 @@ export class Material3 extends NeuApp {
 
             this.shuffleTool = new TextButton()
             this.shuffleToolIcon = new MaterialSymbolsOutlined()
-            this.shuffleToolIcon.data.Text = 'shuffle'
+            this.shuffleToolIcon.data.Content = 'shuffle'
             this.shuffleTool.data.AlignItems = 'center'
             this.shuffleToolIcon.data.FontSize = Typography.Size.TitleMedium
             this.shuffleTool.addChild(this.shuffleToolIcon)
@@ -613,7 +696,7 @@ export class Material3 extends NeuApp {
 
             this.previousTool = new TextButton()
             this.previousToolIcon = new MaterialSymbolsOutlined()
-            this.previousToolIcon.data.Text = 'skip_previous'
+            this.previousToolIcon.data.Content = 'skip_previous'
             this.previousTool.data.AlignItems = 'center'
             this.previousToolIcon.data.FontSize = Typography.Size.TitleMedium
             this.previousTool.addChild(this.previousToolIcon)
@@ -623,7 +706,7 @@ export class Material3 extends NeuApp {
 
             this.pauseTool = new FilledButton()
             this.pauseToolIcon = new MaterialSymbolsOutlined()
-            this.pauseToolIcon.data.Text = 'play_arrow'
+            this.pauseToolIcon.data.Content = 'play_arrow'
             this.pauseTool.data.AlignItems = 'center'
             this.pauseToolIcon.data.FontSize = Typography.Size.TitleMedium
             this.pauseTool.addChild(this.pauseToolIcon)
@@ -633,7 +716,7 @@ export class Material3 extends NeuApp {
 
             this.nextTool = new TextButton()
             this.nextToolIcon = new MaterialSymbolsOutlined()
-            this.nextToolIcon.data.Text = 'skip_next'
+            this.nextToolIcon.data.Content = 'skip_next'
             this.nextTool.data.AlignItems = 'center'
             this.nextToolIcon.data.FontSize = Typography.Size.TitleMedium
             this.nextTool.addChild(this.nextToolIcon)
@@ -643,7 +726,7 @@ export class Material3 extends NeuApp {
 
             this.repeatTool = new TextButton()
             this.repeatToolIcon = new MaterialSymbolsOutlined()
-            this.repeatToolIcon.data.Text = 'repeat'
+            this.repeatToolIcon.data.Content = 'repeat'
             this.repeatTool.data.AlignItems = 'center'
             this.repeatToolIcon.data.FontSize = Typography.Size.TitleMedium
             this.repeatTool.addChild(this.repeatToolIcon)
@@ -655,81 +738,137 @@ export class Material3 extends NeuApp {
                 prompt('Repeat time? (0~99)')
             }.bind(this))
 
-            this.albumImage.ActivateRipple()
 
 
             this.informationLine = new NeuContainer()
         }.bind(this)
         initExtraScreen()
 
+        let initPaletteScreen = function() {
+            // this.paletteScreen.
+        }.bind(this)
+        initPaletteScreen()
+
         this.btm = new NavigationBar()
         this.foot.addChild(this.btm)
 
         this.items = []
 
+        let that = this
+
+        function bodyFadeIn() {
+            that.layout.body.geometry.Transform = 'scale(0.75)'
+            anime({
+                targets: that.layout.body.element,
+                scale: 1,
+            })
+        }
+
         this.navBarItem1 = new NavigationBarItem()
-        this.navBarItem1.Icon.data.Text = 'spa'
-        this.navBarItem1.Label.data.Text = 'Lavender'
+        this.navBarItem1.Icon.data.Content = 'spa'
+        this.navBarItem1.Label.data.Content = 'Lavender'
         this.btm.addChild(this.navBarItem1)
         this.navBarItem1.watchEvent('click', function() {
-            this.menuIcon.data.Text = 'spa'
+            this.menuIcon.data.Content = 'spa'
             this.appbar.setHeadline('Lavender')
             this.body.clearChildren()
             this.body.addChild(this.lavenderScreen)
+            bodyFadeIn()
         }.bind(this))
         // this.navBarItem1.element.click()
 
         let badge = new SmallBadge()
-        this.addWaitForEvent(function() {
+        this.navBarItem1.relate(function() {
+            console.log(badge)
             let badgeInfo = this.navBarItem1.getBoundingClientRect()
-            // console.log(badgeInfo)
-
-            // let cnt = new NeuContainer()
-            // cnt.geometry.Width = badgeInfo.width + 'px'
-            // cnt.geometry.Height = badgeInfo.height + 'px'
-            // cnt.geometry.Top = badgeInfo.top + 'px'
-            // cnt.geometry.Left = badgeInfo.left + 'px'
-            // cnt.data.BackgroundColor = 'red'
-            // window.modal.addModal(cnt)
-
             badge.geometry.Top = badgeInfo.top + badgeInfo.height / 2 - 24 + 'px'
             badge.geometry.Left = badgeInfo.width / 2 + badge.getBoundingClientRect().width+ 'px'
         }.bind(this))
+        // this.addWaitForEvent(function() {
+        //
+        // }.bind(this))
         window.modal.addInteractiveModal(badge)
         // let badgeLayout = window.modal.getLayer(badge)
 
-
-
-
         this.navBarItem2 = new NavigationBarItem()
-        this.navBarItem2.Icon.data.Text = 'token'
-        this.navBarItem2.Label.data.Text = 'Home'
+        this.navBarItem2.Icon.data.Content = 'token'
+        this.navBarItem2.Label.data.Content = 'Home'
         this.btm.addChild(this.navBarItem2)
         this.navBarItem2.watchEvent('click', function() {
-            this.menuIcon.data.Text = 'specific_gravity'
+            this.menuIcon.data.Content = 'specific_gravity'
             this.appbar.setHeadline('Material 3')
             this.body.clearChildren()
             this.body.addChild(this.homeScreen)
+            bodyFadeIn()
+
         }.bind(this))
         this.navBarItem2.element.click()
 
 
         this.navBarItem3 = new NavigationBarItem()
-        this.navBarItem3.Icon.data.Text = 'water_drop'
-        this.navBarItem3.Label.data.Text = 'Preference'
+        this.navBarItem3.Icon.data.Content = 'water_drop'
+        this.navBarItem3.Label.data.Content = 'Preference'
         this.btm.addChild(this.navBarItem3)
         this.navBarItem3.watchEvent('click', function() {
-            this.menuIcon.data.Text = 'water_drop'
+            this.menuIcon.data.Content = 'water_drop'
             this.appbar.setHeadline('Water is Dropping')
             this.body.clearChildren()
             this.body.addChild(this.extraScreen)
+            bodyFadeIn()
+
         }.bind(this))
 
+
+        this.navBarItem4 = new NavigationBarItem()
+        this.navBarItem4.Icon.data.Content = 'palette'
+        this.navBarItem4.Label.data.Content = 'Palette'
+        this.btm.addChild(this.navBarItem4)
+        this.navBarItem4.watchEvent('click', function() {
+            this.menuIcon.data.Content = 'palette'
+            this.appbar.setHeadline("Year's Color Palette")
+            this.body.clearChildren()
+            this.body.addChild(this.paletteScreen)
+            bodyFadeIn()
+
+        }.bind(this))
+
+
+        // function recursive(children) {
+        //     children.forEach(e => {
+        //         console.log(e.children.length)
+        //         if (e.children.length == 0) {
+        //             console.warn('killed')
+        //             return
+        //         } else {
+        //             console.log('logged')
+        //             setInterval(function() {
+        //                 this.data.Border = '1px solid red'
+        //             }.bind(e), 100)
+        //             recursive(e.children)
+        //         }
+        //     })
+        // }
+        // setInterval(function() {
+        //     recursive([this.layout])
+        // }.bind(this), 1000)
 
         this.setLayout(this.layout)
 
         this.draw('#App')
     }
 }
-
+// export let rapp = runApp(new M3())
 export let app = runApp(new Material3())
+
+window.onbeforeunload = function(e) {
+    e.preventDefault()
+    console.log(e)
+    // return false
+    // e.returnValue = ''
+    return undefined
+};
+
+// window.onunload = function(e) {
+//     e.preventDefault()
+//     console.log(e.defaultPrevented)
+// }

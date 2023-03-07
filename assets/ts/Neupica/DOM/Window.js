@@ -1,6 +1,7 @@
 import { Content } from "./Contents.js"
 
 export function initWindow() {
+    // console.log('initWindow')
     window.WindowManager = new (class WindowManager {
         constructor() {
             this.windowList = {
@@ -43,4 +44,6 @@ export function initWindow() {
             console.log(`[WM] addApp: ${content}`)
         }
     })()
+    // console.log(window.WindowManager)
+
 }

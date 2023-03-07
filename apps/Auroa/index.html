@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        If you are serving your web app in a path other than the root, change the
+        href value below to reflect the base path you are serving from.
+
+        The path provided below has to start and end with a slash "/" in order for
+        it to work correctly.
+
+        For more details:
+        * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+    -->
+    <base href="/Neupica-2/apps/Auroa/">
+<!--    <base href="/apps/Auroa/">-->
+
+    <meta charset="UTF-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="description" content="An aesthetic app for time planning!">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+    <!-- iOS meta tags & icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="acies">
+    <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png"/>
+
+    <title>Auroa Web</title>
+    <!-- <link rel="manifest" href="manifest.json">-->
+
+    <script>
+        // The value below is injected by neupica build, do not touch.
+        var serviceWorkerVersion = '22212224';
+
+    </script>
+
+    <script src="./neupica.js" defer type="module"></script>
+
+    <style>
+        #fit-scene {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="./main.js" defer type="module"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--    <script type="module">-->
+<!--        import AuroaMain from "./main.js";-->
+
+<!--        window.addEventListener('load', function(ev) {-->
+<!--        // Run App in main.js-->
+<!--            neupica.loader.loadEntrypoint({-->
+<!--                serviceWorker: {-->
+<!--                    serviceWorkerVersion: serviceWorkerVersion,-->
+<!--                },-->
+<!--                appRunnerApp: new AuroaMain(),-->
+<!--                onEntrypointLoaded: function(engineInitializer) {-->
+<!--                    engineInitializer.initializeEngine().then(function(appRunner) {-->
+<!--                        appRunner.runApp();-->
+<!--                });-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+<div id="fit-scene">
+
+</div>
+<!--    <flt-glass-pane style="position: absolute; inset: 0px; cursor: default;">-->
+<!--        <flt-scene-host style="pointer-events: none;">-->
+<!--            <flt-scene>-->
+<!--                <flt-canvas-container>-->
+<!--                    <div width="1278" height="619"-->
+<!--                            aria-hidden="true"-->
+<!--                            style="position: absolute;-->
+<!--                            width: 1278px; height: 619px;-->
+<!--                            transform: translate(0px, 0px);"-->
+<!--                    >-->
+
+<!--                    </div>-->
+<!--                </flt-canvas-container>-->
+<!--            </flt-scene>-->
+<!--        </flt-scene-host>-->
+<!--    </flt-glass-pane>-->
+</body>
+</html>

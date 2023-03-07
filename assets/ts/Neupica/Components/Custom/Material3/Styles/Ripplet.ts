@@ -21,8 +21,9 @@ const target2container2ripplet = new Map<Element, Map<RippletContainerElement, H
 let containerContainerTemplate: HTMLElement
 
 const findElementAppendTo = (target: Element, appendTo: string | null): Element => {
+    // return document.body
     if (appendTo && appendTo !== 'auto') {
-        return appendTo === 'target' ? target : appendTo === 'parent' ? target.parentElement! : document.querySelector(appendTo)!
+        return appendTo === 'target' ? target : appendTo === 'parent' ? target.parentElement! : appendTo!
     }
     while (
         target &&
@@ -61,18 +62,17 @@ function ripplet(
             {},
         )
         : defaultOptions
-
     if (!containerContainerTemplate) {
         const _containerContainerTemplate = document.createElement('div')
         _containerContainerTemplate.innerHTML =
             '<div style="float:left;position:absolute;isolation:isolate;pointer-events:none"><div style="position:absolute;overflow:hidden;transform-origin:0 0"><div style="border-radius:50%;transform:scale(0)"></div></div></div>'
         containerContainerTemplate = _containerContainerTemplate.firstChild as HTMLElement
     }
-
     const targetRect = currentTarget.getBoundingClientRect()
     if (options.centered && options.centered !== 'false') {
         clientX = targetRect.left + targetRect.width * 0.5
         clientY = targetRect.top + targetRect.height * 0.5
+
     } else if (typeof clientX !== 'number' || typeof clientY !== 'number') {
         return
     } else {
@@ -86,7 +86,6 @@ function ripplet(
         return match ? targetStyle.getPropertyValue(match[1]!) : value
     }
     const elementAppendTo = findElementAppendTo(currentTarget, options.appendTo)
-
     const containerContainerElement: RippletContainerElement = elementAppendTo.appendChild(containerContainerTemplate.cloneNode(true)) as any
     // containerContainerElement.style.zIndex = ((+targetStyle.zIndex || 0) + 1) as string & number
     containerContainerElement.style.zIndex = String(10000)

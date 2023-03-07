@@ -7,7 +7,7 @@ import {
 import { TopAppBar } from "../../../assets/ts/Neupica/Components/Custom/Material3/Components/Navigation/TopAppBars.js"
 import { colorScheme } from "../../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
 import { Typography } from "../../../assets/ts/Neupica/Components/Custom/Material3/Styles/Typography.js"
-import { Padding } from "../../../assets/ts/Tool/Padding.js"
+import { Box } from "../../../assets/ts/Tool/Box.js"
 
 export class TimeOverScreen extends NeuContainer {
     constructor(parent) {
@@ -36,8 +36,8 @@ export class TimeOverScreen extends NeuContainer {
         this.XResult = new NeuContainer()
         this.XResult.data.TextColor = colorScheme.onErrorContainer
         this.XResult.data.FontSize = Typography.Size.HeadlineSmall
-        this.XResult.geometry.Margin = new Padding().top('30px')
-        this.XResult.data.Text = '추리가 종료되었습니다'
+        this.XResult.geometry.Margin = new Box().top('30px')
+        this.XResult.Text.data.Content = '추리가 종료되었습니다'
         this.layout.body.addChild(this.XResult)
 
         this.addChild(this.layout)

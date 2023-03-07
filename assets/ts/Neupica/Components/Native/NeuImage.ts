@@ -2,26 +2,29 @@ import { Native } from "./Native.js"
 import { NeuContainer, NeuContainerData } from "./NeuContainer.js"
 
 interface UImageElement extends HTMLImageElement {
-    addChild: (child) => void
+    addChild: (child: any) => void
 }
 
 export interface NeuImageData extends NeuContainerData {
     Src: string,
     ObjectFit: string,
+    ContextMenu: boolean,
 }
 
 export class NeuImage extends NeuContainer {
     declare element: UImageElement
     declare data: NeuImageData
     constructor() {
-        super()
+        super("NeuImage")
+
         this.name = "NeuImage"
 
         this.data = {
-            ...new NeuContainer().data,
+            ...new NeuContainer("NeuImage").data,
 
             Src: "",
             ObjectFit: "",
+            ContextMenu: true,
         }
         this.build()
 
@@ -115,5 +118,11 @@ export class NeuImage extends NeuContainer {
 
     ObjectFit() {
         this.element.style.objectFit = this.data.ObjectFit
+    }
+
+    ContextMenu() {
+        this.element.addEventListener('contextmenu', function(event) {{
+            event.preventDefault()
+        }})
     }
 }

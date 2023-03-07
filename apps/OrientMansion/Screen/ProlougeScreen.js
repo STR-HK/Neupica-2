@@ -8,7 +8,7 @@ import { TopAppBar } from "../../../assets/ts/Neupica/Components/Custom/Material
 import { NeuImage } from "../../../assets/ts/Neupica/Components/Native/NeuImage.js"
 import { Typography } from "../../../assets/ts/Neupica/Components/Custom/Material3/Styles/Typography.js"
 import { colorScheme } from "../../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
-import { Padding } from "../../../assets/ts/Tool/Padding.js"
+import { Box } from "../../../assets/ts/Tool/Box.js"
 
 
 export class ProlougeScreen extends NeuContainer {
@@ -40,7 +40,7 @@ export class ProlougeScreen extends NeuContainer {
         this.Warn.data.FontSize = Typography.Size.TitleMedium
         this.Warn.data.TextColor = colorScheme.onErrorContainer
         // this.Warn.data.FontFamily = 'Gowun Batang'
-        this.Warn.data.Text = '게임 진행시 휴대전화의 뒤로가기 버튼이 아닌,\n' +
+        this.Warn.Text.data.Content = '게임 진행시 휴대전화의 뒤로가기 버튼이 아닌,\n' +
             '화면의 뒤로가기 버튼을 이용해주세요\n'
         this.layout.body.addChild(this.Warn)
 
@@ -49,7 +49,7 @@ export class ProlougeScreen extends NeuContainer {
         this.Content1.data.TextColor = colorScheme.onSurfaceVariant
         // this.Content1.data.FontFamily = 'Gowun Batang'
         // this.Content1.data.TextIndent = parseInt(Typography.Size.TitleMedium) + 'rem'
-        this.Content1.data.Text = '' +
+        this.Content1.Text.data.Content = '' +
             '오리엔트 특급저택에 오신 것을 환영합니다! \n\n' +
             '당신은 탐정의 자격으로 방문하였으며, ' +
             '경찰 및 일반인과 동행하여 입장하였습니다.\n\n' +

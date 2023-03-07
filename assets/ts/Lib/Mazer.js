@@ -3,7 +3,7 @@ import { runApp } from "../Neupica/Neupica2.ts"
 import { NeuColumn } from "../Layout/NeuColumn.ts"
 import { MActionButton } from "../Neupica/Components/Custom/deprecated/MActionButton.js"
 import { NeuButton } from "../Neupica/Components/Widgets/NeuButton.js"
-import { Padding } from "../Tool/Padding.js"
+import { Box } from "../Tool/Box.js"
 import { MBasicButton } from "../Neupica/Components/Custom/deprecated/MButton.js"
 import { NeuTable } from "../Neupica/Components/Widgets/NeuTable.js"
 import { NeuLabel } from "../Neupica/Components/Widgets/NeuLabel.js"
@@ -20,7 +20,7 @@ class Mazer extends NeuApp {
         this.btn.data.ButtonImage.Src = 'https://cdn-icons-png.flaticon.com/512/1250/1250615.png'
         this.btn.image.geometry.Width = '18px'
         this.btn.data.Button.Symmetric = 'Horizontal'
-        this.btn.text.geometry.Padding = new Padding().left('8px')
+        this.btn.text.geometry.Padding = new Box().left('8px')
         this.layout.addChild(this.btn)
 
         this.maze = new NeuLabel()

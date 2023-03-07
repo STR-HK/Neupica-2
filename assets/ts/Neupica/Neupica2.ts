@@ -18,7 +18,7 @@ import { initModal } from "./Core/Modal.js"
 initWindow()
 initIndex()
 initGlobal()
-initFloat()
+// initFloat()
 
 getScript('https://cdn.jsdelivr.net/npm/ripplet.js@1.1.0')
 
@@ -58,8 +58,8 @@ window.solved = false
 window.loaded = false
 
 
-window.name = "Neupica 2b"
-window.version = '2.2.0b'
+window.name = "Neupica 2c"
+window.version = '2.2.2c'
 
 window.mode = 'development'
 // window.mode = 'shipping'
@@ -109,9 +109,9 @@ export function runApp(app) {
 
 // window.runApp = runApp
 
-export function thisClass(element) {
-    return window.Index.getItem(element.id)
-}
+// export function thisClass(element) {
+//     return window.Index.getItem(element.id)
+// }
 
 // window.thisClass = thisClass
 

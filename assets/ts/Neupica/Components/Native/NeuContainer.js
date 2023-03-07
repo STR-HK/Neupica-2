@@ -1,10 +1,34 @@
-import { Padding } from "../../../Tool/Padding.js";
+import { Box } from "../../../Tool/Box.js";
 import { Native } from "./Native.js";
 export class NeuContainer extends Native {
     data;
-    constructor() {
+    // public shadow: ShadowRoot
+    constructor(_name) {
         super();
         this.name = "NeuContainer";
+        if (_name) {
+            // console.log(this)
+            // let that = this
+            //
+            // const classes = {
+            //
+            // }
+            // class DynamicClass {
+            //     constructor(className) {
+            //         return new classes[className]()
+            //     }
+            // }
+            //
+            // console.warn(Object.getPrototypeOf(new DynamicClass(_name)).constructor.name)
+            //
+            // Object.setPrototypeOf(this, parent)
+            // // Object.defineProperty(that, 'name', {
+            // //     value: _name,
+            // // })
+            // console.warn(Object.getPrototypeOf(that).constructor.name)
+            this.name = _name;
+        }
+        // this.cover = this.createCover()
         this.data = {
             BackgroundColor: "transparent",
             Opacity: "1",
@@ -21,13 +45,13 @@ export class NeuContainer extends Native {
             AlignContent: "stretch",
             JustifyContent: "flex-start",
             AlignItems: "stretch",
-            Padding: new Padding().all("0px"),
-            Margin: new Padding().all("0px"),
+            Padding: new Box().all("0px"),
+            Margin: new Box().all("0px"),
             Symmetric: "vertical",
             FlexGrow: "0",
             FlexShrink: "1",
             FlexBasis: "auto",
-            Text: "",
+            // Text: "",
             FontFamily: "Pretendard",
             FontSize: "1rem",
             FontStyle: "normal",
@@ -60,12 +84,37 @@ export class NeuContainer extends Native {
         this.build();
         this.element = this.createDiv();
         this.geometry.Display = "flex";
-        this.geometry.Width = "fit-content";
+        // this.geometry.Width = "fit-content"
         this.data.Symmetric = "vertical";
         // this.addChild()
         // this.element
         // this.cover = this.element
         this.cover.addChild(this.element);
+        // this.shadow = this.element.attachShadow({mode: "open"})
+        // let elem = this.element
+        setInterval(function () {
+            // console.log(this)
+            // console.log(elem)
+            // elem.innerText = 'NEUTEXT IS DEPRECATED'
+            // @ts-ignore
+            if (window.inspect) {
+                this.element.style.boxShadow = `#${Math.floor(Math.random() * 16777215).toString(16)} 0px 1px 1px, #${Math.floor(Math.random() * 16777215).toString(16)} 0px 0px 0px 1px`;
+                // this.element.style.border = `1px solid #${Math.floor(Math.random() * 16777215).toString(16)}`
+            }
+        }.bind(this), 500);
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+        }
+        // this.data.Opacity = '0'
+        // setTimeout(function() {
+        //     anime({
+        //         targets: this.element,
+        //         // easing: 'linear',
+        //         opacity: 1
+        //     })
+        // }.bind(this), getRandomInt(500, 1000))
     }
     childrenUpdate(...args) {
         if (args[0]['type'] != 'clear') {
@@ -230,13 +279,13 @@ export class NeuContainer extends Native {
     FlexBasis() {
         this.element.style.flexBasis = this.data.FlexBasis;
     }
-    Text() {
-        if (this.element.innerText != this.data.Text) {
-            this.element.innerText = this.data.Text;
-        }
-        // this.element.innerHTML = "NeuContainer Widget is know depreciated! Use NeuText instead."
-        // this.element.innerHTML = "Hello World"
-    }
+    // Text() {
+    //     if (this.element.innerText != this.data.Text) {
+    //         this.element.innerText = this.data.Text
+    //     }
+    //     // this.element.innerHTML = "NeuContainer Widget is know depreciated! Use NeuText instead."
+    //     // this.element.innerHTML = "Hello World"
+    // }
     FontFamily() {
         this.element.style.fontFamily = this.data.FontFamily;
     }
@@ -300,7 +349,8 @@ export class NeuContainer extends Native {
         this.element.style.verticalAlign = this.data.VerticalAlign;
     }
     Content() {
-        this.element.style.content = this.data.Content;
+        this.element.innerText = this.data.Content;
+        // this.element.style.content = this.data.Content
     }
     WordSpacing() {
         this.element.style.wordSpacing = this.data.WordSpacing;

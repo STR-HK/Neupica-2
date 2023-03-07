@@ -57,14 +57,14 @@ export class MaterialSymbols extends Icon {
     }
 
     setIcon(text) {
-        this.data.Text = text
+        this.data.Content = text
     }
 }
 
 export class MaterialSymbolsOutlined extends MaterialSymbols {
     constructor(icon) {
         super()
-        this.data.Text = icon
+        this.data.Content = icon
         this.name += "Outlined"
         this.MaterialSymbolsOutlined()
     }
@@ -73,7 +73,7 @@ export class MaterialSymbolsOutlined extends MaterialSymbols {
 export class MaterialSymbolsRounded extends MaterialSymbols {
     constructor(icon) {
         super()
-        this.data.Text = icon
+        this.data.Content = icon
         this.name += "Rounded"
         this.MaterialSymbolsRounded()
     }
@@ -82,7 +82,7 @@ export class MaterialSymbolsRounded extends MaterialSymbols {
 export class MaterialSymbolsSharp extends MaterialSymbols {
     constructor(icon) {
         super()
-        this.data.Text = icon
+        this.data.Content = icon
         this.name += "Sharp"
         this.MaterialSymbolsSharp()
     }

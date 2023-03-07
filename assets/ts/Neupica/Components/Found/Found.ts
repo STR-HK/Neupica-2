@@ -5,20 +5,20 @@ import {
     createDiv,
     createImg,
     createInput,
-    createLayout, createModal, UDivElement, UElement, UImageElement, UInputElement
+    createLayout, createModal, createUnique, UDivElement, UElement, UImageElement, UInputElement
 } from "../Create/Create.js"
 import { geometry, Geometry } from "../../Core/Geometry.js"
-import { Modal_dep } from "../../../Common/Modal.js"
+// import { Modal_dep } from "../../../Common/Modal.js"
 // import { Object } from "../../../Common/Object"
 
 export class Found extends Children {
     build: () => void
-    target: UElement | UDivElement | UInputElement | UImageElement | undefined
+    target: UElement | UDivElement | UInputElement | UImageElement
 
     name: string
 
-    cover: UDivElement | undefined
-    element: UElement | UDivElement | UInputElement | UImageElement | undefined
+    cover: UDivElement
+    element: UElement | UDivElement | UInputElement | UImageElement
 
     geometry: geometry
     private geometryUpdater: (attribute: string) => void
@@ -33,10 +33,33 @@ export class Found extends Children {
     getBoundingParent: () => HTMLElement
 
     dataObj: Object | undefined
+    unique: string
+    cascade: Object
+    useCascade: () => void
 
     constructor() {
         super()
         this.name = "Found"
+
+        this.unique = createUnique()
+
+        this.cascade = {}
+
+        this.useCascade = function() {
+            Object.keys(this.cascade).forEach((key) => {
+                Object.defineProperty(this, key, {
+                    get: () => {
+                        return this.cascade[key]
+                    },
+                    set: (newValue) => {
+                        let parent = this.cascade[key].parent
+                        this.cascade[key].suicide()
+                        parent.addChild(newValue)
+                        this.cascade[key] = newValue
+                    },
+                })
+            })
+        }
 
         this.build = function () {
             this.dataObj = {}
@@ -144,6 +167,10 @@ export class Found extends Children {
 
             if (attribute === "Transform") {
                 this.target.style.transform = this.geometry.Transform
+            }
+
+            if (attribute === "TransformOrigin") {
+                this.target.style.transformOrigin = this.geometry.TransformOrigin
             }
 
             if (attribute === "Filter") {

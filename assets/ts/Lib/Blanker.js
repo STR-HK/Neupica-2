@@ -4,7 +4,7 @@ import { NeuText } from "../Neupica/Components/Native/NeuText.js"
 import { NeuRow } from "../Layout/NeuRow.ts"
 import { NeuContainer } from "../Neupica/Components/Native/NeuContainer.ts"
 import { NeuButton } from "../Neupica/Components/Widgets/NeuButton.js"
-import { Padding } from "../Tool/Padding.js"
+import { Box } from "../Tool/Box.js"
 import { BorderRadius } from "../Tool/BorderRadius.js"
 import { Debug } from "../Utils/Debug.js"
 import { NeuImage } from "../Neupica/Components/Native/NeuImage.ts"
@@ -23,20 +23,20 @@ class Blanker extends NeuApp {
         this.centralContainer = new NeuContainer()
         this.centralContainer.geometry.Width = "100%"
         this.centralContainer.geometry.Height = "100%"
-        this.centralContainer.geometry.Padding = new Padding().VH('25px', '35px')
+        this.centralContainer.geometry.Padding = new Box().VH('25px', '35px')
         this.centralContainer.data.BackgroundColor = "#241E30"
         this.centralContainer.data.Gap = '15px'
         this.layout.addChild(this.centralContainer)
 
         this.galleryTitle = new NeuText()
         this.galleryTitle.data.FontSize = '1.5rem'
-        this.galleryTitle.data.Text = 'Gallery'
+        this.galleryTitle.Text.data.Content = 'Gallery'
         this.galleryTitle.data.TextColor = '#1CDFC9'
         this.galleryTitle.data.FontWeight = 'bold'
 
         this.catergoriesTitle = new NeuText()
         this.catergoriesTitle.data.FontSize = '1.5rem'
-        this.catergoriesTitle.data.Text = 'Categories'
+        this.catergoriesTitle.Text.data.Content = 'Categories'
         this.catergoriesTitle.data.TextColor = "#FF8484"
         this.catergoriesTitle.data.FontWeight = 'bold'
         this.centralContainer.addChild(this.catergoriesTitle)
@@ -51,7 +51,7 @@ class Blanker extends NeuApp {
                 super()
 
                 this.data.Button.Gap = '10px'
-                this.geometry.Padding = new Padding().VH('7px', '10px')
+                this.geometry.Padding = new Box().VH('7px', '10px')
                 this.geometry.Width = '100%'
                 this.data.ButtonText.TextColor = 'white'
                 this.data.ButtonText.FontSize = '14px'
@@ -109,7 +109,7 @@ class FloatTest extends NeuApp {
         this.centralContainer.data.BackgroundColor = "black"
         this.centralContainer.geometry.Width = "100%"
         this.centralContainer.geometry.Height = "100%"
-        this.centralContainer.geometry.Padding = new Padding().VH('15px', '20px')
+        this.centralContainer.geometry.Padding = new Box().VH('15px', '20px')
         this.layout.addChild(this.centralContainer)
 
         // this.layout.addChild(simpleApp.MaterialButton)
@@ -118,7 +118,7 @@ class FloatTest extends NeuApp {
         this.centralContainer.addChild(this.catMaterialButton)
         this.catMaterialButton.data.ButtonText.Text = 'Start Debug'
         this.catMaterialButton.data.ButtonText.TextColor = 'white'
-        this.catMaterialButton.geometry.Padding = new Padding().all('10px')
+        this.catMaterialButton.geometry.Padding = new Box().all('10px')
         this.catMaterialButton.data.ButtonText.FontWeight = 'bold'
         this.catMaterialButton.geometry.Width = '100%'
         this.catMaterialButton.data.Button.BackgroundColor = '#2F293B'
@@ -128,7 +128,7 @@ class FloatTest extends NeuApp {
         this.centralContainer.addChild(this.catMaterialButton3)
         this.catMaterialButton3.data.ButtonText.Text = 'Stop Debug'
         this.catMaterialButton3.data.ButtonText.TextColor = 'white'
-        this.catMaterialButton3.geometry.Padding = new Padding().all('10px')
+        this.catMaterialButton3.geometry.Padding = new Box().all('10px')
         this.catMaterialButton3.data.ButtonText.FontWeight = 'bold'
         this.catMaterialButton3.geometry.Width = '100%'
         this.catMaterialButton3.data.Button.BackgroundColor = '#2F293B'
@@ -138,7 +138,7 @@ class FloatTest extends NeuApp {
         this.centralContainer.addChild(this.catMaterialButton2)
         this.catMaterialButton2.data.ButtonText.Text = 'Delete This Float'
         this.catMaterialButton2.data.ButtonText.TextColor = 'white'
-        this.catMaterialButton2.geometry.Padding = new Padding().all('10px')
+        this.catMaterialButton2.geometry.Padding = new Box().all('10px')
         this.catMaterialButton2.data.ButtonText.FontWeight = 'bold'
         this.catMaterialButton2.geometry.Width = '100%'
         this.catMaterialButton2.data.Button.BackgroundColor = '#2F293B'

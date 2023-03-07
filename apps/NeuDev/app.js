@@ -2,12 +2,12 @@ import { NeuApp } from "../../assets/ts/Neupica/Core/App.js"
 import { NeuScaffold } from "../../assets/ts/Layout/NeuScaffold.js"
 import { TopAppBar } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Navigation/TopAppBars.js"
 import { runApp } from "../../assets/ts/Neupica/Neupica2.js"
-import { MaterialSymbolsOutlined } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Icons.ts"
+import { MaterialSymbolsOutlined } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Icons.js"
 import { IconButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Icon Buttons/IconButton.js"
 import { NeuContainer } from "../../assets/ts/Neupica/Components/Native/NeuContainer.js"
 import { TextFields } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/TextInputs/Text Fields/TextFields.js"
 import { CommonButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/CommonButton.js"
-import { colorScheme } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.ts"
+import { colorScheme } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
 // import { NObject } from "../../assets/ts/Common/NObject.ts"
 // import * as inspector from "inspector"
 
@@ -45,7 +45,7 @@ export class NeuDev extends NeuApp {
         this.insertBtn = new CommonButton()
         this.insertBtn.watchEvent('click', function() {
             let text = new NeuContainer()
-            text.data.Text = this.insertBox.Input.data.Value
+            text.Text.data.Content = this.insertBox.Input.data.Value
             text.data.TextColor = colorScheme.onBackground
             this.insertBox.Input.data.Value = ''
             text.data.FontSize = '16rem'

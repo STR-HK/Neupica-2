@@ -23,6 +23,7 @@ export class Cards extends NeuContainer {
         this.Image = new NeuImage();
         this.Image.geometry.Width = '100%';
         this.Image.data.BorderRadius = '12rem';
+        this.Image.data.ContextMenu = false;
         this.Image.data.Src = 'https://t-mobile.scene7.com/is/image/Tmusprod/bg-hero-celebrationpink.desktop?wid=1280&hei=768';
         this.addChild(this.Image);
         this.Contents = new NeuContainer();
@@ -31,13 +32,13 @@ export class Cards extends NeuContainer {
         this.Contents.geometry.Width = '100%';
         this.addChild(this.Contents);
         this.Title = new NeuContainer();
-        this.Title.data.Text = 'Glass Souls\' World Tour';
+        this.Title.data.Content = 'Glass Souls\' World Tour';
         this.Title.data.FontSize = Typography.Size.HeadlineMedium;
         this.Title.data.FontWeight = 'bold';
         this.Title.data.TextColor = colorScheme.onSurface;
         this.Contents.addChild(this.Title);
         this.SubTitle = new NeuContainer();
-        this.SubTitle.data.Text = 'From your recent favorites';
+        this.SubTitle.data.Content = 'From your recent favorites';
         this.SubTitle.data.FontSize = Typography.Size.TitleSmall;
         this.SubTitle.data.TextColor = colorScheme.onSurface;
         this.Contents.addChild(this.SubTitle);
@@ -50,7 +51,7 @@ export class Cards extends NeuContainer {
         // this.addChild(this.Gap)
         // this.
         this.Button = new FilledButton();
-        this.Button.data.Text = 'Buy Tickets';
+        this.Button.data.Content = 'Buy Tickets';
         this.Contents.addChild(this.Button);
         // this.addRipple( )
         // this.data.

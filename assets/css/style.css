@@ -1,5 +1,10 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable-dynamic-subset.css");
 
+@font-face {
+    font-family: "Neupica Material Symbol";
+    src: url("../../apps/Material 3/font/neupica-material-symbol.woff2");
+}
+
 * {
     font-family: "Pretendard Variable", serif;
     font-weight: 300;

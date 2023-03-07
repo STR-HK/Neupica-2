@@ -15,8 +15,9 @@ export const defaultOptions = {
 const target2container2ripplet = new Map();
 let containerContainerTemplate;
 const findElementAppendTo = (target, appendTo) => {
+    // return document.body
     if (appendTo && appendTo !== 'auto') {
-        return appendTo === 'target' ? target : appendTo === 'parent' ? target.parentElement : document.querySelector(appendTo);
+        return appendTo === 'target' ? target : appendTo === 'parent' ? target.parentElement : appendTo;
     }
     while (target &&
         (target instanceof SVGElement ||

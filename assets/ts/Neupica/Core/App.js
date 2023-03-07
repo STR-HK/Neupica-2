@@ -56,40 +56,32 @@ export class NeuApp {
         this.layout = layout;
     }
     setFullScreen(bool) {
-        let that = this;
+        this.layout.element.style.width = '100%';
+        this.layout.element.style.height = '100%';
         if (bool) {
             this.addQueue({
                 command: "f",
-                arguments: [function (that) {
-                        if (that.layout) {
-                            if (that.layout.element) {
-                                if ("style" in that.layout.element) {
-                                    that.layout.element.style.width = "100%";
-                                    that.layout.element.style.height = '100%';
-                                }
-                            }
-                        }
-                    }, that]
+                arguments: [function () {
+                        this.app.style.width = window.innerWidth + 'px';
+                        this.app.style.height = window.innerHeight + 'px';
+                        window.onresize = function () {
+                            this.app.style.width = window.innerWidth + 'px';
+                            this.app.style.height = window.innerHeight + 'px';
+                        }.bind(this);
+                    }.bind(this)]
             });
-            this.app.style.width = '100%';
-            this.app.style.height = '100%';
         }
         else {
             this.addQueue({
                 command: "f",
-                arguments: [function (that) {
-                        if (that.layout) {
-                            if (that.layout.element) {
-                                if ("style" in that.layout.element) {
-                                    that.layout.element.style.width = "";
-                                    that.layout.element.style.height = '';
-                                }
-                            }
-                        }
-                    }, that]
+                arguments: [function () {
+                        this.app.style.width = "" + 'px';
+                        this.app.style.height = "";
+                        window.onresize = function () { };
+                    }.bind(this)]
             });
-            this.app.style.width = '';
-            this.app.style.height = '';
+            // this.app.style.width = ''
+            // this.app.style.height = ''
         }
     }
     createApp() {
@@ -146,7 +138,7 @@ export class NeuApp {
                 if (queue['command'] === 'f' ||
                     queue['command'] === 'func' ||
                     queue['command'] === 'function') {
-                    queue['arguments'][0](queue['arguments'][1]);
+                    queue['arguments'][0]();
                     return true;
                 }
             });

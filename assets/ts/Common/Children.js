@@ -1,5 +1,6 @@
 import { NObject } from "./NObject.js";
 export class Children extends NObject {
+    parent;
     children;
     appendTo = (where) => {
         // console.log(this.cvt(this.children))
@@ -12,7 +13,13 @@ export class Children extends NObject {
         super();
         this.children = [];
     }
+    suicide() {
+        if (this.parent) {
+            this.parent.removeChild(this);
+        }
+    }
     addChild(child) {
+        child.parent = this;
         this.children.push(child);
         this.childrenUpdate({
             type: 'add',
@@ -22,15 +29,10 @@ export class Children extends NObject {
             type: 'add',
             target: child
         });
-    }
-    addSlientChild(child) {
-        this.children.push(child);
-        this.childrenUpdate({
-            type: 'add',
-            target: child
-        });
+        return this;
     }
     removeChild(child) {
+        child.parent = undefined;
         let index = this.children.indexOf(child);
         if (index !== -1) {
             this.children.splice(index, 1);
@@ -40,16 +42,6 @@ export class Children extends NObject {
             target: child
         });
         this.childrenUpdated({
-            type: 'remove',
-            target: child
-        });
-    }
-    removeSlientChild(child) {
-        let index = this.children.indexOf(child);
-        if (index !== -1) {
-            this.children.splice(index, 1);
-        }
-        this.childrenUpdate({
             type: 'remove',
             target: child
         });
@@ -60,51 +52,37 @@ export class Children extends NObject {
         }.bind(this));
         this.children = [];
     }
-    removeSlientChildren() {
-        this.children.forEach(function (child) {
-            this.removeSlientChild(child);
-        }.bind(this));
-        this.children = [];
-    }
     addChildren(children) {
         children.forEach(e => {
             this.addChild(e);
         });
-    }
-    addSlientChildren(children) {
-        children.forEach(e => {
-            this.addSlientChild(e);
-        });
+        return this;
     }
     clearChildren() {
-        this.children = [];
+        // this.children = []
+        this.children.forEach(e => {
+            this.children.splice(this.children.indexOf(e), 1);
+        });
         this.childrenUpdate({
             type: 'clear'
         });
         this.childrenUpdated({
-            type: 'clear'
-        });
-    }
-    clearSlientChildren() {
-        this.children = [];
-        this.childrenUpdate({
             type: 'clear'
         });
     }
     setChild(index, child) {
+        if (this.children[index]) {
+            if (this.children[index]['parent']) {
+                this.children[index].parent = undefined;
+            }
+        }
         this.children[index] = child;
+        child.parent = this;
         this.childrenUpdate({
             type: 'set',
             target: child
         });
         this.childrenUpdated({
-            type: 'set',
-            target: child
-        });
-    }
-    setSlientChild(index, child) {
-        this.children[index] = child;
-        this.childrenUpdate({
             type: 'set',
             target: child
         });

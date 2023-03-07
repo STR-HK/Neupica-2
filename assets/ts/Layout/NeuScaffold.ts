@@ -2,9 +2,43 @@ import { NeuLayout } from "./NeuLayout.js"
 import { NeuContainer } from "../Neupica/Components/Native/NeuContainer.js"
 import { NeuColumn } from "./NeuColumn.js"
 
+class NeuScaffoldHead extends NeuContainer {
+    appBar: any
+    constructor() {
+        super()
+
+        this.appBar
+    }
+
+    setAppBar(appBar) {
+        if (this.appBar) {
+            this.appBar.suicide()
+        }
+        this.appBar = appBar
+        this.addChild(this.appBar)
+        // let parent = this.appBar.parent
+        // this.appBar.suicide()
+        // parent.addChild(newValue)
+        // this.appBar = newValue
+    }
+}
+
+class NeuScaffoldBody extends NeuContainer {
+    constructor() {
+        // @ts-ignore
+        super()
+
+
+    }
+
+    setScreen() {
+
+    }
+}
+
 export class NeuScaffold extends NeuLayout {
-    head: NeuContainer
-    body: NeuContainer
+    head: NeuScaffoldHead
+    body: NeuScaffoldBody
     foot: NeuContainer
     scaffoldings: NeuContainer[]
     constructor() {
@@ -15,11 +49,22 @@ export class NeuScaffold extends NeuLayout {
         // this.element.style.flexDirection = "column"
         this.data.FlexDirection = 'column'
 
-        this.head = new NeuContainer()
-        this.body = new NeuContainer()
+
+
+        this.head = new NeuScaffoldHead('head')
+        this.body = new NeuScaffoldBody()
         this.body.geometry.Height = '100%'
         this.body.geometry.Overflow = 'auto'
-        this.foot = new NeuContainer()
+
+        this.body.watchEvent('scroll', function() {
+            if (this.body.element.scrollTop == 0) {
+                this.head.appBar.UnScrolling()
+            } else {
+                this.head.appBar.Scrolling()
+            }
+        }.bind(this))
+
+        this.foot = new NeuContainer('foot')
 
         this.scaffoldings = [
             this.head,

@@ -4,7 +4,7 @@ import { NeuText } from "../Neupica/Components/Native/NeuText.js"
 import { NeuRow } from "../Layout/NeuRow.ts"
 import { NeuContainer } from "../Neupica/Components/Native/NeuContainer.ts"
 import { NeuButton } from "../Neupica/Components/Widgets/NeuButton.js"
-import { Padding } from "../Tool/Padding.js"
+import { Box } from "../Tool/Box.js"
 import { BorderRadius } from "../Tool/BorderRadius.js"
 import { Debug } from "../Utils/Debug.js"
 import { NeuImage } from "../Neupica/Components/Native/NeuImage.ts"
@@ -69,7 +69,7 @@ class Demo_MButton extends NeuApp {
 
         this.centralContainer = new NeuContainer()
         this.centralContainer.geometry.Width = "100%"
-        this.centralContainer.geometry.Padding = new Padding().VH(
+        this.centralContainer.geometry.Padding = new Box().VH(
             "20px",
             "50px"
         )
@@ -91,7 +91,7 @@ class Demo_MButton extends NeuApp {
                 super()
                 this.text = new NeuContainer()
                 this.addChild(this.text)
-                this.text.data.Text = "Basic"
+                this.text.Text.data.Content = "Basic"
                 this.text.data.TextColor = "#000000de"
                 this.geometry.MinWidth = "120px"
                 this.geometry.MinHeight = "50px"
@@ -99,14 +99,14 @@ class Demo_MButton extends NeuApp {
             }
 
             setText(text) {
-                this.text.data.Text = text
+                this.text.Text.data.Content = text
             }
         }
 
         class MatBaseButton extends NeuButton {
             constructor() {
                 super()
-                this.data.Button.Padding = new Padding().VH("8px", "16px")
+                this.data.Button.Padding = new Box().VH("8px", "16px")
                 this.data.Button.BorderRadius = "4px"
                 this.data.ButtonText.FontWeight = 500
             }
@@ -167,16 +167,16 @@ class Demo_MButton extends NeuApp {
         this.centralContainer.addChild(this.buttons_container)
 
         this.title_line = new NeuContainer()
-        this.title_line.data.Padding = new Padding().VH("18px", "16px")
+        this.title_line.data.Padding = new Box().VH("18px", "16px")
         this.buttons_container.addChild(this.title_line)
 
         this.title = new NeuContainer()
-        this.title.data.Text = "Basic buttons"
+        this.title.Text.data.Content = "Basic buttons"
         this.title.data.TextColor = "#0000008a"
         this.title_line.addChild(this.title)
 
         this.content = new NeuContainer()
-        this.content.data.Padding = new Padding().all("30px")
+        this.content.data.Padding = new Box().all("30px")
         this.buttons_container.addChild(this.content)
 
         //
@@ -348,7 +348,7 @@ class Demo_MButton extends NeuApp {
 A
         this.madewith = new NeuText()
         this.madewith.data.FontSize = "11px"
-        this.madewith.data.Text = `Made With ${window.name} / ${window.version}`
+        this.madewith.Text.data.Content = `Made With ${window.name} / ${window.version}`
         this.centralContainer.addChild(this.madewith)
 
         // console.log("draw")

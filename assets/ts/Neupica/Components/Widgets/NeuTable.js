@@ -1,4 +1,4 @@
-import { Padding } from "../../../Tool/Padding.js"
+import { Box } from "../../../Tool/Box.js"
 // import { Native } from "./Native.ts"
 import { NeuContainer } from "../Native/NeuContainer.ts"
 import { NeuText } from "../Native/NeuText.js"

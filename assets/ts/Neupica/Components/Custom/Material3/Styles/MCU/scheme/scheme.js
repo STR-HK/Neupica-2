@@ -20,95 +20,197 @@ import { hexFromArgb } from "../utils/string_utils.js"
 /**
  * Represents a Material color scheme, a mapping of color roles to colors.
  */
+
+function getRandomColor() {
+    let ret = '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16)
+    if (ret.length == 6) {
+        // console.warn(ret)
+        ret = ret + '0'
+    } else if (ret.length == 5) {
+        ret = ret + '00'
+
+    } else if (ret.length == 4) {
+        ret = ret + '000'
+    }
+    return ret
+
+}
 export class Scheme {
     constructor(props) {
         this.props = props;
     }
     get primary() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.primary);
     }
     get onPrimary() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.onPrimary);
     }
     get primaryContainer() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.primaryContainer);
     }
     get onPrimaryContainer() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.onPrimaryContainer);
     }
     get secondary() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.secondary);
     }
     get onSecondary() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.onSecondary);
     }
     get secondaryContainer() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.secondaryContainer);
     }
     get onSecondaryContainer() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.onSecondaryContainer);
     }
     get tertiary() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.tertiary);
     }
     get onTertiary() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.onTertiary);
     }
     get tertiaryContainer() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.tertiaryContainer);
     }
     get onTertiaryContainer() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.onTertiaryContainer);
     }
     get error() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.error);
     }
     get onError() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.onError);
     }
     get errorContainer() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.errorContainer);
     }
     get onErrorContainer() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.onErrorContainer);
     }
     get background() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.background);
     }
     get onBackground() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.onBackground);
     }
     get surface() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.surface);
     }
     get onSurface() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.onSurface);
     }
     get surfaceVariant() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.surfaceVariant);
     }
     get onSurfaceVariant() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.onSurfaceVariant);
     }
     get outline() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.outline);
     }
     get outlineVariant() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.outlineVariant);
     }
     get shadow() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.shadow);
     }
     get scrim() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.scrim);
     }
     get inverseSurface() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.inverseSurface);
     }
     get inverseOnSurface() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.inverseOnSurface);
     }
     get inversePrimary() {
+        // let tempColor = getRandomColor()
+        // console.log(tempColor)
+        // setTheme(tempColor)
         return hexFromArgb(this.props.inversePrimary);
     }
     /**

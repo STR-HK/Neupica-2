@@ -42,12 +42,12 @@ export class eventViewer extends NeuApp {
         this.titleText.data.TextColor = 'black'
         this.title.data.BackgroundColor = 'white'
         this.title.data.BorderRadius = '13px'
-        this.titleText.data.Text = 'Greel 12022'
+        this.titleText.Text.data.Content = 'Greel 12022'
         this.title.addChild(this.titleText)
         this.header.addChild(this.titleText)
 
         this.btn = new MButton.MRaisedButton()
-        this.btn.ButtonText.data.Text = 'Iconed Button'
+        this.btn.ButtonText.Text.data.Content = 'Iconed Button'
         this.btn.ButtonImage.geometry.Width = '20px'
         this.btn.Button.data.Symmetric = 'horizontal'
         this.btn.Button.data.AlignItems = 'center'

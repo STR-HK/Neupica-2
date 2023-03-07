@@ -1,4 +1,3 @@
-
 export interface geometry {
     Width: string,
     Height: string,
@@ -23,6 +22,7 @@ export interface geometry {
     AspectRatio: string,
     Cursor: string,
     Transform: string,
+    TransformOrigin: string,
     Filter: string,
 }
 
@@ -54,6 +54,7 @@ export class Geometry {
             AspectRatio: "",
             Cursor: "",
             Transform: "",
+            TransformOrigin: "",
             Filter: "",
         }
 

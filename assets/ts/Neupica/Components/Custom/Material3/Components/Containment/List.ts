@@ -2,7 +2,7 @@ import { NeuContainer } from "../../../../Native/NeuContainer.js"
 import { colorScheme } from "../../Styles/Color.js"
 import { Level0 } from "../../Styles/Elevation.js"
 import { Typography } from "../../Styles/Typography.js"
-import { Padding } from "../../../../../../Tool/Padding.js"
+import { Box } from "../../../../../../Tool/Box.js"
 import { Divider } from "./Divider.js"
 
 export class List extends NeuContainer {
@@ -39,7 +39,7 @@ export class ListItem extends NeuContainer {
         this.data.JustifyContent = 'space-between'
 
 
-        this.data.Padding = new Padding().LTRB('16rem', '8rem', '24rem', '8rem')
+        this.data.Padding = new Box().LTRB('16rem', '8rem', '24rem', '8rem')
         this.data.Gap = '16rem'
 
         this.Left = new NeuContainer()
@@ -68,6 +68,7 @@ export class ListItem extends NeuContainer {
 
 
         this.Trailing = new NeuContainer()
+        this.Trailing.data.Symmetric = 'horizontal'
         this.Trailing.data.TextColor = colorScheme.onSurface
 
         this.Left.addChild(this.Leading)

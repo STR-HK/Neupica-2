@@ -46,7 +46,7 @@ export class MAppBar extends NeuContainer {
                     constructor() {
                         super()
 
-                        this.data.Text = 'App bar'
+                        this.Text.data.Content = 'App bar'
                         this.data.TextColor = 'white'
                         this.data.FontSize = '1.25rem'
                         this.data.FontWeight = '400'
@@ -62,7 +62,7 @@ export class MAppBar extends NeuContainer {
             }
 
             setTitle (title) {
-                this.text.data.Text = title
+                this.text.Text.data.Content = title
             }
         }
 

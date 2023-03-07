@@ -7,7 +7,7 @@ import { NeuLabel } from "../Neupica/Components/Widgets/NeuLabel.js"
 import { NeuRow } from "../Layout/NeuRow.ts"
 import { NeuButton } from "../Neupica/Components/Widgets/NeuButton.js"
 import { NeuContainer } from "../Neupica/Components/Native/NeuContainer.ts"
-import { Padding } from "../Tool/Padding.js"
+import { Box } from "../Tool/Box.js"
 import { work } from "./Screen_worker.js"
 import { BorderRadius } from "../Tool/BorderRadius.js"
 import { NeuInput } from "../Neupica/Components/Native/NeuInput.ts"
@@ -26,7 +26,7 @@ class CalcBtn extends NeuButton {
         this.data.Button.BorderWidth = "0.1rem"
         this.data.Button.AlignItems = "center"
         this.data.Button.JustifyContent = "center"
-        this.data.Button.Padding = new Padding().VH("0.5rem", "1.5rem")
+        this.data.Button.Padding = new Box().VH("0.5rem", "1.5rem")
     }
 }
 
@@ -62,7 +62,7 @@ class Calc extends NeuApp {
         this.layout.addChild(this.result_cont)
 
         this.result_cont.addChild(this.view)
-        this.result_cont.data.Padding = new Padding().all("1rem")
+        this.result_cont.data.Padding = new Box().all("1rem")
         this.result_cont.data.AlignItems = "center"
 
         this.init_row1()

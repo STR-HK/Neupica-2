@@ -4,7 +4,7 @@ import { runApp } from "../Neupica/Neupica2.ts"
 import { NeuContainer } from "../Neupica/Components/Native/NeuContainer.ts"
 import { NeuText } from "../Neupica/Components/Native/NeuText.js"
 import { NeuButton } from "../Neupica/Components/Widgets/NeuButton.js"
-import { Padding } from "../Tool/Padding.js"
+import { Box } from "../Tool/Box.js"
 import { MStrokedButton } from "../Neupica/Components/Custom/deprecated/MButton.js"
 import { NeuImage } from "../Neupica/Components/Native/NeuImage.ts"
 import { MActionButton } from "../Neupica/Components/Custom/deprecated/MActionButton.js"
@@ -34,7 +34,7 @@ class Cbfav extends NeuApp {
         this.setFullScreen(true)
 
         this.header = new NeuContainer()
-        this.header.geometry.Padding = new Padding().TBLR(MediumPadding, SmallPadding, SmallPadding, SmallPadding)
+        this.header.geometry.Padding = new Box().TBLR(MediumPadding, SmallPadding, SmallPadding, SmallPadding)
         this.header.geometry.Width = '100%'
         this.layout.addChild(this.header)
 
@@ -49,15 +49,15 @@ class Cbfav extends NeuApp {
         this.headerMenu.addChild(this.headerMenuLeft)
 
         this.title = new NeuContainer()
-        this.title.data.Text = 'Cbfav 설문조사'
+        this.title.Text.data.Content = 'Cbfav 설문조사'
         this.setTitle(this.title.data.Text)
         this.title.data.FontSize = Title1
         this.title.data.FontWeight = 'bold'
-        this.title.geometry.Padding = new Padding().bottom('8px')
+        this.title.geometry.Padding = new Box().bottom('8px')
         this.headerMenuLeft.addChild(this.title)
 
         this.titleTime = new NeuContainer()
-        this.titleTime.data.Text = 'Today 2022.08.12'
+        this.titleTime.Text.data.Content = 'Today 2022.08.12'
         this.titleTime.data.FontSize = Title2
         this.headerMenuLeft.addChild(this.titleTime)
 
@@ -65,7 +65,7 @@ class Cbfav extends NeuApp {
         this.headerMenu.addChild(this.headerMenuRight)
 
         this.menuButton = new MButton.MBasicButton()
-        this.menuButton.Button.data.Padding = new Padding().all(SSmallPadding)
+        this.menuButton.Button.data.Padding = new Box().all(SSmallPadding)
         this.menuButton.Button.data.JustifyContent = 'center'
         this.menuButton.Button.data.BackgroundColor = 'white'
         this.menuButton.Button.data.AspectRatio = '1'
@@ -78,7 +78,7 @@ class Cbfav extends NeuApp {
         this.body = new NeuContainer()
         this.body.geometry.Width = '100%'
         this.body.geometry.Height = '100%'
-        this.body.geometry.Padding = new Padding().all(SmallPadding)
+        this.body.geometry.Padding = new Box().all(SmallPadding)
         this.body.data.Gap = '12px'
         // this.body.geometry.Position = 'sticky'
         // this.body.geometry.OverflowX = 'hidden'
@@ -89,7 +89,7 @@ class Cbfav extends NeuApp {
             constructor() {
                 super()
 
-                this.geometry.Padding = new Padding().all(SmallPadding)
+                this.geometry.Padding = new Box().all(SmallPadding)
                 this.data.BackgroundColor = 'white'
                 this.data.BorderRadius = '8px'
                 this.geometry.Width = '100%'
@@ -103,14 +103,14 @@ class Cbfav extends NeuApp {
                 this.addChild(this.rightLine)
 
                 this.title = new NeuContainer()
-                this.title.data.Text = `설문조사 시행: ${makeId(8)}`
+                this.title.Text.data.Content = `설문조사 시행: ${makeId(8)}`
                 this.title.data.FontSize = Title2
                 this.title.data.FontWeight = 'bold'
-                this.title.geometry.Margin = new Padding().bottom('4px')
+                this.title.geometry.Margin = new Box().bottom('4px')
                 this.leftLine.addChild(this.title)
 
                 this.subtitle = new NeuContainer()
-                this.subtitle.data.Text = '2023.10.10 이후 가능'
+                this.subtitle.Text.data.Content = '2023.10.10 이후 가능'
                 this.subtitle.data.FontSize = Title3
                 this.leftLine.addChild(this.subtitle)
 
@@ -118,9 +118,9 @@ class Cbfav extends NeuApp {
                 this.button.ButtonImage.data.Src = 'https://cdn-icons-png.flaticon.com/512/2285/2285485.png'
                 this.button.ButtonImage.geometry.Width = '20px'
                 this.button.ButtonImage.geometry.AspectRatio = '1'
-                this.button.ButtonText.data.Text = '시작'
+                this.button.ButtonText.Text.data.Content = '시작'
                 this.button.Button.data.Symmetric = 'horizontal'
-                this.button.ButtonText.geometry.Padding = new Padding().left('4px')
+                this.button.ButtonText.geometry.Padding = new Box().left('4px')
                 this.button.Button.data.JustifyContent = 'center'
                 this.rightLine.addChild(this.button)
             }
@@ -143,7 +143,7 @@ class Cbfav extends NeuApp {
             constructor() {
                 super()
                 // this.data.BackgroundColor = 'green'
-                this.data.Padding = new Padding().all(SSmallPadding)
+                this.data.Padding = new Box().all(SSmallPadding)
                 this.data.BackgroundColor = 'white'
                 this.geometry.Width = '20%'
                 this.data.JustifyContent = 'center'
@@ -178,7 +178,7 @@ class Cbfav extends NeuApp {
 }
 
 function refresh() {
-    app.titleTime.data.Text = `Today ${new Date().getFullYear()}.${new Date().getMonth() + 1}.${new Date().getDate()}`
+    app.titleTime.Text.data.Content = `Today ${new Date().getFullYear()}.${new Date().getMonth() + 1}.${new Date().getDate()}`
 
 
 

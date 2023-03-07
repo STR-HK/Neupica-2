@@ -1,6 +1,6 @@
 import { NeuContainer } from "../../../../Native/NeuContainer.js";
 import { colorScheme } from "../../Styles/Color.js";
-import { Padding } from "../../../../../../Tool/Padding.js";
+import { Box } from "../../../../../../Tool/Box.js";
 export class Divider extends NeuContainer {
     constructor() {
         super();
@@ -9,7 +9,7 @@ export class Divider extends NeuContainer {
         this.geometry.Height = '1rem';
         this.geometry.MinHeight = '1rem';
         this.data.BackgroundColor = colorScheme.outlineVariant;
-        this.data.Margin = new Padding().vertical('4rem');
+        this.data.Margin = new Box().vertical('4rem');
     }
 }
 //# sourceMappingURL=Divider.js.map

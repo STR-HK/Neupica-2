@@ -11,7 +11,7 @@ class Scroll extends NeuApp {
 
         this.img = new NeuText()
 
-        this.img.data.Text = "NeuText"
+        this.img.Text.data.Content = "NeuText"
         // this.img.Text
 
         this.draw("#App")

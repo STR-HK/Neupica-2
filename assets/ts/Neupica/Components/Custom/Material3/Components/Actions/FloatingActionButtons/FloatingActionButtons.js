@@ -1,5 +1,5 @@
 import { NeuContainer } from "../../../../../Native/NeuContainer.js";
-import { Padding } from "../../../../../../../Tool/Padding.js";
+import { Box } from "../../../../../../../Tool/Box.js";
 import { MaterialSymbolsOutlined } from "../../../Styles/Icons.js";
 import { colorScheme } from "../../../Styles/Color.js";
 import { Level3 } from "../../../Styles/Elevation.js";
@@ -13,10 +13,10 @@ export class FloatingActionButtons extends NeuContainer {
         this.Icon = new MaterialSymbolsOutlined();
         this.Icon.data.TextColor = colorScheme.onPrimaryContainer;
         this.Icon.data.FontSize = Typography.Size.HeadlineSmall;
-        this.Icon.data.Text = 'edit';
+        this.Icon.data.Content = 'edit';
         this.Container.geometry.Width = '56rem';
         this.Container.geometry.Height = '56rem';
-        this.Container.geometry.Margin = new Padding().RBLT('16rem', '16rem');
+        this.Container.geometry.Margin = new Box().RBLT('16rem', '16rem');
         this.Container.data.JustifyContent = 'center';
         this.Container.data.AlignItems = 'center';
         this.Container.data.BorderRadius = '16rem';

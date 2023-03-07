@@ -14,7 +14,7 @@ import { getStyle } from "../../assets/ts/Neupica/DOM/Contents.js"
 import { List } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Containment/List.js"
 import { ListItem } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Containment/List.js"
 import { colorScheme } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
-import { Padding } from "../../assets/ts/Tool/Padding.js"
+import { Box } from "../../assets/ts/Tool/Box.js"
 import { Typography } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Typography.js"
 import {
     NavigationBar
@@ -92,7 +92,7 @@ class WinterlyVacation extends NeuApp {
             constructor(text) {
                 super()
 
-                this.Headline.data.Text = text
+                this.Headline.Text.data.Content = text
                 this.SupportingText.Hide()
 
                 this.Users = []
@@ -118,7 +118,7 @@ class WinterlyVacation extends NeuApp {
             }
 
             setUnder() {
-                this.data.Padding = new Padding().LTRB('18rem', '2rem', '24rem', '2rem')
+                this.data.Padding = new Box().LTRB('18rem', '2rem', '24rem', '2rem')
 
                 this.LeadingIcon = new MaterialSymbolsSharp('')
                 this.LeadingIconButton = new IconButton(this.LeadingIcon)
@@ -135,7 +135,7 @@ class WinterlyVacation extends NeuApp {
                 this.Trailing.addChild(this.TrailingIconButton)
 
                 this.TrailingIconButton.watchEvent('click', function() {
-                    this.TrailingIcon.data.Text = 'celebration'
+                    this.TrailingIcon.Text.data.Content = 'celebration'
                     this.TrailingIcon.data.TextColor = colorScheme.tertiary
                     this.Parent.updateProgress()
 
@@ -145,7 +145,7 @@ class WinterlyVacation extends NeuApp {
             updateProgress(){
                 this.Progress += 1
                 if (this.Progress == this.ProgressMax) {
-                    this.TrailingIcon.data.Text = 'cloud_done'
+                    this.TrailingIcon.Text.data.Content = 'cloud_done'
                 }
             }
 
@@ -185,8 +185,8 @@ class WinterlyVacation extends NeuApp {
         this.NavigationBarItem1.watchEvent('click', function() {
             this.layout.body.setChild(0, this.taskScreen)
         }.bind(this))
-        this.NavigationBarItem1.Icon.data.Text = 'auto_stories'
-        this.NavigationBarItem1.Label.data.Text = 'Tasks List'
+        this.NavigationBarItem1.Icon.Text.data.Content = 'auto_stories'
+        this.NavigationBarItem1.Label.Text.data.Content = 'Tasks List'
         this.NavigationBarItem1.click()
         this.NavigationBar.addChild(this.NavigationBarItem1)
         this.layout.foot.addChild(this.NavigationBar)

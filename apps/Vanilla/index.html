@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // history.pushState(null, null, location.href);
+    // document.writeln(history.length)
+    // window.onpopstate = function () {
+    //     history.pushState(null, null, location.href);
+    // };
+
+    // var hash = window.location.hash;
+    // setInterval(function(){
+    //     if (window.location.hash != hash) {
+    //         hash = window.location.hash;
+    //         alert("User went back or forward to application state represented by " + hash);
+    //     }
+    // }, 100);
+
+    window.addEventListener("hashchange", function(){
+        console.log("Hash changed to", window.location.hash);
+        // .... Do your thing here...
+    });
+</script>
+</body>
+</html>

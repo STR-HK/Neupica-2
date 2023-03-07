@@ -16,6 +16,7 @@ var defaultOptions = {
 var target2container2ripplet = new Map();
 var containerContainerTemplate;
 var findElementAppendTo = function (target, appendTo) {
+
     if (appendTo && appendTo !== 'auto') {
         return appendTo === 'target' ? target : appendTo === 'parent' ? target.parentElement : document.querySelector(appendTo);
     }

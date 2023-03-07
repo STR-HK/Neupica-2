@@ -4,7 +4,7 @@ import { NeuContainer } from "../Neupica/Components/Native/NeuContainer.ts"
 import { NeuImage } from "../Neupica/Components/Native/NeuImage.ts"
 import { NeuText } from "../Neupica/Components/Native/NeuText.js"
 import { NeuApp } from "../Neupica/Core/App.ts"
-import { Padding } from "../Tool/Padding.js"
+import { Box } from "../Tool/Box.js"
 
 class Prototype extends NeuApp {
     constructor() {
@@ -17,7 +17,7 @@ class Prototype extends NeuApp {
         this.sideCont = new NeuContainer()
         this.sideCont.geometry.Height = "100vh"
         this.sideCont.geometry.Width = "275px"
-        this.sideCont.data.Padding = new Padding().VH("2rem", "3rem")
+        this.sideCont.data.Padding = new Box().VH("2rem", "3rem")
         this.sideCont.data.BackgroundColor = "#141618"
         this.sidebar.addChild(this.sideCont)
 
@@ -47,7 +47,7 @@ class Prototype extends NeuApp {
         }
 
         this.menu_top = new MenuItem()
-        this.menu_top.text.data.Text = "Top"
+        this.menu_top.text.Text.data.Content = "Top"
 
         this.menuCont.addChild(this.menu_top)
 
@@ -63,11 +63,11 @@ class Prototype extends NeuApp {
         }
 
         this.credit1 = new Credit()
-        this.credit1.data.Text = "© 2022 미드나잇웍스"
+        this.credit1.Text.data.Content = "© 2022 미드나잇웍스"
         this.credit2 = new Credit()
-        this.credit2.data.Text = "MidnightWorks."
+        this.credit2.Text.data.Content = "MidnightWorks."
         this.credit3 = new Credit()
-        this.credit3.data.Text = "All rights reserved"
+        this.credit3.Text.data.Content = "All rights reserved"
         this.creditBox.addChild(this.credit1)
         this.creditBox.addChild(this.credit2)
         this.creditBox.addChild(this.credit3)

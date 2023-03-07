@@ -8,7 +8,7 @@ import { TopAppBar } from "../../../assets/ts/Neupica/Components/Custom/Material
 import { NeuImage } from "../../../assets/ts/Neupica/Components/Native/NeuImage.js"
 import { Typography } from "../../../assets/ts/Neupica/Components/Custom/Material3/Styles/Typography.js"
 import { colorScheme } from "../../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
-import { Padding } from "../../../assets/ts/Tool/Padding.js"
+import { Box } from "../../../assets/ts/Tool/Box.js"
 
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
@@ -154,19 +154,19 @@ export class CharaInfoScreen extends NeuContainer {
 
                 this.InfoBox = new NeuContainer()
                 this.InfoBox.geometry.Width = '100%'
-                this.InfoBox.geometry.Margin = new Padding().left('18rem')
+                this.InfoBox.geometry.Margin = new Box().left('18rem')
                 
                 this.Title = new NeuContainer()
                 this.Title.data.FontSize = Typography.Size.HeadlineMedium
                 this.Title.data.TextColor = colorScheme.onBackground
-                // this.Title.data.Text = '탐정 // 202 호실'
+                // this.Title.Text.data.Content = '탐정 // 202 호실'
                 this.Title.data.FontFamily = handwriting
                 this.InfoBox.addChild(this.Title)
                 
                 this.SubTitle = new NeuContainer()
                 this.SubTitle.data.FontSize = Typography.Size.TitleLarge
                 this.SubTitle.data.TextColor = colorScheme.onSurfaceVariant
-                // this.SubTitle.data.Text = '- 당신의 능력치가 발현됩니다'
+                // this.SubTitle.Text.data.Content = '- 당신의 능력치가 발현됩니다'
                 this.SubTitle.data.FontFamily = handwriting
                 this.InfoBox.addChild(this.SubTitle)
 
@@ -188,15 +188,15 @@ export class CharaInfoScreen extends NeuContainer {
                 sexSymbol = '자웅 ⚥'
             }
             currentInfoLine.Image.data.Src = currentCharaInfo['profile']
-            currentInfoLine.Title.data.Text = `${currentCharaInfo['job']} // ${currentCharaInfo['room']} (${sexSymbol})`
-            currentInfoLine.SubTitle.data.Text = currentCharaInfo['info'][0]
+            currentInfoLine.Title.Text.data.Content = `${currentCharaInfo['job']} // ${currentCharaInfo['room']} (${sexSymbol})`
+            currentInfoLine.SubTitle.Text.data.Content = currentCharaInfo['info'][0]
             this.layout.body.addChild(currentInfoLine)
         }.bind(this))
 
         // this.DE = new InfoLine()
         // this.DE.Image.data.Src = "./Image/Chara/DE.webp"
-        // this.DE.Title.data.Text = '탐정 // 202 호실'
-        // this.DE.SubTitle.data.Text = '- 당신의 능력치가 발현됩니다'
+        // this.DE.Title.Text.data.Content = '탐정 // 202 호실'
+        // this.DE.SubTitle.Text.data.Content = '- 당신의 능력치가 발현됩니다'
         // this.layout.body.addChild(this.DE)
 
         this.addChild(this.layout)

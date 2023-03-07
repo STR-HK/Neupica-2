@@ -4,30 +4,51 @@ import { colorScheme } from "../../../Styles/Color.js"
 
 import { Level1 } from "../../../Styles/Elevation.js"
 import { Typography } from "../../../Styles/Typography.js"
-import { Padding } from "../../../../../../../Tool/Padding.js"
+import { Box } from "../../../../../../../Tool/Box.js"
 
 
 export class CommonButton extends NeuContainer {
+
     constructor() {
         super()
         this.name = 'CommonButton'
 
-        // this.data.Text = "Common Button"
-        this.geometry.Height = '40rem'
-        this.geometry.MinHeight = '40rem'
-        this.data.FontSize = Typography.Size.LabelLarge
-        this.data.TextAlign = 'center'
-        this.geometry.Padding = new Padding().horizontal('24rem')
-
-        this.data.BorderRadius = '20rem'
-        this.data.JustifyContent = 'center'
-        this.data.FontWeight = '500'
-
-        this.data.BackgroundColor = colorScheme.surface
-        this.data.TextColor = colorScheme.primary
-        this.data.Shadow = Level1
+        this.cascade = {
+            Leading: new NeuContainer('Leading'),
+            Text: new NeuContainer('Text'),
+            Trailing: new NeuContainer('Trailing')
+        }
+        this.useCascade()
 
         this.geometry.Cursor = 'pointer'
+        this.geometry.Height = '40rem'
+        this.geometry.MinHeight = '40rem'
+        this.geometry.Padding = new Box().horizontal('24rem')
+        this.data.Gap = '4rem'
+
+        this.data.FontSize = Typography.Size.LabelLarge
+        this.data.TextAlign = 'center'
+        this.data.TextColor = colorScheme.primary
+        this.data.FontWeight = '500'
+
+        this.data.AlignItems = 'center'
+        this.data.BorderRadius = '20rem'
+        this.data.JustifyContent = 'center'
+        this.data.Symmetric = 'horizontal'
+        this.data.BackgroundColor = colorScheme.surface
+        this.data.Shadow = Level1
+
+
+        this.addChildren([
+            this.cascade.Leading,
+            this.cascade.Text,
+            this.cascade.Trailing
+        ])
+
         this.ActivateRipple()
     }
+
+    // Text() {
+    //
+    // }
 }

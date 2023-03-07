@@ -1,40 +1,45 @@
 import { Found } from "../Found/Found.js";
 import ripplet from "../Custom/Material3/Styles/Ripplet.js";
+import anime from "../Custom/Material3/Styles/Motion/anime.es.js";
 export class Native extends Found {
-    parentOfElement;
-    indexFromParent;
-    anchorFromParent;
     displayed;
     RippleNames;
     RippleFunctions;
-    modal;
+    // modal: UDivElement
     constructor() {
         super();
         this.cover = this.createCover();
+        // For Highlight-Tap Browsers
+        // @ts-ignore
         this.cover.style.webkitTapHighlightColor = "transparent";
-        // this.modal = this.createModal()
-        // this.modal.style.zIndex = '9999'
-        // this.modal.style.pointerEvents = 'none'
-        // this.modal.style.width = '100%'
-        // this.modal.style.height = '100%'
-        // this.modal.style.flexDirection = 'column'
-        // this.modal.style.position = 'absolute'
-        // this.modal.style.justifyContent = 'center'
-        // this.modal.style.alignItems = 'center'
-        // this.cover.addChild(this.modal)
-        // this.getBoundElement().addEventListener('resize', function() {
-        //     console.warn('res9ze')
-        // })
-        // console.log('you can use modal now!')
+        this.RippleNames = [];
+        this.RippleFunctions = [];
         this.displayed = true;
+        // this.Bounce()
     }
-    // addModal(element) {
-    //     this.addChild(element)
-    //     this.element.addChild(element)
-    // }
-    // removeModal(element) {
-    //
-    // }
+    relate(callback) {
+        new ResizeObserver(function () {
+            console.log('ResizeObserver');
+            callback();
+        }).observe(this.getBoundElement());
+        // new IntersectionObserver(<IntersectionObserverCallback>function() {
+        //     callback()
+        //     console.log('IntersectionObserver')
+        // }).observe(this.getBoundElement())
+        // new MutationObserver(<MutationCallback>function(e) {
+        //     // callback()
+        //     console.log(e)
+        //     console.log('MutationObserver')
+        // }).observe(this.getBoundElement(), {
+        //     attributes: true,
+        //     childList: true,
+        //     subtree: true
+        // })
+        window.addEventListener('resize', function () {
+            console.log('windowResize');
+            callback();
+        });
+    }
     Hide() {
         if (this.displayed != false) {
             this.displayed = false;
@@ -66,6 +71,32 @@ export class Native extends Found {
             // console.log('already showed')
         }
     }
+    Bounce() {
+        this.watchEvent('pointerdown', function () {
+            anime({
+                targets: this.element,
+                scale: 0.9,
+            });
+        }.bind(this));
+        this.watchEvent('pointerup', function () {
+            anime({
+                targets: this.element,
+                scale: 1,
+            });
+        }.bind(this));
+        this.watchEvent('pointerup', function () {
+            anime({
+                targets: this.element,
+                scale: 1,
+            });
+        }.bind(this));
+        this.watchEvent('pointerout', function () {
+            anime({
+                targets: this.element,
+                scale: 1,
+            });
+        }.bind(this));
+    }
     Interactive() {
         this.cover.style.pointerEvents = 'auto';
     }
@@ -78,6 +109,7 @@ export class Native extends Found {
         ripplet.defaultOptions.spreadingDuration = '0.2s';
         ripplet.defaultOptions.spreadingDelay = '0s';
         ripplet.defaultOptions.clearing = false;
+        // ripplet.defaultOptions.clearingDelay = ripplet.defaultOptions.spreadingDuration
         ripplet.defaultOptions.clearingDelay = ripplet.defaultOptions.spreadingDuration;
         ripplet.defaultOptions.clearingDuration = ripplet.defaultOptions.spreadingDuration;
         ripplet.defaultOptions.centered = false;
@@ -86,11 +118,12 @@ export class Native extends Found {
         this.RippleNames = [
             'pointerdown',
             'pointerup',
-            'pointerleave'
+            'pointerleave',
+            'pointerout'
         ];
         this.RippleFunctions = [
             function (e) {
-                ripplet(e);
+                ripplet(arguments[0], args[0]);
             }.bind(this),
             function () {
                 // @ts-ignore
@@ -99,8 +132,22 @@ export class Native extends Found {
             function () {
                 // @ts-ignore
                 ripplet.clear(this);
-            }.bind(this.element)
+            }.bind(this.element),
+            function () {
+                // @ts-ignore
+                ripplet.clear(this);
+            }.bind(this.element),
         ];
+        // if (arguments[0]) {
+        //     console.log('i am activating ripple and i wanna activate from:', arguments[0])
+        //     let activateTarget = arguments[0]
+        //     this.RippleFunctions[0] = function() {
+        //         ripplet({
+        //             currentTarget: activateTarget
+        //         })
+        //     }.bind(this)
+        //     console.log(this.RippleFunctions)
+        // }
         for (let i = 0; i < this.RippleNames.length; i++) {
             this.element.addEventListener(this.RippleNames[i], this.RippleFunctions[i]);
         }
