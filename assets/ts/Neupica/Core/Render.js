@@ -27,6 +27,8 @@ export function NeuRender(app, layout, dom, silence) {
         console.log(`%cNeuRender Process(NAME=${app.constructor.name}, PID=${renderID}) Called`, "font-weight: bold; color: #56B6C2");
     }
     dom.appendChild(layout.element);
+    // let shadow = dom.shadowRoot
+    // shadow.appendChild(layout.element)
 }
 export function NeuModalRender(app, layout, dom, silence) {
     if (!(silence) && window.mode === 'development') {

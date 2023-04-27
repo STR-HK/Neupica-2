@@ -3,6 +3,7 @@ import { Box } from "../../../../../../Tool/Box.js";
 import { Navigation } from "./Navigation.js";
 import { colorScheme } from "../../Styles/Color.js";
 import { MaterialSymbolsOutlined } from "../../Styles/Icons.js";
+import { transit } from "../../Styles/Motion/Transition.js";
 export class NavigationBar extends Navigation {
     constructor() {
         super();
@@ -18,6 +19,13 @@ export class NavigationBar extends Navigation {
                 }
             });
         }.bind(this));
+    }
+    reRender() {
+        super.reRender();
+        transit(this, {
+            'background': colorScheme.surface
+        });
+        // this.data.BackgroundColor = colorScheme.surface
     }
 }
 export class NavigationBarItem extends NeuContainer {
@@ -66,29 +74,62 @@ export class NavigationBarItem extends NeuContainer {
         this.addChild(this.cascade.Label);
         this.watchEvent('click', this.Clicked.bind(this));
     }
+    reRender() {
+        super.reRender();
+        transit(this, {
+            'color': colorScheme.secondary,
+            'background': colorScheme.primary + '14'
+        });
+        transit(this.cascade.Icon, {
+            'color': colorScheme.onSurfaceVariant
+        });
+        transit(this.cascade.Label, {
+            'color': colorScheme.onSurfaceVariant
+        });
+        // this.data.BackgroundColor = colorScheme.primary + '14'
+        // this.data.TextColor = colorScheme.secondary
+        // this.cascade.Icon.data.TextColor = colorScheme.onSurfaceVariant
+        // this.cascade.Label.data.TextColor = colorScheme.onSurfaceVariant
+        if (this.State) {
+            transit(this.cascade.Icon, {
+                'color': colorScheme.onSecondaryContainer
+            });
+            transit(this.cascade.Label, {
+                'color': colorScheme.onSurface
+            });
+            transit(this.cascade.ActiveIndicator, {
+                'background': colorScheme.secondaryContainer
+            });
+        }
+        else {
+            transit(this.cascade.Icon, {
+                'color': colorScheme.onSurfaceVariant
+            });
+            transit(this.cascade.Label, {
+                'color': colorScheme.onSurfaceVariant
+            });
+            transit(this.cascade.ActiveIndicator, {
+                'background': 'rgba(0,0,0,0)'
+            });
+        }
+    }
     click() {
         this.cover.click();
     }
     Clicked() {
         this.Active();
-        this.State = !this.State;
+        // this.State = !this.State
     }
     Active() {
+        this.State = true;
         this.cascade.Icon.data.TextColor = colorScheme.onSecondaryContainer;
         this.cascade.Label.data.TextColor = colorScheme.onSurface;
-        // anime({
-        //     targets: this.cascade.ActiveIndicator.element,
-        //     backgroundColor: colorScheme.secondaryContainer,
-        // })
         this.cascade.ActiveIndicator.data.BackgroundColor = colorScheme.secondaryContainer;
     }
     InActive() {
+        this.State = false;
         this.cascade.Icon.data.TextColor = colorScheme.onSurfaceVariant;
         this.cascade.Label.data.TextColor = colorScheme.onSurfaceVariant;
-        // anime({
-        //     targets: this.cascade.ActiveIndicator.element,
-        //     backgroundColor: 'rgba(0, 0, 0, 0)'
-        // })
         this.cascade.ActiveIndicator.data.BackgroundColor = 'transparent';
     }
 }

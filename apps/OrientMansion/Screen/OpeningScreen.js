@@ -34,21 +34,21 @@ export class OpeningScreen extends NeuContainer {
         this.Title = new NeuContainer()
         this.Title.data.FontSize = Typography.Size.TitleLarge
         this.Title.data.TextColor = colorScheme.onBackground
-        this.Title.Text.data.Content = '오리엔트 특급저택'
+        this.Title.data.Content = '오리엔트 특급저택'
         this.addChild(this.Title)
 
         this.Input = new CetneredTextField()
-        this.Input.LabelText.Text.data.Content = '입장 코드를 입력하세요'
+        this.Input.LabelText.data.Content = '입장 코드를 입력하세요'
         this.Input.geometry.Width = '70%'
         this.addChild(this.Input)
 
         this.Submit = new OutlinedButton()
-        this.Submit.Text.data.Content = '입장하기'
+        this.Submit.data.Content = '입장하기'
         this.Submit.watchEvent('click', function(){
             if (this.Input.Input.data.Value.startsWith("xor") || this.Input.Input.data.Value.startsWith("cen")) {
                 this.parent.Code = this.Input.Input.data.Value
-                this.parent.storeTime()
-                this.parent.reloaded(this.parent.Code)
+                // this.parent.storeTime()
+                // this.parent.reloaded(this.parent.Code)
                 this.parent.hideExScreen(this)
             }
 
@@ -67,7 +67,7 @@ export class OpeningScreen extends NeuContainer {
         this.Detail = new NeuContainer()
         this.Detail.data.FontSize = Typography.Size.LabelLarge
         this.Detail.data.TextColor = colorScheme.onSurfaceVariant
-        this.Detail.Text.data.Content = '입구의 담당자에게 입장 코드를 안내받아 주세요.\n' +
+        this.Detail.data.Content = '입구의 담당자에게 입장 코드를 안내받아 주세요.\n' +
             '입장하신 순간부터 20분간 탈출이 진행되며, \n이후 퇴장 조처됩니다.'
         this.Detail.data.TextAlign = 'center'
         this.addChild(this.Detail)
@@ -82,7 +82,7 @@ export class OpeningScreen extends NeuContainer {
         this.Info.data.FontStyle = 'italic'
         this.Info.data.TextAlign = 'center'
         this.Info.data.TextDecorationStyle = 'underline'
-        this.Info.Text.data.Content = 'Made By. SJN\nSpecial Thanks to. Neupica 2'
+        this.Info.data.Content = 'Made By. SJN\nSpecial Thanks to. Neupica 2'
         this.addChild(this.Info)
 
         // window.addEventListener('load', function() {

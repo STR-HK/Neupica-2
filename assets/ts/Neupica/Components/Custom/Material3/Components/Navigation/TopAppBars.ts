@@ -7,6 +7,7 @@ import { CommonButton } from "../Actions/Common Buttons/CommonButton.js"
 import { FilledIconButton } from "../Actions/Icon Buttons/FilledIconButton.js"
 import { Navigation } from "./Navigation.js"
 import { Native } from "../../../../Native/Native"
+import { transit } from "../../Styles/Motion/Transition.js"
 
 export class TopAppBar extends Navigation {
     // declare data: {}
@@ -14,11 +15,13 @@ export class TopAppBar extends Navigation {
     Leading: NeuContainer
     Trailing: NeuContainer
     private bIsScrolling: boolean
+    private bIsColoring: boolean
     constructor() {
         super()
         this.name = "TopAppBar"
 
         this.bIsScrolling = false
+        this.bIsColoring = false
 
         this.geometry.Height = '64rem'
         this.data.BackgroundColor = colorScheme.surface
@@ -26,6 +29,7 @@ export class TopAppBar extends Navigation {
 
         this.Leading = new NeuContainer()
         this.Leading.data.TextColor = colorScheme.onSurface
+        this.Leading.data.Symmetric = 'horizontal'
         this.addChild(this.Leading)
 
         this.HeadLine = new NeuContainer()
@@ -42,20 +46,60 @@ export class TopAppBar extends Navigation {
         this.addChild(this.Trailing)
     }
 
-    Scrolling() {
-        if (!this.bIsScrolling) {
-            this.bIsScrolling = true
-            this.data.BackgroundColor = blendHEXColors([
-                colorScheme.surface,
-                colorScheme.primary + '14'
-            ])
+    reRender() {
+        super.reRender()
+        transit(this, {
+            'backgroundColor': colorScheme.surface
+        })
+        transit(this.Leading, {
+            'color': colorScheme.onSurface
+        })
+        transit(this.HeadLine, {
+            'color': colorScheme.onSurface
+        })
+        transit(this.Trailing, {
+            'color': colorScheme.onSurfaceVariant
+        })
+        // this.data.BackgroundColor = colorScheme.surface
+        // this.Leading.data.TextColor = colorScheme.onSurface
+        // this.HeadLine.data.TextColor = colorScheme.onSurface
+        // this.Trailing.data.TextColor = colorScheme.onSurfaceVariant
+
+        if (this.bIsScrolling) {
+            this.Scrolling()
+        } else {
+            this.UnScrolling()
         }
     }
-    UnScrolling () {
-        if (this.bIsScrolling) {
-            this.bIsScrolling = false
-            this.data.BackgroundColor = colorScheme.surface
+
+    Scrolling() {
+        this.bIsScrolling = true
+        let that = this
+        if (!this.bIsColoring) {
+            this.bIsColoring = true
+            // console.log(this.bIsColoring)
+            transit(this, {
+                'backgroundColor': blendHEXColors([
+                    colorScheme.surface,
+                    colorScheme.primary + '14'
+                ]),
+                'complete': function(anim) {
+                    that.bIsColoring = false
+                }
+            })
         }
+
+        // this.data.BackgroundColor = blendHEXColors([
+        //     colorScheme.surface,
+        //     colorScheme.primary + '14'
+        // ])
+    }
+    UnScrolling () {
+        this.bIsScrolling = false
+        // this.data.BackgroundColor = colorScheme.surface
+        transit(this, {
+            'backgroundColor': colorScheme.surface
+        })
     }
 
     setHeadline(text: string) {

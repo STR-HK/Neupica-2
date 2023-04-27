@@ -1,6 +1,6 @@
 import { NeuApp } from "../Neupica/Core/App.ts"
 import { NeuColumn } from "../Layout/NeuColumn.ts"
-import { NeuText } from "../Neupica/Components/Native/NeuText.js"
+import { MaterialText } from "../Neupica/Components/Native/MaterialText.ts"
 import { NeuRow } from "../Layout/NeuRow.ts"
 import { NeuContainer } from "../Neupica/Components/Native/NeuContainer.ts"
 import { NeuButton } from "../Neupica/Components/Widgets/NeuButton.js"
@@ -346,7 +346,7 @@ class Demo_MButton extends NeuApp {
 
         //
 A
-        this.madewith = new NeuText()
+        this.madewith = new MaterialText()
         this.madewith.data.FontSize = "11px"
         this.madewith.Text.data.Content = `Made With ${window.name} / ${window.version}`
         this.centralContainer.addChild(this.madewith)

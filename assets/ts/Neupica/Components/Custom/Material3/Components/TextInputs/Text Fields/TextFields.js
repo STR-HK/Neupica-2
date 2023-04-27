@@ -86,7 +86,7 @@ export class TextFields extends NeuContainer {
         this.LabelText.data.TextColor = colorScheme.onSurfaceVariant;
         this.LabelText.data.Content = 'Label Text';
         this.LabelText.data.FontSize = '16rem'; // 12rem
-        if (this.LabelText.data.Text == "") {
+        if (this.LabelText.data.Content == "") {
             this.vbox.data.Padding = new Box().VH('8rem', '16rem');
         }
         else {
@@ -105,7 +105,7 @@ export class TextFields extends NeuContainer {
         this.CharacterCounter.data.TextColor = colorScheme.onSurfaceVariant;
         this.CharacterCounter.data.Padding = new Box().all('4rem');
         this.element.addEventListener("input", function () {
-            this.CharacterCounter.Text.data.Content = `${this.Input.data.Value.length}/${this.Input.data.Max}`;
+            this.CharacterCounter.data.Content = `${this.Input.data.Value.length}/${this.Input.data.Max}`;
         }.bind(this));
         // this.ActiveIndicator.data.TextColor = colorScheme.primary
         // this.ActiveIndicator.geometry.Height = '1rem'
@@ -123,6 +123,18 @@ export class TextFields extends NeuContainer {
         // this.removeChild(this.Input)
         this.Input.Hide();
         // this.Input.geometry.Transform = 'scale(0)'
+    }
+    reRender() {
+        super.reRender();
+        this.vbox.data.BorderColor = colorScheme.primary;
+        this.vbox.data.BorderColor = colorScheme.onSurfaceVariant;
+        this.vbox.data.BackgroundColor = colorScheme.surfaceVariant;
+        this.LabelText.data.TextColor = colorScheme.onSurfaceVariant;
+        this.Input.data.TextColor = colorScheme.onSurface;
+        this.Input.data.CaretColor = colorScheme.primary;
+        this.SupportingText.data.TextColor = colorScheme.onSurfaceVariant;
+        this.CharacterCounter.data.TextColor = colorScheme.onSurfaceVariant;
+        this.vbox.data.BorderColor = colorScheme.onSurfaceVariant;
     }
 }
 //# sourceMappingURL=TextFields.js.map

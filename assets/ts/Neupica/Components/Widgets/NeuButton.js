@@ -1,6 +1,6 @@
 import { NeuContainer } from "../Native/NeuContainer.ts"
 import { NeuImage } from "../Native/NeuImage.ts"
-import { NeuText } from "../Native/NeuText.js"
+import { MaterialText } from "../Native/MaterialText.ts"
 import { Widget } from "./Widgets.js"
 import { Box } from "../../../Tool/Box.js"
 

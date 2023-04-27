@@ -1,0 +1,138 @@
+<ul class="swatch-list">
+		<li class="swatch">
+			<div class="swatch-color color-ruby"></div>
+			<div class="swatch-info">
+				<p>Ruby:</p>
+				<p>#D8334A</p>
+				<p>rgb(216,51,74)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-grapefruit"></div>
+			<div class="swatch-info">
+				<p>Grapefruit:</p>
+				<p>#ED5565</p>
+				<p>rgb(237,85,101)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-bittersweet"></div>
+			<div class="swatch-info">
+				<p>Bittersweet:</p>
+				<p>#FC6E51</p>
+				<p>rgb(252,110,81)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-sunflower"></div>
+			<div class="swatch-info">
+				<p>Sunflower:</p>
+				<p>#FFCE54</p>
+				<p>rgb(255,206,84)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-straw"></div>
+			<div class="swatch-info">
+				<p>Straw:</p>
+				<p>#E8CE4D</p>
+				<p>rgb(232,206,77)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-grass"></div>
+			<div class="swatch-info">
+				<p>Grass:</p>
+				<p>#A0D468</p>
+				<p>rgb(160,212,104)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-mint"></div>
+			<div class="swatch-info">
+				<p>Mint:</p>
+				<p>#48CFAD</p>
+				<p>rgb(72,207,173)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-teal"></div>
+			<div class="swatch-info">
+				<p>Teal:</p>
+				<p>#A0CECB</p>
+				<p>rgb(160,206,203)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-aqua"></div>
+			<div class="swatch-info">
+				<p>Aqua:</p>
+				<p>#4FC1E9</p>
+				<p>rgb(79,193,233)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-blue-jeans"></div>
+			<div class="swatch-info">
+				<p>Blue Jeans:</p>
+				<p>#5D9CEC</p>
+				<p>rgb(93,156,236)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-plum"></div>
+			<div class="swatch-info">
+				<p>Plum:</p>
+				<p>#8067B7</p>
+				<p>rgb(128,103,183)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-lavender"></div>
+			<div class="swatch-info">
+				<p>Lavender:</p>
+				<p>#AC92EC</p>
+				<p>rgb(172,146,236)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-pink-rose"></div>
+			<div class="swatch-info">
+				<p>Pink Rose:</p>
+				<p>#EC87C0</p>
+				<p>rgb(236,135,192)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-light-gray"></div>
+			<div class="swatch-info">
+				<p>Light Gray:</p>
+				<p>#F5F7FA</p>
+				<p>rgb(245,247,250)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-medium-gray"></div>
+			<div class="swatch-info">
+				<p>Medium Gray:</p>
+				<p>#CCD1D9</p>
+				<p>rgb(204,209,217)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-dark-gray"></div>
+			<div class="swatch-info">
+				<p>Dark Gray:</p>
+				<p>#656D78</p>
+				<p>rgb(101,109,120)</p>
+			</div>
+		</li>
+		<li class="swatch">
+			<div class="swatch-color color-charcoal"></div>
+			<div class="swatch-info">
+				<p>Charcoal:</p>
+				<p>#3C3B3D</p>
+				<p>rgb(60,59,61)</p>
+			</div>
+		</li>
+	</ul>

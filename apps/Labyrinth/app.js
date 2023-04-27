@@ -82,7 +82,7 @@ class Actor extends NeuContainer {
 
         }
 
-        myCell.Text.data.Content = ''
+        myCell.data.Content = ''
         // myCell.data.BackgroundColor = 'transparent'
 
 
@@ -238,10 +238,10 @@ class LYCell extends NeuContainer {
             // this.Text.data.Content = '▧'
             this.data.BackgroundColor = colorScheme.primary
         } else if (this.type === 'path') {
-            this.Text.data.Content = 'Ø'
+            this.data.Content = 'Ø'
             this.data.TextColor = 'transparent'
         } else if (this.type === 'isol'){
-            this.Text.data.Content = '✖'
+            this.data.Content = '✖'
         }
 
 
@@ -311,8 +311,9 @@ export class Labyrinth extends NeuApp {
     // layout: NeuScaffold
     constructor() {
         super()
-        this.setFullScreen(true)
         this.layout = new NeuScaffold()
+        this.setFullScreen(true)
+
 
         this.AppBar = new TopAppBar()
         this.AppBar.setHeadline('Labyrinth Visualizer')

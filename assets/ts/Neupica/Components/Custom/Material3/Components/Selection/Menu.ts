@@ -33,6 +33,12 @@ export class Menu extends NeuContainer {
         this.animating = false
     }
 
+    reRender() {
+        super.reRender()
+        this.Container.data.BackgroundColor = colorScheme.surface
+
+    }
+
     Appear() {
         let that = this
         if (!this.animating) {
@@ -98,7 +104,7 @@ export class MenuItem extends NeuContainer {
 
         this.LabelText = new NeuContainer()
         this.LabelText.data.TextColor = colorScheme.onSurface
-        this.LabelText.Text.data.Content = 'Item 1'
+        this.LabelText.data.Content = 'Item 1'
         this.LabelText.geometry.MinWidth = 'fit-content'
         this.LabelText.data.FontSize = Typography.Size.LabelLarge
         this.addChild(this.LabelText)
@@ -123,6 +129,17 @@ export class MenuItem extends NeuContainer {
         this.ActivateRipple()
 
         this.geometry.Cursor = 'pointer'
+
+    }
+
+    reRender() {
+        super.reRender()
+        this.LeadingIcon.data.TextColor = colorScheme.onSurfaceVariant
+        this.LabelText.data.TextColor = colorScheme.onSurface
+        this.TrailingText.data.TextColor = colorScheme.onSurfaceVariant
+        this.TrailingIcon.data.TextColor = colorScheme.onSurfaceVariant
+        this.CascadingMenuIcon.data.TextColor = colorScheme.onSurfaceVariant
+        this.data.TextColor = colorScheme.onSurfaceVariant
 
     }
 }

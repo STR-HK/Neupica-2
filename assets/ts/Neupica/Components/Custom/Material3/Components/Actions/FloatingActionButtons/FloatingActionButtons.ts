@@ -4,6 +4,7 @@ import { Icon, MaterialSymbolsOutlined } from "../../../Styles/Icons.js"
 import { colorScheme } from "../../../Styles/Color.js"
 import { Level1, Level3, Level5 } from "../../../Styles/Elevation.js"
 import { Typography } from "../../../Styles/Typography.js"
+import { transit } from "../../../Styles/Motion/Transition.js"
 
 export class FloatingActionButtons extends NeuContainer {
     Icon: Icon
@@ -36,5 +37,21 @@ export class FloatingActionButtons extends NeuContainer {
 
 
         this.addChild(this.Container)
+    }
+
+    reRender() {
+        super.reRender()
+
+        transit(this.Icon, {
+            'color': colorScheme.onPrimaryContainer
+        })
+        transit(this.Container, {
+            'backgroundColor': colorScheme.primaryContainer
+        })
+
+        // this.Icon.data.TextColor = colorScheme.onPrimaryContainer
+        // this.Container.data.BackgroundColor = colorScheme.primaryContainer
+
+
     }
 }

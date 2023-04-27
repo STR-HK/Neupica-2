@@ -56,7 +56,7 @@ export class NeuScaffold extends NeuLayout {
         this.body.geometry.Height = '100%'
         this.body.geometry.Overflow = 'auto'
 
-        this.body.watchEvent('scroll', function() {
+        this.body.watchEvent('scroll', function(e) {
             if (this.body.element.scrollTop == 0) {
                 this.head.appBar.UnScrolling()
             } else {

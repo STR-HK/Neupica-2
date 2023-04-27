@@ -115,6 +115,19 @@ export class NeuContainer extends Native {
         //         opacity: 1
         //     })
         // }.bind(this), getRandomInt(500, 1000))
+        // this.element.addEventListener('click', function() {
+        //     if (this instanceof Children) {
+        //         this.suicide()
+        //     }
+        // }.bind(this))
+        // this.watchEvent('click', function() {
+        //     try {
+        //         this.apoptosis()
+        //     }
+        //     catch (e) {
+        //         console.log(e)
+        //     }
+        // }.bind(this))
     }
     childrenUpdate(...args) {
         if (args[0]['type'] != 'clear') {

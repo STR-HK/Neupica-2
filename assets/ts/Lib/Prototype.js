@@ -2,7 +2,7 @@ import { NeuColumn } from "../Layout/NeuColumn.ts"
 import { NeuRow } from "../Layout/NeuRow.ts"
 import { NeuContainer } from "../Neupica/Components/Native/NeuContainer.ts"
 import { NeuImage } from "../Neupica/Components/Native/NeuImage.ts"
-import { NeuText } from "../Neupica/Components/Native/NeuText.js"
+import { MaterialText } from "../Neupica/Components/Native/MaterialText.ts"
 import { NeuApp } from "../Neupica/Core/App.ts"
 import { Box } from "../Tool/Box.js"
 
@@ -36,7 +36,7 @@ class Prototype extends NeuApp {
             constructor() {
                 super()
 
-                this.text = new NeuText()
+                this.text = new MaterialText()
                 this.text.data.FontSize = "1.5rem"
                 this.text.data.FontWeight = "bold"
                 this.text.data.TextColor = "#E9EFFB"
@@ -54,7 +54,7 @@ class Prototype extends NeuApp {
         this.creditBox = new NeuContainer()
         this.sideCont.addChild(this.creditBox)
 
-        class Credit extends NeuText {
+        class Credit extends MaterialText {
             constructor() {
                 super()
                 this.data.FontSize = "12px"

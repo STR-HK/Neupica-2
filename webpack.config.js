@@ -4,7 +4,7 @@ const AutoExport = require("webpack-auto-export")
 
 module.exports = {
     mode: "production",
-    entry: "./apps/Material 3/app.js",
+    entry: "./apps/Flutter Mimic/main.js",
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js",

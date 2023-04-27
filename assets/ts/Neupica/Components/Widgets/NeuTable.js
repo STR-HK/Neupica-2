@@ -1,7 +1,7 @@
 import { Box } from "../../../Tool/Box.js"
 // import { Native } from "./Native.ts"
 import { NeuContainer } from "../Native/NeuContainer.ts"
-import { NeuText } from "../Native/NeuText.js"
+import { MaterialText } from "../Native/MaterialText.ts"
 
 export class NeuTable extends NeuContainer {
     constructor() {
@@ -9,7 +9,7 @@ export class NeuTable extends NeuContainer {
         this.name = "NeuTable"
 
         this.data = {
-            Cursor: { data: new NeuText().data },
+            Cursor: { data: new MaterialText().data },
         }
         this.build()
 

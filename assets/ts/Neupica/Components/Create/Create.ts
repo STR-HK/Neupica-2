@@ -96,10 +96,16 @@ function attachToCover(element: HTMLDivElement): UDivElement {
 let NeuMode = false
 let Indexing = true
 let Covering = true
-export let Bounding = "NeuBound"
+
+export let Bounding = 'Bounding'
+export let Cover =  'Cover'
+
+Bounding = "NeuBound"
+Cover = "NeuCover"
+
 Bounding = "_"
-export let Cover = "NeuCover"
-// Cover = "C"
+Cover = "C"
+
 
 function newCreateElement(tagName: string) {
     let element =  document.createElement(tagName)
@@ -132,6 +138,12 @@ function camelCaseToSnakeCase(text: string): string {
 export function createCover(name: string): UDivElement {
     // let element: HTMLDivElement = newCreateElement("div")
     // console.log(name)
+    if (name === "") {
+        name = 'neupica_cover'
+    }
+    if (window.mode === 'shipping') {
+        name = 'nc'
+    }
     let element: HTMLDivElement = newCreateElement(camelCaseToSnakeCase(name)) as HTMLDivElement
     let Uelement: UDivElement = attachFunction(element) as UDivElement
 

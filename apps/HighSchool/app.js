@@ -28,9 +28,10 @@ initModal()
 export class HighSchool extends NeuApp {
     constructor() {
         super()
-        this.setFullScreen(true)
 
         this.layout = new NeuScaffold()
+        this.setFullScreen(true)
+
 
         this.AppBar = new TopAppBar()
         this.AppBar.setHeadline('고등학교 배정조회')
@@ -44,7 +45,7 @@ export class HighSchool extends NeuApp {
         this.AppBar.addTrailing(
             this.AppBarInfoTrailIconButton
         )
-        this.layout.head.addChild(this.AppBar)
+        this.layout.head.setAppBar(this.AppBar)
 
         this.List = new List()
         this.layout.body.addChild(this.List)
@@ -64,13 +65,13 @@ export class HighSchool extends NeuApp {
             if (class_lastest != class_Parsed) {
                 class_lastest = class_Parsed
                 let classDividing = new ListItem()
-                classDividing.Headline.Text.data.Content = `${grade}학년 ${class_}반`
+                classDividing.Headline.data.Content = `${grade}학년 ${class_}반`
                 classDividing.Headline.data.FontWeight = 'bold'
                 classDividing.DeActivateRipple()
                 this.List.addChild(classDividing)
             }
-            listItem.Headline.Text.data.Content = `${grade}학년 ${class_}반 ${number}번`
-            listItem.SupportingText.Text.data.Content = harray[i]
+            listItem.Headline.data.Content = `${grade}학년 ${class_}반 ${number}번`
+            listItem.SupportingText.data.Content = harray[i]
             let listItemCheckIcon = new MaterialSymbolsRounded('download')
             let listItemCheckIconButton = new IconButton(listItemCheckIcon)
             listItem.Trailing.addChild(listItemCheckIconButton)
@@ -79,7 +80,7 @@ export class HighSchool extends NeuApp {
             // console.log(listItem.Trailing.data.JustifyContent)
             listItemCheckIconButton.DeActivateRipple()
             listItemCheckIconButton.watchEvent('click', function() {
-                listItemCheckIcon.Text.data.Content = 'hourglass_top'
+                listItemCheckIcon.data.Content = 'hourglass_top'
 
                 fetch(`http://asphodel.kro.kr:8000/${listItem.hackbun}`)
                     .then((data) => {
@@ -89,7 +90,7 @@ export class HighSchool extends NeuApp {
                             listItemCheckIconButton.Hide()
                             let js = json['생년월일']
                             if (js) {
-                                listItem.SupportingText.Text.data.Content = listItem.SupportingText.data.Text + ` (${js})`
+                                listItem.SupportingText.data.Content = listItem.SupportingText.data.Content + ` (${js})`
                             }
 
                             let text = new NeuContainer()
@@ -97,9 +98,9 @@ export class HighSchool extends NeuApp {
                             text.geometry.Margin = new Box().right('12px')
                             text.data.FontSize = Typography.Size.TitleMedium
 
-                            text.Text.data.Content = json['배정학교']
+                            text.data.Content = json['배정학교']
                             if (json['배정학교'].toString().includes('전북대학교사범')) {
-                                text.Text.data.Content = '전북대학교사범대학\n부설고등학교'
+                                text.data.Content = '전북대학교사범대학\n부설고등학교'
                                 text.data.TextAlign = 'center'
                                 text.data.FontSize = '14rem'
                             } else if (json['배정학교'].toString().includes('전주중앙여자')) {
@@ -107,7 +108,7 @@ export class HighSchool extends NeuApp {
                             } else if (json['배정학교'].toString().includes('미상')) {
                                 // text.data.FontSize = '10rem'
                                 text.Hide()
-                                listItemCheckIcon.Text.data.Content = 'do_not_disturb_on'
+                                listItemCheckIcon.data.Content = 'do_not_disturb_on'
                                 listItemCheckIconButton.Show()
                             }
                             text.data.JustifyContent = 'center'

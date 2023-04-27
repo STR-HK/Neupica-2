@@ -7,7 +7,7 @@ import { initFloat } from "./Core/Floating.js"
 import { getScript } from "./DOM/Contents.js"
 import { NeuApp } from "./Core/App.js"
 import { NeuColumn } from "../Layout/NeuColumn.js"
-import { NeuText } from "./Components/Native/NeuText.js"
+import { MaterialText } from "./Components/Native/MaterialText.js"
 import { NeuInput } from "./Components/Native/NeuInput.js"
 import { MStrokedButton } from "./Components/Custom/deprecated/MButton.js"
 import { NeuLabel} from "./Components/Widgets/NeuLabel.js"
@@ -61,8 +61,77 @@ window.loaded = false
 window.name = "Neupica 2c"
 window.version = '2.2.2c'
 
-window.mode = 'development'
-// window.mode = 'shipping'
+// window.mode = 'development'
+window.mode = 'shipping'
+
+/**
+ * Utility function to add CSS in multiple passes.
+ * @param {string} styleString
+ */
+function addStyle(styleString) {
+    const style = document.createElement('style');
+    style.textContent = styleString;
+    document.head.append(style);
+}
+
+function ship() {
+    addStyle(`
+        * {
+            box-sizing: border-box;
+            position: relative;
+            user-select: none;
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-size: 1px;
+        }
+        .NeuCover, .C {
+            display: contents;
+        }
+        flt-glass-pane {
+            height: 100%;
+        }
+
+        
+    `)
+
+    addStyle(`
+    /* width */
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        /* button */
+        ::-webkit-scrollbar-button {
+            background: transparent;
+            height: 0;
+            width: 0;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #5f6368;
+            border-radius: 4px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #bbb;
+        }
+        /* Corner */
+        ::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+
+        /* Resizer */
+        ::-webkit-resizer {
+            background: transparent;
+        }`)
+}
 
 function boot() {
     console.log(Ascii(window.name))
@@ -70,6 +139,8 @@ function boot() {
     console.log(`v.${window.version}`)
     solveBootingStack()
     window.solved = true
+
+
 }
 
 export function runApp(app) {
@@ -80,6 +151,9 @@ export function runApp(app) {
         app.solveQueues()
     }
     if (window.solved === false) {
+        if (window.mode === 'shipping') {
+            ship()
+        }
         if (window.mode === 'development') {
             boot()
         } else {

@@ -13,13 +13,28 @@ export class Children extends NObject {
         super();
         this.children = [];
     }
+    get scout() {
+        return this.children[0];
+    }
     suicide() {
         if (this.parent) {
             this.parent.removeChild(this);
         }
     }
+    apoptosis() {
+        this.suicide();
+        Object.keys(this).forEach(key => {
+            delete this[key];
+        });
+        console.log(this);
+    }
     addChild(child) {
-        child.parent = this;
+        try {
+            child.parent = this;
+        }
+        catch (e) {
+            console.warn('addChild: found orphan');
+        }
         this.children.push(child);
         this.childrenUpdate({
             type: 'add',
@@ -32,7 +47,12 @@ export class Children extends NObject {
         return this;
     }
     removeChild(child) {
-        child.parent = undefined;
+        try {
+            child.parent = undefined;
+        }
+        catch (e) {
+            console.warn('removeChild: made orphan');
+        }
         let index = this.children.indexOf(child);
         if (index !== -1) {
             this.children.splice(index, 1);

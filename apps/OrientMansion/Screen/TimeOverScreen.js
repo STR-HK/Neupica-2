@@ -37,7 +37,7 @@ export class TimeOverScreen extends NeuContainer {
         this.XResult.data.TextColor = colorScheme.onErrorContainer
         this.XResult.data.FontSize = Typography.Size.HeadlineSmall
         this.XResult.geometry.Margin = new Box().top('30px')
-        this.XResult.Text.data.Content = '추리가 종료되었습니다'
+        this.XResult.data.Content = '추리가 종료되었습니다'
         this.layout.body.addChild(this.XResult)
 
         this.addChild(this.layout)

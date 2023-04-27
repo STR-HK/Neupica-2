@@ -40,7 +40,7 @@ export class NavigationRailItem extends NeuContainer {
         this.ActiveIndicator.data.BorderRadius = '16rem';
         this.ActiveIndicator.data.AlignItems = 'center';
         this.LabelText = new NeuContainer();
-        this.LabelText.Text.data.Content = 'Label Text';
+        this.LabelText.data.Content = 'Label Text';
         this.LabelText.data.TextColor = colorScheme.onSurface;
         this.LabelText.data.FontSize = Typography.Size.LabelMedium;
         this.Icon = new MaterialSymbolsSharp('ac_unit');

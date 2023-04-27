@@ -3,6 +3,7 @@ import { NeuContainer } from "../../../../../Native/NeuContainer.js"
 import { colorScheme } from "../../../Styles/Color.js"
 import { Typography } from "../../../Styles/Typography.js"
 import { Box } from "../../../../../../../Tool/Box.js"
+import { transit } from "../../../Styles/Motion/Transition.js"
 
 export class ExtendedFAB extends FloatingActionButtons {
     LabelText: NeuContainer
@@ -20,5 +21,18 @@ export class ExtendedFAB extends FloatingActionButtons {
         this.LabelText.data.TextColor = colorScheme.onPrimaryContainer
         this.LabelText.data.FontSize = Typography.Size.LabelLarge
         this.Container.addChild(this.LabelText)
+
+        this.reRender()
+    }
+
+    reRender() {
+        super.reRender()
+
+        transit(this.LabelText, {
+            'color': colorScheme.onPrimaryContainer
+        })
+
+        // this.LabelText.data.TextColor = colorScheme.onPrimaryContainer
+
     }
 }

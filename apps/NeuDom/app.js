@@ -6,7 +6,7 @@ import { MaterialSymbolsOutlined } from "../../assets/ts/Neupica/Components/Cust
 import { IconButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Icon Buttons/IconButton.js"
 import { NeuContainer } from "../../assets/ts/Neupica/Components/Native/NeuContainer.js"
 import { colorScheme } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
-// import { NObject } from "../../assets/ts/Common/NObject.ts"
+// import { NObject } from "../../assets/ts/Common/NObject.js"
 // import * as inspector from "inspector"
 
 export class NeuDom extends NeuApp {

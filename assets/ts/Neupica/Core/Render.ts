@@ -45,6 +45,9 @@ export function NeuRender(app, layout, dom, silence) {
         )
     }
     dom.appendChild(layout.element)
+    // let shadow = dom.shadowRoot
+    // shadow.appendChild(layout.element)
+
 }
 
 export function NeuModalRender(app, layout, dom, silence) {

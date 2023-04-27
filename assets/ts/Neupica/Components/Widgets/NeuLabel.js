@@ -1,4 +1,4 @@
-import { NeuText } from "../Native/NeuText.js"
+import { MaterialText } from "../Native/MaterialText.ts"
 import { NeuContainer } from "../Native/NeuContainer.ts"
 
 export class NeuLabel extends NeuContainer {

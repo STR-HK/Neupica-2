@@ -38,13 +38,13 @@ export class ResultScreen extends NeuContainer {
         this.title.data.FontSize = Typography.Size.HeadlineMedium
         this.title.data.TextColor = colorScheme.onBackground
         this.title.data.FontWeight = 'bold'
-        this.title.Text.data.Content = '축하합니다!'
+        this.title.data.Content = '축하합니다!'
         this.layout.body.addChild(this.title)
 
         this.subtitle = new NeuContainer()
         this.subtitle.data.FontSize = Typography.Size.TitleMedium
         this.subtitle.data.TextColor = colorScheme.onBackground
-        this.subtitle.Text.data.Content = '당신은 성공적으로 범인을 잡았습니다'
+        this.subtitle.data.Content = '당신은 성공적으로 범인을 잡았습니다'
         this.layout.body.addChild(this.subtitle)
 
         this.blank2 = new NeuContainer()
@@ -57,7 +57,7 @@ export class ResultScreen extends NeuContainer {
         this.mss.data.FontSize = '10rem'
 
         setInterval(function() {
-            this.mss.Text.data.Content = `${localStorage.getItem('before')} -> ${localStorage.getItem('after')}`
+            this.mss.data.Content = `${localStorage.getItem('before')} -> ${localStorage.getItem('after')}`
 
         }.bind(this), 100)
 
@@ -67,14 +67,14 @@ export class ResultScreen extends NeuContainer {
 
             let bdinput = new CetneredTextField()
             bdinput.geometry.Width = '200px'
-            bdinput.LabelText.Text.data.Content = '?'
+            bdinput.LabelText.data.Content = '?'
 
             let checker = new BasicDialogs()
-            checker.Icon.Text.data.Content = 'infrared'
-            checker.Headline.Text.data.Content = 'Xx3929dfkR'
-            // checker.SupportingText.Text.data.Content = `당신이 선택한 범인은 ${this.selectedJob} 입니다`
+            checker.Icon.data.Content = 'infrared'
+            checker.Headline.data.Content = 'Xx3929dfkR'
+            // checker.SupportingText.data.Content = `당신이 선택한 범인은 ${this.selectedJob} 입니다`
             checker.SupportingText.addChild(bdinput)
-            checker.TextButton.Text.data.Content = 'CFM'
+            checker.TextButton.data.Content = 'CFM'
             checker.TextButton.watchEvent('click', function() {
                 let input = bdinput.Input.data.Value
                 if (input === 'xor') {
@@ -82,7 +82,7 @@ export class ResultScreen extends NeuContainer {
                     location.reload()
                 }
             }.bind(this))
-            checker.CloseButton.Text.data.Content = 'CEL'
+            checker.CloseButton.data.Content = 'CEL'
             checker.Scrim.data.JustifyContent = 'flex-start'
             checker.Container.data.Margin = '120px'
             window.modal.addInteractiveModal(checker)
@@ -113,8 +113,8 @@ export class FailureScreen extends ResultScreen {
 
 
 
-        this.icon.Text.data.Content = 'report'
-        this.title.Text.data.Content = '실패하였습니다...'
-        this.subtitle.Text.data.Content = '당신이 지목한 범인은 진범이 아니었습니다'
+        this.icon.data.Content = 'report'
+        this.title.data.Content = '실패하였습니다...'
+        this.subtitle.data.Content = '당신이 지목한 범인은 진범이 아니었습니다'
     }
 }

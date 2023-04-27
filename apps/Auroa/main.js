@@ -181,8 +181,9 @@ export default class AuroaMain extends NeuApp {
         super()
         // window.inspect = true
 
-        this.setFullScreen(true)
         this.layout = new NeuScaffold()
+        this.setFullScreen(true)
+
 
         this.TopAppBar = new TopAppBar()
         this.TopAppBar.setHeadline('Auroa Web')
@@ -251,7 +252,7 @@ export default class AuroaMain extends NeuApp {
                         this.ColorNameWidget = new TextFields()
                         this.ColorNameWidget.geometry.MinWidth = '140px'
                         this.ColorNameWidget.geometry.MaxWidth = '140px'
-                        this.ColorNameWidget.LabelText.Text.data.Content = 'ColorName'
+                        this.ColorNameWidget.LabelText.data.Content = 'ColorName'
                         this.ColorNameWidget.Input.data.Value = this.ColorName
                         this.ColorNameWidget.Input.element.click()
                         this.ColorNameWidget.watchEvent('input', function() {
@@ -263,7 +264,7 @@ export default class AuroaMain extends NeuApp {
                         this.NameWidget = new TextFields()
                         this.NameWidget.geometry.MinWidth = '100px'
                         this.NameWidget.geometry.MaxWidth = '100px'
-                        this.NameWidget.LabelText.Text.data.Content = 'Name'
+                        this.NameWidget.LabelText.data.Content = 'Name'
                         this.NameWidget.Input.data.Value = this.Name
                         this.NameWidget.Input.element.click()
                         this.NameWidget.watchEvent('input', function() {
@@ -442,9 +443,9 @@ export default class AuroaMain extends NeuApp {
                 this.ViewerList2D[i+1][0].data.BackgroundColor = colorScheme.onBackground
                 this.ViewerList2D[i+1][0].data.FontWeight = 'bold'
                 if (i != -1) {
-                    this.ViewerList2D[i+1][0].Text.data.Content = i.toString().padStart(2, '0')
+                    this.ViewerList2D[i+1][0].data.Content = i.toString().padStart(2, '0')
                 } else {
-                    this.ViewerList2D[i+1][0].Text.data.Content = '＼'
+                    this.ViewerList2D[i+1][0].data.Content = '＼'
 
                 }
             }
@@ -453,7 +454,7 @@ export default class AuroaMain extends NeuApp {
                 this.ViewerList2D[0][i+1].data.FontWeight = 'bold'
 
                 if (i != -1) {
-                    this.ViewerList2D[0][i+1].Text.data.Content = ((i + 1) * 10).toString().padStart(2, '0')
+                    this.ViewerList2D[0][i+1].data.Content = ((i + 1) * 10).toString().padStart(2, '0')
                 }
             }
 
@@ -501,14 +502,14 @@ export default class AuroaMain extends NeuApp {
                 this.LegendViewerList2D[i][1].geometry.AspectRatio = '4'
                 if (i != 0) {
                     let data = getdbDataById(dbKeys[i-1])
-                    this.LegendViewerList2D[i][0].Text.data.Content = data.Name
+                    this.LegendViewerList2D[i][0].data.Content = data.Name
                     this.LegendViewerList2D[i].forEach(inner => {
                         inner.data.BackgroundColor = ColorPalette[data.ColorName]
                     })
                 } else {
-                    this.LegendViewerList2D[i][0].Text.data.Content = '범례'
+                    this.LegendViewerList2D[i][0].data.Content = '범례'
                     this.LegendViewerList2D[i][0].data.FontWeight = 'bold'
-                    this.LegendViewerList2D[i][1].Text.data.Content = '시간'
+                    this.LegendViewerList2D[i][1].data.Content = '시간'
                     this.LegendViewerList2D[i][1].data.FontWeight = 'bold'
                 }
             }
@@ -542,20 +543,20 @@ export default class AuroaMain extends NeuApp {
 
         this.BottomNavigation = new NavigationBar()
         this.BottomNavigationButton1 = new NavigationBarItem()
-        this.BottomNavigationButton1.Icon.Text.data.Content = 'brush'
-        this.BottomNavigationButton1.Label.Text.data.Content = 'Edit Mode'
+        this.BottomNavigationButton1.Icon.data.Content = 'brush'
+        this.BottomNavigationButton1.Label.data.Content = 'Edit Mode'
         this.BottomNavigationButton1.watchEvent('click', function() {
             this.navigate(this.editModeScreen)
         }.bind(this))
         this.BottomNavigationButton2 = new NavigationBarItem()
-        this.BottomNavigationButton2.Icon.Text.data.Content = 'grid_on'
-        this.BottomNavigationButton2.Label.Text.data.Content = 'View Mode'
+        this.BottomNavigationButton2.Icon.data.Content = 'grid_on'
+        this.BottomNavigationButton2.Label.data.Content = 'View Mode'
         this.BottomNavigationButton2.watchEvent('click', function() {
             this.navigate(this.viewModeScreen)
         }.bind(this))
         this.BottomNavigationButton3 = new NavigationBarItem()
-        this.BottomNavigationButton3.Icon.Text.data.Content = 'view_timeline'
-        this.BottomNavigationButton3.Label.Text.data.Content = 'Real Mode'
+        this.BottomNavigationButton3.Icon.data.Content = 'view_timeline'
+        this.BottomNavigationButton3.Label.data.Content = 'Real Mode'
         this.BottomNavigationButton3.watchEvent('click', function() {
             this.navigate(this.realModeScreen)
         }.bind(this))

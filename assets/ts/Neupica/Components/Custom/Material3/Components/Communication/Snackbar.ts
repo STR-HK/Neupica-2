@@ -53,6 +53,16 @@ export class Snackbar extends NeuContainer {
 
     }
 
+    reRender() {
+        super.reRender()
+        this.Container.data.BackgroundColor = colorScheme.inverseSurface
+        this.SupportingText.data.TextColor = colorScheme.inverseOnSurface
+        this.Action.data.TextColor = colorScheme.inversePrimary
+        this.Icon.data.TextColor = colorScheme.inverseOnSurface
+
+
+    }
+
     Position (target: Found) {
         let Rect = target.getBoundElement().getBoundingClientRect()
         this.geometry.Position = 'absolute'

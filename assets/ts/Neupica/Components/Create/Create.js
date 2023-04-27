@@ -62,10 +62,12 @@ function attachToCover(element) {
 let NeuMode = false;
 let Indexing = true;
 let Covering = true;
-export let Bounding = "NeuBound";
+export let Bounding = 'Bounding';
+export let Cover = 'Cover';
+Bounding = "NeuBound";
+Cover = "NeuCover";
 Bounding = "_";
-export let Cover = "NeuCover";
-// Cover = "C"
+Cover = "C";
 function newCreateElement(tagName) {
     let element = document.createElement(tagName);
     resizeObserver.observe(element);
@@ -95,6 +97,12 @@ function camelCaseToSnakeCase(text) {
 export function createCover(name) {
     // let element: HTMLDivElement = newCreateElement("div")
     // console.log(name)
+    if (name === "") {
+        name = 'neupica_cover';
+    }
+    if (window.mode === 'shipping') {
+        name = 'nc';
+    }
     let element = newCreateElement(camelCaseToSnakeCase(name));
     let Uelement = attachFunction(element);
     if (NeuMode) {

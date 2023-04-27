@@ -1,6 +1,7 @@
 import { Found } from "../Found/Found.js";
 import ripplet from "../Custom/Material3/Styles/Ripplet.js";
 import anime from "../Custom/Material3/Styles/Motion/anime.es.js";
+import { addThemedElement } from "../Custom/Material3/Styles/Color.js";
 export class Native extends Found {
     displayed;
     RippleNames;
@@ -11,11 +12,16 @@ export class Native extends Found {
         this.cover = this.createCover();
         // For Highlight-Tap Browsers
         // @ts-ignore
-        this.cover.style.webkitTapHighlightColor = "transparent";
+        // this.cover.style.webkitTapHighlightColor = "transparent"
         this.RippleNames = [];
         this.RippleFunctions = [];
         this.displayed = true;
+        // console.log(this)
+        addThemedElement(this);
         // this.Bounce()
+    }
+    reRender() {
+        // console.log('native colrender')
     }
     relate(callback) {
         new ResizeObserver(function () {

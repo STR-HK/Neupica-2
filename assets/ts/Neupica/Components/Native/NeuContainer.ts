@@ -3,6 +3,7 @@ import { Native } from "./Native.js"
 import { theme } from "../Custom/Material3/Styles/Color"
 // @ts-ignore
 import anime from "../Custom/Material3/Styles/Motion/anime.es.js"
+import { Children } from "../../../Common/Children.js"
 
 export interface NeuContainerData {
     BackgroundColor: string,
@@ -216,6 +217,20 @@ export class NeuContainer extends Native {
         //         opacity: 1
         //     })
         // }.bind(this), getRandomInt(500, 1000))
+
+        // this.element.addEventListener('click', function() {
+        //     if (this instanceof Children) {
+        //         this.suicide()
+        //     }
+        // }.bind(this))
+        // this.watchEvent('click', function() {
+        //     try {
+        //         this.apoptosis()
+        //     }
+        //     catch (e) {
+        //         console.log(e)
+        //     }
+        // }.bind(this))
     }
 
     childrenUpdate(...args) {

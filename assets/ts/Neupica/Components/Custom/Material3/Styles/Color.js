@@ -14,13 +14,14 @@ if (storageThemeColor == null) {
     // 2012. Tangerine Tango - PANTONE 17-1463
     // themeColor = '#DD4124'
     // 2013. Emerald - PANTONE 17-5641
-    themeColor = '#009874';
+    // themeColor = '#009874'
     // 2016. Rose Quartz - PANTONE 13-1520
     // themeColor = '#F7CACA'
     // 2022. Very Peri - Pantone 17-3938
     // themeColor = '#6667AB'
     // 2023. Viva Magenta - Pantone 18-1750
     // themeColor = '#BB2649'
+    themeColor = "#b05454";
 }
 else {
     themeColor = storageThemeColor;
@@ -36,6 +37,19 @@ if (localStorage.getItem('systemDark') == null) {
 }
 // ----- [ theme creator template ] ----
 export var theme = themeFromSourceColor(argbFromHex(themeColor));
+export function toogleDarkMode() {
+    if (localStorage.getItem('systemDark') == 'dark') {
+        localStorage.setItem('systemDark', 'light');
+        colorScheme = theme.schemes.light;
+        // colorScheme = theme.schemes.dark
+    }
+    else {
+        localStorage.setItem('systemDark', 'dark');
+        colorScheme = theme.schemes.dark;
+        // colorScheme = theme.schemes.light
+    }
+    rerenderThemedElements();
+}
 export function setTheme(hex) {
     theme = themeFromSourceColor(argbFromHex(hex));
     if (localStorage.getItem('systemDark') == 'dark') {
@@ -44,9 +58,31 @@ export function setTheme(hex) {
     else {
         colorScheme = theme.schemes.light;
     }
+    rerenderThemedElements();
+}
+export let themedElements = [];
+export function addThemedElement(elemen) {
+    themedElements.push(elemen);
+}
+// let timedelta = 1
+// let timing = timedelta
+export function rerenderThemedElements() {
+    themedElements.forEach(te => {
+        // console.log(te)
+        try {
+            te.reRender();
+            // setTimeout(function() {
+            //     te.reRender()
+            // }, timing)
+            // timing = timing + timedelta
+        }
+        catch (e) {
+            console.error('not supported ');
+        }
+    });
 }
 window.setTheme = setTheme;
-var hexToRgba = function (hex) {
+export var hexToRgba = function (hex) {
     var r, g, b, a;
     hex = hex.replace('#', '');
     if (3 === hex.length) {
@@ -149,6 +185,7 @@ export function setStorageDark(light) {
         colorScheme = theme.schemes.light;
     }
 }
+// export
 // console.log(storageDark)
 if (storageDark == 'dark') {
     colorScheme = theme.schemes.dark;

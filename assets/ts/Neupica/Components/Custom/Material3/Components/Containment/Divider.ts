@@ -13,4 +13,10 @@ export class Divider extends NeuContainer {
         this.data.BackgroundColor = colorScheme.outlineVariant
         this.data.Margin = new Box().vertical('4rem')
     }
+
+    reRender() {
+        super.reRender()
+        this.data.BackgroundColor = colorScheme.outlineVariant
+
+    }
 }

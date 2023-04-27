@@ -32,6 +32,11 @@ export class Switch extends NeuContainer {
         this.Toggle();
         this.ActivateRipple();
     }
+    reRender() {
+        super.reRender();
+        this.State = !this.State;
+        this.Toggle();
+    }
     Toggle() {
         if (this.State) {
             this.Track.data.BorderWidth = '2rem';

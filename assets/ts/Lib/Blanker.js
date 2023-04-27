@@ -1,6 +1,6 @@
 import { NeuApp } from "../Neupica/Core/App.ts"
 import { NeuColumn } from "../Layout/NeuColumn.ts"
-import { NeuText } from "../Neupica/Components/Native/NeuText.js"
+import { MaterialText } from "../Neupica/Components/Native/MaterialText.ts"
 import { NeuRow } from "../Layout/NeuRow.ts"
 import { NeuContainer } from "../Neupica/Components/Native/NeuContainer.ts"
 import { NeuButton } from "../Neupica/Components/Widgets/NeuButton.js"
@@ -28,13 +28,13 @@ class Blanker extends NeuApp {
         this.centralContainer.data.Gap = '15px'
         this.layout.addChild(this.centralContainer)
 
-        this.galleryTitle = new NeuText()
+        this.galleryTitle = new MaterialText()
         this.galleryTitle.data.FontSize = '1.5rem'
         this.galleryTitle.Text.data.Content = 'Gallery'
         this.galleryTitle.data.TextColor = '#1CDFC9'
         this.galleryTitle.data.FontWeight = 'bold'
 
-        this.catergoriesTitle = new NeuText()
+        this.catergoriesTitle = new MaterialText()
         this.catergoriesTitle.data.FontSize = '1.5rem'
         this.catergoriesTitle.Text.data.Content = 'Categories'
         this.catergoriesTitle.data.TextColor = "#FF8484"

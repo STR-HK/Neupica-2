@@ -43,6 +43,11 @@ export class Switch extends NeuContainer {
         this.ActivateRipple()
 
     }
+    reRender() {
+        super.reRender()
+        this.State = !this.State
+        this.Toggle()
+        }
 
     Toggle() {
         if (this.State) {

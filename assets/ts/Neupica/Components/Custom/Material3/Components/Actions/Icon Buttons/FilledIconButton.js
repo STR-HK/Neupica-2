@@ -6,5 +6,9 @@ export class FilledIconButton extends IconButton {
         this.name = 'FilledIconButton';
         this.Icon.data.BackgroundColor = colorScheme.onPrimary;
     }
+    reRender() {
+        super.reRender();
+        this.Icon.data.BackgroundColor = colorScheme.onPrimary;
+    }
 }
 //# sourceMappingURL=FilledIconButton.js.map

@@ -8,4 +8,9 @@ export class FilledIconButton extends IconButton {
 
         this.Icon.data.BackgroundColor = colorScheme.onPrimary
     }
+    reRender() {
+        super.reRender()
+        this.Icon.data.BackgroundColor = colorScheme.onPrimary
+
+    }
 }

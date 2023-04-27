@@ -5,13 +5,18 @@ import { colorScheme } from "../../../Styles/Color.js"
 import { Level1 } from "../../../Styles/Elevation.js"
 import { Typography } from "../../../Styles/Typography.js"
 import { Box } from "../../../../../../../Tool/Box.js"
+import { transit } from "../../../Styles/Motion/Transition.js"
 
 
 export class CommonButton extends NeuContainer {
+    bIsEnabled: boolean
 
     constructor() {
         super()
         this.name = 'CommonButton'
+
+        this.bIsEnabled = true
+
 
         this.cascade = {
             Leading: new NeuContainer('Leading'),
@@ -36,7 +41,7 @@ export class CommonButton extends NeuContainer {
         this.data.JustifyContent = 'center'
         this.data.Symmetric = 'horizontal'
         this.data.BackgroundColor = colorScheme.surface
-        this.data.Shadow = Level1
+        // this.data.Shadow = Level1
 
 
         this.addChildren([
@@ -48,7 +53,18 @@ export class CommonButton extends NeuContainer {
         this.ActivateRipple()
     }
 
-    // Text() {
-    //
-    // }
+    reRender() {
+        if (this.bIsEnabled) {
+            this.Enable()
+        } else {
+            this.Disable()
+        }
+    }
+    Enable() {
+        this.bIsEnabled = true
+    }
+
+    Disable() {
+        this.bIsEnabled = false
+    }
 }

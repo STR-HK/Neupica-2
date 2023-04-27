@@ -67,7 +67,7 @@ export class OrientMansion extends NeuApp {
         this.AppBarIconButton = new IconButton(this.AppBarIcon)
 
         this.Timer = new NeuContainer()
-        this.Timer.Text.data.Content = 'Loading'
+        this.Timer.data.Content = 'Loading'
         this.Timer.geometry.Width = 'max-content'
         this.Timer.data.FontSize = Typography.Size.TitleLarge
         this.Timer.data.Margin = new Box().right('12rem')
@@ -91,8 +91,8 @@ export class OrientMansion extends NeuApp {
         this.NavigationBar = new NavigationBar()
 
         this.NavigationBarItem1 = new NavigationBarItem()
-        this.NavigationBarItem1.Icon.Text.data.Content = 'history_edu'
-        this.NavigationBarItem1.Label.Text.data.Content = '질의 응답'
+        this.NavigationBarItem1.Icon.data.Content = 'history_edu'
+        this.NavigationBarItem1.Label.data.Content = '질의 응답'
         // this.NavigationBar.addChild(this.NavigationBarItem1)
         this.NavigationBarItem1.watchEvent('click', function() {
             this.layout.body.clearChildren()
@@ -101,20 +101,20 @@ export class OrientMansion extends NeuApp {
         }.bind(this))
 
         this.AddNoteButton = new ExtendedFAB()
-        this.AddNoteButton.Icon.Text.data.Content = 'add_task'
-        this.AddNoteButton.LabelText.Text.data.Content = '조사 내용 추가'
+        this.AddNoteButton.Icon.data.Content = 'add_task'
+        this.AddNoteButton.LabelText.data.Content = '조사 내용 추가'
         this.AddNoteButton.data.Margin = new Box().LTRB('0rem', '0rem', '16rem', '16rem')
         this.AddNoteButton.watchEvent('click', function() {
             let bd = new BasicDialogs()
-            bd.Icon.Text.data.Content = 'add_task'
-            bd.Headline.Text.data.Content = '조사 내용 추가'
+            bd.Icon.data.Content = 'add_task'
+            bd.Headline.data.Content = '조사 내용 추가'
             let bdinput = new CetneredTextField()
             bdinput.geometry.Width = '200px'
-            bdinput.LabelText.Text.data.Content = '조사 코드 입력'
+            bdinput.LabelText.data.Content = '조사 코드 입력'
             bd.SupportingText.addChild(bdinput)
             bd.SupportingText.geometry.Width = '90%'
-            bd.TextButton.Text.data.Content = '확인'
-            bd.CloseButton.Text.data.Content = '취소'
+            bd.TextButton.data.Content = '확인'
+            bd.CloseButton.data.Content = '취소'
             bd.TextButton.watchEvent('click', function() {
                 let input = bdinput.Input.data.Value
                 this.verifyInput(input.toUpperCase(), true)
@@ -125,8 +125,8 @@ export class OrientMansion extends NeuApp {
         }.bind(this))
 
         this.NavigationBarItem2 = new NavigationBarItem()
-        this.NavigationBarItem2.Icon.Text.data.Content = 'draw'
-        this.NavigationBarItem2.Label.Text.data.Content = '조사 수첩'
+        this.NavigationBarItem2.Icon.data.Content = 'draw'
+        this.NavigationBarItem2.Label.data.Content = '조사 수첩'
         this.NavigationBar.addChild(this.NavigationBarItem2)
         this.NavigationBarItem2.watchEvent('click', function() {
             this.layout.body.clearChildren()
@@ -146,8 +146,8 @@ export class OrientMansion extends NeuApp {
         }.bind(this))
 
         this.NavigationBarItem3 = new NavigationBarItem()
-        this.NavigationBarItem3.Icon.Text.data.Content = 'verified'
-        this.NavigationBarItem3.Label.Text.data.Content = '추리 완성'
+        this.NavigationBarItem3.Icon.data.Content = 'verified'
+        this.NavigationBarItem3.Label.data.Content = '추리 완성'
         this.NavigationBar.addChild(this.NavigationBarItem3)
         this.NavigationBarItem3.watchEvent('click', function() {
             this.layout.body.clearChildren()
@@ -302,7 +302,7 @@ export class OrientMansion extends NeuApp {
                 // } else if (90 <= overed && overed <= 120) {
                 //     route = 'NO'
                 // } else {
-                //     app.noteScreen.DominoGameTimeOut.SupportingText.Text.data.Content = '당신은 틀렸습니다, 루저!'
+                //     app.noteScreen.DominoGameTimeOut.SupportingText.data.Content = '당신은 틀렸습니다, 루저!'
                 //     route = 'TE'
                 // }
 
@@ -551,13 +551,13 @@ export class OrientMansion extends NeuApp {
                         let display = new NeuContainer()
                         display.data.FontSize = Typography.Size.BodyMedium
                         display.data.TextColor = colorScheme.onSurfaceVariant
-                        display.Text.data.Content = '- ' + obj['display'] + ' '
+                        display.data.Content = '- ' + obj['display'] + ' '
 
                         let hand = new NeuContainer()
                         hand.data.FontSize = Typography.Size.BodyMedium
                         hand.data.FontFamily = "Nanum Pen Script"
                         hand.data.TextColor = colorScheme.onErrorContainer
-                        hand.Text.data.Content = obj['analyze']
+                        hand.data.Content = obj['analyze']
 
                         let blank = new NeuContainer()
                         blank.geometry.Width = '8rem'
@@ -680,9 +680,9 @@ export class OrientMansion extends NeuApp {
                     app.expire = new Date(json * 1000)
                     let intervalID = setInterval(function() {
                         if (this.expire - new Date() < 0) {
-                            app.Timer.Text.data.Content = 'TIME OVER'
+                            app.Timer.data.Content = 'TIME OVER'
                             app.showExScreen(app.finishScreen)
-                            app.finishScreen.LockMessage.Text.data.Content = '추리가 완료되었습니다.\n' +
+                            app.finishScreen.LockMessage.data.Content = '추리가 완료되었습니다.\n' +
                                 '출구에서 추리 완료 코드를 안내받아 입력하고\n ' +
                                 '[자물쇠를 눌러] 추리를 완성하고 결과를 확인하세요.'
                             window.modal.removeModal(app.AddNoteButton)
@@ -696,7 +696,7 @@ export class OrientMansion extends NeuApp {
                             // if (parseFloat(timerHours) >= 0) {
                             //     timerText = `${timerHours}:${timerMinutes}:${timerSeconds}`
                             // }
-                            app.Timer.Text.data.Content = timerText
+                            app.Timer.data.Content = timerText
                         }
                     }.bind(app), 10)
                 })
@@ -711,7 +711,7 @@ export class OrientMansion extends NeuApp {
                     app.dominotime = new Date(json * 1000)
                     let intervalID = setInterval(function() {
                         if (this.dominotime - new Date() < 0) {
-                            app.noteScreen.DominoGameTimeOut.SupportingText.Text.data.Content = '도미노 게임이 종료되었습니다'
+                            app.noteScreen.DominoGameTimeOut.SupportingText.data.Content = '도미노 게임이 종료되었습니다'
                             if (app.dominoEnded == undefined || app.dominoEnded == null){
                                 console.log('domino not ended')
                                 app.verifyInput("3", true)
@@ -723,7 +723,7 @@ export class OrientMansion extends NeuApp {
                             let timerMinutes = timer.getMinutes().toString().padStart(2, '0')
                             let timerSeconds = timer.getSeconds().toString().padStart(2, '0')
                             let timerText = `${timerMinutes}분 ${timerSeconds}초`
-                            app.noteScreen.DominoGameTimeOut.SupportingText.Text.data.Content = `${timerText} 남았습니다 (다 풀었다면 탭하세요)`
+                            app.noteScreen.DominoGameTimeOut.SupportingText.data.Content = `${timerText} 남았습니다 (다 풀었다면 탭하세요)`
                         }
                     }.bind(app), 10)
                 })

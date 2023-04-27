@@ -2,7 +2,7 @@ import { NeuContainer } from "../../Native/NeuContainer.ts"
 import { Flex } from "../../../../Tool/Flex.js"
 import { NeuButton } from "../../Widgets/NeuButton.js"
 import { MSR } from "../../../../Utils/MaterialSymbol.js"
-import { NeuText } from "../../Native/NeuText.js"
+import { MaterialText } from "../../Native/MaterialText.ts"
 
 export class MAppBar extends NeuContainer {
     constructor() {
@@ -42,7 +42,7 @@ export class MAppBar extends NeuContainer {
             constructor() {
                 super()
 
-                class TitleText extends NeuText {
+                class TitleText extends MaterialText {
                     constructor() {
                         super()
 

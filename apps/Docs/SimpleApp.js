@@ -11,7 +11,7 @@ class SimpleApp extends NeuApp {
 
         this.title = new NeuContainer()
         this.title.geometry.Width = '100%'
-        this.title.Text.data.Content = 'Simple App'
+        this.title.data.Content = 'Simple App'
         this.title.data.FontSize = '24px'
         this.title.data.TextAlign = 'center'
         this.title.data.Padding = new Box().top('32px')

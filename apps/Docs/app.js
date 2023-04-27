@@ -1,5 +1,5 @@
 // import { color } from "../../assets/ts/Neupica/Components/M3/Components/Color.js"
-import { colorScheme } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.ts";
+import { colorScheme } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js";
 import { NeuApp } from "../../assets/ts/Neupica/Core/App.js";
 // import { NeuColumn } from "../../assets/js/Layout/NeuColumn.js"
 import { CommonButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/CommonButtons.js";

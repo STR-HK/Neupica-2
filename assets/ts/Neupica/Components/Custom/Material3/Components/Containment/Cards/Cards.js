@@ -56,5 +56,11 @@ export class Cards extends NeuContainer {
         // this.addRipple( )
         // this.data.
     }
+    reRender() {
+        super.reRender();
+        this.data.BackgroundColor = colorScheme.surface;
+        this.Title.data.TextColor = colorScheme.onSurface;
+        this.SubTitle.data.TextColor = colorScheme.onSurface;
+    }
 }
 //# sourceMappingURL=Cards.js.map

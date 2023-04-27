@@ -14,12 +14,12 @@ export class ClueScreen extends NeuContainer {
 
         this.CodeInput = new CetneredTextField()
         this.CodeInput.geometry.Width = '70%'
-        this.CodeInput.LabelText.Text.data.Content = '대답 입력'
+        this.CodeInput.LabelText.data.Content = '대답 입력'
         this.addChild(this.CodeInput)
 
         this.EnterButton = new OutlinedButton()
         this.EnterButton.data.AlignItems = 'center'
-        this.EnterButton.Text.data.Content = '제출'
+        this.EnterButton.data.Content = '제출'
         this.EnterButton.watchEvent('click', function() {
             this.parent.showExScreen(new resultScreen(this.parent))
         }.bind(this))

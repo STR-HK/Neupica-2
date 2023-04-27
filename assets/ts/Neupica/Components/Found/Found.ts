@@ -236,7 +236,7 @@ export class Found extends Children {
         }
         this.watchEvents = function (eventnames: Array<string>, callback: Function) {
             eventnames.forEach((eventname) => {
-                console.log(eventname)
+                // console.log(eventname)
                 this.cover.addEventListener(eventname, callback, true)
             })
         }

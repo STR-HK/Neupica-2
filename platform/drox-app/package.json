@@ -1,0 +1,16 @@
+{
+  "name": "drox-app",
+  "version": "0.0.1",
+  "description": "Web port version of Drox Music Player",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "javascript",
+    "neupica",
+    "music"
+  ],
+  "author": "SJN",
+  "license": "LGPL-3.0"
+}

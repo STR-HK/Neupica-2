@@ -11,4 +11,9 @@ export class SmallBadge extends Badges {
         this.geometry.Width = '6rem'
         this.data.BorderRadius = '50%'
     }
+    reRender() {
+        super.reRender()
+        this.data.BackgroundColor = colorScheme.error
+
+    }
 }

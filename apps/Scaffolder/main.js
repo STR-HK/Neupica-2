@@ -1,7 +1,7 @@
 import { NeuApp } from "../../assets/ts/Neupica/Core/App.js"
 import { NeuScaffold } from "../../assets/ts/Layout/NeuScaffold.js"
 import { NeuContainer } from "../../assets/ts/Neupica/Components/Native/NeuContainer.js"
-import { NeuText } from "../../assets/ts/Neupica/Components/Native/NeuText.js"
+import { MaterialText } from "../../assets/ts/Neupica/Components/Native/MaterialText.js"
 import { runApp } from "../../assets/ts/Neupica/Neupica2.js"
 import { colorScheme } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
 import { Typography } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Typography.js"
@@ -122,7 +122,7 @@ class Scaffolder extends NeuApp {
         this.firstScreen = new NeuContainer()
         this.firstScreen.data.AlignItems = 'center'
 
-        this.firstLabel = new NeuText()
+        this.firstLabel = new MaterialText()
         this.firstLabel.Text.data.Content = '첫 번째 화면'
         this.firstLabel.data.Margin = '12rem'
         this.firstLabel.data.FontSize = Typography.Size.BodyLarge
@@ -145,7 +145,7 @@ class Scaffolder extends NeuApp {
         this.secondScreen = new NeuContainer()
         this.secondScreen.data.AlignItems = 'center'
 
-        this.secondLabel = new NeuText()
+        this.secondLabel = new MaterialText()
         this.secondLabel.Text.data.Content = '세컨트 스크린'
         this.secondLabel.data.Margin = '12rem'
         this.secondLabel.data.FontSize = Typography.Size.BodyLarge

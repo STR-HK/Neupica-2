@@ -28,8 +28,8 @@ export class SimpleDimpleNoteItem extends ListItem {
 
         this.Icon = new MaterialSymbolsSharp(icon)
         this.Leading.addChild(this.Icon)
-        this.Headline.Text.data.Content = headline
-        this.SupportingText.Text.data.Content = supporting
+        this.Headline.data.Content = headline
+        this.SupportingText.data.Content = supporting
         this.geometry.Width = '100%'
         this.DeActivateRipple()
     }
@@ -88,7 +88,7 @@ export class NoteScreen extends NeuContainer {
 
             }
             updateTimeLine(newTimeLine) {
-                this.Text.data.Content = `현재 시각: ${newTimeLine}`
+                this.data.Content = `현재 시각: ${newTimeLine}`
 
             }
         }
@@ -151,7 +151,8 @@ export class NoteScreen extends NeuContainer {
 
             Clicked() {
                 super.Clicked()
-                this.parent.updateTimeLine(this.LabelText.data.Text)
+                // console.log(this.parent)
+                // this.parent.updateTimeLine(this.LabelText.data.Content)
             }
         }
 
@@ -160,32 +161,32 @@ export class NoteScreen extends NeuContainer {
         this.RailItemPDInner = new RailItemInnerCustom(this.RailItemPDContainer)
         this.RailItemPDContainer.addChild(this.RailItemPD)
         this.RailItemPDContainer.addChild(this.RailItemPDInner)
-        this.RailItemPD.Icon.Text.data.Content = 'routine'
-        this.RailItemPD.LabelText.Text.data.Content = '1일차 아침'
+        this.RailItemPD.Icon.data.Content = 'routine'
+        this.RailItemPD.LabelText.data.Content = '1일차 아침'
         this.Rail.addChild(this.RailItemPDContainer)
         this.RailItemPNContainer = new RailItemContainerCustom()
         this.RailItemPN = new CustomNavigationRailItem(this.RailCurrentTimeLine)
         this.RailItemPNInner = new RailItemInnerCustom(this.RailItemPNContainer)
         this.RailItemPNContainer.addChild(this.RailItemPN)
         this.RailItemPNContainer.addChild(this.RailItemPNInner)
-        this.RailItemPN.Icon.Text.data.Content = 'light_mode'
-        this.RailItemPN.LabelText.Text.data.Content = '1일차 점심'
+        this.RailItemPN.Icon.data.Content = 'light_mode'
+        this.RailItemPN.LabelText.data.Content = '1일차 점심'
         this.Rail.addChild(this.RailItemPNContainer)
         this.RailItemPAContainer = new RailItemContainerCustom()
         this.RailItemPA = new CustomNavigationRailItem(this.RailCurrentTimeLine)
         this.RailItemPAInner = new RailItemInnerCustom(this.RailItemPAContainer)
         this.RailItemPAContainer.addChild(this.RailItemPA)
         this.RailItemPAContainer.addChild(this.RailItemPAInner)
-        this.RailItemPA.Icon.Text.data.Content = 'wb_twilight'
-        this.RailItemPA.LabelText.Text.data.Content = '1일차 저녁'
+        this.RailItemPA.Icon.data.Content = 'wb_twilight'
+        this.RailItemPA.LabelText.data.Content = '1일차 저녁'
         this.Rail.addChild(this.RailItemPAContainer)
         this.RailItemPMContainer = new RailItemContainerCustom()
         this.RailItemPM = new CustomNavigationRailItem(this.RailCurrentTimeLine)
         this.RailItemPMInner = new RailItemInnerCustom(this.RailItemPMContainer)
         this.RailItemPMContainer.addChild(this.RailItemPM)
         this.RailItemPMContainer.addChild(this.RailItemPMInner)
-        this.RailItemPM.Icon.Text.data.Content = 'clear_night'
-        this.RailItemPM.LabelText.Text.data.Content = '1일차 자정'
+        this.RailItemPM.Icon.data.Content = 'clear_night'
+        this.RailItemPM.LabelText.data.Content = '1일차 자정'
         this.Rail.addChild(this.RailItemPMContainer)
 
         // this.RailITemPSDivider = new Divider()
@@ -196,32 +197,32 @@ export class NoteScreen extends NeuContainer {
         this.RailItemSDInner = new RailItemInnerCustom(this.RailItemSDContainer)
         this.RailItemSDContainer.addChild(this.RailItemSD)
         this.RailItemSDContainer.addChild(this.RailItemSDInner)
-        this.RailItemSD.Icon.Text.data.Content = 'routine'
-        this.RailItemSD.LabelText.Text.data.Content = '2일차 아침'
+        this.RailItemSD.Icon.data.Content = 'routine'
+        this.RailItemSD.LabelText.data.Content = '2일차 아침'
         this.Rail.addChild(this.RailItemSDContainer)
         this.RailItemSNContainer = new RailItemContainerCustom()
         this.RailItemSN = new CustomNavigationRailItem(this.RailCurrentTimeLine)
         this.RailItemSNInner = new RailItemInnerCustom(this.RailItemSNContainer)
         this.RailItemSNContainer.addChild(this.RailItemSN)
         this.RailItemSNContainer.addChild(this.RailItemSNInner)
-        this.RailItemSN.Icon.Text.data.Content = 'light_mode'
-        this.RailItemSN.LabelText.Text.data.Content = '2일차 점심'
+        this.RailItemSN.Icon.data.Content = 'light_mode'
+        this.RailItemSN.LabelText.data.Content = '2일차 점심'
         this.Rail.addChild(this.RailItemSNContainer)
         this.RailItemSAContainer = new RailItemContainerCustom()
         this.RailItemSA = new CustomNavigationRailItem(this.RailCurrentTimeLine)
         this.RailItemSAInner = new RailItemInnerCustom(this.RailItemSAContainer)
         this.RailItemSAContainer.addChild(this.RailItemSA)
         this.RailItemSAContainer.addChild(this.RailItemSAInner)
-        this.RailItemSA.Icon.Text.data.Content = 'wb_twilight'
-        this.RailItemSA.LabelText.Text.data.Content = '2일차 저녁'
+        this.RailItemSA.Icon.data.Content = 'wb_twilight'
+        this.RailItemSA.LabelText.data.Content = '2일차 저녁'
         this.Rail.addChild(this.RailItemSAContainer)
         this.RailItemSMContainer = new RailItemContainerCustom()
         this.RailItemSM = new CustomNavigationRailItem(this.RailCurrentTimeLine)
         this.RailItemSMInner = new RailItemInnerCustom(this.RailItemSMContainer)
         this.RailItemSMContainer.addChild(this.RailItemSM)
         this.RailItemSMContainer.addChild(this.RailItemSMInner)
-        this.RailItemSM.Icon.Text.data.Content = 'clear_night'
-        this.RailItemSM.LabelText.Text.data.Content = '2일차 자정'
+        this.RailItemSM.Icon.data.Content = 'clear_night'
+        this.RailItemSM.LabelText.data.Content = '2일차 자정'
         this.Rail.addChild(this.RailItemSMContainer)
 
         // this.RailITemSTDivider = new Divider()
@@ -232,32 +233,32 @@ export class NoteScreen extends NeuContainer {
         this.RailItemTDInner = new RailItemInnerCustom(this.RailItemTDContainer)
         this.RailItemTDContainer.addChild(this.RailItemTD)
         this.RailItemTDContainer.addChild(this.RailItemTDInner)
-        this.RailItemTD.Icon.Text.data.Content = 'routine'
-        this.RailItemTD.LabelText.Text.data.Content = '3일차 아침'
+        this.RailItemTD.Icon.data.Content = 'routine'
+        this.RailItemTD.LabelText.data.Content = '3일차 아침'
         this.Rail.addChild(this.RailItemTDContainer)
         this.RailItemTNContainer = new RailItemContainerCustom()
         this.RailItemTN = new CustomNavigationRailItem(this.RailCurrentTimeLine)
         this.RailItemTNInner = new RailItemInnerCustom(this.RailItemTNContainer)
         this.RailItemTNContainer.addChild(this.RailItemTN)
         this.RailItemTNContainer.addChild(this.RailItemTNInner)
-        this.RailItemTN.Icon.Text.data.Content = 'light_mode'
-        this.RailItemTN.LabelText.Text.data.Content = '3일차 점심'
+        this.RailItemTN.Icon.data.Content = 'light_mode'
+        this.RailItemTN.LabelText.data.Content = '3일차 점심'
         this.Rail.addChild(this.RailItemTNContainer)
         this.RailItemTAContainer = new RailItemContainerCustom()
         this.RailItemTA = new CustomNavigationRailItem(this.RailCurrentTimeLine)
         this.RailItemTAInner = new RailItemInnerCustom(this.RailItemTAContainer)
         this.RailItemTAContainer.addChild(this.RailItemTA)
         this.RailItemTAContainer.addChild(this.RailItemTAInner)
-        this.RailItemTA.Icon.Text.data.Content = 'wb_twilight'
-        this.RailItemTA.LabelText.Text.data.Content = '3일차 저녁'
+        this.RailItemTA.Icon.data.Content = 'wb_twilight'
+        this.RailItemTA.LabelText.data.Content = '3일차 저녁'
         this.Rail.addChild(this.RailItemTAContainer)
         this.RailItemTMContainer = new RailItemContainerCustom()
         this.RailItemTM = new CustomNavigationRailItem(this.RailCurrentTimeLine)
         this.RailItemTMInner = new RailItemInnerCustom(this.RailItemTMContainer)
         this.RailItemTMContainer.addChild(this.RailItemTM)
         this.RailItemTMContainer.addChild(this.RailItemTMInner)
-        this.RailItemTM.Icon.Text.data.Content = 'clear_night'
-        this.RailItemTM.LabelText.Text.data.Content = '3일차 자정'
+        this.RailItemTM.Icon.data.Content = 'clear_night'
+        this.RailItemTM.LabelText.data.Content = '3일차 자정'
         this.Rail.addChild(this.RailItemTMContainer)
         this.Rail.addChild(new Divider())
 
@@ -265,20 +266,20 @@ export class NoteScreen extends NeuContainer {
         // this.Rail.addChild(this.RailITemTQDivider)
         //
         // this.RailItemQD = new NavigationRailItem()
-        // this.RailItemQD.Icon.Text.data.Content = 'routine'
-        // this.RailItemQD.LabelText.Text.data.Content = '4일차 아침'
+        // this.RailItemQD.Icon.data.Content = 'routine'
+        // this.RailItemQD.LabelText.data.Content = '4일차 아침'
         // this.Rail.addChild(this.RailItemQD)
         // this.RailItemQN = new NavigationRailItem()
-        // this.RailItemQN.Icon.Text.data.Content = 'light_mode'
-        // this.RailItemQN.LabelText.Text.data.Content = '4일차 점심'
+        // this.RailItemQN.Icon.data.Content = 'light_mode'
+        // this.RailItemQN.LabelText.data.Content = '4일차 점심'
         // this.Rail.addChild(this.RailItemQN)
         // this.RailItemQA = new NavigationRailItem()
-        // this.RailItemQA.Icon.Text.data.Content = 'wb_twilight'
-        // this.RailItemQA.LabelText.Text.data.Content = '4일차 저녁'
+        // this.RailItemQA.Icon.data.Content = 'wb_twilight'
+        // this.RailItemQA.LabelText.data.Content = '4일차 저녁'
         // this.Rail.addChild(this.RailItemQA)
         // this.RailItemQM = new NavigationRailItem()
-        // this.RailItemQM.Icon.Text.data.Content = 'clear_night'
-        // this.RailItemQM.LabelText.Text.data.Content = '4일차 자정'
+        // this.RailItemQM.Icon.data.Content = 'clear_night'
+        // this.RailItemQM.LabelText.data.Content = '4일차 자정'
         // this.Rail.addChild(this.RailItemQM)
 
         this.RailItems = [
@@ -316,8 +317,8 @@ export class NoteScreen extends NeuContainer {
         // this.NoteItemProlougeIcon.geometry.Width = '112rem'
         // this.NoteItemProlougeIcon.geometry.Height = '64rem'
         // this.NoteItemProlougeIcon.data.ObjectFit = 'cover'
-        // this.NoteItemProlouge.Headline.Text.data.Content = '프롤로그'
-        // this.NoteItemProlouge.SupportingText.Text.data.Content = '탭하여 읽으세요'
+        // this.NoteItemProlouge.Headline.data.Content = '프롤로그'
+        // this.NoteItemProlouge.SupportingText.data.Content = '탭하여 읽으세요'
         // this.NoteItemProlouge.Leading.addChild(this.NoteItemProlougeIcon)
         // this.RailItemPDInner.addChild(this.NoteItemProlouge)
         // this.NoteItemProlouge.watchEvent('click', function() {
@@ -336,8 +337,8 @@ export class NoteScreen extends NeuContainer {
         // this.NeuNoteItemProlougeIcon.geometry.Width = '112rem'
         // this.NeuNoteItemProlougeIcon.geometry.Height = '64rem'
         // this.NeuNoteItemProlougeIcon.data.ObjectFit = 'cover'
-        // this.NeuNoteItemProlouge.Headline.Text.data.Content = '프롤로그'
-        // this.NeuNoteItemProlouge.SupportingText.Text.data.Content = '탭하여 읽으세요'
+        // this.NeuNoteItemProlouge.Headline.data.Content = '프롤로그'
+        // this.NeuNoteItemProlouge.SupportingText.data.Content = '탭하여 읽으세요'
         // this.NeuNoteItemProlouge.Leading.addChild(this.NeuNoteItemProlougeIcon)
         this.RailItemPDInner.addChild(this.NeuNoteItemProlouge)
         this.NeuNoteItemProlouge.watchEvent('click', function() {

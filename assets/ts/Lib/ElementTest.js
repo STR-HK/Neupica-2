@@ -1,6 +1,6 @@
 import { NeuApp } from "../Neupica/Core/App.ts"
 import { NeuColumn } from "../Layout/NeuColumn.ts"
-import { NeuText } from "../Neupica/Components/Native/NeuText.js"
+import { MaterialText } from "../Neupica/Components/Native/MaterialText.ts"
 import { runApp } from "../Neupica/Neupica2.ts"
 import { NeuInput } from "../Neupica/Components/Native/NeuInput.ts"
 import { MStrokedButton } from "../Neupica/Components/Custom/deprecated/MButton.js"

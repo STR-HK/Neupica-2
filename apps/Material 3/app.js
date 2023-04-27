@@ -38,8 +38,17 @@ import { SmallBadge } from "../../assets/ts/Neupica/Components/Custom/Material3/
 import { Dialogs } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Containment/Dialogs/Dialogs.js"
 import anime from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Motion/anime.es.js"
 import { Native } from "../../assets/ts/Neupica/Components/Native/Native.js"
+import { toogleDarkMode } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
+import {
+    ElevatedButton
+} from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/ElevatedButton.js"
+import { themeColor } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
+import { MaterialText } from "../../assets/ts/Neupica/Components/Native/MaterialText.js"
+import { transit } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Motion/Transition.js"
 
 initModal()
+
+let DURATION = 250
 
 export class M3 extends NeuApp {
     constructor() {
@@ -65,6 +74,9 @@ export class Material3 extends NeuApp {
         super()
         this.layout = new NeuScaffold()
         this.layout.data.BackgroundColor = colorScheme.background
+        this.layout.reRender =function() {
+            this.layout.data.BackgroundColor = colorScheme.background
+        }.bind(this)
         this.setFullScreen(true)
 
 
@@ -75,27 +87,19 @@ export class Material3 extends NeuApp {
 
         this.menuIcon = new MaterialSymbolsOutlined('specific_gravity')
         this.menuIcon.geometry.Width = '24rem'
-        this.menuIcon.data.TextColor = colorScheme.onSurface
         this.menuIconButton = new IconButton(this.menuIcon)
         this.menuIconButton.geometry.Width = '48rem'
 
         this.themeModeIcon = new MaterialSymbolsOutlined('light_mode')
         this.themeModeIcon.geometry.Width = '24rem'
-        this.themeModeIcon.data.TextColor = colorScheme.onSurfaceVariant
         this.themeModeIconButton = new IconButton(this.themeModeIcon)
         this.themeModeIconButton.geometry.Width = '48rem'
         this.themeModeIconButton.watchEvent('click', function(){
-            if (localStorage.getItem('systemDark') === 'dark') {
-                localStorage.setItem('systemDark', 'light')
-            } else {
-                localStorage.setItem('systemDark', 'dark')
-            }
-            location.reload()
+            toogleDarkMode()
         })
 
         this.calendarIcon = new MaterialSymbolsOutlined('Colorize')
         this.calendarIcon.geometry.Width = '24rem'
-        this.calendarIcon.data.TextColor = colorScheme.onSurfaceVariant
         this.calendarIconButton = new IconButton(this.calendarIcon)
         this.calendarIconButton.geometry.Width = '48rem'
         this.calendarIconButton.watchEvent('click', function() {
@@ -104,7 +108,8 @@ export class Material3 extends NeuApp {
             cpkr.click()
             cpkr.addEventListener('input', (e) => {
                 localStorage.setItem('themeColor', e.target.value)
-                location.reload()
+                setTheme(e.target.value)
+                // location.reload()
             })
         })
 
@@ -117,6 +122,11 @@ export class Material3 extends NeuApp {
             this.calendarIconButton
         ])
         this.head.setAppBar(this.appbar)
+
+        this.layout.body.reRender = () => {
+            this.layout.body.data.BackgroundColor = colorScheme.background
+        }
+        this.layout.body.reRender()
 
         this.homeScreen = new NeuContainer()
         this.homeScreen.geometry.Height = '100%'
@@ -143,7 +153,7 @@ export class Material3 extends NeuApp {
             this.iooper.data.Symmetric = 'horizontal'
             this.homeScreen.addChild(this.iooper)
 
-            this.titleChangeButton = new CommonButton()
+            this.titleChangeButton = new ElevatedButton()
             this.titleChangeButton.Text.data.Content = 'Show Modal'
             this.iooper.addChild(this.titleChangeButton)
             this.titleChangeButton.watchEvent('click', function() {
@@ -177,7 +187,7 @@ export class Material3 extends NeuApp {
 
             })
 
-            this.snackingButton = new CommonButton()
+            this.snackingButton = new ElevatedButton()
             this.snackingButton.Text.data.Content = 'SnackingBar OPEN!'
             this.iooper.addChild(this.snackingButton)
 
@@ -208,7 +218,7 @@ export class Material3 extends NeuApp {
                 })
             }.bind(this))
 
-            this.inspectButton = new CommonButton()
+            this.inspectButton = new ElevatedButton()
                 this.inspectButton.Text.data.Content = 'Start Inspecting'
                 this.inspectButton.watchEvent('click', function() {
                     if (window.inspect) {
@@ -241,6 +251,7 @@ export class Material3 extends NeuApp {
             this.hbox.addChild(this.filledButton)
             this.filledButton.watchEvent('click', function() {
                 localStorage.removeItem('themeColor')
+                setTheme(themeColor)
             })
 
             this.Reload = new FilledButton()
@@ -254,11 +265,12 @@ export class Material3 extends NeuApp {
             this.ipt.geometry.Width = '240rem'
             this.homeScreen.addChild(this.ipt)
 
-            this.appl = new CommonButton()
+            this.appl = new ElevatedButton()
             this.appl.Text.data.Content = 'Apply Textfield Text to Title'
             this.appl.watchEvent('click', function() {
                 this.appbar.setHeadline(this.ipt.Input.data.Value)
                 this.appbar.setHeadline(this.ipt.Input.data.Value)
+                DURATION = this.ipt.Input.data.Value
             }.bind(this))
             this.homeScreen.addChild(this.appl)
 
@@ -319,219 +331,13 @@ export class Material3 extends NeuApp {
             this.ipt2.geometry.Width = '200rem'
             // this.homeScreen.addChild(this.ipt2)
 
-            this.platFormInfo = new FilledButton()
-            this.platFormInfo.Text.data.Content = 'Get PLATFORM Info'
-            this.platFormInfo.watchEvent('click', function() {
-                function getPlatform() {
-                    {
-                        var unknown = '-';
-
-                        // screen
-                        var screenSize = '';
-                        if (screen.width) {
-                            let width = (screen.width) ? screen.width : '';
-                            let height = (screen.height) ? screen.height : '';
-                            screenSize += '' + width + " x " + height;
-                        }
-
-                        // browser
-                        var nVer = navigator.appVersion;
-                        var nAgt = navigator.userAgent;
-                        var browser = navigator.appName;
-                        var version = '' + parseFloat(navigator.appVersion);
-                        var majorVersion = parseInt(navigator.appVersion, 10);
-                        var nameOffset, verOffset, ix;
-
-                        // Opera
-                        if ((verOffset = nAgt.indexOf('Opera')) != -1) {
-                            browser = 'Opera';
-                            version = nAgt.substring(verOffset + 6);
-                            if ((verOffset = nAgt.indexOf('Version')) != -1) {
-                                version = nAgt.substring(verOffset + 8);
-                            }
-                        }
-                        // Opera Next
-                        if ((verOffset = nAgt.indexOf('OPR')) != -1) {
-                            browser = 'Opera';
-                            version = nAgt.substring(verOffset + 4);
-                        }
-                        // Legacy Edge
-                        else if ((verOffset = nAgt.indexOf('Edge')) != -1) {
-                            browser = 'Microsoft Legacy Edge';
-                            version = nAgt.substring(verOffset + 5);
-                        }
-                        // Edge (Chromium)
-                        else if ((verOffset = nAgt.indexOf('Edg')) != -1) {
-                            browser = 'Microsoft Edge';
-                            version = nAgt.substring(verOffset + 4);
-                        }
-                        // MSIE
-                        else if ((verOffset = nAgt.indexOf('MSIE')) != -1) {
-                            browser = 'Microsoft Internet Explorer';
-                            version = nAgt.substring(verOffset + 5);
-                        }
-                        // Chrome
-                        else if ((verOffset = nAgt.indexOf('Chrome')) != -1) {
-                            browser = 'Chrome';
-                            version = nAgt.substring(verOffset + 7);
-                        }
-                        // Safari
-                        else if ((verOffset = nAgt.indexOf('Safari')) != -1) {
-                            browser = 'Safari';
-                            version = nAgt.substring(verOffset + 7);
-                            if ((verOffset = nAgt.indexOf('Version')) != -1) {
-                                version = nAgt.substring(verOffset + 8);
-                            }
-                        }
-                        // Firefox
-                        else if ((verOffset = nAgt.indexOf('Firefox')) != -1) {
-                            browser = 'Firefox';
-                            version = nAgt.substring(verOffset + 8);
-                        }
-                        // MSIE 11+
-                        else if (nAgt.indexOf('Trident/') != -1) {
-                            browser = 'Microsoft Internet Explorer';
-                            version = nAgt.substring(nAgt.indexOf('rv:') + 3);
-                        }
-                        // Other browsers
-                        else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) < (verOffset = nAgt.lastIndexOf('/'))) {
-                            browser = nAgt.substring(nameOffset, verOffset);
-                            version = nAgt.substring(verOffset + 1);
-                            if (browser.toLowerCase() == browser.toUpperCase()) {
-                                browser = navigator.appName;
-                            }
-                        }
-                        // trim the version string
-                        if ((ix = version.indexOf(';')) != -1) version = version.substring(0, ix);
-                        if ((ix = version.indexOf(' ')) != -1) version = version.substring(0, ix);
-                        if ((ix = version.indexOf(')')) != -1) version = version.substring(0, ix);
-
-                        majorVersion = parseInt('' + version, 10);
-                        if (isNaN(majorVersion)) {
-                            version = '' + parseFloat(navigator.appVersion);
-                            majorVersion = parseInt(navigator.appVersion, 10);
-                        }
-
-                        // mobile version
-                        var mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(nVer);
-
-                        // cookie
-                        var cookieEnabled = (navigator.cookieEnabled) ? true : false;
-
-                        if (typeof navigator.cookieEnabled == 'undefined' && !cookieEnabled) {
-                            document.cookie = 'testcookie';
-                            cookieEnabled = (document.cookie.indexOf('testcookie') != -1) ? true : false;
-                        }
-
-                        // system
-                        var os = unknown;
-                        var clientStrings = [
-                            {s:'Windows 10', r:/(Windows 10.0|Windows NT 10.0)/},
-                            {s:'Windows 8.1', r:/(Windows 8.1|Windows NT 6.3)/},
-                            {s:'Windows 8', r:/(Windows 8|Windows NT 6.2)/},
-                            {s:'Windows 7', r:/(Windows 7|Windows NT 6.1)/},
-                            {s:'Windows Vista', r:/Windows NT 6.0/},
-                            {s:'Windows Server 2003', r:/Windows NT 5.2/},
-                            {s:'Windows XP', r:/(Windows NT 5.1|Windows XP)/},
-                            {s:'Windows 2000', r:/(Windows NT 5.0|Windows 2000)/},
-                            {s:'Windows ME', r:/(Win 9x 4.90|Windows ME)/},
-                            {s:'Windows 98', r:/(Windows 98|Win98)/},
-                            {s:'Windows 95', r:/(Windows 95|Win95|Windows_95)/},
-                            {s:'Windows NT 4.0', r:/(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/},
-                            {s:'Windows CE', r:/Windows CE/},
-                            {s:'Windows 3.11', r:/Win16/},
-                            {s:'Android', r:/Android/},
-                            {s:'Open BSD', r:/OpenBSD/},
-                            {s:'Sun OS', r:/SunOS/},
-                            {s:'Chrome OS', r:/CrOS/},
-                            {s:'Linux', r:/(Linux|X11(?!.*CrOS))/},
-                            {s:'iOS', r:/(iPhone|iPad|iPod)/},
-                            {s:'Mac OS X', r:/Mac OS X/},
-                            {s:'Mac OS', r:/(Mac OS|MacPPC|MacIntel|Mac_PowerPC|Macintosh)/},
-                            {s:'QNX', r:/QNX/},
-                            {s:'UNIX', r:/UNIX/},
-                            {s:'BeOS', r:/BeOS/},
-                            {s:'OS/2', r:/OS\/2/},
-                            {s:'Search Bot', r:/(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/}
-                        ];
-                        for (var id in clientStrings) {
-                            var cs = clientStrings[id];
-                            if (cs.r.test(nAgt)) {
-                                os = cs.s;
-                                break;
-                            }
-                        }
-
-                        var osVersion = unknown;
-
-                        if (/Windows/.test(os)) {
-                            osVersion = /Windows (.*)/.exec(os)[1];
-                            os = 'Windows';
-                        }
-
-                        switch (os) {
-                            case 'Mac OS':
-                            case 'Mac OS X':
-                            case 'Android':
-                                osVersion = /(?:Android|Mac OS|Mac OS X|MacPPC|MacIntel|Mac_PowerPC|Macintosh) ([\.\_\d]+)/.exec(nAgt)[1];
-                                break;
-
-                            case 'iOS':
-                                osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
-                                osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
-                                break;
-                        }
-
-                        // flash (you'll need to include swfobject)
-                        /* script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" */
-                        var flashVersion = 'no check';
-                        if (typeof swfobject != 'undefined') {
-                            var fv = swfobject.getFlashPlayerVersion();
-                            if (fv.major > 0) {
-                                flashVersion = fv.major + '.' + fv.minor + ' r' + fv.release;
-                            }
-                            else  {
-                                flashVersion = unknown;
-                            }
-                        }
-                    }
-
-                    return {
-                        screen: screenSize,
-                        browser: browser,
-                        browserVersion: version,
-                        browserMajorVersion: majorVersion,
-                        mobile: mobile,
-                        os: os,
-                        osVersion: osVersion,
-                        cookies: cookieEnabled,
-                        flashVersion: flashVersion
-                    };
-                }
-
-                let jscd = getPlatform(this)
-                let dia = new BasicDialogs()
-                dia.Icon.Text.data.Content = 'insights'
-                dia.Headline.Text.data.Content = 'Platform Information'
-                dia.SupportingText.Text.data.Content = 'OS: ' + jscd.os +' '+ jscd.osVersion + '\n' +
-                    'Browser: ' + jscd.browser +' '+ jscd.browserMajorVersion +
-                    ' (' + jscd.browserVersion + ')\n' +
-                    'Mobile: ' + jscd.mobile + '\n' +
-                    'Flash: ' + jscd.flashVersion + '\n' +
-                    'Cookies: ' + jscd.cookies + '\n' +
-                    'Screen Size: ' + jscd.screen + '\n\n' +
-                    'Full User Agent: ' + navigator.userAgent
-                window.modal.addInteractiveModal(dia)
-                dia.Appear()
-            })
-            this.homeScreen.addChild(this.platFormInfo)
 
             this.ipt.watchEvent('resize', function(e) {
                 console.log(e)
             })
 
             for (let i =0; i < 100; i++) {
-                let v = new NeuContainer()
+                let v = new MaterialText()
                 v.data.Content = `${i.toString()}| This is temporary container text`
                 v.data.FontSize = '12rem'
                 v.data.TextColor = colorScheme.onBackground
@@ -550,6 +356,9 @@ export class Material3 extends NeuApp {
             this.time.data.TextColor = colorScheme.onBackground
             this.time.data.FontWeight = 'bold'
             this.time.data.Content = '23:06'
+            this.time.reRender = function() {
+                this.time.data.TextColor = colorScheme.onBackground
+            }.bind(this)
             setInterval(
                 function() {
                 this.time.data.Content = new Intl.DateTimeFormat(
@@ -570,6 +379,9 @@ export class Material3 extends NeuApp {
             this.today.data.Content = 'TODAY IS'
             this.today.data.FontSize = Typography.Size.TitleSmall
             this.today.data.TextColor = colorScheme.onBackground
+            this.today.reRender = function() {
+                this.today.data.TextColor = colorScheme.onBackground
+            }.bind(this)
             this.today.data.FontStyle = 'italic'
             this.lavenderScreen.addChild(this.today)
 
@@ -578,7 +390,9 @@ export class Material3 extends NeuApp {
             this.date.data.FontSize = Typography.Size.TitleSmall
             this.date.data.TextColor = colorScheme.onBackground
             this.lavenderScreen.addChild(this.date)
-
+            this.date.reRender = function() {
+                this.date.data.TextColor = colorScheme.onBackground
+            }.bind(this)
             this.blank = new NeuContainer()
             this.blank.geometry.Height = '20%'
             this.lavenderScreen.addChild(this.blank)
@@ -593,18 +407,27 @@ export class Material3 extends NeuApp {
             this.temperature.data.Content = '-1'
             this.temperature.data.FontSize = Typography.Size.TitleSmall
             this.temperature.data.TextColor = colorScheme.onBackground
+            this.temperature.reRender = function() {
+                this.temperature.data.TextColor = colorScheme.onBackground
+            }.bind(this)
             this.weatherBox.addChild(this.temperature)
 
             this.weatherIcon = new MaterialSymbolsOutlined()
             this.weatherIcon.data.Content = 'air'
             this.weatherIcon.data.FontSize = Typography.Size.DisplayMedium
             this.weatherIcon.data.TextColor = colorScheme.onBackground
+            this.weatherIcon.reRender = function() {
+                this.weatherIcon.data.TextColor = colorScheme.onBackground
+            }.bind(this)
             this.weatherBox.addChild(this.weatherIcon)
 
             this.weather = new NeuContainer()
             this.weather.data.Content = 'CLOUDY'
             this.weather.data.FontSize = Typography.Size.TitleSmall
             this.weather.data.TextColor = colorScheme.onBackground
+            this.weather.reRender = function() {
+                this.weather.data.TextColor = colorScheme.onBackground
+            }.bind(this)
             this.weatherBox.addChild(this.weather)
 
         }.bind(this)
@@ -670,6 +493,10 @@ export class Material3 extends NeuApp {
             this.albumTitle = new NeuContainer()
             this.albumTitle.data.Content = 'Light Switch'
             this.albumTitle.data.TextColor = colorScheme.onBackground
+            this.albumTitle.reRender = function() {
+                this.albumTitle.data.TextColor = colorScheme.onBackground
+
+            }.bind(this)
             this.albumTitle.data.FontSize = Typography.Size.TitleLarge
             this.informationLine.addChild(this.albumTitle)
 
@@ -677,6 +504,10 @@ export class Material3 extends NeuApp {
             this.albumAuthor.data.Content = 'Charlie Puth'
             this.albumAuthor.data.TextColor = colorScheme.onBackground
             this.albumAuthor.data.FontSize = Typography.Size.TitleSmall
+            this.albumAuthor.reRender = function() {
+                this.albumAuthor.data.TextColor = colorScheme.onBackground
+
+            }.bind(this)
             this.informationLine.addChild(this.albumAuthor)
 
             this.toolLine = new NeuContainer()
@@ -689,7 +520,7 @@ export class Material3 extends NeuApp {
             this.shuffleToolIcon.data.Content = 'shuffle'
             this.shuffleTool.data.AlignItems = 'center'
             this.shuffleToolIcon.data.FontSize = Typography.Size.TitleMedium
-            this.shuffleTool.addChild(this.shuffleToolIcon)
+            this.shuffleTool.cascade.Text.addChild(this.shuffleToolIcon)
             this.shuffleTool.geometry.AspectRatio = '1'
             this.shuffleTool.geometry.Width = '20%'
             this.toolLine.addChild(this.shuffleTool)
@@ -699,7 +530,7 @@ export class Material3 extends NeuApp {
             this.previousToolIcon.data.Content = 'skip_previous'
             this.previousTool.data.AlignItems = 'center'
             this.previousToolIcon.data.FontSize = Typography.Size.TitleMedium
-            this.previousTool.addChild(this.previousToolIcon)
+            this.previousTool.cascade.Text.addChild(this.previousToolIcon)
             this.previousTool.geometry.AspectRatio = '1'
             this.previousTool.geometry.Width = '20%'
             this.toolLine.addChild(this.previousTool)
@@ -709,7 +540,7 @@ export class Material3 extends NeuApp {
             this.pauseToolIcon.data.Content = 'play_arrow'
             this.pauseTool.data.AlignItems = 'center'
             this.pauseToolIcon.data.FontSize = Typography.Size.TitleMedium
-            this.pauseTool.addChild(this.pauseToolIcon)
+            this.pauseTool.cascade.Text.addChild(this.pauseToolIcon)
             this.pauseTool.geometry.AspectRatio = '1'
             this.pauseTool.geometry.Width = '20%'
             this.toolLine.addChild(this.pauseTool)
@@ -719,7 +550,7 @@ export class Material3 extends NeuApp {
             this.nextToolIcon.data.Content = 'skip_next'
             this.nextTool.data.AlignItems = 'center'
             this.nextToolIcon.data.FontSize = Typography.Size.TitleMedium
-            this.nextTool.addChild(this.nextToolIcon)
+            this.nextTool.cascade.Text.addChild(this.nextToolIcon)
             this.nextTool.geometry.AspectRatio = '1'
             this.nextTool.geometry.Width = '20%'
             this.toolLine.addChild(this.nextTool)
@@ -729,7 +560,7 @@ export class Material3 extends NeuApp {
             this.repeatToolIcon.data.Content = 'repeat'
             this.repeatTool.data.AlignItems = 'center'
             this.repeatToolIcon.data.FontSize = Typography.Size.TitleMedium
-            this.repeatTool.addChild(this.repeatToolIcon)
+            this.repeatTool.cascade.Text.addChild(this.repeatToolIcon)
             this.repeatTool.geometry.AspectRatio = '1'
             this.repeatTool.geometry.Width = '20%'
             this.toolLine.addChild(this.repeatTool)
@@ -764,16 +595,41 @@ export class Material3 extends NeuApp {
             })
         }
 
+
+
         this.navBarItem1 = new NavigationBarItem()
         this.navBarItem1.Icon.data.Content = 'spa'
         this.navBarItem1.Label.data.Content = 'Lavender'
         this.btm.addChild(this.navBarItem1)
         this.navBarItem1.watchEvent('click', function() {
-            this.menuIcon.data.Content = 'spa'
-            this.appbar.setHeadline('Lavender')
+            if (!this.layout.body.scout) {
+                this.body.addChild(this.lavenderScreen)
+            }
+            window.modal.addInteractiveModal(this.layout.body.scout)
+            let mimic = window.modal.getLayer(this.layout.body.scout)
+            mimic.geometry.Overflow = 'hidden'
             this.body.clearChildren()
             this.body.addChild(this.lavenderScreen)
-            bodyFadeIn()
+            window.addEventListener('resize', () => {
+                let bound = this.layout.body.getBoundingClientRect()
+                mimic.geometry.Top = bound.y + 'px'
+                mimic.geometry.Left = bound.x + 'px'
+                mimic.geometry.Width = bound.width + 'px'
+                mimic.geometry.Height = this.layout.body.element.clientHeight + 'px'
+            })
+            window.dispatchEvent(new Event('resize'))
+            mimic.data.BackgroundColor = this.layout.body.data.BackgroundColor
+            anime({
+                targets: mimic.element,
+                easing: 'linear',
+                duration: DURATION,
+                translateX: '100%',
+                complete: (anime) => {
+                    this.menuIcon.data.Content = 'spa'
+                    this.appbar.setHeadline('Lavender')
+                    window.modal.removeModal(mimic.scout)
+                }
+            })
         }.bind(this))
         // this.navBarItem1.element.click()
 
@@ -795,42 +651,86 @@ export class Material3 extends NeuApp {
         this.navBarItem2.Label.data.Content = 'Home'
         this.btm.addChild(this.navBarItem2)
         this.navBarItem2.watchEvent('click', function() {
-            this.menuIcon.data.Content = 'specific_gravity'
-            this.appbar.setHeadline('Material 3')
+            if (!this.layout.body.scout) {
+                this.body.addChild(this.homeScreen)
+            }
+            window.modal.addInteractiveModal(this.layout.body.scout)
+            let mimic = window.modal.getLayer(this.layout.body.scout)
+            mimic.geometry.Overflow = 'hidden'
             this.body.clearChildren()
             this.body.addChild(this.homeScreen)
-            bodyFadeIn()
-
+            window.addEventListener('resize', () => {
+                let bound = this.layout.body.getBoundingClientRect()
+                mimic.geometry.Top = bound.y + 'px'
+                mimic.geometry.Left = bound.x + 'px'
+                mimic.geometry.Width = bound.width + 'px'
+                mimic.geometry.Height = this.layout.body.element.clientHeight + 'px'
+            })
+            window.dispatchEvent(new Event('resize'))
+            mimic.data.BackgroundColor = this.layout.body.data.BackgroundColor
+            anime({
+                targets: mimic.element,
+                easing: 'linear',
+                duration: DURATION,
+                translateX: '100%',
+                complete: (anime) => {
+                    this.menuIcon.data.Content = 'specific_gravity'
+                    this.appbar.setHeadline('Material 3')
+                    window.modal.removeModal(mimic.scout)
+                }
+            })
         }.bind(this))
         this.navBarItem2.element.click()
-
 
         this.navBarItem3 = new NavigationBarItem()
         this.navBarItem3.Icon.data.Content = 'water_drop'
         this.navBarItem3.Label.data.Content = 'Preference'
         this.btm.addChild(this.navBarItem3)
         this.navBarItem3.watchEvent('click', function() {
-            this.menuIcon.data.Content = 'water_drop'
-            this.appbar.setHeadline('Water is Dropping')
+            if (!this.layout.body.scout) {
+                this.body.addChild(this.extraScreen)
+            }
+            window.modal.addInteractiveModal(this.layout.body.scout)
+            let mimic = window.modal.getLayer(this.layout.body.scout)
+            mimic.geometry.Overflow = 'hidden'
             this.body.clearChildren()
             this.body.addChild(this.extraScreen)
-            bodyFadeIn()
+            window.addEventListener('resize', () => {
+                let bound = this.layout.body.getBoundingClientRect()
+                mimic.geometry.Top = bound.y + 'px'
+                mimic.geometry.Left = bound.x + 'px'
+                mimic.geometry.Width = bound.width + 'px'
+                mimic.geometry.Height = this.layout.body.element.clientHeight + 'px'
+            })
+            window.dispatchEvent(new Event('resize'))
+            mimic.data.BackgroundColor = this.layout.body.data.BackgroundColor
+            anime({
+                targets: mimic.element,
+                easing: 'linear',
+                duration: DURATION,
+                translateX: '100%',
+                complete: (anime) => {
+                    this.menuIcon.data.Content = 'spa'
+                    this.appbar.setHeadline('Lavender')
+                    window.modal.removeModal(mimic.scout)
+                }
+            })
 
         }.bind(this))
 
 
-        this.navBarItem4 = new NavigationBarItem()
-        this.navBarItem4.Icon.data.Content = 'palette'
-        this.navBarItem4.Label.data.Content = 'Palette'
-        this.btm.addChild(this.navBarItem4)
-        this.navBarItem4.watchEvent('click', function() {
-            this.menuIcon.data.Content = 'palette'
-            this.appbar.setHeadline("Year's Color Palette")
-            this.body.clearChildren()
-            this.body.addChild(this.paletteScreen)
-            bodyFadeIn()
-
-        }.bind(this))
+        // this.navBarItem4 = new NavigationBarItem()
+        // this.navBarItem4.Icon.data.Content = 'palette'
+        // this.navBarItem4.Label.data.Content = 'Palette'
+        // this.btm.addChild(this.navBarItem4)
+        // this.navBarItem4.watchEvent('click', function() {
+        //     this.menuIcon.data.Content = 'palette'
+        //     this.appbar.setHeadline("Year's Color Palette")
+        //     this.body.clearChildren()
+        //     this.body.addChild(this.paletteScreen)
+        //     bodyFadeIn()
+        //
+        // }.bind(this))
 
 
         // function recursive(children) {
@@ -860,13 +760,13 @@ export class Material3 extends NeuApp {
 // export let rapp = runApp(new M3())
 export let app = runApp(new Material3())
 
-window.onbeforeunload = function(e) {
-    e.preventDefault()
-    console.log(e)
-    // return false
-    // e.returnValue = ''
-    return undefined
-};
+// window.onbeforeunload = function(e) {
+//     e.preventDefault()
+//     console.log(e)
+//     // return false
+//     // e.returnValue = ''
+//     return undefined
+// };
 
 // window.onunload = function(e) {
 //     e.preventDefault()

@@ -8,7 +8,7 @@ import { NeuContainer } from "../../assets/ts/Neupica/Components/Native/NeuConta
 import { TextFields } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/TextInputs/Text Fields/TextFields.js"
 import { CommonButton } from "../../assets/ts/Neupica/Components/Custom/Material3/Components/Actions/Common Buttons/CommonButton.js"
 import { colorScheme } from "../../assets/ts/Neupica/Components/Custom/Material3/Styles/Color.js"
-// import { NObject } from "../../assets/ts/Common/NObject.ts"
+// import { NObject } from "../../assets/ts/Common/NObject.js"
 // import * as inspector from "inspector"
 
 export class NeuDev extends NeuApp {

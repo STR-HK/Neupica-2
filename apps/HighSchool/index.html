@@ -30,23 +30,26 @@
       font-size: 1px;
     }
 
-    *::-webkit-scrollbar {
-      background-color: black;
-      width: 4px;
+    /* width */
+    ::-webkit-scrollbar {
+      width: 9px;
     }
 
-    *::-webkit-scrollbar-track {
-      background-color: transparent;
+    /* button */
+    ::-webkit-scrollbar-button {
+      background: red;
+      height: 0;
     }
 
-    *::-webkit-scrollbar-thumb {
-      background-color: #737a7b;
-      border-radius: 16px;
-      padding: 4px;
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #5f6368;
+      border-radius: 4px;
     }
 
-    *::-webkit-scrollbar-button {
-      display: none;
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #bbb;
     }
 
     .NeuCover {

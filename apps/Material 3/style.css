@@ -13,7 +13,9 @@
 
     position: relative;
 
-    user-select: none;
+    user-select: none
+    scroll-behavior: smooth;
+
 }
 
 html, body {
